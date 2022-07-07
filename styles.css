@@ -1,0 +1,19 @@
+/* DEBUG BACKGROUND-COLOR CODE */
+/* * {
+    background-color: rgba(165, 219, 219, 0.147);
+} */
+
+header {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    place-content: center;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+.blue {
+    color: lightblue;
+}
