@@ -77,8 +77,9 @@ article {
   position: absolute;
   bottom: 0%;
   width: 100%;
+  opacity: 100%;
   filter: saturate(150%) brightness(100%) hue-rotate(0deg);
-  transition: opacity 0.5s ease-out;
+  transition: opacity 0.5s ease-out, filter 0.3s;
 }
 
 .homepage-section.about {
@@ -203,10 +204,6 @@ article {
 
 .hide {
   opacity: 0%;
-}
-
-.hover-color {
-  transition: 0.3s;
 }
 
 .hover-color:hover {
