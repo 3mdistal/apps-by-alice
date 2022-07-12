@@ -79,18 +79,16 @@ article {
   height: 100vh;
   position: sticky;
   position: -webkit-sticky;
-  // Un-comment to spread sections out.
-  // position: relative;
   top: 0px;
 }
 
 .homepage-section {
   height: 100vh;
-  //Comment to spread sections out.
   position: absolute;
   bottom: 0%;
   width: 100%;
-  filter: saturate(150%);
+  filter: saturate(150%) brightness(100%) hue-rotate(0deg);
+  transition: opacity .5s ease-out;
 }
 
 .homepage-section.about {
@@ -128,6 +126,7 @@ article {
 
 .homepage-section-menu-link {
   position: absolute;
+
   p {
     font-size: clamp(1.25rem, 2vw, 3rem);
   }
@@ -151,6 +150,7 @@ article {
 .homepage-section-menu-link.shop {
   right: 20%;
   top: 18%;
+
   p {
     color: #fafafa;
   }
@@ -228,10 +228,17 @@ article {
   text-align: center;
 }
 
-/* jQuery Test Class */
-// .black {
-//     color: black;
-// }
+.hide {
+  opacity: 0%;
+}
+
+.hover-color {
+  transition: .3s;
+}
+
+.hover-color:hover {
+  filter: saturate(200%) brightness(95%) hue-rotate(5deg);
+}
 
 /* DEBUG BACKGROUND-COLOR CODE */
 // * {

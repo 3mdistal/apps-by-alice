@@ -77,7 +77,8 @@ article {
   position: absolute;
   bottom: 0%;
   width: 100%;
-  filter: saturate(150%);
+  filter: saturate(150%) brightness(100%) hue-rotate(0deg);
+  transition: opacity 0.5s ease-out;
 }
 
 .homepage-section.about {
@@ -153,41 +154,33 @@ article {
     margin-top: 10vh;
     flex-direction: column;
   }
-
   .homepage-section-container {
     margin-top: 6%;
   }
-
   .homepage-section.studio {
     clip-path: url(#studio-path-mobile);
     -webkit-clip-path: url(#studio-path-mobile);
     height: 90%;
   }
-
   .homepage-section.commissions {
     clip-path: url(#commissions-path-mobile);
     -webkit-clip-path: url(#commissions-path-mobile);
     height: 78%;
   }
-
   .homepage-section.shop {
     clip-path: url(#shop-path-mobile);
     -webkit-clip-path: url(#shop-path-mobile);
     height: 68%;
   }
-
   .homepage-section.news {
     height: 55%;
   }
-
   .homepage-section-menu-link.about {
     top: 10%;
   }
-
   .homepage-section-menu-link.studio {
     top: 5%;
   }
-
   .homepage-section-menu-link.shop {
     top: 12%;
   }
@@ -208,5 +201,16 @@ article {
   text-align: center;
 }
 
-/* jQuery Test Class */
+.hide {
+  opacity: 0%;
+}
+
+.hover-color {
+  transition: 0.3s;
+}
+
+.hover-color:hover {
+  filter: saturate(200%) brightness(95%) hue-rotate(5deg);
+}
+
 /* DEBUG BACKGROUND-COLOR CODE *//*# sourceMappingURL=styles.css.map */
