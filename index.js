@@ -5,11 +5,28 @@ let homepageSections = document.querySelectorAll(".homepage-section");
 
 for (let elem of homepageSections) {
     elem.classList.add("hover-color")
-    elem.onclick = function () {
+
+    elem.onclick = () => {
         for (let eachElem of homepageSections) {
-            eachElem.classList.toggle("hide");
+            eachElem.classList.add("hide");
+            eachElem.classList.remove("hover-color");
+
         }
-        elem.classList.toggle("hide");
-        elem.classList.toggle("hover-color");
+
+        elem.classList.remove("hide");
     }
 }
+
+let lastScrollPosition = 0;
+
+window.addEventListener("scroll", () => {
+    if (scrollY < lastScrollPosition && scrollY < 300 && scrollY > 10) {
+        for (let elem of homepageSections) {
+            elem.classList.remove("hide");
+            elem.classList.add("hover-color");
+        }
+        lastScrollPosition = 0;
+    }
+
+    lastScrollPosition = scrollY;
+}, { passive: true })

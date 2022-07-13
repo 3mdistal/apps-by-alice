@@ -79,7 +79,7 @@ article {
   width: 100%;
   opacity: 100%;
   filter: saturate(150%) brightness(100%) hue-rotate(0deg);
-  transition: opacity 0.5s ease-out, filter 0.3s;
+  transition: opacity 0.5s ease-out, filter 0.1s;
 }
 
 .homepage-section.about {
@@ -208,6 +208,7 @@ article {
 
 .hover-color:hover {
   filter: saturate(200%) brightness(95%) hue-rotate(5deg);
+  cursor: pointer;
 }
 
 /* DEBUG BACKGROUND-COLOR CODE *//*# sourceMappingURL=styles.css.map */
