@@ -10,7 +10,6 @@ for (let elem of homepageSections) {
         for (let eachElem of homepageSections) {
             eachElem.classList.add("hide");
             eachElem.classList.remove("hover-color");
-
         }
 
         elem.classList.remove("hide");
@@ -20,7 +19,7 @@ for (let elem of homepageSections) {
 let lastScrollPosition = 0;
 
 window.addEventListener("scroll", () => {
-    if (scrollY < lastScrollPosition && scrollY < 300 && scrollY > 10) {
+    if (scrollY < lastScrollPosition && scrollY < 200 && scrollY > 10) {
         for (let elem of homepageSections) {
             elem.classList.remove("hide");
             elem.classList.add("hover-color");
