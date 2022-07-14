@@ -1,31 +1,65 @@
 "use strict";
-// alert('Welcome to the site that *will* contain all things Alice Alexandra Moore. For now, what you see is a hulking shell as I get some Javascript to behave correctly. Thanks for your patience. ~Alice');
 
 let homepageSections = document.querySelectorAll(".homepage-section");
 
 for (let elem of homepageSections) {
-    elem.classList.add("hover-color")
+    elem.onclick = toggleDisplay;
+}
 
-    elem.onclick = () => {
-        for (let eachElem of homepageSections) {
-            eachElem.classList.add("hide");
-            eachElem.classList.remove("hover-color");
-        }
+function toggleDisplay() {
+    setHide();
+    this.classList.remove("hide");
+    setTimeout(unsetScaleTransition, 500);
+}
 
-        elem.classList.remove("hide");
+function setHide() {
+    for (let elem of homepageSections) {
+        elem.classList.add("hide");
+        elem.classList.remove("hover-color");
     }
 }
 
+function setScaleTransition() {
+    for (let elem of homepageSections) {
+        elem.classList.add("scale-transition");
+    }
+}
+
+function unsetScaleTransition() {
+    for (let elem of homepageSections) {
+        elem.classList.remove("scale-transition");
+    }
+}
+
+function unsetHide(collection) {
+    for (let elem of collection) {
+        elem.classList.remove("hide");
+        elem.classList.add("hover-color");
+    }
+}
+
+
 let lastScrollPosition = 0;
 
-window.addEventListener("scroll", () => {
-    if (scrollY < lastScrollPosition && scrollY < 200 && scrollY > 10) {
-        for (let elem of homepageSections) {
-            elem.classList.remove("hide");
-            elem.classList.add("hover-color");
-        }
+function scrollTopDetect() {
+    if (scrollY < lastScrollPosition
+        && scrollY < 200
+        && scrollY > 10) {
+        setTimeout(setScaleTransition, 500);
+        unsetHide(homepageSections);
         lastScrollPosition = 0;
     }
 
     lastScrollPosition = scrollY;
-}, { passive: true })
+}
+
+
+function listenUserScroll() {
+    window.addEventListener(
+        "scroll",
+        scrollTopDetect,
+        { passive: true }
+    )
+}
+
+listenUserScroll();

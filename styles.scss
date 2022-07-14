@@ -40,6 +40,8 @@ p {
 
 // Homepage-Specific Classes
 
+//todo: Refactor HTML so that the title and section-container can be part of the same flexbox that's maybe 1.5 times the screen height. Then, bring back the SVGs as images instead of clipping paths, and make the divs beneath extend indefinitely to contain the text.
+
 .site-header-container {
   display: flex;
   flex-direction: row;
@@ -85,7 +87,7 @@ p {
   width: 100%;
   opacity: 100%;
   filter: saturate(150%) brightness(100%) hue-rotate(0deg);
-  transition: opacity .5s ease-out, filter .1s;
+  transition: opacity .5s ease-out, filter 0s;
 }
 
 .homepage-section.about {
@@ -227,11 +229,33 @@ p {
 
 .hide {
   opacity: 0%;
+  transform: scale(0);
+}
+
+.scale-transition {
+  transition: opacity .5s ease-out, filter 0s, transform .1s .5s;
 }
 
 .hover-color:hover {
   filter: saturate(200%) brightness(95%) hue-rotate(5deg);
   cursor: pointer;
+  animation: bounce .5s ease-in-out;
+  animation-fill-mode: forwards;
+}
+
+@media (hover: none) {
+  .hover-color:hover {
+    animation: none;
+  }
+}
+
+//Animations
+
+@keyframes bounce {
+  0% { transform: translateY(0px); }
+  50% { transform: translateY(-30px); }
+  100% { transform: translateY(0px); }
+  
 }
 
 /* DEBUG BACKGROUND-COLOR CODE */
