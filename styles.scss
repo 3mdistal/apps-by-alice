@@ -22,10 +22,13 @@ h6 {
   color: rgb(37, 37, 37);
   font-family: "Lato", "Arial", sans-serif;
   font-weight: 300;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background-color: #fafafa;
+  overflow-y: scroll;
 }
 
 img {
@@ -57,19 +60,20 @@ p {
 .logo {
   width: clamp(50px, 20%, 200px);
   filter: saturate(150%);
+  animation: logo-roll 1s ease-in-out both, fade-in 1s ease-in both;
 }
 
 .site-title {
   font-size: clamp(1.5rem, 4vw, 3rem);
   letter-spacing: 0.4em;
-  margin: 0;
   margin-bottom: 0.5em;
+  animation: fade-in 1s ease-in 1s both;
 }
 
 .subtitle {
   font-size: clamp(1rem, 2.5vw, 1.8rem);
   letter-spacing: 0.15em;
-  margin: 0;
+  animation: fade-in 1s ease-in 1.5s both;
 }
 
 .homepage-section-container {
@@ -78,6 +82,7 @@ p {
   position: absolute;
   top: 15em;
   bottom: 0;
+  animation: slide-from-bottom .65s ease-in-out 2.25s both;
 }
 
 .homepage-section {
@@ -132,8 +137,8 @@ p {
 }
 
 .homepage-section-menu-link.about {
-  top: 12%;
-  left: 30%;
+  top: 15%;
+  left: 33%;
 }
 
 .homepage-section-menu-link.studio {
@@ -143,12 +148,12 @@ p {
 
 .homepage-section-menu-link.commissions {
   right: 32%;
-  top: 7%;
+  top: 9%;
 }
 
 .homepage-section-menu-link.shop {
   right: 20%;
-  top: 18%;
+  top: 22%;
 
   p {
     color: #fafafa;
@@ -157,7 +162,7 @@ p {
 
 .homepage-section-menu-link.news {
   left: 27%;
-  top: 7%;
+  top: 12%;
 }
 
 // Mobile Rules for the Homepage
@@ -199,11 +204,20 @@ p {
   }
 
   .homepage-section-menu-link.studio {
-    top: 5%;
+    top: 6%;
+    right: 14%;
+  }
+
+  .homepage-section-menu-link.commissions {
+    right: 20%;
   }
 
   .homepage-section-menu-link.shop {
     top: 12%;
+  }
+
+  .homepage-section-menu-link.news {
+    left: 23%;
   }
 }
 
@@ -222,6 +236,10 @@ p {
 }
 
 //Utility Classes
+
+.js-loading {
+  animation-play-state: paused;
+}
 
 .centered {
   text-align: center;
@@ -252,10 +270,57 @@ p {
 //Animations
 
 @keyframes bounce {
-  0% { transform: translateY(0px); }
-  50% { transform: translateY(-30px); }
-  100% { transform: translateY(0px); }
-  
+  0% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-30px);
+  }
+
+  100% {
+    transform: translateY(0px);
+  }
+
+}
+
+@keyframes logo-roll {
+  from {
+    transform: translateX(-200%) rotateZ(-360deg);
+  }
+
+  to {
+    transform: translateX(0%) rotateZ(0deg);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+
+  to {
+    opacity: 100%;
+  }
+}
+
+@keyframes slide-from-bottom {
+  0% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+
+  70% {
+    transform: scaleY(1.1);
+  }
+
+  90% {
+    transform: scaleY(.95);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
 }
 
 /* DEBUG BACKGROUND-COLOR CODE */

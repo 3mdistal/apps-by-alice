@@ -14,10 +14,13 @@ h6 {
   color: rgb(37, 37, 37);
   font-family: "Lato", "Arial", sans-serif;
   font-weight: 300;
+  margin: 0;
+  padding: 0;
 }
 
 body {
   background-color: #fafafa;
+  overflow-y: scroll;
 }
 
 img {
@@ -45,19 +48,23 @@ p {
 .logo {
   width: clamp(50px, 20%, 200px);
   filter: saturate(150%);
+  -webkit-animation: logo-roll 1s ease-in-out both, fade-in 1s ease-in both;
+          animation: logo-roll 1s ease-in-out both, fade-in 1s ease-in both;
 }
 
 .site-title {
   font-size: clamp(1.5rem, 4vw, 3rem);
   letter-spacing: 0.4em;
-  margin: 0;
   margin-bottom: 0.5em;
+  -webkit-animation: fade-in 1s ease-in 1s both;
+          animation: fade-in 1s ease-in 1s both;
 }
 
 .subtitle {
   font-size: clamp(1rem, 2.5vw, 1.8rem);
   letter-spacing: 0.15em;
-  margin: 0;
+  -webkit-animation: fade-in 1s ease-in 1.5s both;
+          animation: fade-in 1s ease-in 1.5s both;
 }
 
 .homepage-section-container {
@@ -66,6 +73,8 @@ p {
   position: absolute;
   top: 15em;
   bottom: 0;
+  -webkit-animation: slide-from-bottom 0.65s ease-in-out 2.25s both;
+          animation: slide-from-bottom 0.65s ease-in-out 2.25s both;
 }
 
 .homepage-section {
@@ -119,8 +128,8 @@ p {
 }
 
 .homepage-section-menu-link.about {
-  top: 12%;
-  left: 30%;
+  top: 15%;
+  left: 33%;
 }
 
 .homepage-section-menu-link.studio {
@@ -130,12 +139,12 @@ p {
 
 .homepage-section-menu-link.commissions {
   right: 32%;
-  top: 7%;
+  top: 9%;
 }
 
 .homepage-section-menu-link.shop {
   right: 20%;
-  top: 18%;
+  top: 22%;
 }
 .homepage-section-menu-link.shop p {
   color: #fafafa;
@@ -143,7 +152,7 @@ p {
 
 .homepage-section-menu-link.news {
   left: 27%;
-  top: 7%;
+  top: 12%;
 }
 
 @media screen and (max-width: 768px) {
@@ -176,10 +185,17 @@ p {
     top: 10%;
   }
   .homepage-section-menu-link.studio {
-    top: 5%;
+    top: 6%;
+    right: 14%;
+  }
+  .homepage-section-menu-link.commissions {
+    right: 20%;
   }
   .homepage-section-menu-link.shop {
     top: 12%;
+  }
+  .homepage-section-menu-link.news {
+    left: 23%;
   }
 }
 .sm-container {
@@ -192,6 +208,11 @@ p {
 
 .social-image {
   width: 25%;
+}
+
+.js-loading {
+  -webkit-animation-play-state: paused;
+          animation-play-state: paused;
 }
 
 .centered {
@@ -242,6 +263,68 @@ p {
   }
   100% {
     transform: translateY(0px);
+  }
+}
+@-webkit-keyframes logo-roll {
+  from {
+    transform: translateX(-200%) rotateZ(-360deg);
+  }
+  to {
+    transform: translateX(0%) rotateZ(0deg);
+  }
+}
+@keyframes logo-roll {
+  from {
+    transform: translateX(-200%) rotateZ(-360deg);
+  }
+  to {
+    transform: translateX(0%) rotateZ(0deg);
+  }
+}
+@-webkit-keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@keyframes fade-in {
+  from {
+    opacity: 0%;
+  }
+  to {
+    opacity: 100%;
+  }
+}
+@-webkit-keyframes slide-from-bottom {
+  0% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  70% {
+    transform: scaleY(1.1);
+  }
+  90% {
+    transform: scaleY(0.95);
+  }
+  100% {
+    transform: scaleY(1);
+  }
+}
+@keyframes slide-from-bottom {
+  0% {
+    transform: scaleY(0);
+    transform-origin: bottom;
+  }
+  70% {
+    transform: scaleY(1.1);
+  }
+  90% {
+    transform: scaleY(0.95);
+  }
+  100% {
+    transform: scaleY(1);
   }
 }
 /* DEBUG BACKGROUND-COLOR CODE *//*# sourceMappingURL=styles.css.map */

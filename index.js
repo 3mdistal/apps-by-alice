@@ -1,5 +1,13 @@
 "use strict";
 
+document.body.classList.add('js-loading');
+
+window.addEventListener("load", showPage);
+
+function showPage() {
+    document.body.classList.remove('js-loading');
+}
+
 let homepageSections = document.querySelectorAll(".homepage-section");
 
 for (let elem of homepageSections) {
