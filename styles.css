@@ -16,6 +16,10 @@ h6 {
   font-weight: 300;
   margin: 0;
   padding: 0;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
 }
 
 body {
@@ -32,6 +36,11 @@ img {
 
 p {
   font-size: 1.5rem;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
 }
 
 .site-header-container {
@@ -68,10 +77,9 @@ p {
 }
 
 .homepage-section-container {
+  position: relative;
   width: 100%;
   height: 100vh;
-  position: absolute;
-  top: 15em;
   bottom: 0;
   -webkit-animation: slide-from-bottom 0.65s ease-in-out 2.25s both;
           animation: slide-from-bottom 0.65s ease-in-out 2.25s both;
@@ -155,6 +163,22 @@ p {
   top: 12%;
 }
 
+.homepage-section-content {
+  position: absolute;
+  top: 27%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  transition: 0.25s;
+}
+
+.homepage-section-content.about {
+  background-color: #bfb9c7;
+}
+
 @media screen and (max-width: 768px) {
   .site-header-container {
     margin-top: 10vh;
@@ -217,6 +241,10 @@ p {
 
 .centered {
   text-align: center;
+}
+
+.flip-vertical {
+  transform: scaleX(-1);
 }
 
 .hide {

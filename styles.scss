@@ -1,4 +1,5 @@
 // Imports
+// todo: Move fonts to a preloaded link in the HTML.
 @import url(https://fonts.googleapis.com/css?family=Lato:100,100italic,300,300italic,regular,italic,700,700italic,900,900italic);
 
 // Custom Resets
@@ -24,6 +25,10 @@ h6 {
   font-weight: 300;
   margin: 0;
   padding: 0;
+  -webkit-backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  backface-visibility: hidden;
+  perspective: 1000;
 }
 
 body {
@@ -44,6 +49,12 @@ p {
 // Homepage-Specific Classes
 
 //todo: Refactor HTML so that the title and section-container can be part of the same flexbox that's maybe 1.5 times the screen height. Then, bring back the SVGs as images instead of clipping paths, and make the divs beneath extend indefinitely to contain the text.
+
+body {
+  display: flex;
+  flex-direction: column;
+  // overflow: hidden;
+}
 
 .site-header-container {
   display: flex;
@@ -77,10 +88,9 @@ p {
 }
 
 .homepage-section-container {
+  position: relative;
   width: 100%;
   height: 100vh;
-  position: absolute;
-  top: 15em;
   bottom: 0;
   animation: slide-from-bottom .65s ease-in-out 2.25s both;
 }
@@ -165,6 +175,22 @@ p {
   top: 12%;
 }
 
+.homepage-section-content {
+  position: absolute;
+  top: 27%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-around;
+  transition: .25s;
+}
+
+.homepage-section-content.about {
+  background-color: #bfb9c7;
+}
+
 // Mobile Rules for the Homepage
 
 @media screen and (max-width: 768px) {
@@ -221,7 +247,7 @@ p {
   }
 }
 
-//Component Classes
+// Component Classes
 
 .sm-container {
   margin: 3em auto 0;
@@ -235,7 +261,7 @@ p {
   width: 25%;
 }
 
-//Utility Classes
+// Utility Classes
 
 .js-loading {
   animation-play-state: paused;
@@ -243,6 +269,10 @@ p {
 
 .centered {
   text-align: center;
+}
+
+.flip-vertical {
+  transform: scaleX(-1);
 }
 
 .hide {
@@ -267,7 +297,7 @@ p {
   }
 }
 
-//Animations
+// Animations
 
 @keyframes bounce {
   0% {
