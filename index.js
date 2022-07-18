@@ -8,6 +8,9 @@ function showPage() {
     document.body.classList.remove('js-loading');
 }
 
+
+const siteHeaderContainer = document.querySelector(".site-header-container");
+
 const homepageSections = document.querySelectorAll(".homepage-section");
 const aboutSection = homepageSections[0];
 const studioSection = homepageSections[1];
@@ -22,80 +25,73 @@ const commissionsContent = homepageSectionContent[1];
 const shopContent = homepageSectionContent[1];
 const newsContent = homepageSectionContent[1];
 
+
+
 for (let elem of homepageSections) {
     elem.addEventListener("click", (event) => {
-        hide(homepageSections);
-        removeHoverColor(homepageSections);
-        event.target.classList.remove("hide");
-        setTimeout(unsetScaleTransition, 500);
+
+        siteHeaderContainer.classList.add("hide");
+
+        for (elem of homepageSections) {
+            if (elem != event.target) {
+                hide(elem);
+            }
+
+            removeHoverColor(elem);
+        }
+
+        for (elem of homepageSectionContent) {
+            elem.style.transition = ".5s .5s";
+        }
+
 
         switch (event.target) {
-            
+
         case aboutSection:
-            aboutContent.classList.remove("hide");
+            unhide(aboutContent);
             break;
-        
+
         case studioSection:
-            studioContent.classList.remove("hide");
+            unhide(studioContent);
             break;
-            
+
         case commissionsSection:
-            commissionsContent.classList.remove("hide");
+            unhide(commissionsContent);
             break;
-            
+
         case shopSection:
-            shopContent.classList.remove("hide");
+            unhide(shopContent);
             break;
-            
+
         case newsSection:
-            newsContent.classList.remove("hide");
+            unhide(newsContent);
             break;
-        
+
         }
     })
 }
 
-function hide(collection) {
-    for (let elem of collection) {
-        elem.classList.add("hide");
-    }
+function hide(elem) {
+    elem.classList.add("hide");
+    setTimeout(() => {
+        elem.classList.add("invisible");
+    }, 500);
 }
 
-function unhide(collection) {
-    for (let elem of collection) {
+function unhide(elem) {
+    elem.classList.remove("invisible");
+    setTimeout(() => {
         elem.classList.remove("hide");
-    }
+    }, 1);
 }
 
-function addHoverColor(collection) {
-    for (let elem of collection) {
-        elem.classList.add("hover-color");
-    }
+function addHoverColor(elem) {
+    elem.classList.add("hover-color");
 }
 
-function removeHoverColor(collection) {
-    for (let elem of collection) {
-        elem.classList.remove("hover-color");
-    }
+function removeHoverColor(elem) {
+    elem.classList.remove("hover-color");
 }
-
-function setScaleTransition() {
-    for (let elem of homepageSections) {
-        elem.classList.add("scale-transition");
-    }
-}
-
-function unsetScaleTransition() {
-    for (let elem of homepageSections) {
-        elem.classList.remove("scale-transition");
-    }
-}
-
-// function setAnimationOn() {
-//     document.querySelector(".logo").style.animationPlayState = play;
-//     document.querySelector(".site-title").style.animationPlayState = play;
-//     document.querySelector(".subtitle").style.animationPlayState = play;
-// }
 
 
 let lastScrollPosition = 0;
@@ -104,11 +100,19 @@ function scrollTopDetect() {
     if (scrollY < lastScrollPosition
         && scrollY < 200
         && scrollY > 5) {
-        setTimeout(setScaleTransition, 500);
-        unhide(homepageSections);
-        addHoverColor(homepageSections);
-        hide(homepageSectionContent);
-        // setAnimationOn;
+
+        siteHeaderContainer.classList.remove("hide");
+
+        for (let elem of homepageSections) {
+            unhide(elem);
+            addHoverColor(elem);
+        }
+
+        for (let elem of homepageSectionContent) {
+            elem.style.transition = ".5s";
+            hide(elem);
+        }
+
         lastScrollPosition = 0;
     }
 

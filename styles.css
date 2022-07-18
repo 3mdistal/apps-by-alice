@@ -16,10 +16,6 @@ h6 {
   font-weight: 300;
   margin: 0;
   padding: 0;
-  -webkit-backface-visibility: hidden;
-  -webkit-perspective: 1000;
-  backface-visibility: hidden;
-  perspective: 1000;
 }
 
 body {
@@ -56,7 +52,6 @@ body {
 
 .logo {
   width: clamp(50px, 20%, 200px);
-  filter: saturate(150%);
   -webkit-animation: logo-roll 1s ease-in-out both, fade-in 1s ease-in both;
           animation: logo-roll 1s ease-in-out both, fade-in 1s ease-in both;
 }
@@ -91,38 +86,37 @@ body {
   bottom: 0%;
   width: 100%;
   opacity: 100%;
-  filter: saturate(150%) brightness(100%) hue-rotate(0deg);
-  transition: opacity 0.5s ease-out, filter 0s;
+  transition: opacity 0.5s ease-out;
 }
 
 .homepage-section.about {
-  background-color: #bfb9c7;
+  background-color: hsl(266deg, 16.5%, 75%);
   clip-path: url(#about-path);
   -webkit-clip-path: url(#about-path);
 }
 
 .homepage-section.studio {
-  background-color: #dce0ec;
+  background-color: hsl(225deg, 45%, 89%);
   clip-path: url(#studio-path);
   -webkit-clip-path: url(#studio-path);
 }
 
 .homepage-section.commissions {
-  background-color: #d9ccca;
+  background-color: hsl(8deg, 24%, 82%);
   clip-path: url(#commissions-path);
   -webkit-clip-path: url(#commissions-path);
   height: 82%;
 }
 
 .homepage-section.shop {
-  background-color: #84848e;
+  background-color: #838391;
   clip-path: url(#shop-path);
   -webkit-clip-path: url(#shop-path);
   height: 75%;
 }
 
 .homepage-section.news {
-  background-color: #ededed;
+  background-color: hsl(0deg, 2%, 93%);
   clip-path: url(#news-path);
   -webkit-clip-path: url(#news-path);
   height: 50%;
@@ -130,6 +124,7 @@ body {
 
 .homepage-section-menu-link {
   position: absolute;
+  pointer-events: none;
 }
 .homepage-section-menu-link p {
   font-size: clamp(1.25rem, 2vw, 3rem);
@@ -172,11 +167,27 @@ body {
   margin: 0 auto;
   display: flex;
   justify-content: space-around;
-  transition: 0.25s;
+  transition: 0.5s 0.5s;
 }
 
 .homepage-section-content.about {
-  background-color: #bfb9c7;
+  background-color: hsl(266deg, 16.5%, 75%);
+}
+
+.homepage-section-content.studio {
+  background-color: hsl(225deg, 45%, 89%);
+}
+
+.homepage-section-content.commissions {
+  background-color: hsl(8deg, 24%, 82%);
+}
+
+.homepage-section-content.shop {
+  background-color: #838391;
+}
+
+.homepage-section-content.news {
+  background-color: hsl(0deg, 2%, 93%);
 }
 
 @media screen and (max-width: 768px) {
@@ -249,15 +260,14 @@ body {
 
 .hide {
   opacity: 0%;
-  transform: scale(0);
 }
 
-.scale-transition {
-  transition: opacity 0.5s ease-out, filter 0s, transform 0.1s 0.5s;
+.invisible {
+  display: none;
 }
 
 .hover-color:hover {
-  filter: saturate(200%) brightness(95%) hue-rotate(5deg);
+  filter: saturate(150%) brightness(95%) hue-rotate(5deg);
   cursor: pointer;
   -webkit-animation: bounce 0.5s ease-in-out;
           animation: bounce 0.5s ease-in-out;
@@ -330,7 +340,7 @@ body {
     transform: scaleY(0);
     transform-origin: bottom;
   }
-  70% {
+  65% {
     transform: scaleY(1.1);
   }
   90% {
@@ -345,7 +355,7 @@ body {
     transform: scaleY(0);
     transform-origin: bottom;
   }
-  70% {
+  65% {
     transform: scaleY(1.1);
   }
   90% {
