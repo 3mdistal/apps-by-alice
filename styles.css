@@ -186,14 +186,17 @@ body {
 
 .homepage-section-content.commissions {
   background-color: hsl(8deg, 24%, 82%);
+  top: 34%;
 }
 
 .homepage-section-content.shop {
   background-color: #838391;
+  top: 44%;
 }
 
 .homepage-section-content.news {
   background-color: hsl(0deg, 2%, 93%);
+  top: 55%;
 }
 
 .section-content-div {
@@ -205,8 +208,8 @@ body {
 .section-content-div h2 {
   margin: 0 10%;
   font-size: clamp(1.25rem, 2vw, 3rem);
-  color: #271647;
   font-weight: 400;
+  transition: 1.5s;
 }
 .section-content-div p {
   margin: 0 10%;
@@ -294,6 +297,7 @@ body {
   border-bottom: solid 2px;
   border-radius: 5%;
   padding: 8em 0;
+  transition: 1.5s;
 }
 
 .centered {

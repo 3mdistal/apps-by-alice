@@ -213,14 +213,17 @@ body {
 
 .homepage-section-content.commissions {
   background-color: $commissions-color;
+  top: 34%;
 }
 
 .homepage-section-content.shop {
   background-color: $shop-color;
+  top: 44%;
 }
 
 .homepage-section-content.news {
   background-color: $news-color;
+  top: 55%;
 }
 
 .section-content-div {
@@ -233,8 +236,8 @@ body {
   h2 {
     margin: 0 10%;
     font-size: clamp(1.25rem, 2vw, 3rem);
-    color: $about-accent-color;
     font-weight: 400;
+    transition: 1.5s;
   }
 
   p {
@@ -340,6 +343,7 @@ body {
   border-bottom: solid 2px;
   border-radius: 5%;
   padding: 8em 0;
+  transition: 1.5s;
 }
 
 .centered {
