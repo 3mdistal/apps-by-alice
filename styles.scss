@@ -23,6 +23,8 @@ $commissions-color: hsl(8, 24%, 82%);
 $shop-color: #838391;
 $news-color: hsl(0, 2%, 93%);
 
+$about-accent-color: #271647;
+
 
 // Site-Wide Classes
 
@@ -34,7 +36,7 @@ $news-color: hsl(0, 2%, 93%);
   padding: 0;
 
   // Performance Enhancing Code?
-  
+
   // -webkit-backface-visibility: hidden;
   // -webkit-perspective: 1000;
   // backface-visibility: hidden;
@@ -43,7 +45,6 @@ $news-color: hsl(0, 2%, 93%);
 
 body {
   background-color: #fafafa;
-  overflow-y: scroll;
 }
 
 img {
@@ -74,8 +75,8 @@ body {
   flex-wrap: wrap;
   row-gap: 1em;
   max-width: 80vw;
-  // width: max(300px, 80%);
   margin: 2vh auto;
+  transition: .5s;
 }
 
 .logo {
@@ -101,7 +102,7 @@ body {
   width: 100%;
   height: 100vh;
   bottom: 0;
-  animation: slide-from-bottom .65s ease-in-out 2.25s both;
+  // animation: slide-from-bottom .65s ease-in-out 2.25s both;
 }
 
 .homepage-section {
@@ -110,7 +111,6 @@ body {
   bottom: 0%;
   width: 100%;
   opacity: 100%;
-  transition: opacity .5s ease-out;
 }
 
 .homepage-section.about {
@@ -150,7 +150,7 @@ body {
   position: absolute;
   pointer-events: none;
 
-  p {
+  h1 {
     font-size: clamp(1.25rem, 2vw, 3rem);
   }
 }
@@ -174,7 +174,7 @@ body {
   right: 20%;
   top: 22%;
 
-  p {
+  h1 {
     color: #fafafa;
   }
 }
@@ -186,22 +186,29 @@ body {
 
 .homepage-section-content {
   position: absolute;
-  top: 27%;
+  top: 26%;
   left: 0;
   right: 0;
   width: 100%;
-  margin: 0 auto;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-around;
-  transition: .5s .5s;
-}
+  align-items: center;
+
+  @media screen and (max-width: 440px) {
+    top: 35%;
+  }
+    
+  }
 
 .homepage-section-content.about {
   background-color: $about-color;
+  justify-content: space-between;
 }
 
 .homepage-section-content.studio {
   background-color: $studio-color;
+  top: 28%;
 }
 
 .homepage-section-content.commissions {
@@ -214,6 +221,26 @@ body {
 
 .homepage-section-content.news {
   background-color: $news-color;
+}
+
+.section-content-div {
+  max-width: 50%;
+  // margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5em;
+
+  h2 {
+    margin: 0 10%;
+    font-size: clamp(1.25rem, 2vw, 3rem);
+    color: $about-accent-color;
+    font-weight: 400;
+  }
+
+  p {
+    margin: 0 10%;
+    font-size: clamp(1rem, 1.5vw, 2rem);
+  }
 }
 
 // Mobile Rules for the Homepage
@@ -272,6 +299,12 @@ body {
   }
 }
 
+@media screen and (max-width: 440px) {
+  .section-content-div {
+    max-width: 100%;
+  }
+}
+
 // Component Classes
 
 .sm-container {
@@ -292,6 +325,23 @@ body {
   animation-play-state: paused;
 }
 
+.max-width-40 {
+  max-width: 40%;
+  margin: 0 auto;
+
+  @media screen and (max-width: 440px) {
+    max-width: 90%;
+  }
+}
+
+.border-1 {
+  box-sizing: border-box;
+  border-top: solid 2px;
+  border-bottom: solid 2px;
+  border-radius: 5%;
+  padding: 8em 0;
+}
+
 .centered {
   text-align: center;
 }
@@ -302,16 +352,11 @@ body {
 
 .hide {
   opacity: 0%;
-  // transform: scale(0);
 }
 
 .invisible {
   display: none;
 }
-
-// .scale-transition {
-//   transition: opacity .5s ease-out, filter 0s, transform .1s .5s;
-// }
 
 .hover-color:hover {
   filter: saturate(150%) brightness(95%) hue-rotate(5deg);
