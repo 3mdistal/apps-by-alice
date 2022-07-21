@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@notionhq/client": "^2.0.0",
+    "dotenv": "^16.0.1"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "alicealexandra.com",
+  "description": "My personal website, maintained to learn, test, and grow as a web developer, as well as give myself a web presence. Go to [alicealexandra.com](http://alicealexandra.com) to see it in action.",
+  "version": "0.0.1",
+  "main": "index.js",
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
