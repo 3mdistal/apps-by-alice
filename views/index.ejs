@@ -6,10 +6,9 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link rel="stylesheet" href="reset.css" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="sass/styles.css" />
   <title>Tempo Immaterial</title>
   <script defer src="index.js"></script>
-  <script defer src="notion.js"></script>
 </head>
 
 <body>
@@ -66,6 +65,9 @@
           <h2 class="section-content-heading">i keep chasing new ideas.</h2>
           <p>I've always been someone who dabbles in everything; learning new arts keeps me happy. In my studio, you'll
             find paintings, poems, songs, fiction, memoir, fantasy, and more.</p>
+          <% for (let elem of test) { %>
+            <p style="white-space: pre-wrap"><%= elem %></p>
+          <% } %>
         </div>
       </div>
       <div class="homepage-section-content commissions hide invisible">

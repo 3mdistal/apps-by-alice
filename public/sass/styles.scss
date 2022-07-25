@@ -15,6 +15,10 @@ h6 {
   border: 0;
 }
 
+.hello-world {
+  color: red;
+}
+
 // Global Variables
 
 $about-color: hsl(266, 16.5%, 75%);
@@ -34,13 +38,6 @@ $about-accent-color: #271647;
   font-weight: 300;
   margin: 0;
   padding: 0;
-
-  // Performance Enhancing Code?
-
-  // -webkit-backface-visibility: hidden;
-  // -webkit-perspective: 1000;
-  // backface-visibility: hidden;
-  // perspective: 1000;
 }
 
 body {

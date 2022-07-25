@@ -42,7 +42,63 @@ const homepageStateObject = {
     content: "",
 }
 
+function homepageStateChange(state) {
 
+    switch (state) {
+
+    case "home":
+        homepageStateObject.showSiteHeaderContainer = true;
+        toggleSiteHeaderContainer();
+        homepageStateObject.accentColor = "";
+        homepageStateObject.content = "";
+        
+        for (let elem of homepageSectionContent) {
+            hide(elem);
+        }
+
+        for (let elem of homepageSections) {
+            unhide(elem);
+            addHoverColor(elem);
+        }
+
+        for (let elem of homepageSectionMenuLinks) {
+            unhide(elem);
+        }
+
+        return;
+
+    case "about":
+        homepageStateObject.accentColor = aboutAccentColor;
+        homepageStateObject.content = aboutContent;
+        break;
+
+    case "studio":
+        homepageStateObject.accentColor = studioAccentColor;
+        homepageStateObject.content = studioContent;
+        break;
+
+    case "commissions":
+        homepageStateObject.accentColor = commissionsAccentColor;
+        homepageStateObject.content = commissionsContent;
+        break;
+        
+    case "shop":
+        homepageStateObject.accentColor = shopAccentColor;
+        homepageStateObject.content = shopContent;
+        break;
+
+    case "news":
+        homepageStateObject.accentColor = newsAccentColor;
+        homepageStateObject.content = newsContent;
+        break;
+        
+    }
+
+    toggleSiteHeaderContainer();
+    changeBorderColor(border1, homepageStateObject.accentColor);
+    changeSectionHeadingsColor(sectionHeadings, homepageStateObject.accentColor);
+    unhide(homepageStateObject.content);
+}
 
 for (let elem of homepageSections) {
     elem.addEventListener("click", (event) => {
@@ -107,62 +163,6 @@ observer.observe(siteHeaderContainer);
 
 
 
-function homepageStateChange(state) {
-    
-    switch (state) {
-
-    case "home":
-        homepageStateObject.showSiteHeaderContainer = true;
-        homepageStateObject.accentColor = "";
-        homepageStateObject.content = "";
-        
-        for (let elem of homepageSectionContent) {
-            hide(elem);
-        }
-
-        for (let elem of homepageSections) {
-            unhide(elem);
-            addHoverColor(elem);
-        }
-
-        for (let elem of homepageSectionMenuLinks) {
-            unhide(elem);
-        }
-
-        break;
-
-    case "about":
-        homepageStateObject.accentColor = aboutAccentColor;
-        homepageStateObject.content = aboutContent;
-        break;
-
-    case "studio":
-        homepageStateObject.accentColor = studioAccentColor;
-        homepageStateObject.content = studioContent;
-        break;
-
-    case "commissions":
-        homepageStateObject.accentColor = commissionsAccentColor;
-        homepageStateObject.content = commissionsContent;
-        break;
-        
-    case "shop":
-        homepageStateObject.accentColor = shopAccentColor;
-        homepageStateObject.content = shopContent;
-        break;
-
-    case "news":
-        homepageStateObject.accentColor = newsAccentColor;
-        homepageStateObject.content = newsContent;
-        break;
-        
-    }
-    
-    toggleSiteHeaderContainer();
-    changeBorderColor(border1, homepageStateObject.accentColor);
-    changeSectionHeadingsColor(sectionHeadings, homepageStateObject.accentColor);
-    unhide(homepageStateObject.content);
-}
 
 function changeBorderColor(collection, color) {
     for (let elem of collection) {

@@ -10,6 +10,10 @@ h6 {
   border: 0;
 }
 
+.hello-world {
+  color: red;
+}
+
 * {
   color: rgb(37, 37, 37);
   font-family: "Lato", "Arial", sans-serif;
