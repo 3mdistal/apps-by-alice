@@ -46,7 +46,10 @@ async function getPageContents(pageID) {
     let arr = response.results
     let newArr = []
     for (let elem of arr) {
-        newArr.push(elem.paragraph.rich_text[0].text.content)
+        // todo: Breaks if there is a blank line. Look for solution.
+        let richTextArr = elem.paragraph.rich_text
+        if (richTextArr.length === 0) { break }
+        newArr.push(richTextArr[0].text.content)
     }
     return newArr
 }
