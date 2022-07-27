@@ -1,23 +1,20 @@
 {
-  "name": "alicealexandra.com",
-  "version": "0.0.1",
-  "description": "My personal website, maintained to learn, test, and grow as a web developer, as well as give myself a web presence. Go to [alicealexandra.com](http://alicealexandra.com) to see it in action.",
-  "main": "server.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js",
-    "devStart": "nodemon server.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@notionhq/client": "^2.1.0",
-    "dotenv": "^16.0.1",
-    "ejs": "^3.1.8",
-    "express": "^4.18.1"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.19"
-  }
+	"name": "svelte",
+	"version": "0.0.1",
+	"scripts": {
+		"dev": "env-cmd vite dev",
+		"build": "env-cmd vite build",
+		"package": "svelte-kit package",
+		"preview": "env-cmd vite preview",
+		"prepare": "svelte-kit sync"
+	},
+	"devDependencies": {
+		"@notionhq/client": "^2.1.0",
+		"@sveltejs/adapter-auto": "next",
+		"@sveltejs/kit": "next",
+		"env-cmd": "^10.1.0",
+		"svelte": "^3.44.0",
+		"vite": "^3.0.0"
+	},
+	"type": "module"
 }
