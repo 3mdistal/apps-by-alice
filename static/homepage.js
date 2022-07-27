@@ -27,18 +27,8 @@ const commissionsContent = homepageSectionContent[2];
 const shopContent = homepageSectionContent[3];
 const newsContent = homepageSectionContent[4];
 
-const border1 = document.querySelectorAll(".border-1");
-const sectionHeadings = document.querySelectorAll(".section-content-div h2");
-
-const aboutAccentColor = "#271647";
-const studioAccentColor = "#243269";
-const commissionsAccentColor = "#642e1a";
-const shopAccentColor = "#fafafa";
-const newsAccentColor = "#726a12";
-
 const homepageStateObject = {
     showSiteHeaderContainer: true,
-    accentColor: "",
     content: "",
 }
 
@@ -49,7 +39,6 @@ function homepageStateChange(state) {
     case "home":
         homepageStateObject.showSiteHeaderContainer = true;
         toggleSiteHeaderContainer();
-        homepageStateObject.accentColor = "";
         homepageStateObject.content = "";
         
         for (let elem of homepageSectionContent) {
@@ -68,35 +57,28 @@ function homepageStateChange(state) {
         return;
 
     case "about":
-        homepageStateObject.accentColor = aboutAccentColor;
         homepageStateObject.content = aboutContent;
         break;
 
     case "studio":
-        homepageStateObject.accentColor = studioAccentColor;
         homepageStateObject.content = studioContent;
         break;
 
     case "commissions":
-        homepageStateObject.accentColor = commissionsAccentColor;
         homepageStateObject.content = commissionsContent;
         break;
         
     case "shop":
-        homepageStateObject.accentColor = shopAccentColor;
         homepageStateObject.content = shopContent;
         break;
 
     case "news":
-        homepageStateObject.accentColor = newsAccentColor;
         homepageStateObject.content = newsContent;
         break;
         
     }
 
     toggleSiteHeaderContainer();
-    changeBorderColor(border1, homepageStateObject.accentColor);
-    changeSectionHeadingsColor(sectionHeadings, homepageStateObject.accentColor);
     unhide(homepageStateObject.content);
 }
 
@@ -161,20 +143,6 @@ const observer = new IntersectionObserver(callback, options);
 
 observer.observe(siteHeaderContainer);
 
-
-
-
-function changeBorderColor(collection, color) {
-    for (let elem of collection) {
-        elem.style.borderColor = color;
-    }
-}
-
-function changeSectionHeadingsColor(collection, color) {
-    for (let elem of collection) {
-        elem.style.color = color;
-    }
-}
 
 function toggleSiteHeaderContainer() {
     homepageStateObject.showSiteHeaderContainer == true

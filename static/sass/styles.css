@@ -93,33 +93,28 @@ body {
 }
 
 .homepage-section.about {
-  background-color: hsl(266deg, 16.5%, 75%);
   clip-path: url(#about-path);
   -webkit-clip-path: url(#about-path);
 }
 
 .homepage-section.studio {
-  background-color: hsl(225deg, 45%, 89%);
   clip-path: url(#studio-path);
   -webkit-clip-path: url(#studio-path);
 }
 
 .homepage-section.commissions {
-  background-color: hsl(8deg, 24%, 82%);
   clip-path: url(#commissions-path);
   -webkit-clip-path: url(#commissions-path);
   height: 82%;
 }
 
 .homepage-section.shop {
-  background-color: #838391;
   clip-path: url(#shop-path);
   -webkit-clip-path: url(#shop-path);
   height: 75%;
 }
 
 .homepage-section.news {
-  background-color: hsl(0deg, 2%, 93%);
   clip-path: url(#news-path);
   -webkit-clip-path: url(#news-path);
   height: 50%;
@@ -179,45 +174,25 @@ body {
 }
 
 .homepage-section-content.about {
-  background-color: hsl(266deg, 16.5%, 75%);
   justify-content: space-between;
 }
 
 .homepage-section-content.studio {
-  background-color: hsl(225deg, 45%, 89%);
   top: 28%;
+  flex-direction: row-reverse;
 }
 
 .homepage-section-content.commissions {
-  background-color: hsl(8deg, 24%, 82%);
   top: 34%;
 }
 
 .homepage-section-content.shop {
-  background-color: #838391;
   top: 44%;
+  flex-direction: row-reverse;
 }
 
 .homepage-section-content.news {
-  background-color: hsl(0deg, 2%, 93%);
   top: 55%;
-}
-
-.section-content-div {
-  max-width: 50%;
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5em;
-}
-.section-content-div h2 {
-  margin: 0 10%;
-  font-size: clamp(1.25rem, 2vw, 3rem);
-  font-weight: 400;
-  transition: 1.5s;
-}
-.section-content-div p {
-  margin: 0 10%;
-  font-size: clamp(1rem, 1.5vw, 2rem);
 }
 
 @media screen and (max-width: 768px) {
@@ -283,25 +258,6 @@ body {
 .js-loading {
   -webkit-animation-play-state: paused;
           animation-play-state: paused;
-}
-
-.max-width-40 {
-  max-width: 40%;
-  margin: 0 auto;
-}
-@media screen and (max-width: 440px) {
-  .max-width-40 {
-    max-width: 90%;
-  }
-}
-
-.border-1 {
-  box-sizing: border-box;
-  border-top: solid 2px;
-  border-bottom: solid 2px;
-  border-radius: 5%;
-  padding: 8em 0;
-  transition: 1.5s;
 }
 
 .centered {

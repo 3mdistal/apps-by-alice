@@ -19,17 +19,6 @@ h6 {
   color: red;
 }
 
-// Global Variables
-
-$about-color: hsl(266, 16.5%, 75%);
-$studio-color: hsl(225, 45%, 89%);
-$commissions-color: hsl(8, 24%, 82%);
-$shop-color: #838391;
-$news-color: hsl(0, 2%, 93%);
-
-$about-accent-color: #271647;
-
-
 // Site-Wide Classes
 
 * {
@@ -111,33 +100,28 @@ body {
 }
 
 .homepage-section.about {
-  background-color: $about-color;
   clip-path: url(#about-path);
   -webkit-clip-path: url(#about-path);
 }
 
 .homepage-section.studio {
-  background-color: $studio-color;
   clip-path: url(#studio-path);
   -webkit-clip-path: url(#studio-path);
 }
 
 .homepage-section.commissions {
-  background-color: $commissions-color;
   clip-path: url(#commissions-path);
   -webkit-clip-path: url(#commissions-path);
   height: 82%;
 }
 
 .homepage-section.shop {
-  background-color: $shop-color;
   clip-path: url(#shop-path);
   -webkit-clip-path: url(#shop-path);
   height: 75%;
 }
 
 .homepage-section.news {
-  background-color: $news-color;
   clip-path: url(#news-path);
   -webkit-clip-path: url(#news-path);
   height: 50%;
@@ -199,48 +183,25 @@ body {
   }
 
 .homepage-section-content.about {
-  background-color: $about-color;
   justify-content: space-between;
 }
 
 .homepage-section-content.studio {
-  background-color: $studio-color;
   top: 28%;
+  flex-direction: row-reverse;
 }
 
 .homepage-section-content.commissions {
-  background-color: $commissions-color;
   top: 34%;
 }
 
 .homepage-section-content.shop {
-  background-color: $shop-color;
   top: 44%;
+  flex-direction: row-reverse;
 }
 
 .homepage-section-content.news {
-  background-color: $news-color;
   top: 55%;
-}
-
-.section-content-div {
-  max-width: 50%;
-  // margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  row-gap: 1.5em;
-
-  h2 {
-    margin: 0 10%;
-    font-size: clamp(1.25rem, 2vw, 3rem);
-    font-weight: 400;
-    transition: 1.5s;
-  }
-
-  p {
-    margin: 0 10%;
-    font-size: clamp(1rem, 1.5vw, 2rem);
-  }
 }
 
 // Mobile Rules for the Homepage
@@ -323,24 +284,6 @@ body {
 
 .js-loading {
   animation-play-state: paused;
-}
-
-.max-width-40 {
-  max-width: 40%;
-  margin: 0 auto;
-
-  @media screen and (max-width: 440px) {
-    max-width: 90%;
-  }
-}
-
-.border-1 {
-  box-sizing: border-box;
-  border-top: solid 2px;
-  border-bottom: solid 2px;
-  border-radius: 5%;
-  padding: 8em 0;
-  transition: 1.5s;
 }
 
 .centered {
