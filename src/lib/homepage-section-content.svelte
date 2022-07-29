@@ -2,11 +2,15 @@
     export let name;
     export let backgroundColor;
     export let accentColor;
+
+    import { fade } from "svelte/transition"
 </script>
 
 <div
-    class="homepage-section-content {name} hide invisible"
+    class="homepage-section-content {name}"
     style="background: {backgroundColor}"
+    in:fade="{{ delay: 500 }}"
+    out:fade="{{ duration: 250 }}"
 >
     <div
         class="section-content-div bordered max-width-40"
@@ -67,4 +71,50 @@
             max-width: 90%;
         }
     }
+
+    .homepage-section-content {
+  position: absolute;
+  top: 26%;
+  left: 0;
+  right: 0;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+}
+
+@media screen and (max-width: 440px) {
+  .homepage-section-content {
+    top: 35%;
+  }
+}
+
+.homepage-section-content.about {
+  justify-content: space-between;
+}
+
+.homepage-section-content.studio {
+  top: 28%;
+  flex-direction: row-reverse;
+}
+
+.homepage-section-content.commissions {
+  top: 34%;
+}
+
+.homepage-section-content.shop {
+  top: 44%;
+  flex-direction: row-reverse;
+}
+
+.homepage-section-content.news {
+  top: 55%;
+}
+
+@media screen and (max-width: 440px) {
+  .section-content-div {
+    max-width: 100%;
+  }
+}
 </style>
