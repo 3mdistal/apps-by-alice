@@ -84,6 +84,10 @@
         animation: fade-in 1s ease-in 1.5s both;
     }
 
+    .centered {
+        text-align: center;
+    }
+
     @keyframes fade-in {
         from {
             opacity: 0%;
