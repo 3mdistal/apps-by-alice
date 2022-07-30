@@ -13,14 +13,6 @@ import TopButton from "./top-button.svelte";
         shop: "#838391",
         news: "#eeeded",
     };
-
-    let accentColors = {
-        about: "#271647",
-        studio: "#243269",
-        commissions: "#642e1a",
-        shop: "#d1dce7",
-        news: "#726a12",
-    };
 </script>
 
 <article>

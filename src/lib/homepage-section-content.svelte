@@ -19,7 +19,7 @@
     class="section-content-div bordered max-width-40"
     style="border-color: {$accentColors[$state]}"
   >
-    <h2 style="color: {accentColors[$state]}">
+    <h2 style="color: {$accentColors[$state]}">
       <slot name="heading" />
     </h2>
     {#if name == "shop"}
