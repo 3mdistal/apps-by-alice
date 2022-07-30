@@ -22,4 +22,16 @@
         right: 1%;
         cursor: pointer;
     }
+
+    @media screen and (max-width: 45rem) {
+        div {
+            width: 7%;
+        }
+    }
+
+    @media screen and (max-width: 30rem) {
+        div {
+            width: 15%;
+        }
+    }
 </style>

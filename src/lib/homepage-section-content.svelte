@@ -1,5 +1,5 @@
 <script>
-  import { state, accentColor } from "./stores";
+  import { state, accentColors } from "./stores";
 
   export let name;
   export let backgroundColor;
@@ -18,9 +18,9 @@
 >
   <div
     class="section-content-div bordered max-width-40"
-    style="border-color: {$accentColor[$state]}"
+    style="border-color: {$accentColors[$state]}"
   >
-    <h2 style="color: {accentColor[$state]}">
+    <h2 style="color: {accentColors[$state]}">
       <slot name="heading" />
     </h2>
     {#if name == "shop"}
