@@ -10,6 +10,6 @@
       "indent": 2
     },
     "parserOptions": {
-      "ecmaVersion": 13
+      "ecmaVersion": "latest"
     }
   }

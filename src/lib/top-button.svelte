@@ -12,26 +12,13 @@
     </div>
 {/if}
 
-<style>
+<style lang="scss">
     div {
-        box-sizing: border-box;
-        padding: 1em;
-        position: absolute;
-        width: 4%;
-        bottom: 2%;
+        position: fixed;
+        padding: .5em;
+        width: clamp(2.5rem, 8%, 3.5rem);
+        top: 1%;
         right: 1%;
         cursor: pointer;
-    }
-
-    @media screen and (max-width: 45rem) {
-        div {
-            width: 7%;
-        }
-    }
-
-    @media screen and (max-width: 30rem) {
-        div {
-            width: 15%;
-        }
     }
 </style>

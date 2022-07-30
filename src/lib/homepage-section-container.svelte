@@ -1,32 +1,24 @@
 <script>
     import HomepageSection from "./homepage-section.svelte";
     import HomepageSectionContent from "./homepage-section-content.svelte";
-    import { state } from "./stores";
+    import { state, backgroundColors } from "./stores";
 import TopButton from "./top-button.svelte";
 
     let names = ["about", "studio", "commissions", "shop", "news"];
 
-    let colors = {
-        about: "#beb5ca",
-        studio: "#d6ddf0",
-        commissions: "#dcc9c6",
-        shop: "#838391",
-        news: "#eeeded",
-    };
 </script>
 
 <article>
     <div class="homepage-section-container">
         {#each names as name}
             {#if $state == "home" || $state == name}
-                <HomepageSection color={colors[name]} {name} />
+                <HomepageSection color={$backgroundColors[name]} {name} />
             {/if}
         {/each}
 
         {#if $state == "about" && $state != "home"}
             <HomepageSectionContent
                 name={names[0]}
-                backgroundColor={colors.about}
             >
                 <svelte:fragment slot="heading">
                     i'm alice, a digital creator.
@@ -50,7 +42,6 @@ import TopButton from "./top-button.svelte";
         {#if $state == "studio" && $state != "home"}
             <HomepageSectionContent
                 name={names[1]}
-                backgroundColor={colors.studio}
             >
                 <svelte:fragment slot="heading">
                     i keep chasing new ideas.
@@ -72,7 +63,6 @@ import TopButton from "./top-button.svelte";
         {#if $state == "commissions" && $state != "home"}
             <HomepageSectionContent
                 name={names[2]}
-                backgroundColor={colors.commissions}
             >
                 <svelte:fragment slot="heading">
                     hire me for ambitious projects.
@@ -95,7 +85,6 @@ import TopButton from "./top-button.svelte";
         {#if $state == "shop" && $state != "home"}
             <HomepageSectionContent
                 name={names[3]}
-                backgroundColor={colors.shop}
             >
                 <svelte:fragment slot="heading">
                     grab a gift (soon).
@@ -117,7 +106,6 @@ import TopButton from "./top-button.svelte";
         {#if $state == "news" && $state != "home"}
             <HomepageSectionContent
                 name={names[4]}
-                backgroundColor={colors.news}
             >
                 <svelte:fragment slot="heading">
                     let's keep in touch.
@@ -140,6 +128,8 @@ import TopButton from "./top-button.svelte";
 
 <style>
     .homepage-section-container {
+        position: relative;
+        bottom: -40px;
         width: 100%;
         height: 100vh;
         -webkit-animation: slide-from-bottom 0.65s ease-in-out 2.25s both;

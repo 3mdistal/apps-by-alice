@@ -14,4 +14,5 @@
 
 <SiteTitle />
 <HomepageSectionContainer />
+<TopButton />
 <Svgs />

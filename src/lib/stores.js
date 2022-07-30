@@ -9,3 +9,11 @@ export const accentColors = readable({
     shop: "#d1dce7",
     news: "#726a12",
 })
+
+export const backgroundColors = readable({
+    about: "#beb5ca",
+    studio: "#d6ddf0",
+    commissions: "#dcc9c6",
+    shop: "#838391",
+    news: "#eeeded",
+});

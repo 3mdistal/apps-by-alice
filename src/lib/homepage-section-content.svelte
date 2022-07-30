@@ -1,20 +1,18 @@
 <script>
-  import { state, accentColors } from "./stores";
+  import { state, accentColors, backgroundColors } from "./stores";
+  import { fade } from "svelte/transition";
+  // import TopButton from "./top-button.svelte";
 
   export let name;
-  export let backgroundColor;
-
-  import { fade } from "svelte/transition";
-  import TopButton from "./top-button.svelte";
 </script>
 
 <div
   class="homepage-section-content {name}"
-  style="background: {backgroundColor}"
+  style="background: {$backgroundColors[$state]}"
   in:fade={{ delay: 500 }}
   out:fade={{ duration: 250 }}
 >
-  <TopButton />
+  <!-- <TopButton /> -->
   <div
     class="section-content-div bordered max-width-40"
     style="border-color: {$accentColors[$state]}"
@@ -37,42 +35,18 @@
   </div>
 </div>
 
-<style>
-  .section-content-div {
-    max-width: 50%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1.5em;
-  }
-
+<style lang="scss">
   h2 {
     margin: 0 10%;
-    font-size: clamp(1.25rem, 2vw, 3rem);
-    font-weight: 400;
+    font: {
+      size: clamp(1.25rem, 2vw, 3rem);
+      weight: 400;
+    }
   }
 
   p {
     margin: 0 10%;
     font-size: clamp(1rem, 1.5vw, 2rem);
-  }
-
-  .bordered {
-    box-sizing: border-box;
-    border-top: solid 2px;
-    border-bottom: solid 2px;
-    border-radius: 5%;
-    padding: 8em 0;
-  }
-
-  .max-width-40 {
-    max-width: 40%;
-    margin: 0 auto;
-  }
-
-  @media screen and (max-width: 440px) {
-    .max-width-40 {
-      max-width: 90%;
-    }
   }
 
   .homepage-section-content {
@@ -85,39 +59,65 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
-  }
 
-  @media screen and (max-width: 440px) {
-    .homepage-section-content {
+    &.about {
+      justify-content: space-between;
+    }
+
+    &.studio {
+      top: 28%;
+      flex-direction: row-reverse;
+    }
+
+    &.commissions {
+      top: 34%;
+    }
+
+    &.shop {
+      top: 44%;
+      flex-direction: row-reverse;
+    }
+
+    &.news {
+      top: 55%;
+    }
+
+    @media screen and (max-width: 30rem) {
       top: 35%;
+      row-gap: 2em;
     }
   }
 
-  .homepage-section-content.about {
-    justify-content: space-between;
-  }
+  .section-content-div {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5em;
 
-  .homepage-section-content.studio {
-    top: 28%;
-    flex-direction: row-reverse;
-  }
-
-  .homepage-section-content.commissions {
-    top: 34%;
-  }
-
-  .homepage-section-content.shop {
-    top: 44%;
-    flex-direction: row-reverse;
-  }
-
-  .homepage-section-content.news {
-    top: 55%;
-  }
-
-  @media screen and (max-width: 440px) {
-    .section-content-div {
+    @media screen and (max-width: 30rem) {
       max-width: 100%;
     }
   }
+
+  .bordered {
+    box-sizing: border-box;
+    border-top: solid 2px;
+    border-bottom: solid 2px;
+    border-radius: 5%;
+    padding: 8em 0;
+
+    @media screen and (max-width: 30rem) {
+      padding: 4em 0;
+    }
+  }
+
+  .max-width-40 {
+    max-width: 40%;
+    margin: 0 auto;
+
+    @media screen and (max-width: 30rem) {
+      max-width: 90%;
+    }
+  }
+
 </style>
