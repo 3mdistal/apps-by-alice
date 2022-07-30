@@ -21,6 +21,8 @@
         top: 2%;
         right: 1%;
         cursor: pointer;
+        backface-visibility: hidden;
+        -webkit-backface-visibility: hidden;
     }
 
     @media screen and (max-width: 45rem) {
