@@ -28,12 +28,14 @@
     @media screen and (max-width: 45rem) {
         div {
             width: 7%;
+            bottom: 2%;
         }
     }
 
     @media screen and (max-width: 30rem) {
         div {
             width: 15%;
+            bottom: 2%;
         }
     }
 </style>
