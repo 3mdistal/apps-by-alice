@@ -4,22 +4,16 @@
 
     import { fade } from "svelte/transition";
     import { state } from "./stores";
-
-    let stateValue;
-
-    state.subscribe((value) => {
-        stateValue = value;
-    });
 </script>
 
 <div
-    class="homepage-section {name} {stateValue == 'home' ? 'hover-color' : ''}"
+    class="homepage-section {name} {$state == 'home' ? 'hover-color' : ''}"
     style="background:{color};"
     on:click={state.set(name)}
     out:fade
     in:fade={{ delay: 250 }}
 >
-    {#if stateValue == "home"}
+    {#if $state == "home"}
         <div
             class="homepage-section-menu-link {name}"
             in:fade={{ delay: 250 }}

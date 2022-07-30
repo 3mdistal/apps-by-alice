@@ -2,6 +2,7 @@
     import HomepageSectionContainer from "../lib/homepage-section-container.svelte";
     import SiteTitle from "../lib/site-title.svelte";
     import Svgs from "../lib/svgs.svelte";
+    import TopButton from "../lib/top-button.svelte";
     // export let message;
 </script>
 

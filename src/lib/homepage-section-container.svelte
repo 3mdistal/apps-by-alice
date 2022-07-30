@@ -2,6 +2,7 @@
     import HomepageSection from "./homepage-section.svelte";
     import HomepageSectionContent from "./homepage-section-content.svelte";
     import { state } from "./stores";
+import TopButton from "./top-button.svelte";
 
     let names = ["about", "studio", "commissions", "shop", "news"];
 
@@ -20,27 +21,20 @@
         shop: "#d1dce7",
         news: "#726a12",
     };
-
-    let stateValue;
-
-    state.subscribe((value) => {
-        stateValue = value;
-    });
 </script>
 
 <article>
     <div class="homepage-section-container">
         {#each names as name}
-            {#if stateValue == "home" || stateValue == name}
+            {#if $state == "home" || $state == name}
                 <HomepageSection color={colors[name]} {name} />
             {/if}
         {/each}
 
-        {#if stateValue == "about" && stateValue != "home"}
+        {#if $state == "about" && $state != "home"}
             <HomepageSectionContent
                 name={names[0]}
                 backgroundColor={colors.about}
-                accentColor={accentColors.about}
             >
                 <svelte:fragment slot="heading">
                     i'm alice, a digital creator.
@@ -61,11 +55,10 @@
             </HomepageSectionContent>
         {/if}
 
-        {#if stateValue == "studio" && stateValue != "home"}
+        {#if $state == "studio" && $state != "home"}
             <HomepageSectionContent
                 name={names[1]}
                 backgroundColor={colors.studio}
-                accentColor={accentColors.studio}
             >
                 <svelte:fragment slot="heading">
                     i keep chasing new ideas.
@@ -84,11 +77,10 @@
             </HomepageSectionContent>
         {/if}
 
-        {#if stateValue == "commissions" && stateValue != "home"}
+        {#if $state == "commissions" && $state != "home"}
             <HomepageSectionContent
                 name={names[2]}
                 backgroundColor={colors.commissions}
-                accentColor={accentColors.commissions}
             >
                 <svelte:fragment slot="heading">
                     hire me for ambitious projects.
@@ -108,11 +100,10 @@
             </HomepageSectionContent>
         {/if}
 
-        {#if stateValue == "shop" && stateValue != "home"}
+        {#if $state == "shop" && $state != "home"}
             <HomepageSectionContent
                 name={names[3]}
                 backgroundColor={colors.shop}
-                accentColor={accentColors.shop}
             >
                 <svelte:fragment slot="heading">
                     grab a gift (soon).
@@ -131,11 +122,10 @@
             </HomepageSectionContent>
         {/if}
 
-        {#if stateValue == "news" && stateValue != "home"}
+        {#if $state == "news" && $state != "home"}
             <HomepageSectionContent
                 name={names[4]}
                 backgroundColor={colors.news}
-                accentColor={accentColors.news}
             >
                 <svelte:fragment slot="heading">
                     let's keep in touch.
@@ -153,6 +143,7 @@
             </HomepageSectionContent>
         {/if}
     </div>
+
 </article>
 
 <style>

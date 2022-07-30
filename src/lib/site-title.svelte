@@ -1,37 +1,31 @@
 <script>
     import { state } from "./stores";
-    import { fade } from "svelte/transition";
     import { onMount } from "svelte";
 
-    let stateValue;
-
-    state.subscribe((value) => {
-        stateValue = value;
-    });
+    let siteHeaderContainer
 
     onMount(() => {
         const options = {
-            rootMargin: "-100px 0px 0px 0px",
+            rootMargin: "-150px 0px 0px 0px",
         };
 
         const callback = (entries) => {
             for (let entry of entries) {
                 if (entry.isIntersecting) {
-                    state.set("home");
+                    $state = "home";
                 }
-                console.log("observed");
             }
         };
 
         const observer = new IntersectionObserver(callback, options);
-        observer.observe(document.querySelector(".site-header-container"));
+        observer.observe(siteHeaderContainer);
     });
 </script>
 
 <header
+    bind:this={siteHeaderContainer}
     class="site-header-container"
-    transition:fade
-    style={stateValue == "home" ? "opacity: 100%" : "opacity: 0%"}
+    style={$state === "home" ? "opacity: 100%" : "opacity: 0%"}
 >
     <img
         src="images/logos/logo-shop.svg"
@@ -52,6 +46,7 @@
         align-items: center;
         max-width: 80vw;
         margin: 2vh auto;
+        transition: 0.5s;
     }
 
     @media screen and (max-width: 45rem) {
