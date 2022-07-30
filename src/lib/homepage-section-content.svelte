@@ -8,14 +8,13 @@
   import TopButton from "./top-button.svelte";
 </script>
 
-<TopButton />
-
 <div
   class="homepage-section-content {name}"
   style="background: {backgroundColor}"
   in:fade={{ delay: 500 }}
   out:fade={{ duration: 250 }}
 >
+  <TopButton />
   <div
     class="section-content-div bordered max-width-40"
     style="border-color: {$accentColors[$state]}"

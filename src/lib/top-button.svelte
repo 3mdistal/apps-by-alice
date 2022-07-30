@@ -16,26 +16,22 @@
     div {
         box-sizing: border-box;
         padding: 1em;
-        position: fixed;
+        position: absolute;
         width: 4%;
-        top: 2%;
+        bottom: 2%;
         right: 1%;
         cursor: pointer;
-        backface-visibility: hidden;
-        -webkit-backface-visibility: hidden;
     }
 
     @media screen and (max-width: 45rem) {
         div {
             width: 7%;
-            bottom: 2%;
         }
     }
 
     @media screen and (max-width: 30rem) {
         div {
             width: 15%;
-            bottom: 2%;
         }
     }
 </style>
