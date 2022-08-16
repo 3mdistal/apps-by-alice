@@ -3,7 +3,7 @@
     export let name;
 
     import { fade } from "svelte/transition";
-    import { state } from "./stores";
+    import { state } from "../stores";
 </script>
 
 <div
@@ -25,7 +25,7 @@
 </div>
 
 <style>
-    h1 {
+    :global(h1) {
         font-size: clamp(1.25rem, 2vw, 3rem);
     }
 
@@ -39,29 +39,24 @@
 
     .homepage-section.about {
         clip-path: url(#about-path);
-        -webkit-clip-path: url(#about-path);
     }
 
     .homepage-section.studio {
         clip-path: url(#studio-path);
-        -webkit-clip-path: url(#studio-path);
     }
 
     .homepage-section.commissions {
         clip-path: url(#commissions-path);
-        -webkit-clip-path: url(#commissions-path);
         height: 82%;
     }
 
     .homepage-section.shop {
         clip-path: url(#shop-path);
-        -webkit-clip-path: url(#shop-path);
         height: 75%;
     }
 
     .homepage-section.news {
         clip-path: url(#news-path);
-        -webkit-clip-path: url(#news-path);
         height: 50%;
     }
 
@@ -133,19 +128,16 @@
 
         .homepage-section.studio {
             clip-path: url(#studio-path-mobile);
-            -webkit-clip-path: url(#studio-path-mobile);
             height: 90%;
         }
 
         .homepage-section.commissions {
             clip-path: url(#commissions-path-mobile);
-            -webkit-clip-path: url(#commissions-path-mobile);
             height: 78%;
         }
 
         .homepage-section.shop {
             clip-path: url(#shop-path-mobile);
-            -webkit-clip-path: url(#shop-path-mobile);
             height: 68%;
         }
 

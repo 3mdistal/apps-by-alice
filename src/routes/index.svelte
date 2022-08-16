@@ -1,15 +1,13 @@
 <script>
-    import HomepageSectionContainer from "../lib/homepage-section-container.svelte";
-    import SiteTitle from "../lib/site-title.svelte";
-    import Svgs from "../lib/svgs.svelte";
-    import TopButton from "../lib/top-button.svelte";
-    // export let message;
+    import HomepageSectionContainer from "../lib/homepage/homepage-section-container.svelte";
+    import Svgs from "../lib/icons/svgs.svelte";
+    import TopButton from "../lib/icons/top-button.svelte";
+    import SiteTitle from "../lib/homepage/site-title.svelte";
 </script>
 
 <svelte:head>
     <link rel="stylesheet" href="/css/styles.css" />
     <link rel="stylesheet" href="/css/reset.css" />
-    <!-- <script defer src="/homepage.js"></script> -->
 </svelte:head>
 
 <SiteTitle />

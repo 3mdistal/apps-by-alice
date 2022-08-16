@@ -1,6 +1,6 @@
 <script>
-    import Chevrons from "./icons/chevrons.svelte";
-    import { state, accentColors } from "./stores";
+    import Chevrons from "./chevrons.svelte";
+    import { state, accentColors } from "../stores";
     function scrollTop() {
         window.scrollTo({ top: 0, behavior: "smooth" });
     }

@@ -1,5 +1,5 @@
 <script>
-    import { state } from "./stores";
+    import { state } from "../stores";
     import { onMount } from "svelte";
 
     let siteHeaderContainer

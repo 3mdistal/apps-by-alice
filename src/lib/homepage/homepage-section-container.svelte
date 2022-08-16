@@ -1,11 +1,10 @@
 <script>
     import HomepageSection from "./homepage-section.svelte";
     import HomepageSectionContent from "./homepage-section-content.svelte";
-    import { state, backgroundColors } from "./stores";
-import TopButton from "./top-button.svelte";
+    import { state, backgroundColors } from "../stores";
+    import Socials from "../icons/socials.svelte";
 
     let names = ["about", "studio", "commissions", "shop", "news"];
-
 </script>
 
 <article>
@@ -17,9 +16,7 @@ import TopButton from "./top-button.svelte";
         {/each}
 
         {#if $state == "about" && $state != "home"}
-            <HomepageSectionContent
-                name={names[0]}
-            >
+            <HomepageSectionContent name={names[0]}>
                 <svelte:fragment slot="heading">
                     i'm alice, a digital creator.
                 </svelte:fragment>
@@ -40,9 +37,7 @@ import TopButton from "./top-button.svelte";
         {/if}
 
         {#if $state == "studio" && $state != "home"}
-            <HomepageSectionContent
-                name={names[1]}
-            >
+            <HomepageSectionContent name={names[1]}>
                 <svelte:fragment slot="heading">
                     i keep chasing new ideas.
                 </svelte:fragment>
@@ -61,9 +56,7 @@ import TopButton from "./top-button.svelte";
         {/if}
 
         {#if $state == "commissions" && $state != "home"}
-            <HomepageSectionContent
-                name={names[2]}
-            >
+            <HomepageSectionContent name={names[2]}>
                 <svelte:fragment slot="heading">
                     hire me for ambitious projects.
                 </svelte:fragment>
@@ -83,9 +76,7 @@ import TopButton from "./top-button.svelte";
         {/if}
 
         {#if $state == "shop" && $state != "home"}
-            <HomepageSectionContent
-                name={names[3]}
-            >
+            <HomepageSectionContent name={names[3]}>
                 <svelte:fragment slot="heading">
                     grab a gift (soon).
                 </svelte:fragment>
@@ -104,9 +95,7 @@ import TopButton from "./top-button.svelte";
         {/if}
 
         {#if $state == "news" && $state != "home"}
-            <HomepageSectionContent
-                name={names[4]}
-            >
+            <HomepageSectionContent name={names[4]}>
                 <svelte:fragment slot="heading">
                     let's keep in touch.
                 </svelte:fragment>
@@ -115,15 +104,11 @@ import TopButton from "./top-button.svelte";
                     creations, sales, services, and so forth.
                 </svelte:fragment>
                 <span slot="image">
-                    <img
-                        src="images/homepage/rabbit-in-hat.png"
-                        alt="A painting of a rabbit coming out of a hat."
-                    />
+                    <Socials />
                 </span>
             </HomepageSectionContent>
         {/if}
     </div>
-
 </article>
 
 <style>

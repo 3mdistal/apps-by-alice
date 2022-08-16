@@ -36,10 +36,6 @@ img {
   }
 }
 
-p {
-  font-size: 1.5rem;
-}
-
 .flip-vertical {
   transform: scaleX(-1);
 }

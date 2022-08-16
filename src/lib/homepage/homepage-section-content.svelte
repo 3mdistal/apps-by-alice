@@ -1,7 +1,7 @@
 <script>
-  import { state, accentColors, backgroundColors } from "./stores";
+  import { state, accentColors, backgroundColors } from "../stores";
   import { fade } from "svelte/transition";
-  // import TopButton from "./top-button.svelte";
+  import About from "../subpages/about.svelte";
 
   export let name;
 </script>
@@ -12,31 +12,36 @@
   in:fade={{ delay: 500 }}
   out:fade={{ duration: 250 }}
 >
-  <!-- <TopButton /> -->
-  <div
-    class="section-content-div bordered max-width-40"
-    style="border-color: {$accentColors[$state]}"
-  >
-    <h2 style="color: {$accentColors[$state]}">
-      <slot name="heading" />
-    </h2>
-    {#if name == "shop"}
-      <p style="color: #fafafa">
-        <slot name="description" />
-      </p>
-    {:else}
-      <p>
-        <slot name="description" />
-      </p>
-    {/if}
+  <div class="flex-wrap {name}">
+    <div
+      class="section-content-div bordered max-width-40"
+      style="border-color: {$accentColors[$state]}"
+    >
+      <h2 style="color: {$accentColors[$state]}">
+        <slot name="heading" />
+      </h2>
+      {#if name == "shop"}
+        <p style="color: #fafafa">
+          <slot name="description" />
+        </p>
+      {:else}
+        <p>
+          <slot name="description" />
+        </p>
+      {/if}
+    </div>
+    <div class="section-content-div">
+      <slot name="image" />
+    </div>
   </div>
-  <div class="section-content-div">
-    <slot name="image" />
-  </div>
+
+  {#if $state === "about"}
+    <About />
+  {/if}
 </div>
 
 <style lang="scss">
-  h2 {
+  :global(h2) {
     margin: 0 10%;
     font: {
       size: clamp(1.25rem, 2vw, 3rem);
@@ -44,9 +49,14 @@
     }
   }
 
+  :global(p) {
+    font: {
+      size: clamp(1rem, 1.5vw, 2rem);
+    }
+  }
+
   p {
     margin: 0 10%;
-    font-size: clamp(1rem, 1.5vw, 2rem);
   }
 
   .homepage-section-content {
@@ -55,18 +65,9 @@
     left: 0;
     right: 0;
     width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
-
-    &.about {
-      justify-content: space-between;
-    }
 
     &.studio {
       top: 28%;
-      flex-direction: row-reverse;
     }
 
     &.commissions {
@@ -85,6 +86,22 @@
     @media screen and (max-width: 30rem) {
       top: 35%;
       row-gap: 2em;
+    }
+  }
+
+  .flex-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+
+    &.about {
+      justify-content: space-between;
+    }
+
+    &.studio,
+    &.shop {
+      flex-direction: row-reverse;
     }
   }
 
@@ -119,5 +136,4 @@
       max-width: 90%;
     }
   }
-
 </style>
