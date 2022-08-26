@@ -42,7 +42,6 @@
 
 <style lang="scss">
   :global(h2) {
-    margin: 0 10%;
     font: {
       size: clamp(1.25rem, 2vw, 3rem);
       weight: 400;
@@ -56,6 +55,10 @@
   }
 
   p {
+    margin: 0 10%;
+  }
+
+  h2 {
     margin: 0 10%;
   }
 
@@ -83,9 +86,8 @@
       top: 55%;
     }
 
-    @media screen and (max-width: 30rem) {
+    @media screen and (max-width: 45rem) {
       top: 35%;
-      row-gap: 2em;
     }
   }
 
@@ -103,6 +105,11 @@
     &.shop {
       flex-direction: row-reverse;
     }
+
+    @media screen and (max-width: 45rem) {
+      flex-direction: column;
+      row-gap: 5em;
+    }
   }
 
   .section-content-div {
@@ -111,7 +118,7 @@
     flex-direction: column;
     row-gap: 1.5em;
 
-    @media screen and (max-width: 30rem) {
+    @media screen and (max-width: 45rem) {
       max-width: 100%;
     }
   }
@@ -123,7 +130,7 @@
     border-radius: 5%;
     padding: 8em 0;
 
-    @media screen and (max-width: 30rem) {
+    @media screen and (max-width: 45rem) {
       padding: 4em 0;
     }
   }
@@ -132,7 +139,7 @@
     max-width: 40%;
     margin: 0 auto;
 
-    @media screen and (max-width: 30rem) {
+    @media screen and (max-width: 45rem) {
       max-width: 90%;
     }
   }
