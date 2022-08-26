@@ -21,7 +21,6 @@
 
 <style lang="scss">
     .image {
-        width: 40%;
 
         @media screen and (max-width: 45rem) {
             width: 80%;
@@ -36,7 +35,7 @@
         height: 25vh;
     }
     .wrapper {
-        width: 90%;
+        width: 75%;
         margin: 0 auto;
         text-align: center;
     }
@@ -45,6 +44,7 @@
         display: flex;
         justify-content: space-between;
         align-items: flex-start;
+        column-gap: 5em;
 
         @media screen and (max-width: 45rem) {
             flex-direction: column;
@@ -56,7 +56,6 @@
     .text {
         text-align: left;
         max-width: 60ch;
-        margin: 0 auto;
     }
 
     h2 {
