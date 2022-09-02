@@ -1,64 +1,30 @@
 <script>
-    import NotionParser from "../partials/notion_parser.svelte";
+    import NotionParser from "../partials/notion-parser.svelte";
     import { accentColors, state } from "../stores";
+    import SubpageContent from "../partials/subpage-content.svelte"
 </script>
 
 <div class="spacer" />
-<div class="wrapper">
-    <h2 style="color: {$accentColors[$state]}">
-        <strong>tempo immaterial</strong>, verb, to dream of perpetual
-        insufficiency.
-    </h2>
-    <div class="content">
-        <div class="text">
-            <NotionParser slug="about" />
-        </div>
-        <div class="image">
-            <img src="/images/about/owl.png" alt="" />
-        </div>
-    </div>
-</div>
+
+<SubpageContent notionSlug="about-what">
+    <svelte:fragment slot="heading">
+        <strong>tempo immaterial</strong>, verb, to dream of perpetual insufficiency.
+    </svelte:fragment>
+    <img slot="image" src="/images/about/owl.png" alt="A painting of a Screech Owl staring eerily at the viewer. Painting by Alice Alexandra Moore." />
+</SubpageContent>
+
+<div class="spacer" />
+
+<SubpageContent NotionParser="about-who">
+    <svelte:fragment slot="heading">
+        i grew up in a backwoods town, just above the Ohio River.
+    </svelte:fragment>
+</SubpageContent>
 
 <style lang="scss">
-    .image {
-
-        @media screen and (max-width: 45rem) {
-            width: 80%;
-            margin: 0 auto;
-        }
-    }
-    img {
-        object-fit: contain;
-    }
-
-    .spacer {
-        height: 25vh;
-    }
-    .wrapper {
-        width: 75%;
-        margin: 0 auto;
-        text-align: center;
-    }
-
-    .content {
-        display: flex;
-        justify-content: space-between;
-        align-items: flex-start;
-        column-gap: 5em;
-
-        @media screen and (max-width: 45rem) {
-            flex-direction: column;
-        }
-    }
+    
     strong {
         font-weight: 600;
     }
-    .text {
-        text-align: left;
-        max-width: 60ch;
-    }
 
-    h2 {
-        margin-bottom: 1.5em;
-    }
 </style>

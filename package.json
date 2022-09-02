@@ -2,19 +2,16 @@
   "name": "svelte",
   "version": "0.0.1",
   "scripts": {
-    "dev": "env-cmd vite dev",
+    "dev": "vite dev",
     "build": "vite build",
     "package": "svelte-kit package",
-    "preview": "env-cmd vite preview",
-    "storybook": "start-storybook -p 6006",
-    "build-storybook": "build-storybook"
+    "preview": "vite preview"
   },
   "devDependencies": {
     "@notionhq/client": "^2.1.0",
     "@sveltejs/adapter-auto": "next",
     "@sveltejs/kit": "next",
     "autoprefixer": "^10.4.8",
-    "env-cmd": "^10.1.0",
     "postcss": "^8.4.14",
     "sass": "^1.54.0",
     "svelte": "^3.49.0",
