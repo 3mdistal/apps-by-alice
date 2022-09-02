@@ -16,9 +16,7 @@
 <Svgs />
 
 <style>
-
     :global(.spacer) {
         height: 25vh;
     }
-
 </style>
