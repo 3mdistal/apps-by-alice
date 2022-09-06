@@ -3,6 +3,7 @@
     import HomepageSectionContent from "./homepage-section-content.svelte";
     import { state, backgroundColors } from "../stores";
     import Socials from "../icons/socials.svelte";
+    import Button from "../icons/button.svelte";
 
     let names = ["about", "studio", "commissions", "shop", "news"];
 </script>
@@ -66,6 +67,11 @@
                     to categorize work and creating custom designs and workflows
                     to meet your unique needs.
                 </svelte:fragment>
+                <Button
+                    slot="button"
+                    text="Let's make it."
+                    url="/commissions"
+                />
                 <span slot="image">
                     <img
                         src="images/homepage/rabbit-in-hat.png"
