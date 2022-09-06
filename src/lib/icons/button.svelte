@@ -1,32 +1,19 @@
 <script>
   import { backgroundColors, accentColors, state } from "../stores";
+  import handleCSSVariables from "../utils/css-variables"
 
   const accentColor = $accentColors[$state];
   const backgroundColor = $backgroundColors[$state];
 
-  function cssVariables(node, variables) {
-    setCssVariables(node, variables);
-
-    return {
-      update(variables) {
-        setCssVariables(node, variables);
-      },
-    };
-  }
-  function setCssVariables(node, variables) {
-    for (const name in variables) {
-      node.style.setProperty(`--${name}`, variables[name]);
-    }
-  }
-
   export let url;
   export let text;
+  export let target;
 </script>
 
 <a
   href={url}
-  target="_blank"
-  use:cssVariables={{ accentColor, backgroundColor }}
+  target={target}
+  use:handleCSSVariables={{ accentColor, backgroundColor }}
 >
   {text}
 </a>

@@ -2,22 +2,25 @@
   import { state, accentColors, backgroundColors } from "../stores";
   import { fade } from "svelte/transition";
   import About from "../subpages/about.svelte";
+  import handleCSSVariables from "../utils/css-variables";
 
   export let name;
+
+  let backgroundColor = $backgroundColors[$state];
+  let accentColor = $accentColors[$state];
 </script>
 
 <div
-  class="homepage-section-content {name}"
-  style="background: {$backgroundColors[$state]}"
+  class="section-content {name}"
+  use:handleCSSVariables={{ backgroundColor, accentColor }}
   in:fade={{ delay: 500 }}
   out:fade={{ duration: 250 }}
 >
   <div class="flex-wrap {name}">
     <div
-      class="section-content-div bordered max-width-40"
-      style="border-color: {$accentColors[$state]}"
+      class="section-content-div bordered"
     >
-      <h2 style="color: {$accentColors[$state]}">
+      <h2>
         <slot name="heading" />
       </h2>
       {#if name == "shop"}
@@ -29,6 +32,9 @@
           <slot name="description" />
         </p>
       {/if}
+      <div class="button">
+        <slot name="button" />
+      </div>
     </div>
     <div class="section-content-div">
       <slot name="image" />
@@ -41,20 +47,37 @@
 </div>
 
 <style lang="scss">
-  p {
+  p,
+  h2,
+  .button {
     margin: 0 10%;
   }
 
   h2 {
-    margin: 0 10%;
+    color: var(--accentColor);
   }
 
-  .homepage-section-content {
+  .button {
+    display: flex;
+    justify-content: flex-end;
+
+    position: relative;
+    top: 5%;
+    right: 5%;
+
+    @media screen and (max-width: 45rem) {
+      justify-content: center;
+      margin: 0 10%;
+    }
+  }
+
+  .section-content {
     position: absolute;
     top: 26%;
     left: 0;
     right: 0;
     width: 100%;
+    background-color: var(--backgroundColor);
 
     &.studio {
       top: 28%;
@@ -115,18 +138,13 @@
     border-top: solid 2px;
     border-bottom: solid 2px;
     border-radius: 5%;
+    border-color: var(--accentColor);
     padding: 8em 0;
-
-    @media screen and (max-width: 45rem) {
-      padding: 4em 0;
-    }
-  }
-
-  .max-width-40 {
     max-width: 40%;
     margin: 0 auto;
 
     @media screen and (max-width: 45rem) {
+      padding: 4em 0;
       max-width: 90%;
     }
   }
