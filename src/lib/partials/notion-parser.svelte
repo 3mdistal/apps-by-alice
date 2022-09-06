@@ -4,6 +4,7 @@
     let article;
     export let slug = "";
     export let whiteSpace = "normal";
+    export let timeout;
 
     async function fetchText() {
         const response = await fetch(`/api/notion/${slug}`);
@@ -12,9 +13,13 @@
     }
 
     onMount(() => {
-        fetchText().catch((error) => {
-            console.error(error);
-        });
+        setTimeout(
+            () =>
+                fetchText().catch((error) => {
+                    console.error(error);
+                }),
+            timeout
+        );
     });
 </script>
 

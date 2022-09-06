@@ -15,7 +15,20 @@
 <TopButton />
 <Svgs />
 
-<style>
+<style lang="scss">
+    :global(h2) {
+        font: {
+            size: clamp(1.25rem, 2vw, 3rem);
+            weight: 400;
+        }
+    }
+
+    :global(p) {
+        font: {
+            size: clamp(1rem, 1.5vw, 2rem);
+        }
+    }
+
     :global(.spacer) {
         height: 25vh;
     }
