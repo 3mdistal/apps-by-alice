@@ -61,7 +61,7 @@
     <svelte:fragment slot="heading">
         i won't pretend i can do this alone.
     </svelte:fragment>
-    <Button slot="button" text="donate via Ko-Fi." url="https://ko-fi.com/tempoimmaterial"/>
+    <Button slot="button" text="Donate via Ko-Fi." url="https://ko-fi.com/tempoimmaterial"/>
     <img
         slot="image"
         src="/images/about/hands.jpeg"

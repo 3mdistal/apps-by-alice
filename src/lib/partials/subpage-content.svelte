@@ -33,6 +33,8 @@
 
     .image {
         max-width: 50%;
+        position: sticky;
+        top: 1em;
 
         @media screen and (max-width: 45rem) {
             max-width: 80%;
@@ -43,7 +45,7 @@
     .content {
         display: flex;
         justify-content: space-between;
-        align-items: center;
+        align-items: flex-start;
         column-gap: 5em;
 
         @media screen and (max-width: 45rem) {

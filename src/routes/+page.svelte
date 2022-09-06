@@ -16,11 +16,8 @@
 <Svgs />
 
 <style lang="scss">
-    :global(h2) {
-        font: {
-            size: clamp(1.25rem, 2vw, 3rem);
-            weight: 400;
-        }
+    :global(.spacer) {
+        height: 25vh;
     }
 
     :global(p) {
@@ -29,7 +26,10 @@
         }
     }
 
-    :global(.spacer) {
-        height: 25vh;
+    :global(h2) {
+        font: {
+            size: clamp(1.25rem, 2vw, 3rem);
+            weight: 400;
+        }
     }
 </style>
