@@ -4,14 +4,35 @@
 
     import { fade } from "svelte/transition";
     import { state } from "../stores";
+    
+    function handleKeyDown(e) {
+        switch(e.keyCode) {
+            case 13:
+                document.activeElement.blur();
+                state.set(name);
+                break;
+            default:
+                break;
+        }
+    }
+    
+    function handleClickSection() {
+        document.activeElement.blur();
+        state.set(name);
+        return;
+    }
 </script>
 
 <div
     class="homepage-section {name} {$state == 'home' ? 'hover-color' : ''}"
     style="background:{color};"
-    on:click={state.set(name)}
+    on:click={handleClickSection}
     out:fade
     in:fade={{ delay: 250 }}
+    tabindex=0;
+    on:keydown={handleKeyDown}
+    role="navigation"
+    label={name}
 >
     {#if $state == "home"}
         <div
@@ -60,7 +81,7 @@
         height: 50%;
     }
 
-    .hover-color:hover {
+    .hover-color:hover, :focus {
         filter: saturate(150%) brightness(95%) hue-rotate(5deg);
         cursor: pointer;
         animation: bounce 0.5s ease-in-out;
