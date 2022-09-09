@@ -7,7 +7,7 @@
     
     function handleKeyDown(e) {
         switch(e.keyCode) {
-            case 13:
+            case 13, 32:
                 document.activeElement.blur();
                 state.set(name);
                 break;
