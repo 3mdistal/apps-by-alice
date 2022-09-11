@@ -4,8 +4,6 @@
     import { state, backgroundColors } from "../stores";
     import Socials from "../icons/socials.svelte";
     import Button from "../icons/button.svelte";
-    import HomepageSectionSafari from "./homepage-section/homepage-section-safari.svelte";
-    import { onMount } from "svelte";
     import { fade } from "svelte/transition";
 
     let names = ["about", "studio", "commissions", "shop", "news"];
