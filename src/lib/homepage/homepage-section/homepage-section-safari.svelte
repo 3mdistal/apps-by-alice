@@ -3,7 +3,8 @@
     export let name;
 
     import { fade } from "svelte/transition";
-    import { state } from "../stores";
+    import { state } from "../../stores";
+    import { animate, spring } from "motion"
 
     function handleClickSection() {
         document.activeElement.blur();

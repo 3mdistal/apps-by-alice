@@ -3,6 +3,27 @@
   import { fade } from "svelte/transition";
   import About from "../subpages/about.svelte";
   import handleCSSVariables from "../utils/css-variables";
+  import { timeline, spring } from "motion";
+  import { onMount } from "svelte";
+
+  onMount(() => {
+    const sequence = [
+      [".bordered", { x: [-200, 0] }, { duration: 1 }],
+      [
+        "h2",
+        { opacity: [0, 80, 90, 100], y: [-50, 0] },
+        { easing: spring({ velocity: 1000, damping: 10 }) },
+      ],
+      ["p", { opacity: [0, 80, 100], y: [25, 0] }, { duration: 1 }],
+      [
+        ".image-wrapper",
+        { opacity: [0, 100], x: [100, 0] },
+        { easing: "ease-in-out", duration: 2 },
+      ],
+    ];
+
+    timeline(sequence);
+  });
 
   export let name;
 
@@ -17,9 +38,7 @@
   out:fade={{ duration: 250 }}
 >
   <div class="flex-wrap {name}">
-    <div
-      class="section-content-div bordered"
-    >
+    <div class="section-content-div bordered">
       <h2>
         <slot name="heading" />
       </h2>
@@ -36,7 +55,7 @@
         <slot name="button" />
       </div>
     </div>
-    <div class="section-content-div">
+    <div class="section-content-div image-wrapper">
       <slot name="image" />
     </div>
   </div>
@@ -106,6 +125,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     align-items: center;
+    overflow: hidden;
 
     &.about {
       justify-content: space-between;

@@ -1,18 +1,39 @@
 <script>
-    import HomepageSection from "./homepage-section.svelte";
+    import HomepageSection from "./homepage-section/homepage-section.svelte";
     import HomepageSectionContent from "./homepage-section-content.svelte";
     import { state, backgroundColors } from "../stores";
     import Socials from "../icons/socials.svelte";
     import Button from "../icons/button.svelte";
+    import HomepageSectionSafari from "./homepage-section/homepage-section-safari.svelte";
+    import { onMount } from "svelte";
 
     let names = ["about", "studio", "commissions", "shop", "news"];
+    let safari = true;
+
+    onMount(() => {
+        let browser = navigator.userAgent;
+
+        if (
+            browser.indexOf("Chrome") != -1 ||
+            browser.userAgent.indexOf("Firefox") != -1
+        ) {
+            safari = false;
+        }
+    });
 </script>
 
 <article>
     <div class="homepage-section-container">
         {#each names as name}
             {#if $state == "home" || $state == name}
-                <HomepageSection color={$backgroundColors[name]} {name} />
+                {#if safari}
+                    <HomepageSectionSafari
+                        color={$backgroundColors[name]}
+                        {name}
+                    />
+                {:else}
+                    <HomepageSection color={$backgroundColors[name]} {name} />
+                {/if}
             {/if}
         {/each}
 
