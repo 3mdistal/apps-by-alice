@@ -6,6 +6,7 @@
     import Button from "../icons/button.svelte";
     import HomepageSectionSafari from "./homepage-section/homepage-section-safari.svelte";
     import { onMount } from "svelte";
+    import { fade } from "svelte/transition"
 
     let names = ["about", "studio", "commissions", "shop", "news"];
     let safari = true;
@@ -23,7 +24,7 @@
 </script>
 
 <article>
-    <div class="homepage-section-container">
+    <div class="homepage-section-container" out:fade={{ duration: 500 }}>
         {#each names as name}
             {#if $state == "home" || $state == name}
                 {#if safari}
@@ -91,7 +92,7 @@
                 <Button
                     slot="button"
                     text="Let's make it."
-                    url="/commissions"
+                    url="./commissions"
                 />
                 <span slot="image">
                     <img

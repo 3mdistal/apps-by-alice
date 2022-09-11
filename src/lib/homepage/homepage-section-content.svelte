@@ -96,7 +96,10 @@
     left: 0;
     right: 0;
     width: 100%;
-    background-color: var(--backgroundColor);
+    background-image: linear-gradient(
+      transparent,
+      var(--backgroundColor) 100px
+    );
 
     &.studio {
       top: 28%;
