@@ -1,8 +1,8 @@
 <script>
-  import { state, accentColors, backgroundColors } from "../stores";
+  import { state, accentColors, backgroundColors } from "../../stores";
   import { fade } from "svelte/transition";
-  import About from "../subpages/about.svelte";
-  import handleCSSVariables from "../utils/css-variables";
+  import About from "../../subpages/about.svelte";
+  import handleCSSVariables from "../../utils/css-variables";
   import { timeline, spring } from "motion";
   import { onMount } from "svelte";
 
@@ -92,7 +92,7 @@
 
   .section-content {
     position: absolute;
-    top: 26%;
+    top: 54%;
     left: 0;
     right: 0;
     width: 100%;
@@ -102,24 +102,40 @@
     );
 
     &.studio {
-      top: 28%;
+      top: 58%;
     }
 
     &.commissions {
-      top: 34%;
+      top: 64%;
     }
 
     &.shop {
-      top: 44%;
+      top: 74%;
       flex-direction: row-reverse;
     }
 
     &.news {
-      top: 55%;
+      top: 88%;
     }
 
     @media screen and (max-width: 45rem) {
-      top: 35%;
+      top: 75%;
+
+      &.studio {
+        top: 68%;
+      }
+
+      &.commissions {
+        top: 76%;
+      }
+
+      &.shop {
+        top: 88%;
+      }
+
+      &.news {
+        top: 98%;
+      }
     }
   }
 

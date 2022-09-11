@@ -1,22 +1,38 @@
 <script>
     import HomepageSection from "./homepage-section/homepage-section.svelte";
-    import HomepageSectionContent from "./homepage-section-content.svelte";
+    import HomepageSectionContent from "./homepage-section/homepage-section-content.svelte";
     import { state, backgroundColors } from "../stores";
     import Socials from "../icons/socials.svelte";
     import Button from "../icons/button.svelte";
     import { fade } from "svelte/transition";
+    import { spring, animate, stagger } from "motion";
+    import { onMount } from "svelte";
 
     let names = ["about", "studio", "commissions", "shop", "news"];
+
+    onMount(() => {
+        animate(
+            document.querySelectorAll(".homepage-section-container > *"),
+            { scaleY: [0, 0.8, 0.9, 1], transformOrigin: "bottom" },
+            {
+                delay: stagger(0.1, { start: 2.25, from: "last" }),
+                easing: spring(),
+                allowWebkitAcceleration: true,
+            }
+        );
+    });
 </script>
 
-<article>
-    <div class="homepage-section-container" out:fade={{ duration: 500 }}>
+<div>
+    <nav class="homepage-section-container" out:fade={{ duration: 500 }}>
         {#each names as name}
             {#if $state == "home" || $state == name}
                 <HomepageSection color={$backgroundColors[name]} {name} />
             {/if}
         {/each}
+    </nav>
 
+    <article>
         {#if $state == "about" && $state != "home"}
             <HomepageSectionContent name={names[0]}>
                 <svelte:fragment slot="heading">
@@ -115,8 +131,8 @@
                 </span>
             </HomepageSectionContent>
         {/if}
-    </div>
-</article>
+    </article>
+</div>
 
 <style>
     .homepage-section-container {
@@ -124,26 +140,5 @@
         bottom: -40px;
         width: 100%;
         height: 100vh;
-        -webkit-animation: slide-from-bottom 0.65s ease-in-out 2.25s both;
-        animation: slide-from-bottom 0.65s ease-in-out 2.25s both;
-    }
-
-    @keyframes slide-from-bottom {
-        0% {
-            transform: scaleY(0);
-            transform-origin: bottom;
-        }
-
-        65% {
-            transform: scaleY(1.1);
-        }
-
-        90% {
-            transform: scaleY(0.95);
-        }
-
-        100% {
-            transform: scaleY(1);
-        }
     }
 </style>

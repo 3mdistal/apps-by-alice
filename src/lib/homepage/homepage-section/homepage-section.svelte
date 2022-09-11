@@ -4,7 +4,7 @@
 
     import { fade } from "svelte/transition";
     import { state } from "../../stores";
-    import { animate, spring } from "motion"
+    import { animate, spring } from "motion";
 
     function handleClickSection() {
         document.activeElement.blur();
@@ -24,11 +24,15 @@
     }
 
     function handleMouseEnter(e) {
-        animate(e.target, { y: -30 }, { easing: spring({ damping: 5, velocity: 300 })})
+        animate(
+            e.target,
+            { y: -30 },
+            { easing: spring({ damping: 5, velocity: 300 }), allowWebkitAcceleration: true }
+        );
     }
 
     function handleMouseLeave(e) {
-        animate(e.target, { y: 0 }, { easing: spring({ damping: 5 })})
+        animate(e.target, { y: 0 }, { easing: spring({ damping: 5 }) });
     }
 </script>
 
@@ -38,12 +42,10 @@
     on:click={handleClickSection}
     on:mouseenter={handleMouseEnter}
     on:mouseleave={handleMouseLeave}
-
     on:keydown={handleKeyDown}
-    tabindex=0
+    tabindex="0"
     role="navigation"
     aria-label={name}
-
     out:fade
     in:fade={{ delay: 250 }}
 >
@@ -94,25 +96,10 @@
         height: 50%;
     }
 
-    .hover-color:hover, :focus {
+    .hover-color:hover,
+    :focus {
         filter: saturate(150%) brightness(95%) hue-rotate(5deg);
         cursor: pointer;
-        /* animation: bounce 0.5s ease-in-out;
-        animation-fill-mode: forwards; */
-    }
-
-    @keyframes bounce {
-        0% {
-            transform: translateY(0px);
-        }
-
-        50% {
-            transform: translateY(-30px);
-        }
-
-        100% {
-            transform: translateY(0px);
-        }
     }
 
     .homepage-section-menu-link {
