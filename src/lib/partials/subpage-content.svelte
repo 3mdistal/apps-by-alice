@@ -14,9 +14,9 @@
     <div class="content" style="flex-direction: {flexDirection}">
         <div class="text">
             <NotionParser slug={notionSlug} timeout={notionTimeout} />
-                <div class="button">
-                    <slot name="button" class="button"/>
-                </div>
+            <div class="button">
+                <slot name="button" class="button" />
+            </div>
         </div>
         <div class="image">
             <slot name="image" />
