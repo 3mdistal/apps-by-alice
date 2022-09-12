@@ -1,14 +1,12 @@
 <script>
     import HomepageSection from "./homepage-section/homepage-section.svelte";
     import HomepageSectionContent from "./homepage-section/homepage-section-content.svelte";
-    import { state, backgroundColors } from "../stores";
+    import { state, backgroundColors, names } from "../stores";
     import Socials from "../icons/socials.svelte";
     import Button from "../icons/button.svelte";
     import { fade } from "svelte/transition";
     import { spring, animate, stagger } from "motion";
     import { onMount } from "svelte";
-
-    let names = ["about", "studio", "commissions", "shop", "news"];
 
     onMount(() => {
         document.querySelector(".homepage-section-container").style.opacity = 1;
@@ -26,7 +24,7 @@
 
 <div>
     <nav class="homepage-section-container" out:fade={{ duration: 500 }}>
-        {#each names as name}
+        {#each $names as name}
             {#if $state == "home" || $state == name}
                 <HomepageSection color={$backgroundColors[name]} {name} />
             {/if}
@@ -56,7 +54,7 @@
         {/if}
 
         {#if $state == "studio" && $state != "home"}
-            <HomepageSectionContent name={names[1]}>
+            <HomepageSectionContent name={$names[1]}>
                 <svelte:fragment slot="heading">
                     i keep chasing new ideas.
                 </svelte:fragment>
@@ -75,7 +73,7 @@
         {/if}
 
         {#if $state == "commissions" && $state != "home"}
-            <HomepageSectionContent name={names[2]}>
+            <HomepageSectionContent name={$names[2]}>
                 <svelte:fragment slot="heading">
                     hire me for ambitious projects.
                 </svelte:fragment>
@@ -100,7 +98,7 @@
         {/if}
 
         {#if $state == "shop" && $state != "home"}
-            <HomepageSectionContent name={names[3]}>
+            <HomepageSectionContent name={$names[3]}>
                 <svelte:fragment slot="heading">
                     grab a gift (soon).
                 </svelte:fragment>
@@ -119,7 +117,7 @@
         {/if}
 
         {#if $state == "news" && $state != "home"}
-            <HomepageSectionContent name={names[4]}>
+            <HomepageSectionContent name={$names[4]}>
                 <svelte:fragment slot="heading">
                     let's keep in touch.
                 </svelte:fragment>

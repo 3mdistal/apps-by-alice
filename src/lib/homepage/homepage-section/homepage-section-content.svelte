@@ -92,7 +92,7 @@
 
   .section-content {
     position: absolute;
-    top: 54%;
+    top: 59%;
     left: 0;
     right: 0;
     width: 100%;
@@ -102,39 +102,39 @@
     );
 
     &.studio {
-      top: 58%;
+      top: 63%;
     }
 
     &.commissions {
-      top: 64%;
+      top: 69%;
     }
 
     &.shop {
-      top: 74%;
+      top: 79%;
       flex-direction: row-reverse;
     }
 
     &.news {
-      top: 88%;
+      top: 93%;
     }
 
     @media screen and (max-width: 45rem) {
-      top: 75%;
+      top: 90%;
 
       &.studio {
-        top: 68%;
+        top: 83%;
       }
 
       &.commissions {
-        top: 76%;
+        top: 91%;
       }
 
       &.shop {
-        top: 88%;
+        top: 103%;
       }
 
       &.news {
-        top: 98%;
+        top: 113%;
       }
     }
   }
