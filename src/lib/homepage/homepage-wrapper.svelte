@@ -11,6 +11,7 @@
     let names = ["about", "studio", "commissions", "shop", "news"];
 
     onMount(() => {
+        document.querySelector(".homepage-section-container").style.opacity = 1;
         animate(
             document.querySelectorAll(".homepage-section-container > *"),
             { scaleY: [0, 0.8, 0.9, 1], transformOrigin: "bottom" },
@@ -87,7 +88,7 @@
                 <Button
                     slot="button"
                     text="Let's make it."
-                    url="./commissions"
+                    url="mailto:tempoimmaterial@gmail.com"
                 />
                 <span slot="image">
                     <img
@@ -140,5 +141,6 @@
         bottom: -40px;
         width: 100%;
         height: 100vh;
+        opacity: 0;
     }
 </style>
