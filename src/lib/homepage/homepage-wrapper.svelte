@@ -45,7 +45,7 @@
                 </svelte:fragment>
                 <span slot="image">
                     <img
-                        class="flip-vertical"
+                        class="flip-vertical top-image"
                         src="images/homepage/flowers-in-hand.png"
                         alt="A painted hand folding out flowers."
                     />

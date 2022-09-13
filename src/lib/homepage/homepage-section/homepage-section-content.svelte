@@ -10,11 +10,11 @@
     const sequence = [
       [".bordered", { x: [-200, 0] }, { duration: 1 }],
       [
-        "h2",
+        ".top-heading",
         { opacity: [0, 80, 90, 100], y: [-50, 0] },
         { easing: spring({ velocity: 1000, damping: 10 }) },
       ],
-      ["p", { opacity: [0, 80, 100], y: [25, 0] }, { duration: 1 }],
+      [".top-text", { opacity: [0, 80, 100], y: [25, 0] }, { duration: 1 }],
       [
         ".image-wrapper",
         { opacity: [0, 100], x: [100, 0] },
@@ -23,6 +23,8 @@
     ];
 
     timeline(sequence);
+
+    
   });
 
   export let name;
@@ -39,15 +41,15 @@
 >
   <div class="flex-wrap {name}">
     <div class="section-content-div bordered">
-      <h2>
+      <h2 class="top-heading">
         <slot name="heading" />
       </h2>
       {#if name == "shop"}
-        <p style="color: #fafafa">
+        <p class="top-text" style="color: #fafafa">
           <slot name="description" />
         </p>
       {:else}
-        <p>
+        <p class="top-text">
           <slot name="description" />
         </p>
       {/if}

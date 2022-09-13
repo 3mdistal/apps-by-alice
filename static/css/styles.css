@@ -19,6 +19,19 @@ h6 {
   padding: 0;
 }
 
+.spacer {
+  height: 25vh;
+}
+
+p {
+  font-size: clamp(1rem, 1.5vw, 2rem);
+}
+
+h2 {
+  font-size: clamp(1.25rem, 2vw, 3rem);
+  font-weight: 400;
+}
+
 body {
   background-color: #fafafa;
 }
