@@ -1,7 +1,6 @@
 <script>
     import { state } from "../stores";
     import { onMount } from "svelte";
-    import { animate } from "motion";
 
     let siteHeaderContainer;
 
@@ -48,7 +47,7 @@
         max-width: 80vw;
         margin: 2vh auto;
         transition: 0.5s;
-        
+
         @media screen and (max-width: 45rem) {
             flex-direction: column;
             row-gap: 2em;
