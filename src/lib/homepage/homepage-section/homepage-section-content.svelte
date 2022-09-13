@@ -23,8 +23,6 @@
     ];
 
     timeline(sequence);
-
-    
   });
 
   export let name;
@@ -65,6 +63,8 @@
   {#if $state === "about"}
     <About />
   {/if}
+
+  <div class="spacer" />
 </div>
 
 <style lang="scss">

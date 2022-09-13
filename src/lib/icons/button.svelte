@@ -35,7 +35,7 @@
     filter: brightness(96%);
   }
 
-  a:hover {
+  a:hover, :focus {
     background-color: var(--accentColor);
     color: var(--backgroundColor);
   }

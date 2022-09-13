@@ -1,8 +1,9 @@
 <script>
     import { state } from "../stores";
     import { onMount } from "svelte";
+    import { animate } from "motion";
 
-    let siteHeaderContainer
+    let siteHeaderContainer;
 
     onMount(() => {
         const options = {
@@ -38,7 +39,7 @@
     </div>
 </header>
 
-<style>
+<style lang="scss">
     .site-header-container {
         display: flex;
         flex-direction: row;
@@ -47,10 +48,8 @@
         max-width: 80vw;
         margin: 2vh auto;
         transition: 0.5s;
-    }
-
-    @media screen and (max-width: 45rem) {
-        .site-header-container {
+        
+        @media screen and (max-width: 45rem) {
             flex-direction: column;
             row-gap: 2em;
             margin-top: 4em;
@@ -62,6 +61,7 @@
         -webkit-animation: logo-roll 1s ease-in-out both,
             fade-in 1s ease-in both;
         animation: logo-roll 1s ease-in-out both, fade-in 1s ease-in both;
+        cursor: pointer;
     }
 
     .site-title {

@@ -8,10 +8,12 @@
     import { spring, animate, stagger } from "motion";
     import { onMount } from "svelte";
 
+    let homepageWrapper;
+
     onMount(() => {
-        document.querySelector(".homepage-section-container").style.opacity = 1;
+        homepageWrapper.style.opacity = 1;
         animate(
-            document.querySelectorAll(".homepage-section-container > *"),
+            homepageWrapper.children,
             { scaleY: [0, 0.8, 0.9, 1], transformOrigin: "bottom" },
             {
                 delay: stagger(0.1, { start: 2.25, from: "last" }),
@@ -23,7 +25,11 @@
 </script>
 
 <div>
-    <nav class="homepage-section-container" out:fade={{ duration: 500 }}>
+    <nav
+        class="homepage-wrapper"
+        bind:this={homepageWrapper}
+        out:fade={{ duration: 500 }}
+    >
         {#each $names as name}
             {#if $state == "home" || $state == name}
                 <HomepageSection color={$backgroundColors[name]} {name} />
@@ -62,6 +68,7 @@
                     I've always been someone who dabbles in everything; learning
                     new arts keeps me happy. In my studio, you'll find
                     paintings, poems, songs, fiction, memoir, fantasy, and more.
+                    I'll be launching the studio this fall, so stay tuned!
                 </svelte:fragment>
                 <span slot="image">
                     <img
@@ -134,7 +141,7 @@
 </div>
 
 <style>
-    .homepage-section-container {
+    .homepage-wrapper {
         position: relative;
         bottom: -40px;
         width: 100%;
