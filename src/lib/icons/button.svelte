@@ -5,9 +5,9 @@
   const accentColor = $accentColors[$state];
   const backgroundColor = $backgroundColors[$state];
 
-  export let url;
-  export let text;
-  export let target;
+  export let url = "";
+  export let text = "";
+  export let target = "";
 </script>
 
 <a
