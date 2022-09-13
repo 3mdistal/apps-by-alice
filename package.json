@@ -1,6 +1,6 @@
 {
-  "name": "svelte",
-  "version": "0.0.1",
+  "name": "tempo-immaterial",
+  "version": "0.0.2",
   "scripts": {
     "dev": "env-cmd vite dev",
     "build": "vite build",
