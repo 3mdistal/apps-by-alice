@@ -122,8 +122,8 @@
                     let's keep in touch.
                 </svelte:fragment>
                 <svelte:fragment slot="description">
-                    My newsletter updates you about everything Tempo Immaterial:
-                    creations, sales, services, and so forth.
+                    A newsletter is coming soon, but for now feel free to reach
+                    out to me on any of my socials.
                 </svelte:fragment>
                 <span slot="image">
                     <Socials />
