@@ -39,7 +39,6 @@
         const images = document.querySelectorAll(
             ".subpage-content-wrapper img:not(.social-img)"
         );
-        console.log(images);
 
         images.forEach((image) => {
             inView(image, () => {

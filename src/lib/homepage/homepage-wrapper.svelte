@@ -28,7 +28,6 @@
     <nav
         class="homepage-wrapper"
         bind:this={homepageWrapper}
-        out:fade={{ duration: 500 }}
     >
         {#each $names as name}
             {#if $state == "home" || $state == name}
