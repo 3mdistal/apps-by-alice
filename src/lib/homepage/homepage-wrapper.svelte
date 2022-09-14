@@ -4,7 +4,6 @@
     import { state, backgroundColors, names } from "../stores";
     import Socials from "../icons/socials.svelte";
     import Button from "../icons/button.svelte";
-    import { fade } from "svelte/transition";
     import { spring, animate, stagger } from "motion";
     import { onMount } from "svelte";
 

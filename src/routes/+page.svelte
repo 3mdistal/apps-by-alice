@@ -3,7 +3,6 @@
     import Svgs from "../lib/icons/svgs.svelte";
     import TopButton from "../lib/icons/top-button.svelte";
     import SiteTitle from "../lib/homepage/site-title.svelte";
-    import { onMount } from "svelte";
 </script>
 
 <SiteTitle />
