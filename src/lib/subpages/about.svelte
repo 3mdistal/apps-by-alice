@@ -9,8 +9,8 @@
 
 <SubpageContent>
     <svelte:fragment slot="heading">
-        <strong>tempo immaterial</strong>, verb, to dream of perpetual
-        insufficiency.
+        <strong>tempo immaterial</strong>, verb,
+        <em>to dream of perpetual insufficiency.</em>
     </svelte:fragment>
     <svelte:fragment slot="text">
         <p>
@@ -22,10 +22,10 @@
         </p>
 
         <p>
-            This website, as you might notice, will have bugs. I lovingly call
-            it the eternal beta. The fact of the matter is, as a solo designer
-            and developer who thrives taking on complex ideas, I might never
-            iron out everything, but I'll always be improving.
+            This website, as you might notice, is incomplete. I lovingly call it
+            the eternal beta. The fact of the matter is, as a solo designer and
+            developer who thrives taking on complex ideas, I might never iron
+            out everything, but I'll always be improving.
         </p>
 
         <p>
@@ -59,12 +59,12 @@
     <svelte:fragment slot="text">
         <p>
             Something about the landscape has resided in me to this day, even as
-            the backwards ideologies of Southern Baptist cults threaded through
-            my veins. As a closeted trans woman, I learned not to discard the
-            white supremacist neo-fascism, but to understand it—to learn how an
-            entire people can become so misled and to hope in art that can help
-            them change their views when so many political discussions fall on
-            deaf ears.
+            I've shed the backwards ideologies of Southern Baptist cults
+            threaded through my veins. As a closeted trans woman, I learned not
+            to discard the white supremacist neo-fascism, but to understand
+            it—to learn how an entire people can become so misled and to hope in
+            art that can help them change their views when so many political
+            discussions fall on deaf ears.
         </p>
         <p>
             After leaving Ohio, I stayed in the Midwest, pursuing postgraduate
@@ -104,10 +104,12 @@
         why do i limit my definition of meaningful?
     </svelte:fragment>
     <svelte:fragment slot="text">
+        <p class="heading">
+            I expect myself to be a specific version of excellent.
+        </p>
         <p>
-            I expect myself to be a specific version of excellent. I eschew
-            conformity in my art only to find myself grasping at others'
-            measures of success to weigh my work against.
+            I eschew conformity in my art only to find myself grasping at
+            others' measures of success to weigh my work against.
         </p>
         <p>
             In talking with a dear friend recently, we came to the conclusion
@@ -120,7 +122,9 @@
             That each idea, once explored, is revealed to be a multitude of
             uncharted worlds.
         </p>
-        <p>If art is to be mimesis, must it not, as life, remain incomplete?</p>
+        <p class="heading">
+            If art is to be mimesis, must it not, as life, remain incomplete?
+        </p>
         <p>
             I've been trying to make a website for a few years now: a place to
             house all my work that doesn't seem to fit anywhere else. What
@@ -128,14 +132,16 @@
             asks so many more questions than it answers—feels, in other words,
             desperately unfinished.
         </p>
-        <p>How arrogant to think I'd be the only voice to ask & answer.</p>
+        <p class="heading">
+            How arrogant to think I'd be the only voice to ask & answer.
+        </p>
         <p>
             This place, instead, I'm making the <em>terra sancta</em> I know how
             to create right now, without all the knowledge I've yet to see before
             I die. Perhaps instead of this studio being a declaration, I can posture
             myself into the shape of a question mark:
         </p>
-        <p>Will you teach me what you know?</p>
+        <p class="heading">Will you teach me what you know?</p>
     </svelte:fragment>
     <img
         slot="image"
@@ -171,5 +177,10 @@
 
     p {
         margin-bottom: 1.5em;
+    }
+
+    .heading {
+        font-size: clamp(1rem, 1.5vw, 2rem);
+        font-weight: 400;
     }
 </style>

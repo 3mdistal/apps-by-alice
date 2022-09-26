@@ -17,6 +17,7 @@
     "postcss": "^8.4.14",
     "sass": "^1.54.0",
     "svelte": "^3.49.0",
+    "svelte-language-server": "^0.14.34",
     "svelte-loader": "^3.1.3",
     "svelte-preprocess": "^4.10.7",
     "vite": "^3.0.0"
