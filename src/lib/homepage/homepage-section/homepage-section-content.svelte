@@ -5,6 +5,7 @@
   import handleCSSVariables from "../../utils/css-variables";
   import { timeline, spring } from "motion";
   import { onMount } from "svelte";
+  import Commissions from "../../subpages/commissions.svelte";
 
   onMount(() => {
     const sequence = [
@@ -62,6 +63,8 @@
 
   {#if $state === "about"}
     <About />
+  {:else if $state === "commissions"}
+    <Commissions />
   {/if}
 
   <div class="spacer" />

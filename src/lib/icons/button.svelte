@@ -8,11 +8,13 @@
   export let url = "";
   export let text = "";
   export let target = "";
+  export let type = "";
 </script>
 
 <a
   href={url}
   target={target}
+  type={type}
   use:handleCSSVariables={{ accentColor, backgroundColor }}
 >
   {text}
