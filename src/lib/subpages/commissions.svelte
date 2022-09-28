@@ -100,6 +100,7 @@
                 />
             </div>
         </div>
+        <!-- TODO: Bring in margins. -->
         <div class="flex">
             <div class="text">
                 <h2>Editor</h2>
@@ -144,7 +145,9 @@
         align-items: center;
         overflow: hidden;
         background-image: url("/images/commissions/impossible.jpeg");
-        background-attachment: fixed;
+        @media (hover:hover) {
+            background-attachment: fixed;
+        }
         background-size: cover;
         background-repeat: no-repeat;
         background-position: 35%;
@@ -301,7 +304,9 @@
 
     .villain {
         background-image: url("/images/commissions/villain.jpeg");
-        background-attachment: fixed;
+        @media (hover:hover) {
+            background-attachment: fixed;
+        }
         background-size: cover;
         background-repeat: no-repeat;
         margin-bottom: -25vh;
