@@ -165,6 +165,8 @@
     <Socials slot="image" />
 </SubpageContent>
 
+<div class="spacer" />
+
 <style lang="scss">
     strong {
         font-weight: 600;

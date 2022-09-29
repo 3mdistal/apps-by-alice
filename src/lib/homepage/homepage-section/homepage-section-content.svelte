@@ -66,8 +66,6 @@
   {:else if $state === "commissions"}
     <Commissions />
   {/if}
-
-  <div class="spacer" />
 </div>
 
 <style lang="scss">

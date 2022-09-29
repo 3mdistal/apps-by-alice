@@ -133,7 +133,8 @@
 
 <style lang="scss">
     .wrapper {
-        width: 100vw;
+        max-width: 100vw;
+        overflow: hidden;
     }
 
     .hero {
@@ -253,7 +254,13 @@
         display: flex;
         flex-direction: column;
         row-gap: 10em;
-        padding: calc(1em + 5vw);
+        padding: 15vw;
+        @media screen and (max-width: 45rem) {
+            padding: 7vw;
+        }
+        @media screen and (max-width: 30rem) {
+            padding: 4vw;
+        }
 
         & .flex {
             display: flex;
@@ -309,7 +316,6 @@
         }
         background-size: cover;
         background-repeat: no-repeat;
-        margin-bottom: -25vh;
         padding: 10em clamp(2em, 20vw, 20em);
 
         & div {
