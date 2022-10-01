@@ -1,10 +1,55 @@
 <script>
     import Form from "../partials/form.svelte";
     import { backgroundColors, accentColors, state } from "../stores";
-    import handleCSSVariables from "../utils/css-variables";
 
+    import handleCSSVariables from "../utils/css-variables";
     const backgroundColor = $backgroundColors[$state];
     const accentColor = $accentColors[$state];
+
+    import { animate, inView, stagger, timeline } from "motion";
+    import { onMount } from "svelte";
+
+    onMount(() => {
+        const names = document.querySelectorAll(".header p");
+
+        inView(names, () => {
+            animate(
+                names,
+                { opacity: [0, 1] },
+                { delay: stagger(.25), duration: 1 }
+            );
+        });
+
+        const truths = document.querySelectorAll(".truths > *")
+
+        inView(truths, () => {
+            animate(
+                truths,
+                { opacity: [0,1] },
+                { delay: stagger(1), duration: 1 }
+            )
+        })
+
+        const ambitious = document.querySelector(".ambitious")
+
+        inView(ambitious, () => {
+            animate(
+                ambitious,
+                { opacity: [0,1] },
+                { duration: 1 }
+            )
+        })
+
+        const descriptions = document.querySelectorAll(".descriptions > *")
+
+        inView(descriptions, () => {
+            animate(
+                descriptions,
+                { opacity: [0,1] },
+                { delay: stagger(1), duration: 1 }
+            )
+        })
+    });
 </script>
 
 <div class="spacer" />
@@ -100,7 +145,6 @@
                 />
             </div>
         </div>
-        <!-- TODO: Bring in margins. -->
         <div class="flex">
             <div class="text">
                 <h2>Editor</h2>
@@ -146,7 +190,7 @@
         align-items: center;
         overflow: hidden;
         background-image: url("/images/commissions/impossible.jpeg");
-        @media (hover:hover) {
+        @media (hover: hover) {
             background-attachment: fixed;
         }
         background-size: cover;
@@ -311,7 +355,7 @@
 
     .villain {
         background-image: url("/images/commissions/villain.jpeg");
-        @media (hover:hover) {
+        @media (hover: hover) {
             background-attachment: fixed;
         }
         background-size: cover;

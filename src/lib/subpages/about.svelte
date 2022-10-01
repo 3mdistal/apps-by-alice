@@ -1,11 +1,13 @@
 <script>
     import Socials from "../icons/socials.svelte";
     import SubpageContent from "../partials/subpage-content.svelte";
+    import handleCSSVariables from "../utils/css-variables";
+    import { accentColors, state } from "../stores"
 
-    // TODO: Edit about content and animate individual parts. Take about content off Notion.
+    const accentColor = $accentColors[$state]
 </script>
 
-<div class="spacer" />
+<div class="spacer" use:handleCSSVariables={$accentColors[$state]} />
 
 <SubpageContent>
     <svelte:fragment slot="heading">
@@ -170,6 +172,11 @@
 <style lang="scss">
     strong {
         font-weight: 600;
+        color: var(--accentColor)
+    }
+
+    em {
+        color: var(--accentColor)
     }
 
     img {

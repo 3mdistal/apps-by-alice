@@ -7,10 +7,6 @@
     let heading;
 
     onMount(() => {
-        const headings = document.querySelectorAll(
-            ".subpage-content-wrapper h2"
-        );
-
         inView(heading, () => {
             animate(
                 heading,
