@@ -16,6 +16,7 @@
         { easing: spring({ velocity: 1000, damping: 10 }) },
       ],
       [".top-text", { opacity: [0, 80, 100], y: [25, 0] }, { duration: 1 }],
+      [".button", { opacity: [0, 100], x: [-100, 0] }, { duration: .75 }],
       [
         ".image-wrapper",
         { opacity: [0, 100], x: [100, 0] },

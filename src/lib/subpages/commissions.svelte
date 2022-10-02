@@ -9,58 +9,92 @@
     import { animate, inView, stagger, timeline } from "motion";
     import { onMount } from "svelte";
 
-    onMount(() => {
-        const names = document.querySelectorAll(".header p");
+    let heroText;
+    let header;
+    let truth;
+    let ambitious;
+    let descriptions;
 
-        inView(names, () => {
+    onMount(() => {
+        inView(heroText, () => {
             animate(
-                names,
-                { opacity: [0, 1] },
-                { delay: stagger(.25), duration: 1 }
+                heroText,
+                { opacity: [0, 1], scale: [1.5, 1] },
+                { duration: 1, delay: 0.25 }
             );
         });
 
-        const truths = document.querySelectorAll(".truths > *")
+        const header_sequence = [
+            [header, { opacity: [0, 1] }, { duration: 0.5 }],
+            [
+                header.querySelector("img"),
+                { opacity: [0, 1], scale: [0.6, 1] },
+                { duration: 0.5, easing: "ease-in-out" },
+            ],
+            [
+                header.querySelectorAll("p"),
+                { opacity: [0, 1] },
+                { delay: stagger(0.25), duration: 1 },
+            ],
+        ];
 
-        inView(truths, () => {
-            animate(
-                truths,
-                { opacity: [0,1] },
-                { delay: stagger(1), duration: 1 }
-            )
-        })
+        inView(header, () => {
+            timeline(header_sequence);
+        });
 
-        const ambitious = document.querySelector(".ambitious")
+        const truth_sequence = [
+            [
+                truth.querySelector("h2"),
+                { opacity: [0, 1], y: [-100, 0] },
+                { duration: 0.5 },
+            ],
+            [
+                truth.querySelector(".heading"),
+                { opacity: [0, 1], x: [50, 0] },
+                { duration: 0.5, delay: 0.5 },
+            ],
+            [
+                truth.querySelectorAll("p:not(.heading)"),
+                { opacity: [0, 1], y: [50, 0] },
+                { duration: 1, delay: stagger(5, { start: 1 }) },
+            ],
+        ];
+
+        inView(truth, () => {
+            timeline(truth_sequence, { delay: 0.5 });
+        });
 
         inView(ambitious, () => {
             animate(
                 ambitious,
-                { opacity: [0,1] },
-                { duration: 1 }
-            )
-        })
+                { opacity: [0, 1], scaleX: [0.8, 1] },
+                { duration: 1, delay: 0.5 }
+            );
+        });
 
-        const descriptions = document.querySelectorAll(".descriptions > *")
+        const descriptions_sequence = [
+            [
+                descriptions.querySelectorAll("*"),
+                { opacity: [0, 1] },
+                { delay: stagger(0.25), duration: 1 },
+            ],
+        ];
 
         inView(descriptions, () => {
-            animate(
-                descriptions,
-                { opacity: [0,1] },
-                { delay: stagger(1), duration: 1 }
-            )
-        })
+            timeline(descriptions_sequence);
+        });
     });
 </script>
 
 <div class="spacer" />
 <div class="wrapper" use:handleCSSVariables={(backgroundColor, accentColor)}>
     <div class="hero">
-        <div class="text">
+        <div class="text" bind:this={heroText}>
             <p>Bring your impossible, intangible things.</p>
         </div>
     </div>
     <div class="spacer" />
-    <div class="header">
+    <div class="header" bind:this={header}>
         <div class="right">
             <p>alice</p>
             <p>alexandra</p>
@@ -76,7 +110,7 @@
         </div>
     </div>
     <div class="spacer" />
-    <div class="truths">
+    <div class="truths" bind:this={truth}>
         <h2>Here are my truths.</h2>
         <div>
             <p class="heading">I respect your ideas.</p>
@@ -102,10 +136,10 @@
         </div>
     </div>
     <div class="spacer" />
-    <div class="ambitious">
+    <div class="ambitious" bind:this={ambitious}>
         <p>Ambitious project? Tired of finding experts? I do it all.</p>
     </div>
-    <div class="descriptions">
+    <div class="descriptions" bind:this={descriptions}>
         <div class="flex">
             <div class="text">
                 <h2>Developer</h2>
@@ -257,6 +291,10 @@
         & p {
             margin-bottom: 1.5em;
             color: var(--backgroundColor);
+        }
+
+        & .heading {
+            font-size: clamp(1.2rem, 2vw, 2rem);
         }
 
         @media screen and (max-width: 45rem) {
