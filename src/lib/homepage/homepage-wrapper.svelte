@@ -91,7 +91,7 @@
                 <Button
                     slot="button"
                     text="Let's make it."
-                    url="mailto:tempoimmaterial@gmail.com"
+                    url="mailto:commissions@alicealexandra.com"
                 />
                 <span slot="image">
                     <img
