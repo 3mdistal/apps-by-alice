@@ -1,13 +1,10 @@
 import adapter from '@sveltejs/adapter-auto';
-import sveltePreprocess from 'svelte-preprocess';
-import prefix from 'autoprefixer'
+import preprocess from 'svelte-preprocess';
 
 /** @type {import('@sveltejs/kit').Config} */
 const config = {
-	preprocess: sveltePreprocess({
-		postcss: {
-			plugins: [prefix()]
-		}
+	preprocess: preprocess({
+		postcss: true
 	}),
 	kit: {
 		adapter: adapter()

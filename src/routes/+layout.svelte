@@ -1,6 +1,5 @@
-<svelte:head>
-    <link rel="stylesheet" href="/css/styles.css" />
-    <link rel="stylesheet" href="/css/reset.css" />
-</svelte:head>
+<script>
+    import "../app.css"
+</script>
 
-<slot></slot>
+<slot />

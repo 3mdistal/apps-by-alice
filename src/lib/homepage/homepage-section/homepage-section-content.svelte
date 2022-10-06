@@ -1,11 +1,12 @@
 <script>
   import { state, accentColors, backgroundColors } from "../../stores";
   import { fade } from "svelte/transition";
-  import About from "../../subpages/about.svelte";
   import handleCSSVariables from "../../utils/css-variables";
   import { timeline, spring } from "motion";
   import { onMount } from "svelte";
+  import About from "../../subpages/about.svelte";
   import Commissions from "../../subpages/commissions.svelte";
+  import Studio from "../../subpages/studio.svelte";
 
   onMount(() => {
     const sequence = [
@@ -16,7 +17,7 @@
         { easing: spring({ velocity: 1000, damping: 10 }) },
       ],
       [".top-text", { opacity: [0, 80, 100], y: [25, 0] }, { duration: 1 }],
-      [".button", { opacity: [0, 100], x: [-100, 0] }, { duration: .75 }],
+      [".button", { opacity: [0, 100], x: [-100, 0] }, { duration: 0.75 }],
       [
         ".image-wrapper",
         { opacity: [0, 100], x: [100, 0] },
@@ -66,6 +67,8 @@
     <About />
   {:else if $state === "commissions"}
     <Commissions />
+  {:else if $state === "studio"}
+    <Studio />
   {/if}
 </div>
 
