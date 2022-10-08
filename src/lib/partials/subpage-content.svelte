@@ -49,7 +49,7 @@
 </script>
 
 <div class="wrapper subpage-content-wrapper">
-    <h2 bind:this={heading} style="color: {$accentColors[$state]}">
+    <h2 class="header-2" bind:this={heading} style="color: {$accentColors[$state]}">
         <slot name="heading" />
     </h2>
     <div class="content" style="flex-direction: {flexDirection}">

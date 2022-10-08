@@ -7,11 +7,14 @@
   import { onMount } from "svelte";
   import Commissions from "../../subpages/commissions.svelte";
 
+  let topHeading;
+  let bordered;
+
   onMount(() => {
     const sequence = [
-      [".bordered", { x: [-200, 0] }, { duration: 1 }],
+      [bordered, { x: [-200, 0] }, { duration: 1 }],
       [
-        ".top-heading",
+        topHeading,
         { opacity: [0, 80, 90, 100], y: [-50, 0] },
         { easing: spring({ velocity: 1000, damping: 10 }) },
       ],
@@ -34,14 +37,22 @@
 </script>
 
 <div
-  class="section-content {name}"
-  use:handleCSSVariables={{ backgroundColor, accentColor }}
+  class="section-content {name} absolute md:top-[59%]"
+  use:handleCSSVariables={{ backgroundColor, accentColor }} 
   in:fade={{ delay: 500 }}
   out:fade={{ duration: 250 }}
 >
-  <div class="flex-wrap {name}">
-    <div class="section-content-div bordered">
-      <h2 class="top-heading">
+  <div class="flex-wrap {name} lg:px-20 px-5 flex flex-nowrap gap-x-10">
+    <div
+      bind:this={bordered}
+      class="section-content-div bordered box-border border-y-2 rounded-[5%] py-20 px-5 lg:py-40 lg:px-20 max-w-[50%]"
+      style="border-color: {$accentColors[$state]}"
+    >
+      <h2
+        class="header-2 mb-5"
+        style="color:{$accentColors[$state]}"
+        bind:this={topHeading}
+      >
         <slot name="heading" />
       </h2>
       {#if name == "shop"}
@@ -53,7 +64,7 @@
           <slot name="description" />
         </p>
       {/if}
-      <div class="button">
+      <div class="flex justify-center md:justify-end mt-5 md:mr-5">
         <slot name="button" />
       </div>
     </div>
@@ -70,36 +81,7 @@
 </div>
 
 <style lang="scss">
-  p,
-  h2,
-  .button {
-    margin: 0 10%;
-  }
-
-  h2 {
-    color: var(--accentColor);
-  }
-
-  .button {
-    display: flex;
-    justify-content: flex-end;
-
-    position: relative;
-    top: 5%;
-    right: 5%;
-
-    @media screen and (max-width: 45rem) {
-      justify-content: center;
-      margin: 0 10%;
-    }
-  }
-
   .section-content {
-    position: absolute;
-    top: 59%;
-    left: 0;
-    right: 0;
-    width: 100%;
     background-image: linear-gradient(
       transparent,
       var(--backgroundColor) 100px
@@ -144,10 +126,6 @@
   }
 
   .flex-wrap {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    align-items: center;
     overflow: hidden;
 
     &.about {
@@ -157,38 +135,6 @@
     &.studio,
     &.shop {
       flex-direction: row-reverse;
-    }
-
-    @media screen and (max-width: 45rem) {
-      flex-direction: column;
-      row-gap: 5em;
-    }
-  }
-
-  .section-content-div {
-    max-width: 50%;
-    display: flex;
-    flex-direction: column;
-    row-gap: 1.5em;
-
-    @media screen and (max-width: 45rem) {
-      max-width: 100%;
-    }
-  }
-
-  .bordered {
-    box-sizing: border-box;
-    border-top: solid 2px;
-    border-bottom: solid 2px;
-    border-radius: 5%;
-    border-color: var(--accentColor);
-    padding: 8em 0;
-    max-width: 40%;
-    margin: 0 auto;
-
-    @media screen and (max-width: 45rem) {
-      padding: 4em 0;
-      max-width: 90%;
     }
   }
 </style>
