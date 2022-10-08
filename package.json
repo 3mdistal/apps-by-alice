@@ -29,6 +29,7 @@
 	},
 	"type": "module",
 	"dependencies": {
+		"@notionhq/client": "^2.2.1",
 		"motion": "^10.14.2",
 		"sass": "^1.55.0"
 	}
