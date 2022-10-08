@@ -66,7 +66,6 @@
                     I've always been someone who dabbles in everything; learning
                     new arts keeps me happy. In my studio, you'll find
                     paintings, poems, songs, fiction, memoir, fantasy, and more.
-                    I'll be launching the studio this fall, so stay tuned!
                 </svelte:fragment>
                 <span slot="image">
                     <img

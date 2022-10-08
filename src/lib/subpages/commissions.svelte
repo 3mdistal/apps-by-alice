@@ -45,7 +45,7 @@
         const truth_sequence = [
             [
                 truth.querySelector("h2"),
-                { opacity: [0, 1], y: [-100, 0] },
+                { opacity: [0, .85], y: [-100, 0] },
                 { duration: 0.5 },
             ],
             [
@@ -55,8 +55,8 @@
             ],
             [
                 truth.querySelectorAll("p:not(.heading)"),
-                { opacity: [0, 1], y: [50, 0] },
-                { duration: 1, delay: stagger(5, { start: 1 }) },
+                { opacity: [0, .9], y: [50, 0] },
+                { duration: 1, delay: stagger(.25, { start: 1 }) },
             ],
         ];
 
@@ -111,9 +111,9 @@
     </div>
     <div class="spacer" />
     <div class="truths" bind:this={truth}>
-        <h2>Here are my truths.</h2>
+        <h2 class="header-2">Here are my truths.</h2>
         <div>
-            <p class="heading">I respect your ideas.</p>
+            <p class="header-2 font-light">I respect your ideas.</p>
             <p>
                 To me, this is more than a statement. My favorite thing about
                 the process of editing another's work is pulling forward their
@@ -281,7 +281,6 @@
         & h2 {
             width: 50%;
             color: #fafafa;
-            opacity: 80%;
         }
 
         & div {
@@ -291,10 +290,6 @@
         & p {
             margin-bottom: 1.5em;
             color: var(--backgroundColor);
-        }
-
-        & .heading {
-            font-size: clamp(1.2rem, 2vw, 2rem);
         }
 
         @media screen and (max-width: 45rem) {
