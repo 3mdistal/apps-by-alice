@@ -69,8 +69,8 @@
 <div class="spacer" />
 <div class="wrapper">
 	<div class="hero">
-		<div class="text" bind:this={heroText} style="color: {$accentColors[$state]}">
-			<p>Bring your impossible, intangible things.</p>
+		<div class="text" bind:this={heroText}>
+			<p style="color: {$accentColors[$state]}">Bring your impossible, intangible things.</p>
 		</div>
 	</div>
 	<div class="spacer" />
