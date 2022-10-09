@@ -34,7 +34,7 @@
 
 	<article>
 		{#if $state == 'about' && $state != 'home'}
-			<HomepageSectionContent name={names[0]}>
+			<HomepageSectionContent>
 				<svelte:fragment slot="heading">i'm alice, a digital creator.</svelte:fragment>
 				<svelte:fragment slot="description">
 					Welcome to Tempo Immaterial, a place that both showcases my own work and acts as the
@@ -43,7 +43,7 @@
 				</svelte:fragment>
 				<span slot="image">
 					<img
-						class="flip-vertical"
+						class="scale-x-[-100%]"
 						src="images/homepage/flowers-in-hand.png"
 						alt="A painted hand folding out flowers."
 					/>
@@ -52,7 +52,7 @@
 		{/if}
 
 		{#if $state == 'studio' && $state != 'home'}
-			<HomepageSectionContent name={$names[1]}>
+			<HomepageSectionContent>
 				<svelte:fragment slot="heading">i keep chasing new ideas.</svelte:fragment>
 				<svelte:fragment slot="description">
 					I've always been someone who dabbles in everything; learning new arts keeps me happy. In
@@ -68,7 +68,7 @@
 		{/if}
 
 		{#if $state == 'commissions' && $state != 'home'}
-			<HomepageSectionContent name={$names[2]}>
+			<HomepageSectionContent>
 				<svelte:fragment slot="heading">hire me for ambitious projects.</svelte:fragment>
 				<svelte:fragment slot="description">
 					I can help you launch and fly the ideas you don't know how to get off the ground. I
@@ -86,7 +86,7 @@
 		{/if}
 
 		{#if $state == 'shop' && $state != 'home'}
-			<HomepageSectionContent name={$names[3]}>
+			<HomepageSectionContent>
 				<svelte:fragment slot="heading">grab a gift (soon).</svelte:fragment>
 				<svelte:fragment slot="description">
 					From art prints to stories to every other kind of creation I like to make, the shop will
@@ -99,7 +99,7 @@
 		{/if}
 
 		{#if $state == 'news' && $state != 'home'}
-			<HomepageSectionContent name={$names[4]}>
+			<HomepageSectionContent>
 				<svelte:fragment slot="heading">let's keep in touch.</svelte:fragment>
 				<svelte:fragment slot="description">
 					A newsletter is coming soon, but for now feel free to reach out to me on any of my

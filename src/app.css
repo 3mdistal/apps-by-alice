@@ -4,11 +4,11 @@
 
 @layer components {
   .header-2 {
-    @apply lg:text-4xl md:text-3xl text-2xl font-medium
+    @apply text-2xl lg:text-4xl md:text-3xl font-medium
   }
 
   p {
-    @apply lg:text-2xl md:text-xl text-xl lg:leading-relaxed
+    @apply text-xl lg:text-2xl md:text-xl lg:leading-relaxed
   }
 }
 
@@ -43,8 +43,4 @@ img {
   *:hover {
     animation: none;
   }
-}
-
-.flip-vertical {
-  transform: scaleX(-1);
 }
