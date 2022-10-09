@@ -38,7 +38,7 @@
 		: $state === 'shop'
 		? 'top-[103%] md:top-[79%]'
 		: $state === 'news'
-		? 'top-[113%] md-top-[93%]'
+		? 'top-[113%] md:top-[93%]'
 		: ''}"
 	style="background-image: linear-gradient(transparent, {$backgroundColors[$state]} 100px)"
 	in:fade={{ delay: 500 }}
