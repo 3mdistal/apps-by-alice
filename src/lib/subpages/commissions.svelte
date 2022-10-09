@@ -2,10 +2,6 @@
 	import Form from '../partials/form.svelte';
 	import { backgroundColors, accentColors, state } from '../stores';
 
-	import handleCSSVariables from '../utils/css-variables';
-	const backgroundColor = $backgroundColors[$state];
-	const accentColor = $accentColors[$state];
-
 	import { animate, inView, stagger, timeline } from 'motion';
 	import { onMount } from 'svelte';
 
@@ -71,45 +67,47 @@
 </script>
 
 <div class="spacer" />
-<div class="wrapper" use:handleCSSVariables={(backgroundColor, accentColor)}>
+<div class="wrapper">
 	<div class="hero">
-		<div class="text" bind:this={heroText}>
+		<div class="text" bind:this={heroText} style="color: {$accentColors[$state]}">
 			<p>Bring your impossible, intangible things.</p>
 		</div>
 	</div>
 	<div class="spacer" />
-	<div class="header" bind:this={header}>
+	<div class="header" bind:this={header} style="border-color: {$accentColors[$state]}">
 		<div class="right">
-			<p>alice</p>
-			<p>alexandra</p>
-			<p>moore</p>
+			<p style="color: {$accentColors[$state]}">alice</p>
+			<p style="color: {$accentColors[$state]}">alexandra</p>
+			<p style="color: {$accentColors[$state]}">moore</p>
 		</div>
 		<div>
 			<img src="/images/commissions/circle.svg" alt="" />
 		</div>
 		<div>
-			<p>developer</p>
-			<p>artist</p>
-			<p>editor</p>
+			<p style="color: {$accentColors[$state]}">developer</p>
+			<p style="color: {$accentColors[$state]}">artist</p>
+			<p style="color: {$accentColors[$state]}">editor</p>
 		</div>
 	</div>
 	<div class="spacer" />
-	<div class="truths" bind:this={truth}>
+	<div class="truths" bind:this={truth} style="background-color: {$accentColors[$state]}">
 		<h2 class="header-2">Here are my truths.</h2>
 		<div>
-			<p class="header-2 font-light">I respect your ideas.</p>
-			<p>
+			<p class="header-2 font-light" style="color: {$backgroundColors[$state]}">
+				I respect your ideas.
+			</p>
+			<p style="color: {$backgroundColors[$state]}">
 				To me, this is more than a statement. My favorite thing about the process of editing
 				another's work is pulling forward their own voice, their own originality. This stems not
 				from my skill of speaking, but from listening.
 			</p>
-			<p>
+			<p style="color: {$backgroundColors[$state]}">
 				I bring this ethic into all my work. I'm most excited about elaborating on your notions,
 				whether it's designing you a website, painting a portrait, or editing your book. You are the
 				focus of my attention, and you should be happy with whatever I create—else I've done my job
 				wrong.
 			</p>
-			<p>
+			<p style="color: {$backgroundColors[$state]}">
 				We can be in conversation as much or as little as you want during my work, and I'll strive
 				to match the product to the image in your head, plus all the creativity and experience I
 				bring.
@@ -117,13 +115,17 @@
 		</div>
 	</div>
 	<div class="spacer" />
-	<div class="ambitious" bind:this={ambitious}>
+	<div
+		class="ambitious"
+		style="color: {$accentColors[$state]}; border-color: {$accentColors[$state]}"
+		bind:this={ambitious}
+	>
 		<p>Ambitious project? Tired of finding experts? I do it all.</p>
 	</div>
 	<div class="descriptions" bind:this={descriptions}>
 		<div class="flex">
 			<div class="text">
-				<h2 class="header-2">Developer</h2>
+				<h2 class="header-2" style="color: {$accentColors[$state]}">Developer</h2>
 				<p>
 					Look around the website. Like what you see? I make elegant websites for ambitious
 					projects. I'm passionate about design matching the focus of the work. I've long been
@@ -138,7 +140,7 @@
 		</div>
 		<div class="flipped flex">
 			<div class="text">
-				<h2 class="header-2">Artist</h2>
+				<h2 class="header-2" style="color: {$accentColors[$state]}">Artist</h2>
 				<p>
 					Check out my gallery of art. If you like what you see, I can paint you one even better.
 					I'm constantly learning and improving my art, and each new piece feels like my best. I put
@@ -152,7 +154,7 @@
 		</div>
 		<div class="flex">
 			<div class="text">
-				<h2 class="header-2">Editor</h2>
+				<h2 class="header-2" style="color: {$accentColors[$state]}">Editor</h2>
 				<p>
 					Have an idea? It's never too early to brainstorm together. I'll provide suggestions to
 					move forward your process, concentrating on your passions. If you want to workshop a
@@ -198,7 +200,6 @@
 
 		& p {
 			font-size: clamp(1.5rem, 3vw, 4rem);
-			color: var(--accentColor);
 		}
 
 		& .text {
@@ -216,7 +217,7 @@
 		justify-content: center;
 		align-items: center;
 		column-gap: clamp(1em, 2vw, 3em);
-		border: 2px solid var(--accentColor);
+		border: 2px solid;
 		border-radius: 10px;
 		width: clamp(275px, 60%, 1000px);
 		margin: 0 auto;
@@ -230,7 +231,6 @@
 		}
 
 		& p {
-			color: var(--accentColor);
 			font-size: clamp(1rem, 2.5vw, 5rem);
 			font-weight: 300;
 		}
@@ -254,7 +254,6 @@
 
 		& p {
 			margin-bottom: 1.5em;
-			color: var(--backgroundColor);
 		}
 
 		@media screen and (max-width: 45rem) {
@@ -280,8 +279,8 @@
 	}
 
 	.ambitious {
-		border-top: solid 2px var(--accentColor);
-		border-bottom: solid 2px var(--accentColor);
+		border-top: solid 2px;
+		border-bottom: solid 2px;
 		padding: calc(1em + 5vw);
 		margin: calc(1em + 5vw);
 
@@ -315,7 +314,6 @@
 
 				& h2 {
 					margin-bottom: 1em;
-					color: var(--accentColor);
 				}
 
 				& p {

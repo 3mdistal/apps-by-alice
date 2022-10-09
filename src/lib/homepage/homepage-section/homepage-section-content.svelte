@@ -56,7 +56,7 @@
 	>
 		<div
 			bind:this={bordered}
-			class="bordered box-border rounded-[5%] border-y-2 py-20 px-5 sm:max-w-[90%] md:max-w-[50%] lg:py-40 lg:px-20"
+			class="box-border rounded-[5%] border-y-2 py-20 px-5 sm:max-w-[90%] md:max-w-[50%] lg:py-40 lg:px-20"
 			style="border-color: {$accentColors[$state]}"
 		>
 			<h2 class="header-2 mb-5" style="color:{$accentColors[$state]}" bind:this={topHeading}>
