@@ -1,16 +1,20 @@
 <script>
-	import { accentColors, state } from '../../stores';
+	import { accentColors, backgroundColors, state } from '../../stores';
 	import CarouselLi from './carousel-li.svelte';
 </script>
 
 <div class="spacer" />
 
-<div class="w-[100%]">
-	<p class="ml-3 mb-10 text-4xl font-medium md:text-8xl" style="color:{$accentColors[$state]}">
+<div class="w-[100%]" style="background-color:{$accentColors[$state]}">
+	<div class="spacer" />
+	<p class="ml-3 mb-10 text-4xl font-medium md:text-8xl" style="color:{$backgroundColors[$state]}">
 		Works
 	</p>
 
-	<div class="flex h-[90vh] w-[100%] flex-col gap-x-3 gap-y-3 px-3 md:h-[80vh] md:flex-row">
+	<div
+		class="flex h-[90vh] w-[100%] flex-col gap-y-1 gap-x-1 px-0 py-1 md:h-[80vh] md:flex-row md:py-2 md:px-2"
+		style="background-color:{$backgroundColors[$state]}"
+	>
 		<CarouselLi
 			src="/images/studio/bird-tmi.jpg"
 			alt="Watercolor bird, confident and flying."
@@ -43,5 +47,3 @@
 		/>
 	</div>
 </div>
-
-<div class="spacer" />
