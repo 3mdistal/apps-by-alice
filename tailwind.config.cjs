@@ -5,7 +5,13 @@ const config = {
 		extend: {}
 	},
 
-	plugins: []
+	plugins: [
+		function ({ addVariant }) {
+			addVariant('children', '&>*');
+			addVariant('children-not-hovered', '&>* :not(:hover)')
+			addVariant('child-hovered', '&>*:has(:hover)')
+		}
+	]
 };
 
 module.exports = config;

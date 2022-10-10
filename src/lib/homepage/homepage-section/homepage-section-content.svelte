@@ -5,7 +5,7 @@
 	import { onMount } from 'svelte';
 	import About from '../../subpages/about.svelte';
 	import Commissions from '../../subpages/commissions.svelte';
-	import Studio from '../../subpages/studio.svelte';
+	import Studio from '../../subpages/studio/studio.svelte';
 
 	let topHeading;
 	let bordered;
