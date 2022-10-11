@@ -33,7 +33,7 @@
 			Works
 		</p>
 
-		<div
+		<ul
 			bind:this={carousel}
 			class="flex h-[90vh] w-[200%] flex-col gap-y-1 gap-x-1 pt-1 md:h-[80vh] md:flex-row"
 			style="background-color:{$backgroundColors[$state]}"
@@ -80,6 +80,6 @@
 				title="Illustrations"
 				subtitle="Visual art."
 			/>
-		</div>
+		</ul>
 	</div>
 </div>
