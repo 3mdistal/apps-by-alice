@@ -1,7 +1,7 @@
 <script>
 	import { accentColors, backgroundColors, state } from '../../stores';
 	import CarouselLi from './carousel-li.svelte';
-	import { scroll, animate } from 'motion';
+	import { scroll, animate, glide } from 'motion';
 	import { onMount } from 'svelte';
 
 	let frame;
@@ -14,16 +14,16 @@
 	};
 
 	onMount(() => {
-		scroll(animate(carousel, { translateX: ['0', '-50%'] }), scrollOptions);
+		scroll(animate(carousel, { translateX: ['0', '-50%'] }, { easing: glide }), scrollOptions);
 	});
 </script>
 
 <div class="spacer" />
 
-<div bind:this={container} class="invisible ml-[5vw] h-[150vw] max-w-[90vw] md:visible">
+<div bind:this={container} class="invisible h-[150vw] max-w-[100%] md:visible">
 	<div
 		bind:this={frame}
-		class="top-[-40px] max-w-[100%] overflow-x-hidden pt-24 md:sticky"
+		class="top-0 max-h-[100vh] max-w-[100%] overflow-hidden pt-16 md:sticky"
 		style="background-color:{$accentColors[$state]}"
 	>
 		<p
