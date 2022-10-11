@@ -30,7 +30,7 @@
 </script>
 
 <div
-	class="absolute top-[90%] md:top-[59%]
+	class="absolute top-[90%] max-w-[100%] md:top-[59%]
     {$state === 'studio'
 		? 'top-[83%] md:top-[63%]'
 		: $state === 'commissions'
