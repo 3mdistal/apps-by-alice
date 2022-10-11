@@ -6,7 +6,7 @@
 </script>
 
 <li
-	class="group relative flex h-[100%] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover transition-all duration-700 ease-in-out hover:grow-[8] md:w-auto"
+	class="group relative flex h-[100%] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover transition-all duration-700 ease-in-out hover:grow-[3] md:w-auto"
 >
 	<img {src} {alt} class="absolute z-0 w-[100%]" />
 	<div
