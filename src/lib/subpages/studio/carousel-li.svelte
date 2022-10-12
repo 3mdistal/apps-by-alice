@@ -7,12 +7,12 @@
 
 	let tempRef = '#';
 
-	function handleMouseEnter() {
+	function handleFocus() {
 		tempRef = href;
 		return;
 	}
 
-	function handleMouseLeave() {
+	function handleBlur() {
 		tempRef = '#';
 		return;
 	}
@@ -20,8 +20,8 @@
 
 <a
 	href={tempRef}
-	on:mouseenter={handleMouseEnter}
-	on:mouseleave={handleMouseLeave}
+	on:focus={handleFocus}
+	on:blur={handleBlur}
 	class="group relative flex h-[100%] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover transition-all duration-700 ease-in-out hover:grow-[3] md:w-auto"
 >
 	<img {src} {alt} class="absolute z-0 w-[100%]" />
