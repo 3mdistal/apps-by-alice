@@ -43,7 +43,7 @@
 			<CarouselLi
 				src="/images/studio/bird-tmi.jpg"
 				alt="Watercolor bird, confident and flying."
-				title="These Makeshit Idiotika"
+				title="These Makeshift Idiotika"
 				subtitle="A shifting, tilting world."
 			/>
 			<CarouselLi
