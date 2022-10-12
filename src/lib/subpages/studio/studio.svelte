@@ -14,16 +14,18 @@
 	};
 
 	onMount(() => {
-		scroll(animate(carousel, { translateX: ['0', '-50%'] }, { easing: glide }), scrollOptions);
+		if (window.innerWidth > 782) {
+			scroll(animate(carousel, { translateX: ['0', '-50%'] }, { easing: glide }), scrollOptions);
+		}
 	});
 </script>
 
 <div class="spacer" />
 
-<div bind:this={container} class="invisible h-[150vw] max-w-[100%] md:visible">
+<div bind:this={container} class=" h-auto max-w-[100%] md:h-[150vw]">
 	<div
 		bind:this={frame}
-		class="top-0 max-h-[100vh] max-w-[100%] overflow-hidden pt-16 md:sticky"
+		class="max-h-none top-0 max-w-[100%] overflow-hidden pt-16 md:sticky md:max-h-[100vh]"
 		style="background-color:{$accentColors[$state]}"
 	>
 		<p
@@ -35,7 +37,7 @@
 
 		<ul
 			bind:this={carousel}
-			class="flex h-[90vh] w-[200%] flex-col gap-y-1 gap-x-1 pt-1 md:h-[80vh] md:flex-row"
+			class="flex h-auto w-auto flex-col gap-y-1 gap-x-1 pt-1 md:h-[80vh] md:w-[200%] md:flex-row"
 			style="background-color:{$backgroundColors[$state]}"
 		>
 			<CarouselLi
