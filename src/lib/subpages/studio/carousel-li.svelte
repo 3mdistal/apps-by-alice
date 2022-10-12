@@ -6,22 +6,24 @@
 	export let href = '#';
 
 	let tempRef = '#';
+	let clicked = false;
 
-	function handleFocus() {
-		tempRef = href;
-		return;
-	}
+	function handleClick() {
+		if (clicked) {
+			window.location.href = href;
+		}
 
-	function handleBlur() {
-		tempRef = '#';
-		return;
+		if (window.innerWidth > 782) {
+			window.location.href = href;
+		} else {
+			clicked = true;
+		}
 	}
 </script>
 
 <a
 	href={tempRef}
-	on:focus={handleFocus}
-	on:blur={handleBlur}
+	on:click|preventDefault={handleClick}
 	class="group relative flex h-[100%] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover transition-all duration-700 ease-in-out hover:grow-[3] md:w-auto"
 >
 	<img {src} {alt} class="absolute z-0 w-[100%]" />
