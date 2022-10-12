@@ -3,11 +3,25 @@
 	export let alt = '';
 	export let title = '';
 	export let subtitle = '';
-	export let href = '';
+	export let href = '#';
+
+	let tempRef = '#';
+
+	function handleMouseEnter() {
+		tempRef = href;
+		return;
+	}
+
+	function handleMouseLeave() {
+		tempRef = '#';
+		return;
+	}
 </script>
 
 <a
-	{href}
+	href={tempRef}
+	on:mouseenter={handleMouseEnter}
+	on:mouseleave={handleMouseLeave}
 	class="group relative flex h-[100%] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover transition-all duration-700 ease-in-out hover:grow-[3] md:w-auto"
 >
 	<img {src} {alt} class="absolute z-0 w-[100%]" />
