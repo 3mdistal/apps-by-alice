@@ -45,6 +45,7 @@
 				alt="Watercolor bird, confident and flying."
 				title="These Makeshift Idiotika"
 				subtitle="A shifting, tilting world."
+				href="/studio/tmi"
 			/>
 			<CarouselLi
 				src="/images/studio/flower-p.jpg"
