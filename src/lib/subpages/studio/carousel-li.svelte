@@ -10,11 +10,11 @@
 
 	function handleClick() {
 		if (clicked) {
-			window.location.href = href;
+			window.open(href);
 		}
 
 		if (window.innerWidth > 782) {
-			window.location.href = href;
+			window.open(href);
 		} else {
 			clicked = true;
 		}

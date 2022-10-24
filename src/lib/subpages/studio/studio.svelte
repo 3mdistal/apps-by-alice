@@ -52,36 +52,42 @@
 				alt="A flower in the darkness."
 				title="Postcards"
 				subtitle="Sudden stories."
+				href="/studio/postcards"
 			/>
 			<CarouselLi
 				src="/images/studio/mirror-b.jpg"
 				alt="A girl touching her face in a mirror."
 				title="Betson, Ohio"
 				subtitle="Novel in Calendar"
+				href="/studio/betson"
 			/>
 			<CarouselLi
 				src="/images/studio/piano-hfc.jpg"
 				alt="A relatively destroyed grand piano in front of the ruins of a building."
 				title="Hymns for Calliope"
 				subtitle="Poems"
+				href="/studio/hfc"
 			/>
 			<CarouselLi
 				src="/images/studio/city.jpg"
 				alt="A city lit up at night."
 				title="Jukebox"
 				subtitle="Music compositions."
+				href="/studio/jukebox"
 			/>
 			<CarouselLi
 				src="/images/studio/house-hfc.jpg"
 				alt="A black and white house, looking about 100 years old."
 				title="Blog"
 				subtitle="Thoughts about anything."
+				href="/studio/blog"
 			/>
 			<CarouselLi
 				src="/images/studio/snakes-tmi.jpg"
 				alt="A bunch of worms poking up through a surreal landscape."
 				title="Illustrations"
 				subtitle="Visual art."
+				href="/studio/illustrations"
 			/>
 		</ul>
 	</div>
