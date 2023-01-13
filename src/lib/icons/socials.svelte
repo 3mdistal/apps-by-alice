@@ -27,7 +27,7 @@
 <div class="container">
     <div class="flex">
         <div class="rabbit">
-            <a href="https://soundcloud.com/tempoimmaterial" target="_blank">
+            <a href="https://soundcloud.com/tempoimmaterial" target="_blank" rel="noreferrer">
                 <img
                     src="images/social-media/soundcloud-rabbit.png"
                     alt="Link to Soundcloud in the form of an illustrated rabbit wearing headphones. Painted by Alice Alexandra Moore."
@@ -40,7 +40,7 @@
         <div class="bear">
             <a
                 href="https://www.instagram.com/alice.alexandra.moore"
-                target="_blank"
+                target="_blank" rel="noreferrer"
             >
                 <img
                     src="images/social-media/insta-polar-bear.png"
@@ -52,7 +52,7 @@
             </a>
         </div>
         <div class="squirrel">
-            <a href="https://twitter.com/tempoimmaterial" target="_blank">
+            <a href="https://twitter.com/tempoimmaterial" target="_blank" rel="noreferrer">
                 <img
                     src="images/social-media/twitter-squirrel.png"
                     alt="Link to Twitter in the form of a squirrel drinking its morning coffee. Painted by Alice Alexandra Moore."

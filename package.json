@@ -1,8 +1,9 @@
 {
 	"name": "portfolio",
-	"version": "0.0.1",
+	"version": "0.1.0",
 	"private": true,
 	"scripts": {
+		"preinstall": "npx only-allow pnpm",
 		"dev": "vite dev",
 		"build": "vite build",
 		"preview": "vite preview",
@@ -10,27 +11,20 @@
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
-		"@sveltejs/adapter-auto": "next",
-		"@sveltejs/kit": "next",
-		"autoprefixer": "^10.4.7",
-		"env-cmd": "^10.1.0",
-		"eslint": "^8.16.0",
-		"eslint-config-prettier": "^8.3.0",
-		"eslint-plugin-svelte3": "^4.0.0",
-		"postcss": "^8.4.14",
+		"@sveltejs/kit": "^1.0.13",
+		"autoprefixer": "^10.4.13",
+		"postcss": "^8.4.21",
 		"postcss-load-config": "^4.0.1",
-		"prettier": "^2.6.2",
-		"prettier-plugin-svelte": "^2.7.1",
-		"prettier-plugin-tailwindcss": "^0.1.13",
-		"svelte": "^3.44.0",
-		"svelte-preprocess": "^4.10.7",
-		"tailwindcss": "^3.1.5",
-		"vite": "^3.1.0"
+		"svelte": "^3.55.1",
+		"svelte-preprocess": "^5.0.0",
+		"tailwindcss": "^3.2.4",
+		"vite": "^4.0.4"
 	},
 	"type": "module",
 	"dependencies": {
-		"@notionhq/client": "^2.2.1",
-		"motion": "^10.14.2",
-		"sass": "^1.55.0"
+		"@sveltejs/adapter-auto": "^1.0.0",
+		"@sveltejs/adapter-vercel": "^1.0.2",
+		"motion": "^10.15.5",
+		"sass": "^1.57.1"
 	}
 }

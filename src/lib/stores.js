@@ -19,5 +19,3 @@ export const backgroundColors = readable({
     shop: "#838391",
     news: "#eeeded",
 });
-
-// export const notion = writable("Default")
