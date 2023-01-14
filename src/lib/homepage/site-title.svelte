@@ -51,16 +51,16 @@
         )
     });
     
-    function fadeOut(target) {
+    function fadeOut() {
         gsap.to(
-            target,
+            siteHeaderContainer,
             { opacity: 0 }
         )
     }
     
-    function fadeIn(target) {
+    function fadeIn() {
         gsap.to(
-            target,
+            siteHeaderContainer,
             { opacity: 1 }
         )
     }
@@ -71,8 +71,8 @@
     class="site-header-container flex flex-row justify-around items-center transition-opacity"
     style={
         $state === 'home' 
-        ? fadeIn(siteHeaderContainer) 
-        : fadeOut(siteHeaderContainer)
+        ? fadeIn() 
+        : fadeOut()
     }
 >
     <img
