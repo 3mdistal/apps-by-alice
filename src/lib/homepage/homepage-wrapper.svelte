@@ -15,7 +15,7 @@
 			homepageWrapper.children,
 			{ scaleY: [0, 0.8, 0.9, 1], transformOrigin: 'bottom' },
 			{
-				delay: stagger(0.1, { start: 2.25, from: 'last' }),
+				delay: stagger(0.1, { start: 1.5, from: 'last' }),
 				easing: spring(),
 				allowWebkitAcceleration: true
 			}

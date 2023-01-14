@@ -3,6 +3,7 @@
 
     import { state } from "../stores";
     import { onMount } from "svelte";
+    import gsap from "gsap";
 
     let siteHeaderContainer;
 
@@ -21,13 +22,58 @@
 
         const observer = new IntersectionObserver(callback, options);
         observer.observe(siteHeaderContainer);
+        
+        let tl = gsap.timeline()
+        
+        tl.fromTo(
+            ".logo", 
+            {
+                opacity: 0, 
+                x: '-200%', 
+                rotation: '-360deg', 
+                duration: 2, 
+                ease: 'power1.back',
+            }, 
+            {
+                opacity: 1, 
+                x: '0%', 
+                rotation: 0,
+            }
+        )
+        
+        tl.to(
+            ".site-title",
+            { opacity: 1, duration: 3 }
+        )
+        tl.to(
+            ".subtitle",
+            { opacity: 1, duration: 3, delay: -2.5 }
+        )
     });
+    
+    function fadeOut(target) {
+        gsap.to(
+            target,
+            { opacity: 0 }
+        )
+    }
+    
+    function fadeIn(target) {
+        gsap.to(
+            target,
+            { opacity: 1 }
+        )
+    }
 </script>
 
 <header
     bind:this={siteHeaderContainer}
-    class="site-header-container"
-    style={$state === "home" ? "opacity: 100%" : "opacity: 0%"}
+    class="site-header-container flex flex-row justify-around items-center transition-opacity"
+    style={
+        $state === 'home' 
+        ? fadeIn(siteHeaderContainer) 
+        : fadeOut(siteHeaderContainer)
+    }
 >
     <img
         src="images/logos/logo-shop.svg"
@@ -35,20 +81,15 @@
         class="logo"
     />
     <div class="site-title-container">
-        <p class="site-title centered">tempo immaterial</p>
-        <p class="subtitle centered">work by alice alexandra moore</p>
+        <p class="site-title mb-[0.5em] text-center tracking-[0.4em]">tempo immaterial</p>
+        <p class="subtitle text-center tracking-[0.15em]">work by alice alexandra moore</p>
     </div>
 </header>
 
 <style lang="scss">
     .site-header-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
         max-width: 80vw;
         margin: 2vh auto;
-        transition: 0.5s;
 
         @media screen and (max-width: 45rem) {
             flex-direction: column;
@@ -59,48 +100,16 @@
 
     .logo {
         width: clamp(50px, 20%, 200px);
-        -webkit-animation: logo-roll 1s ease-in-out both,
-            fade-in 1s ease-in both;
-        animation: logo-roll 1s ease-in-out both, fade-in 1s ease-in both;
-        cursor: pointer;
+        opacity: 0;
     }
 
     .site-title {
         font-size: clamp(1.5rem, 4vw, 3rem);
-        letter-spacing: 0.4em;
-        margin-bottom: 0.5em;
-        -webkit-animation: fade-in 1s ease-in 1s both;
-        animation: fade-in 1s ease-in 1s both;
+        opacity: 0;
     }
 
     .subtitle {
         font-size: clamp(1rem, 2.5vw, 1.8rem);
-        letter-spacing: 0.15em;
-        -webkit-animation: fade-in 1s ease-in 1.5s both;
-        animation: fade-in 1s ease-in 1.5s both;
-    }
-
-    .centered {
-        text-align: center;
-    }
-
-    @keyframes fade-in {
-        from {
-            opacity: 0%;
-        }
-
-        to {
-            opacity: 100%;
-        }
-    }
-
-    @keyframes logo-roll {
-        from {
-            transform: translateX(-200%) rotateZ(-360deg);
-        }
-
-        to {
-            transform: translateX(0%) rotateZ(0deg);
-        }
+        opacity: 0;
     }
 </style>
