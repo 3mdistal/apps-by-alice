@@ -91,8 +91,8 @@
 			height: 82%;
 		}
 
-		&.shop {
-			clip-path: url(#shop-path);
+		&.blog {
+			clip-path: url(#blog-path);
 			height: 75%;
 		}
 
@@ -122,7 +122,7 @@
 			top: 9%;
 		}
 
-		&.shop {
+		&.blog {
 			right: 20%;
 			top: 22%;
 
@@ -153,8 +153,8 @@
 				height: 78%;
 			}
 
-			&.shop {
-				clip-path: url(#shop-path-mobile);
+			&.blog {
+				clip-path: url(#blog-path-mobile);
 				height: 68%;
 			}
 
@@ -177,7 +177,7 @@
 				right: 20%;
 			}
 
-			&.shop {
+			&.blog {
 				top: 12%;
 			}
 
