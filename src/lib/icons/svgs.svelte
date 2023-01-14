@@ -37,10 +37,10 @@
     </clipPath>
 </svg>
 
-<!-- Shop -->
+<!-- Blog -->
 <svg width="0px" height="0px" xmlns="http://www.w3.org/2000/svg">
     <clipPath
-        id="shop-path"
+        id="blog-path"
         clipPathUnits="objectBoundingBox"
         transform="scale(0.002)"
     >
@@ -104,10 +104,10 @@
     </clipPath>
 </svg>
 
-<!-- Shop Mobile -->
+<!-- Blog Mobile -->
 <svg width="0px" height="0px" xmlns="http://www.w3.org/2000/svg">
     <clipPath
-        id="shop-path-mobile"
+        id="blog-path-mobile"
         clipPathUnits="objectBoundingBox"
         transform="scale(0.002)"
     >

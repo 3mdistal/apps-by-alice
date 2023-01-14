@@ -85,12 +85,11 @@
 			</HomepageSectionContent>
 		{/if}
 
-		{#if $state == 'shop' && $state != 'home'}
+		{#if $state == 'blog' && $state != 'home'}
 			<HomepageSectionContent>
-				<svelte:fragment slot="heading">grab a gift (soon).</svelte:fragment>
+				<svelte:fragment slot="heading">unearth some thoughts (soon).</svelte:fragment>
 				<svelte:fragment slot="description">
-					From art prints to stories to every other kind of creation I like to make, the shop will
-					be full of physical and digital goodies for you and your loved ones.
+					I'll be using the blog to keep you up to date on creative work, site revisions, and life updates.
 				</svelte:fragment>
 				<span slot="image">
 					<img src="images/homepage/bird.png" alt="A painting of very colorful bird in flight." />

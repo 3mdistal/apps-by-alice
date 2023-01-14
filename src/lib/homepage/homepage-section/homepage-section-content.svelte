@@ -35,7 +35,7 @@
 		? 'top-[83%] md:top-[63%]'
 		: $state === 'commissions'
 		? 'top-[91%] md:top-[69%]'
-		: $state === 'shop'
+		: $state === 'blog'
 		? 'top-[103%] md:top-[79%]'
 		: $state === 'news'
 		? 'top-[113%] md:top-[93%]'
@@ -48,7 +48,7 @@
 		class="flex flex-wrap items-center justify-center gap-x-10 gap-y-10 overflow-hidden px-5 md:flex-nowrap lg:px-20 
     {$state == 'studio'
 			? 'flex-row-reverse'
-			: $state === 'shop'
+			: $state === 'blog'
 			? 'flex-row-reverse'
 			: $state === 'about'
 			? 'justify-between'
@@ -63,7 +63,7 @@
 				<slot name="heading" />
 			</h2>
 
-			<p class={$state === 'shop' ? 'text-[#fafafa]' : ''}>
+			<p class={$state === 'blog' ? 'text-[#fafafa]' : ''}>
 				<slot name="description" />
 			</p>
 
