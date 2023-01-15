@@ -41,7 +41,7 @@
             }
         );
 
-        tl.to(".site-title", { opacity: 1, duration: 3 });
+        tl.to(".site-title", { opacity: 1, duration: 3, delay: -0.5 });
         tl.to(".subtitle", { opacity: 1, duration: 3, delay: -2.5 });
     });
 </script>
