@@ -6,6 +6,9 @@
     import gsap from "gsap";
 
     let siteHeaderContainer;
+    let logo;
+    let siteTitle;
+    let subtitle;
 
     onMount(() => {
         const options = {
@@ -26,7 +29,7 @@
         const tl = gsap.timeline();
 
         tl.fromTo(
-            ".logo",
+            logo,
             {
                 opacity: 0,
                 x: "-200%",
@@ -41,58 +44,43 @@
             }
         );
 
-        tl.to(".site-title", { opacity: 1, duration: 3, delay: -0.5 });
-        tl.to(".subtitle", { opacity: 1, duration: 3, delay: -2.5 });
+        tl.to(siteTitle, { opacity: 1, duration: 3, delay: -0.5 });
+        tl.to(subtitle, { opacity: 1, duration: 3, delay: -2.5 });
     });
 </script>
 
-<header bind:this={siteHeaderContainer} class="site-header-container">
+<header
+    bind:this={siteHeaderContainer}
+    class="site-header-container my-2vh mx-auto mt-[4em] flex max-w-[80vw] flex-col items-center justify-around gap-y-[1em] sm:gap-y-[2em] md:flex-row lg:gap-x-[2em]"
+>
     <img
+        bind:this={logo}
         src="images/logos/logo-shop.svg"
         alt="The logo for Tempo Immaterial."
-        class="logo"
+        class="w-16 opacity-0 sm:w-24 md:w-32 lg:w-48"
     />
-    <div class="site-title-container">
-        <p class="site-title centered">tempo immaterial</p>
-        <p class="subtitle centered">work by alice alexandra moore</p>
+    <div>
+        <p
+            bind:this={siteTitle}
+            class="site-title mb-[0.5em] text-center tracking-[0.4em] opacity-0"
+        >
+            tempo immaterial
+        </p>
+        <p
+            bind:this={subtitle}
+            class="subtitle text-center tracking-[0.15em] opacity-0"
+        >
+            work by alice alexandra moore
+        </p>
     </div>
 </header>
 
 <style lang="scss">
-    .site-header-container {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-        align-items: center;
-        max-width: 80vw;
-        margin: 2vh auto;
-
-        @media screen and (max-width: 45rem) {
-            flex-direction: column;
-            row-gap: 2em;
-            margin-top: 4em;
-        }
-    }
-
-    .logo {
-        width: clamp(50px, 20%, 200px);
-        opacity: 0;
-    }
-
     .site-title {
         font-size: clamp(1.5rem, 4vw, 3rem);
-        letter-spacing: 0.4em;
-        margin-bottom: 0.5em;
-        opacity: 0;
     }
 
     .subtitle {
         font-size: clamp(1rem, 2.5vw, 1.8rem);
-        letter-spacing: 0.15em;
-        opacity: 0;
-    }
-
-    .centered {
-        text-align: center;
     }
 </style>
