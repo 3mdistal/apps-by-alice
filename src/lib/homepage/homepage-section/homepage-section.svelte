@@ -96,8 +96,8 @@
 			height: 75%;
 		}
 
-		&.news {
-			clip-path: url(#news-path);
+		&.connect {
+			clip-path: url(#connect-path);
 			height: 50%;
 		}
 	}
@@ -131,7 +131,7 @@
 			}
 		}
 
-		&.news {
+		&.connect {
 			left: 27%;
 			top: 12%;
 		}
@@ -158,7 +158,7 @@
 				height: 68%;
 			}
 
-			&.news {
+			&.connect {
 				height: 55%;
 			}
 		}
@@ -181,7 +181,7 @@
 				top: 12%;
 			}
 
-			&.news {
+			&.connect {
 				left: 23%;
 			}
 		}

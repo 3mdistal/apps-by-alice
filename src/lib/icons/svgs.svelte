@@ -50,10 +50,10 @@
     </clipPath>
 </svg>
 
-<!-- News -->
+<!-- Connect -->
 <svg width="0px" height="0px" xmlns="http://www.w3.org/2000/svg">
     <clipPath
-        id="news-path"
+        id="connect-path"
         clipPathUnits="objectBoundingBox"
         transform="scale(0.002)"
     >
@@ -118,7 +118,7 @@
     </clipPath>
 </svg>
 
-<!-- News Mobile -->
+<!-- Connect Mobile -->
 <svg width="0px" height="0px" xmlns="http://www.w3.org/2000/svg">
     <clipPath
         id="shop-path-mobile"
