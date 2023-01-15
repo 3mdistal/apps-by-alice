@@ -97,7 +97,7 @@
 			</HomepageSectionContent>
 		{/if}
 
-		{#if $state == 'news' && $state != 'home'}
+		{#if $state == 'connect' && $state != 'home'}
 			<HomepageSectionContent>
 				<svelte:fragment slot="heading">let's keep in touch.</svelte:fragment>
 				<svelte:fragment slot="description">

@@ -37,7 +37,7 @@
 		? 'top-[91%] md:top-[69%]'
 		: $state === 'blog'
 		? 'top-[103%] md:top-[79%]'
-		: $state === 'news'
+		: $state === 'connect'
 		? 'top-[113%] md:top-[93%]'
 		: ''}"
 	style="background-image: linear-gradient(transparent, {$backgroundColors[$state]} 100px)"
