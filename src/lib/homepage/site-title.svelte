@@ -44,13 +44,16 @@
         tl.to(".site-title", { opacity: 1, duration: 3, delay: -0.5 });
         tl.to(".subtitle", { opacity: 1, duration: 3, delay: -2.5 });
     });
+
+    $: containerFade = gsap.to(siteHeaderContainer, {
+        opacity: 0,
+        duration: 0.5,
+    });
+
+    $: $state === "home" ? containerFade.reverse() : containerFade.play();
 </script>
 
-<header
-    bind:this={siteHeaderContainer}
-    class="site-header-container"
-    style={$state === "home" ? "opacity: 100%" : "opacity: 0%"}
->
+<header bind:this={siteHeaderContainer} class="site-header-container">
     <img
         src="images/logos/logo-shop.svg"
         alt="The logo for Tempo Immaterial."
