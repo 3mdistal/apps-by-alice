@@ -22,33 +22,27 @@
 
         const observer = new IntersectionObserver(callback, options);
         observer.observe(siteHeaderContainer);
-        
-        const tl = gsap.timeline()
-        
+
+        const tl = gsap.timeline();
+
         tl.fromTo(
-            ".logo", 
+            ".logo",
             {
-                opacity: 0, 
-                x: '-200%', 
-                rotation: '-360deg', 
-                duration: 2, 
-                ease: 'power1.back',
-            }, 
+                opacity: 0,
+                x: "-200%",
+                rotation: "-360deg",
+            },
             {
-                opacity: 1, 
-                x: '0%', 
+                opacity: 1,
+                x: "0%",
                 rotation: 0,
+                duration: 1,
+                ease: "back",
             }
-        )
-        
-        tl.to(
-            ".site-title",
-            { opacity: 1, duration: 3 }
-        )
-        tl.to(
-            ".subtitle",
-            { opacity: 1, duration: 3, delay: -2.5 }
-        )
+        );
+
+        tl.to(".site-title", { opacity: 1, duration: 3 });
+        tl.to(".subtitle", { opacity: 1, duration: 3, delay: -2.5 });
     });
 </script>
 
