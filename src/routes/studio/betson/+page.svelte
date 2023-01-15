@@ -16,7 +16,7 @@
             To say I've been trying to write about the Ohio I grew up in ever
             since growing up there is an understatement. I've tried nonfiction,
             to varying degrees of success, but the only way I seem to be able to
-            come at the complexity of the land and its people, the simultanaeity
+            come at the complexity of the land and its people, the simultaneity
             of destructive cults and thriving forests taking root, is through
             fiction.
         </p>
