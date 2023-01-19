@@ -43,8 +43,7 @@
 				</svelte:fragment>
 				<span slot="image">
 					<img
-						class="scale-x-[-100%]"
-						src="images/homepage/flowers-in-hand.png"
+						src="images/homepage/flowers-in-hand.webp"
 						alt="A painted hand folding out flowers."
 					/>
 				</span>
