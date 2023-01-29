@@ -55,7 +55,7 @@
 >
     <img
         bind:this={logo}
-        src="images/logos/logo-shop.svg"
+        src="images/logos/logo.svg"
         alt="The logo for Tempo Immaterial."
         class="w-16 opacity-0 sm:w-24 md:w-32 lg:w-48"
     />
