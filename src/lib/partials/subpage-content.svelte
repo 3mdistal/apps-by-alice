@@ -45,7 +45,7 @@
 		<slot name="heading" />
 	</h2>
 	<div class="content" style="flex-direction: {flexDirection}">
-		<div class="text">
+		<div class="text [&>p]:mb-10 text-left max-w-[60ch]">
 			<slot name="text" />
 			<div class="button">
 				<slot name="button" class="button" />
@@ -85,11 +85,6 @@
 			flex-direction: column !important;
 			row-gap: 3em;
 		}
-	}
-
-	.text {
-		text-align: left;
-		max-width: 60ch;
 	}
 
 	h2 {
