@@ -83,7 +83,10 @@
 				{header}
 			</h2>
 
-			<p bind:this={descriptor} class={$state === "blog" ? "text-[#fafafa]" : ""}>
+			<p
+				bind:this={descriptor}
+				class={$state === "blog" ? "text-[#fafafa]" : ""}
+			>
 				{description}
 			</p>
 
@@ -91,18 +94,21 @@
 				<slot name="button" />
 			</div>
 		</div>
-		<div
-			bind:this={imageWrapper}
-			class="basis aspect-square md:basis-1/2 {$state === 'about'
-				? 'lg:mr-[-80px] mr-[-20px]'
-				: ''}"
-		>
-			{#if src}
+
+		{#if src}
+			<div
+				bind:this={imageWrapper}
+				class="basis aspect-square md:basis-1/2 {$state === 'about'
+					? 'lg:mr-[-80px] mr-[-20px]'
+					: ''}"
+			>
 				<img {src} {alt} class="object-contain" />
-			{:else}
+			</div>
+		{:else}
+			<div class="basis">
 				<slot name="image" />
-			{/if}
-		</div>
+			</div>
+		{/if}
 	</div>
 
 	{#if $state === "about"}
