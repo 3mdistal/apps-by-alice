@@ -1,5 +1,4 @@
 <script>
-    //TODO: Make a "footer" of site information like copyright. Might also go in About section.
 
     import { state } from "../stores";
     import { onMount } from "svelte";

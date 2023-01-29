@@ -99,7 +99,7 @@
 			out to me on any of my socials."
 			>
 				<span slot="image">
-					<Socials />
+						<Socials />
 				</span>
 			</HomepageSectionContent>
 		{/if}
