@@ -84,28 +84,20 @@
 
 		{#if $state == "blog" && $state != "home"}
 			<HomepageSectionContent
+				header="unearth some thoughts (soon)."
+				description="I'll be using the blog to keep you up to date on creative
+			work, site revisions, and life updates."
 				src={Bird}
 				alt="A painting of a colorful bird in flight."
-			>
-				<svelte:fragment slot="heading"
-					>unearth some thoughts (soon).</svelte:fragment
-				>
-				<svelte:fragment slot="description">
-					I'll be using the blog to keep you up to date on creative
-					work, site revisions, and life updates.
-				</svelte:fragment>
-			</HomepageSectionContent>
+			/>
 		{/if}
 
 		{#if $state == "connect" && $state != "home"}
-			<HomepageSectionContent>
-				<svelte:fragment slot="heading"
-					>let's keep in touch.</svelte:fragment
-				>
-				<svelte:fragment slot="description">
-					A newsletter is coming soon, but for now feel free to reach
-					out to me on any of my socials.
-				</svelte:fragment>
+			<HomepageSectionContent
+				header="let's keep in touch."
+				description="A newsletter is coming soon, but for now feel free to reach
+			out to me on any of my socials."
+			>
 				<span slot="image">
 					<Socials />
 				</span>
