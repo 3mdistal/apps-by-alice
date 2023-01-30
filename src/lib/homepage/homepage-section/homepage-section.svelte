@@ -1,7 +1,7 @@
 <script>
 	import { fade } from 'svelte/transition';
 	import { state } from '../../stores';
-	import { animate, spring } from 'motion';
+	import gsap from 'gsap'
 
 	export let color;
 	export let name;
@@ -24,18 +24,14 @@
 	}
 
 	function handleMouseEnter(e) {
-		animate(
+		gsap.to(
 			e.target,
-			{ y: -30 },
-			{
-				easing: spring({ damping: 5, velocity: 300 }),
-				allowWebkitAcceleration: true
-			}
+			{ y: -30, ease: 'elastic', duration: 1.5 },
 		);
 	}
 
 	function handleMouseLeave(e) {
-		animate(e.target, { y: 0 }, { easing: spring({ damping: 5 }) });
+		gsap.to(e.target, { y: 0, ease: 'elastic.out', duration: 1.5 });
 	}
 </script>
 
