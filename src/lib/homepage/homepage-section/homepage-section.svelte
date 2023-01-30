@@ -26,12 +26,12 @@
 	function handleMouseEnter(e) {
 		gsap.to(
 			e.target,
-			{ y: -30, ease: 'elastic', duration: 1.5 },
+			{ y: -30, ease: 'elastic', duration: 2 },
 		);
 	}
 
 	function handleMouseLeave(e) {
-		gsap.to(e.target, { y: 0, ease: 'elastic.out', duration: 1.5 });
+		gsap.to(e.target, { y: 0, ease: 'elastic.out', duration: 2 });
 	}
 </script>
 

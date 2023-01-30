@@ -15,13 +15,14 @@
 	let homepageWrapper;
 
 	onMount(() => {
+		homepageWrapper.style.opacity = 1
 		gsap.from(homepageWrapper.children, { scaleY: .3, opacity: 0, ease: 'elastic', duration: 2, delay: 1.5, stagger: .1 })
 	});
 </script>
 
 <div>
 	<nav
-		class="relative bottom-[-40px] h-[100vh] w-[100%]"
+		class="relative bottom-[-40px] h-[100vh] w-[100%] opacity-0"
 		bind:this={homepageWrapper}
 	>
 		{#each $names as name}
