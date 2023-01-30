@@ -1,7 +1,7 @@
 <script>
 	import HomepageSection from "./homepage-section/homepage-section.svelte";
 	import HomepageSectionContent from "./homepage-section/homepage-section-content.svelte";
-	import { state, backgroundColors, names } from "../stores";
+	import { state, backgroundColors, accentColors, names } from "../stores";
 	import Socials from "../icons/socials.svelte";
 	import Button from "../icons/button.svelte";
 	import { spring, animate, stagger } from "motion";
@@ -78,6 +78,8 @@
 					slot="button"
 					text="Let's make it."
 					url="mailto:commissions@alicealexandra.com"
+					accentColor={$accentColors[$state]}
+					backgroundColor={$backgroundColors[$state]}
 				/>
 			</HomepageSectionContent>
 		{/if}
@@ -89,7 +91,16 @@
 			work, site revisions, and life updates."
 				src={Bird}
 				alt="A painting of a colorful bird in flight."
-			/>
+			>
+				<Button
+					slot="button"
+					text="Read more."
+					url="blog"
+					target="_blank"
+					accentColor={$accentColors[$state]}
+					backgroundColor={$backgroundColors[$state]}
+				/>
+			</HomepageSectionContent>
 		{/if}
 
 		{#if $state == "connect" && $state != "home"}
@@ -99,7 +110,7 @@
 			out to me on any of my socials."
 			>
 				<span slot="image">
-						<Socials />
+					<Socials />
 				</span>
 			</HomepageSectionContent>
 		{/if}
