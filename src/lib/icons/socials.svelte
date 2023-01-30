@@ -1,30 +1,33 @@
 <script>
-    import { animate, inView, spring, stagger } from "motion";
+    import gsap from "gsap";
     import { onMount } from "svelte";
 
+    let container;
+
     onMount(() => {
-        inView(".rabbit", () => {
-            animate(
-                ".flex img",
-                { opacity: [0, 1], y: [100, 0] },
-                {
-                    easing: spring({ velocity: 1000, damping: 10 }),
-                    delay: stagger(0.1, { start: 0.25 }),
-                }
-            );
+        gsap.from(container.children, {
+            opacity: 0,
+            y: 100,
+            ease: "elastic",
+            duration: 2,
+            delay: 0.5,
+            stagger: 0.1,
         });
     });
 
     function handleMouseEnterSocialImage(e) {
-        animate(e.target, { scale: 1.2 }, { easing: spring() });
+        gsap.to(e.target, { scale: 1.2, duration: 2, ease: 'elastic' });
     }
 
     function handleMouseLeaveSocialImage(e) {
-        animate(e.target, { scale: 1 }, { easing: spring() });
+        gsap.to(e.target, { scale: 1, duration: 2, ease: 'elastic.out' });
     }
 </script>
 
-<div class="flex children:flex-col container justify-center">
+<div
+    bind:this={container}
+    class="flex children:flex-col children:justify-end container justify-center [&_p]:text-center [&_p]:md:text-xl [&_p]:text-sm"
+>
     <div class="basis-1/4">
         <a
             href="https://soundcloud.com/tempoimmaterial"
@@ -74,11 +77,3 @@
         <p>Twitter</p>
     </div>
 </div>
-
-<style>
-    p {
-        transform: scale(0.8);
-        display: block;
-        text-align: center;
-    }
-</style>
