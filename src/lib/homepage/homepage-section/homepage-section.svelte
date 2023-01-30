@@ -29,7 +29,10 @@
 	}
 
 	function handleMouseEnter(e) {
-		gsap.to(e.target, { y: -30, ease: "elastic", duration: 2 });
+		gsap.to(
+			e.target,
+			{ y: -30, ease: 'elastic', duration: 2 },
+		);
 	}
 
 	function handleMouseLeave(e) {
