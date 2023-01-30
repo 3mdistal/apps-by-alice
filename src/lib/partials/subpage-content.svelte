@@ -65,6 +65,7 @@
 				<slot name="button" class="button" />
 			</div>
 		</div>
+		
 		<div class="image">
 			<slot name="image" />
 		</div>

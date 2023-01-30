@@ -3,9 +3,9 @@
 	import SubpageContent from "../partials/subpage-content.svelte";
 	import handleCSSVariables from "../utils/css-variables";
 	import { accentColors, state } from "../stores";
-	import About1 from '../../cms/about/about1.md'
-	import About2 from '../../cms/about/about2.md'
-	import About3 from '../../cms/about/about3.md'
+	import About1 from "../../cms/about/about1.md";
+	import About2 from "../../cms/about/about2.md";
+	import About3 from "../../cms/about/about3.md";
 
 	const accentColor = $accentColors[$state];
 </script>
@@ -62,18 +62,20 @@
 
 <div class="spacer" />
 
-<SubpageContent flexDirection="row">
-	<svelte:fragment slot="heading">have thoughts to share?</svelte:fragment>
-	<svelte:fragment slot="text">
-		<p>
+<div class="flex-col flex items-center">
+	<h2 class="text-about max-w-[80%]">have thoughts to share?</h2>
+	<div class="flex md:max-w-[80%] max-w-none justify-center flex-wrap md:flex-nowrap">
+		<p class="md:basis-1/2 max-w-[80%]">
 			Though I have plans of fuller, richer ways to engage with the work
 			here—even to contribute—this is what I have for now. My ears are
 			open, and as such, I may take my time to consider before replying.
 			I'll get back to you as I'm able.
 		</p>
-	</svelte:fragment>
-	<Socials slot="image" />
-</SubpageContent>
+		<div class="md:basis-1/2">
+			<Socials />
+		</div>
+	</div>
+</div>
 
 <div class="spacer" />
 
