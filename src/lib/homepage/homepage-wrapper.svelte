@@ -1,10 +1,10 @@
 <script>
 	import HomepageSection from "./homepage-section/homepage-section.svelte";
 	import HomepageSectionContent from "./homepage-section/homepage-section-content.svelte";
-	import { state, backgroundColors, accentColors, names } from "../stores";
+	import { state, backgroundColors, names } from "../stores";
 	import Socials from "../icons/socials.svelte";
 	import Button from "../icons/button.svelte";
-	import { spring, animate, stagger } from "motion";
+	import gsap from "gsap";
 	import { onMount } from "svelte";
 
 	import Hand from "../images/homepage/flowers-in-hand.webp?webp";
@@ -15,22 +15,13 @@
 	let homepageWrapper;
 
 	onMount(() => {
-		homepageWrapper.style.opacity = 1;
-		animate(
-			homepageWrapper.children,
-			{ scaleY: [0, 0.8, 0.9, 1], transformOrigin: "bottom" },
-			{
-				delay: stagger(0.1, { start: 1.5, from: "last" }),
-				easing: spring(),
-				allowWebkitAcceleration: true,
-			}
-		);
+		gsap.from(homepageWrapper.children, { scaleY: .3, opacity: 0, ease: 'elastic', duration: 2, delay: 1.5, stagger: .1 })
 	});
 </script>
 
 <div>
 	<nav
-		class="relative bottom-[-40px] h-[100vh] w-[100%] opacity-0"
+		class="relative bottom-[-40px] h-[100vh] w-[100%]"
 		bind:this={homepageWrapper}
 	>
 		{#each $names as name}
@@ -78,8 +69,6 @@
 					slot="button"
 					text="Let's make it."
 					url="mailto:commissions@alicealexandra.com"
-					accentColor={$accentColors[$state]}
-					backgroundColor={$backgroundColors[$state]}
 				/>
 			</HomepageSectionContent>
 		{/if}
@@ -97,8 +86,6 @@
 					text="Read more."
 					url="blog"
 					target="_blank"
-					accentColor={$accentColors[$state]}
-					backgroundColor={$backgroundColors[$state]}
 				/>
 			</HomepageSectionContent>
 		{/if}
