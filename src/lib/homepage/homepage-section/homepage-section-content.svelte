@@ -105,7 +105,7 @@
 				<img {src} {alt} class="object-contain" />
 			</div>
 		{:else}
-			<div class="basis">
+			<div class="basis mb-10">
 				<slot name="image" />
 			</div>
 		{/if}
