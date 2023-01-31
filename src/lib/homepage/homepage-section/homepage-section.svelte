@@ -1,12 +1,17 @@
 <script>
-	import { fade } from 'svelte/transition';
-	import { state } from '../../stores';
-	import gsap from 'gsap'
+	import { fade } from "svelte/transition";
+	import { state } from "../../stores";
+	import gsap from "gsap";
 
 	export let color;
 	export let name;
 
-	function handleClickSection() {
+	function animateOut(e) {
+		return gsap.to(e.target, { y: 0, ease: "elastic.out", duration: 2 });
+	}
+
+	function handleClickSection(e) {
+		animateOut(e);
 		document.activeElement.blur();
 		state.set(name);
 	}
@@ -15,7 +20,7 @@
 		switch (e.keyCode) {
 			case 13:
 			case 32:
-				document.activeElement.blur();
+				animateOut(e);
 				state.set(name);
 				break;
 			default:
@@ -31,7 +36,7 @@
 	}
 
 	function handleMouseLeave(e) {
-		gsap.to(e.target, { y: 0, ease: 'elastic.out', duration: 2 });
+		animateOut(e);
 	}
 </script>
 
@@ -48,8 +53,12 @@
 	out:fade|local
 	in:fade|local={{ delay: 250 }}
 >
-	{#if $state == 'home'}
-		<div class="homepage-section-menu-link {name}" in:fade={{ delay: 250 }} out:fade>
+	{#if $state == "home"}
+		<div
+			class="homepage-section-menu-link {name}"
+			in:fade={{ delay: 250 }}
+			out:fade
+		>
 			<h1>{name}</h1>
 		</div>
 	{/if}
