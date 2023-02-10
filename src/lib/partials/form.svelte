@@ -1,29 +1,35 @@
 <script>
-	import handleCSSVariables from '../utils/css-variables';
-	import { accentColors, backgroundColors, state } from '../stores';
+	export let accent;
 
 	let form = true;
 </script>
 
 {#if form}
 	<form method="POST" action="/form">
-		<p class="heading" style="color: {$accentColors[$state]}">Let's make something together.</p>
+		<p class="heading" style="color: {accent}">
+			Let's make something together.
+		</p>
 		<p style="margin-top: -1.5em; margin-bottom: 2em">
-			This form is not currently working. Please reach out to me on social media, or from the button
-			at the top of the commissions section.
+			This form is not currently working. Please reach out to me on social
+			media, or from the button at the top of the commissions section.
 		</p>
 		<div class="form-flex">
 			<div class="item-flex">
-				<label for="name" style="color: {$accentColors[$state]}">Preferred Name:</label>
+				<label for="name" style="color: {accent}">Preferred Name:</label
+				>
 				<input type="text" id="name" required />
 			</div>
 			<div class="item-flex">
-				<label for="email" style="color: {$accentColors[$state]}">Email or Best Contact:</label>
+				<label for="email" style="color: {accent}"
+					>Email or Best Contact:</label
+				>
 				<input type="email" id="email" required />
 			</div>
 			<div class="item-flex">
-				<label for="description" style="color: {$accentColors[$state]}">Project Description:</label>
-				<textarea id="description" rows="4" required />
+				<label for="description" style="color: {accent}"
+					>Project Description:</label
+				>
+				<textarea id="description" rows="4" required></textarea>
 			</div>
 			<button
 				type="submit"
