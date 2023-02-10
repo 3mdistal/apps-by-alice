@@ -1,9 +1,11 @@
 <script>
-	import Form from '../partials/form.svelte';
-	import { backgroundColors, accentColors, state } from '../stores';
+	import Form from "../partials/form.svelte";
 
-	import { animate, inView, stagger, timeline } from 'motion';
-	import { onMount } from 'svelte';
+	import { animate, inView, stagger, timeline } from "motion";
+	import { onMount } from "svelte";
+
+	export let accent;
+	export let background;
 
 	let heroText;
 	let header;
@@ -13,17 +15,25 @@
 
 	onMount(() => {
 		inView(heroText, () => {
-			animate(heroText, { opacity: [0, 1], scale: [1.5, 1] }, { duration: 1, delay: 0.25 });
+			animate(
+				heroText,
+				{ opacity: [0, 1], scale: [1.5, 1] },
+				{ duration: 1, delay: 0.25 }
+			);
 		});
 
 		const header_sequence = [
 			[header, { opacity: [0, 1] }, { duration: 0.5 }],
 			[
-				header.querySelector('img'),
+				header.querySelector("img"),
 				{ opacity: [0, 1], scale: [0.6, 1] },
-				{ duration: 0.5, easing: 'ease-in-out' }
+				{ duration: 0.5, easing: "ease-in-out" },
 			],
-			[header.querySelectorAll('p'), { opacity: [0, 1] }, { delay: stagger(0.25), duration: 1 }]
+			[
+				header.querySelectorAll("p"),
+				{ opacity: [0, 1] },
+				{ delay: stagger(0.25), duration: 1 },
+			],
 		];
 
 		inView(header, () => {
@@ -31,17 +41,21 @@
 		});
 
 		const truth_sequence = [
-			[truth.querySelector('h2'), { opacity: [0, 0.85], y: [-100, 0] }, { duration: 0.5 }],
 			[
-				truth.querySelector('.heading'),
-				{ opacity: [0, 1], x: [50, 0] },
-				{ duration: 0.5, delay: 0.5 }
+				truth.querySelector("h2"),
+				{ opacity: [0, 0.85], y: [-100, 0] },
+				{ duration: 0.5 },
 			],
 			[
-				truth.querySelectorAll('p:not(.heading)'),
+				truth.querySelector(".heading"),
+				{ opacity: [0, 1], x: [50, 0] },
+				{ duration: 0.5, delay: 0.5 },
+			],
+			[
+				truth.querySelectorAll("p:not(.heading)"),
 				{ opacity: [0, 0.9], y: [50, 0] },
-				{ duration: 1, delay: stagger(0.25, { start: 1 }) }
-			]
+				{ duration: 1, delay: stagger(0.25, { start: 1 }) },
+			],
 		];
 
 		inView(truth, () => {
@@ -49,15 +63,19 @@
 		});
 
 		inView(ambitious, () => {
-			animate(ambitious, { opacity: [0, 1], scaleX: [0.8, 1] }, { duration: 1, delay: 0.5 });
+			animate(
+				ambitious,
+				{ opacity: [0, 1], scaleX: [0.8, 1] },
+				{ duration: 1, delay: 0.5 }
+			);
 		});
 
 		const descriptions_sequence = [
 			[
-				descriptions.querySelectorAll('*'),
+				descriptions.querySelectorAll("*"),
 				{ opacity: [0, 1] },
-				{ delay: stagger(0.25), duration: 1 }
-			]
+				{ delay: stagger(0.25), duration: 1 },
+			],
 		];
 
 		inView(descriptions, () => {
@@ -66,112 +84,133 @@
 	});
 </script>
 
-<div class="spacer" />
+<div class="spacer"></div>
 <div class="wrapper">
 	<div class="hero">
-		<div class="text" bind:this={heroText}>
-			<p style="color: {$accentColors[$state]}">Bring your impossible, intangible things.</p>
+		<div class="text" bind:this="{heroText}">
+			<p style="color: {accent}">
+				Bring your impossible, intangible things.
+			</p>
 		</div>
 	</div>
-	<div class="spacer" />
-	<div class="header" bind:this={header} style="border-color: {$accentColors[$state]}">
+	<div class="spacer"></div>
+	<div class="header" bind:this="{header}" style="border-color: {accent}">
 		<div class="right">
-			<p style="color: {$accentColors[$state]}">alice</p>
-			<p style="color: {$accentColors[$state]}">alexandra</p>
-			<p style="color: {$accentColors[$state]}">moore</p>
+			<p style="color: {accent}">alice</p>
+			<p style="color: {accent}">alexandra</p>
+			<p style="color: {accent}">moore</p>
 		</div>
 		<div>
 			<img src="/images/commissions/circle.svg" alt="" />
 		</div>
 		<div>
-			<p style="color: {$accentColors[$state]}">developer</p>
-			<p style="color: {$accentColors[$state]}">artist</p>
-			<p style="color: {$accentColors[$state]}">editor</p>
+			<p style="color: {accent}">developer</p>
+			<p style="color: {accent}">artist</p>
+			<p style="color: {accent}">editor</p>
 		</div>
 	</div>
-	<div class="spacer" />
-	<div class="truths" bind:this={truth} style="background-color: {$accentColors[$state]}">
+	<div class="spacer"></div>
+	<div class="truths" bind:this="{truth}" style="background-color: {accent}">
 		<h2 class="header-2">Here are my truths.</h2>
 		<div>
-			<p class="header-2 font-light" style="color: {$backgroundColors[$state]}">
+			<p class="header-2 font-light" style="color: {background}">
 				I respect your ideas.
 			</p>
-			<p style="color: {$backgroundColors[$state]}">
-				To me, this is more than a statement. My favorite thing about the process of editing
-				another's work is pulling forward their own voice, their own originality. This stems not
-				from my skill of speaking, but from listening.
+			<p style="color: {background}">
+				To me, this is more than a statement. My favorite thing about
+				the process of editing another's work is pulling forward their
+				own voice, their own originality. This stems not from my skill
+				of speaking, but from listening.
 			</p>
-			<p style="color: {$backgroundColors[$state]}">
-				I bring this ethic into all my work. I'm most excited about elaborating on your notions,
-				whether it's designing you a website, painting a portrait, or editing your book. You are the
-				focus of my attention, and you should be happy with whatever I create—else I've done my job
-				wrong.
+			<p style="color: {background}">
+				I bring this ethic into all my work. I'm most excited about
+				elaborating on your notions, whether it's designing you a
+				website, painting a portrait, or editing your book. You are the
+				focus of my attention, and you should be happy with whatever I
+				create—else I've done my job wrong.
 			</p>
-			<p style="color: {$backgroundColors[$state]}">
-				We can be in conversation as much or as little as you want during my work, and I'll strive
-				to match the product to the image in your head, plus all the creativity and experience I
+			<p style="color: {background}">
+				We can be in conversation as much or as little as you want
+				during my work, and I'll strive to match the product to the
+				image in your head, plus all the creativity and experience I
 				bring.
 			</p>
 		</div>
 	</div>
-	<div class="spacer" />
+	<div class="spacer"></div>
 	<div
 		class="ambitious"
-		style="color: {$accentColors[$state]}; border-color: {$accentColors[$state]}"
-		bind:this={ambitious}
+		style="color: {accent}; border-color: {accent}"
+		bind:this="{ambitious}"
 	>
 		<p>Ambitious project? Tired of finding experts? I do it all.</p>
 	</div>
-	<div class="descriptions" bind:this={descriptions}>
+	<div class="descriptions" bind:this="{descriptions}">
 		<div class="flex">
 			<div class="text">
-				<h2 class="header-2" style="color: {$accentColors[$state]}">Developer</h2>
+				<h2 class="header-2" style="color: {accent}">Developer</h2>
 				<p>
-					Look around the website. Like what you see? I make elegant websites for ambitious
-					projects. I'm passionate about design matching the focus of the work. I've long been
-					frustrated with sites like Medium or Wattpad that don't allow for the full customization
-					the web has to offer. I can work with you to get your content—whatever its type—into a
-					gorgeous layout.
+					Look around the website. Like what you see? I make elegant
+					websites for ambitious projects. I'm passionate about design
+					matching the focus of the work. I've long been frustrated
+					with sites like Medium or Wattpad that don't allow for the
+					full customization the web has to offer. I can work with you
+					to get your content—whatever its type—into a gorgeous
+					layout.
 				</p>
 			</div>
 			<div class="image">
-				<img src="/images/commissions/developer.jpeg" alt="Building blocks of the web." />
+				<img
+					src="/images/commissions/developer.jpeg"
+					alt="Building blocks of the web."
+				/>
 			</div>
 		</div>
 		<div class="flipped flex">
 			<div class="text">
-				<h2 class="header-2" style="color: {$accentColors[$state]}">Artist</h2>
+				<h2 class="header-2" style="color: {accent}">Artist</h2>
 				<p>
-					Check out my gallery of art. If you like what you see, I can paint you one even better.
-					I'm constantly learning and improving my art, and each new piece feels like my best. I put
-					an extraordinary level of detail in every painting I make, focusing on brushstrokes,
-					careful coloring, emotion, and dynamic light.
+					Check out my gallery of art. If you like what you see, I can
+					paint you one even better. I'm constantly learning and
+					improving my art, and each new piece feels like my best. I
+					put an extraordinary level of detail in every painting I
+					make, focusing on brushstrokes, careful coloring, emotion,
+					and dynamic light.
 				</p>
 			</div>
 			<div class="image">
-				<img src="/images/commissions/artist.jpeg" alt="Painting of a woman in a cornfield." />
+				<img
+					src="/images/commissions/artist.jpeg"
+					alt="Painting of a woman in a cornfield."
+				/>
 			</div>
 		</div>
 		<div class="flex">
 			<div class="text">
-				<h2 class="header-2" style="color: {$accentColors[$state]}">Editor</h2>
+				<h2 class="header-2" style="color: {accent}">Editor</h2>
 				<p>
-					Have an idea? It's never too early to brainstorm together. I'll provide suggestions to
-					move forward your process, concentrating on your passions. If you want to workshop a
-					coherent piece, I'll content edit, looking especially for places to emphasize themes or
-					characters through cutting, adding, and sequencing. I begin line edits only for
-					near-publishable drafts, clarifying word choice and syntax with a poet's eye for details.
+					Have an idea? It's never too early to brainstorm together.
+					I'll provide suggestions to move forward your process,
+					concentrating on your passions. If you want to workshop a
+					coherent piece, I'll content edit, looking especially for
+					places to emphasize themes or characters through cutting,
+					adding, and sequencing. I begin line edits only for
+					near-publishable drafts, clarifying word choice and syntax
+					with a poet's eye for details.
 				</p>
 			</div>
 			<div class="image">
-				<img src="/images/commissions/editor.jpeg" alt="A bust made of yellow flowers." />
+				<img
+					src="/images/commissions/editor.jpeg"
+					alt="A bust made of yellow flowers."
+				/>
 			</div>
 		</div>
 	</div>
-	<div class="spacer" />
+	<div class="spacer"></div>
 	<div class="villain">
 		<div>
-			<Form />
+			<Form accent="{accent}" />
 		</div>
 	</div>
 </div>
@@ -190,7 +229,7 @@
 		justify-content: center;
 		align-items: center;
 		overflow: hidden;
-		background-image: url('/images/commissions/impossible.jpeg');
+		background-image: url("/images/commissions/impossible.jpeg");
 		@media (hover: hover) {
 			background-attachment: fixed;
 		}
@@ -350,7 +389,7 @@
 	}
 
 	.villain {
-		background-image: url('/images/commissions/villain.jpeg');
+		background-image: url("/images/commissions/villain.jpeg");
 		@media (hover: hover) {
 			background-attachment: fixed;
 		}

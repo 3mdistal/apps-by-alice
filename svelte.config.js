@@ -8,6 +8,9 @@ const config = {
   extensions: [".svelte", ...mdsvexConfig.extensions],
 
   kit: {
+    alias: {
+      "$images": "/src/cms/images"
+    },
     adapter: adapter(),
   },
 

@@ -1,9 +1,9 @@
 <script>
-	import { state, accentColors } from "../stores";
 	import { animate, inView, spring } from "motion";
 	import { onMount } from "svelte";
 
 	export let flexDirection = "row-reverse";
+	export let accent;
 
 	let heading;
 
@@ -51,8 +51,9 @@
 
 <div class="wrapper subpage-content-wrapper">
 	<h2
-		bind:this={heading}
-		style="color: {$accentColors[$state]}"
+		bind:this="{heading}"
+		style="color: {accent}"
+		class="[&>*]:text-inherit"
 	>
 		<slot name="heading" />
 	</h2>
@@ -60,12 +61,15 @@
 		<div
 			class="text children:mb-10 children:last:mb-0 text-left max-w-[60ch]"
 		>
-			<slot name="text" />
+			<slot
+				name="text"
+				style="color: {accent}"
+			/>
 			<div class="button">
 				<slot name="button" class="button" />
 			</div>
 		</div>
-		
+
 		<div class="image">
 			<slot name="image" />
 		</div>
@@ -103,7 +107,6 @@
 	}
 
 	h2 {
-
 		@media screen and (max-width: 45rem) {
 			text-align: left;
 		}

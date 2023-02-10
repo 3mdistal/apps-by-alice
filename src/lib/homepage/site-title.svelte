@@ -1,5 +1,4 @@
 <script>
-
     import { state } from "../stores";
     import { onMount } from "svelte";
     import gsap from "gsap";
@@ -9,22 +8,7 @@
     let siteTitle;
     let subtitle;
 
-    onMount(() => {
-        const options = {
-            rootMargin: "-150px 0px 0px 0px",
-        };
-
-        const callback = (entries) => {
-            for (let entry of entries) {
-                if (entry.isIntersecting) {
-                    $state = "home";
-                }
-            }
-        };
-
-        const observer = new IntersectionObserver(callback, options);
-        observer.observe(siteHeaderContainer);
-
+    function inAnimation() {
         const tl = gsap.timeline();
 
         tl.fromTo(
@@ -42,37 +26,76 @@
                 ease: "back",
             }
         );
+        tl.to(siteTitle, { opacity: 1, duration: 0.5, ease: "power1.in" }, "<");
+        tl.to(subtitle, { opacity: 1, duration: 0.5, ease: "power1.in" }, "<.5");
 
-        tl.to(siteTitle, { opacity: 1, duration: 3, delay: -0.5 });
-        tl.to(subtitle, { opacity: 1, duration: 3, delay: -2.5 });
+        return tl;
+    }
+
+    function outAnimation() {
+        const tl = gsap.timeline();
+
+        tl.to(logo, {
+            opacity: 0,
+            x: "-200%",
+            rotation: "-360deg",
+            duration: 1,
+            ease: "back",
+        });
+        tl.to(siteTitle, { opacity: 0, duration: 0.5, ease: "power1.out" }, "<");
+        tl.to(subtitle, { opacity: 0, duration: 0.5, ease: "power1.out" }, "<");
+
+        return tl;
+    }
+
+    onMount(() => {
+        const options = {
+            rootMargin: "-150px 0px 0px 0px",
+        };
+
+        const callback = (entries) => {
+            for (let entry of entries) {
+                if (entry.isIntersecting) {
+                    $state = "home";
+                }
+            }
+        };
+
+        const observer = new IntersectionObserver(callback, options);
+        observer.observe(siteHeaderContainer);
+        inAnimation();
     });
 </script>
 
-<header
-    bind:this={siteHeaderContainer}
-    class="site-header-container my-2vh mx-auto mt-[4em] flex max-w-[80vw] flex-col items-center justify-around gap-y-[1em] sm:gap-y-[2em] md:flex-row lg:gap-x-[2em]"
->
-    <img
-        bind:this={logo}
-        src="images/logos/logo.svg"
-        alt="The logo for Tempo Immaterial."
-        class="w-16 opacity-0 sm:w-24 md:w-32 lg:w-48"
-    />
-    <div>
-        <p
-            bind:this={siteTitle}
-            class="site-title mb-[0.5em] text-center tracking-[0.4em] opacity-0"
-        >
-            tempo immaterial
-        </p>
-        <p
-            bind:this={subtitle}
-            class="subtitle text-center tracking-[0.15em] opacity-0"
-        >
-            work by alice alexandra moore
-        </p>
-    </div>
-</header>
+{#if $state === "home"}
+    <header
+        in:inAnimation
+        out:outAnimation
+        bind:this="{siteHeaderContainer}"
+        class="site-header-container my-2vh mx-auto mt-[4em] flex max-w-[80vw] flex-col items-center justify-around gap-y-[1em] sm:gap-y-[2em] md:flex-row lg:gap-x-[2em]"
+    >
+        <img
+            bind:this="{logo}"
+            src="images/logos/logo.svg"
+            alt="The logo for Tempo Immaterial."
+            class="w-16 opacity-0 sm:w-24 md:w-32 lg:w-48"
+        />
+        <div>
+            <p
+                bind:this="{siteTitle}"
+                class="site-title mb-[0.5em] text-center tracking-[0.4em] opacity-0"
+            >
+                tempo immaterial
+            </p>
+            <p
+                bind:this="{subtitle}"
+                class="subtitle text-center tracking-[0.15em] opacity-0"
+            >
+                work by alice alexandra moore
+            </p>
+        </div>
+    </header>
+{/if}
 
 <style lang="scss">
     .site-title {

@@ -1,8 +1,10 @@
 <script>
-	import { accentColors, backgroundColors, state } from '../../stores';
 	import CarouselLi from './carousel-li.svelte';
 	import { scroll, animate, glide } from 'motion';
 	import { onMount } from 'svelte';
+
+	export let accent;
+	export let background;
 
 	let frame;
 	let container;
@@ -26,11 +28,11 @@
 	<div
 		bind:this={frame}
 		class="max-h-none top-0 max-w-[100%] overflow-hidden pt-16 md:sticky md:max-h-[100vh]"
-		style="background-color:{$accentColors[$state]}"
+		style="background-color:{accent}"
 	>
 		<p
 			class="ml-10 mb-10 text-4xl font-medium md:text-8xl"
-			style="color:{$backgroundColors[$state]}"
+			style="color:{background}"
 		>
 			Works
 		</p>
@@ -38,7 +40,7 @@
 		<ul
 			bind:this={carousel}
 			class="flex h-auto w-auto flex-col gap-y-1 gap-x-1 pt-1 md:h-[80vh] md:w-[200%] md:flex-row"
-			style="background-color:{$backgroundColors[$state]}"
+			style="background-color:{background}"
 		>
 			<CarouselLi
 				src="/images/studio/bird-tmi.jpg"

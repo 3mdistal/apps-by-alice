@@ -1,21 +1,16 @@
 <script>
-    import Chevrons from "./chevrons.svelte";
-    import { state, accentColors } from "../stores";
-    function scrollTop() {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+    import Logo from "$images/logo/logo.png?webp"
 </script>
 
-{#if $state !== "home"}
-    <div on:click={scrollTop}>
-        <Chevrons fill={$accentColors[$state]}/>
-    </div>
-{/if}
+<a href="/">
+    <img src={Logo} alt="Logo" />
+</a>
 
 <style lang="scss">
-    div {
+    a {
+        z-index: 1000;
         position: fixed;
-        padding: .5em;
+        padding: 0.5em;
         width: clamp(2.5rem, 8%, 3.5rem);
         top: 1%;
         right: 1%;

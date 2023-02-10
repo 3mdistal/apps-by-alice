@@ -5,15 +5,24 @@
 
 	export let color;
 	export let name;
+	export let moveWrapperUp;
+
+	let section;
 
 	function animateOut(e) {
-		return gsap.to(e.target, { y: 0, ease: "elastic.out", duration: 2 });
+		gsap.to(e.target, { y: 0, ease: "elastic.out", duration: 1 })
+	}
+
+	function afterTimeout(e) {
+		window.location.href = `${name}`;
 	}
 
 	function handleClickSection(e) {
 		animateOut(e);
-		document.activeElement.blur();
+		section.blur();
 		state.set(name);
+		setTimeout(afterTimeout, 500);
+		moveWrapperUp();
 	}
 
 	function handleKeyDown(e) {
@@ -22,6 +31,7 @@
 			case 32:
 				animateOut(e);
 				state.set(name);
+				setTimeout(() => (window.location.href = `${name}`), 2000);
 				break;
 			default:
 				break;
@@ -29,10 +39,7 @@
 	}
 
 	function handleMouseEnter(e) {
-		gsap.to(
-			e.target,
-			{ y: -30, ease: 'elastic', duration: 2 },
-		);
+		gsap.to(e.target, { y: -30, ease: "elastic", duration: 2 });
 	}
 
 	function handleMouseLeave(e) {
@@ -40,23 +47,25 @@
 	}
 </script>
 
+<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
 <div
 	class="homepage-section {name} {$state == 'home' ? 'hover-color' : ''}"
 	style="background:{color};"
-	on:click={handleClickSection}
-	on:mouseenter={handleMouseEnter}
-	on:mouseleave={handleMouseLeave}
-	on:keydown={handleKeyDown}
+	bind:this="{section}"
+	on:click="{handleClickSection}"
+	on:mouseenter="{handleMouseEnter}"
+	on:mouseleave="{handleMouseLeave}"
+	on:keydown="{handleKeyDown}"
 	tabindex="0"
 	role="navigation"
-	aria-label={name}
+	aria-label="{name}"
 	out:fade|local
-	in:fade|local={{ delay: 250 }}
+	in:fade|local="{{ delay: 250 }}"
 >
 	{#if $state == "home"}
 		<div
 			class="homepage-section-menu-link {name}"
-			in:fade={{ delay: 250 }}
+			in:fade="{{ delay: 250 }}"
 			out:fade
 		>
 			<h1>{name}</h1>
