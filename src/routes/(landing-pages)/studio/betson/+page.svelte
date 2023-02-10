@@ -1,6 +1,6 @@
 <script>
-    import ComingSoon from "../../../lib/subpages/studio/coming-soon.svelte";
-    import ComingSoonBetson from "../../../cms/studio/betson/coming-soon-betson.md";
+    import ComingSoon from "$lib/subpages/studio/coming-soon.svelte";
+    import ComingSoonBetson from "../../../../cms/studio/betson/coming-soon-betson.md";
 </script>
 
 <ComingSoon>
