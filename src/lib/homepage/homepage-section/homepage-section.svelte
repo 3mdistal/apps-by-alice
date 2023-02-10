@@ -13,7 +13,7 @@
 		gsap.to(e.target, { y: 0, ease: "elastic.out", duration: 1 })
 	}
 
-	function afterTimeout(e) {
+	function afterTimeout() {
 		window.location.href = `${name}`;
 	}
 
@@ -21,7 +21,7 @@
 		animateOut(e);
 		section.blur();
 		state.set(name);
-		setTimeout(afterTimeout, 500);
+		setTimeout(afterTimeout, 1000);
 		moveWrapperUp();
 	}
 
@@ -31,7 +31,7 @@
 			case 32:
 				animateOut(e);
 				state.set(name);
-				setTimeout(() => (window.location.href = `${name}`), 2000);
+				setTimeout(afterTimeout, 1000);
 				break;
 			default:
 				break;
@@ -59,7 +59,7 @@
 	tabindex="0"
 	role="navigation"
 	aria-label="{name}"
-	out:fade|local
+	out:fade
 	in:fade|local="{{ delay: 250 }}"
 >
 	{#if $state == "home"}

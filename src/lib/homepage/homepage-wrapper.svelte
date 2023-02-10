@@ -5,6 +5,7 @@
 	import { onMount } from "svelte";
 
 	let homepageWrapper;
+	export let changeBackgroundColor;
 
 	function moveWrapperUp() {
 		gsap.to(homepageWrapper, {
@@ -12,6 +13,7 @@
 			delay: 0.15,
 			ease: "power4.in",
 		});
+		changeBackgroundColor();
 	}
 
 	onMount(() => {
