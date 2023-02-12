@@ -22,13 +22,6 @@
 		});
 	}
 
-	function delay() {
-		let duration = 1500;
-		return {
-			duration,
-		};
-	}
-
 	function handleMouseEnter(e) {
 		if (hover) {
 			gsap.to(e.target, { y: -30, ease: "elastic", duration: 2 });
@@ -59,7 +52,6 @@
 	on:mouseenter="{handleMouseEnter}"
 	on:mouseleave="{handleMouseLeave}"
 	on:click="{setState}"
-	out:delay
 >
 	{#if $state === "home" || name}
 		<div class="homepage-section-menu-link {name} absolute">
