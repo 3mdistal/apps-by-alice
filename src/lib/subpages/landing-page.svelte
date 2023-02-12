@@ -1,12 +1,11 @@
 <script>
 	import gsap from "gsap";
 	import { onMount } from "svelte";
-	import { fade } from "svelte/transition";
 
-	export let src;
-	export let alt;
-	export let header;
-	export let description;
+	export let src = "";
+	export let alt = "";
+	export let header = "";
+	export let description = "";
 	export let noPadding = false;
 	export let flexReverse = false;
 	export let accent = "";
@@ -79,7 +78,7 @@
 				<img src="{src}" alt="{alt}" class="object-contain" />
 			</div>
 		{:else}
-			<div class="basis">
+			<div bind:this="{imageWrapper}" class="basis">
 				<slot name="image" />
 			</div>
 		{/if}
