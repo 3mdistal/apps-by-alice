@@ -4,6 +4,8 @@
 	import gsap from "gsap";
 	import { onMount } from "svelte";
 
+	export let changeBackground;
+
 	let homepageWrapper;
 
 	function springIn() {
@@ -18,8 +20,17 @@
 		});
 	}
 
+	function easeOut() {
+		const tl = gsap.timeline()
+		tl.to(homepageWrapper, { y: "10vh", ease: "power4.out" })
+		tl.to(homepageWrapper, { opacity: 0, delay: .15 })
+
+		return tl
+	}
+
 	function transitionOut() {
-		gsap.to(homepageWrapper, { y: "10vh", ease: "power4.out" })
+		changeBackground()
+		easeOut()
 	}
 
 	onMount(() => {

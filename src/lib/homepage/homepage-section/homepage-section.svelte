@@ -18,7 +18,7 @@
 	}
 
 	function delay() {
-		let duration = 1000;
+		let duration = 1500;
 		return {
 			duration,
 		};
