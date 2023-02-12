@@ -4,7 +4,7 @@
 
 	export let color;
 	export let name;
-	// export let moveWrapperUp;
+	export let transitionOutWrapper;
 
 	let section;
 	let hover = true;
@@ -16,7 +16,7 @@
 	function animateOut2() {
 		gsap.to(section, { y: "-50vh", delay: .25, ease: "power4.in", duration: .75})
 	}
-
+	
 	function delay() {
 		let duration = 1500;
 		return {
@@ -37,10 +37,11 @@
 	}
 
 	function setState() {
+		state.set(name);
 		hover = false;
 		animateOut()
 		animateOut2()
-		state.set(name);
+		transitionOutWrapper()
 	}
 </script>
 

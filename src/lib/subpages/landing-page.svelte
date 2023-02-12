@@ -1,6 +1,7 @@
 <script>
 	import gsap from "gsap";
 	import { onMount } from "svelte";
+	import { fade } from "svelte/transition";
 
 	export let src;
 	export let alt;
@@ -19,7 +20,7 @@
 	let imageWrapper;
 	let container;
 
-	onMount(() => {
+	function transitionIn() {
 		const tl = gsap.timeline({ defaults: { ease: "power1.out" } });
 		tl.to(container.children, { opacity: 1, duration: 0 })
 			.from(bordered, { x: -200 })
@@ -27,6 +28,12 @@
 			.from(descriptor, { opacity: 0, y: 25, duration: 0.25 }, ">")
 			.from(button, { opacity: 0, scale: 0.6, duration: 0.25 }, "<")
 			.from(imageWrapper, { opacity: 0, scale: 1.5 }, "0");
+
+		return tl;
+	}
+
+	onMount(() => {
+		setTimeout(transitionIn, 1500);
 	});
 </script>
 
