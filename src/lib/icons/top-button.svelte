@@ -1,19 +1,23 @@
 <script>
-    import Logo from "$images/logo/logo.png?webp"
+    import Logo from "$images/logo/logo.png?webp";
+    import { onMount } from "svelte";
+    import gsap from "gsap";
+
+    let button;
+
+    function fadeIn() {
+        gsap.to(button, { opacity: 1, rotate: "360deg" });
+    }
+
+    onMount(() => {
+        setTimeout(fadeIn, 1500)
+    });
 </script>
 
-<a href="/">
-    <img src={Logo} alt="Logo" />
+<a
+    href="/"
+    bind:this="{button}"
+    class="w-10 md:w-20 fixed top-2 md:top-6 md:right-6 right-2 z-10 opacity-0"
+>
+    <img src="{Logo}" alt="Logo" />
 </a>
-
-<style lang="scss">
-    a {
-        z-index: 1000;
-        position: fixed;
-        padding: 0.5em;
-        width: clamp(2.5rem, 8%, 3.5rem);
-        top: 1%;
-        right: 1%;
-        cursor: pointer;
-    }
-</style>
