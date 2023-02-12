@@ -16,5 +16,7 @@
 
 </script>
 
-<SiteTitle />
-<HomepageWrapper {changeBackground}/>
+<div class="h-[100dvh] overflow-hidden flex-col pt-4 md:pt-[6vh]" >
+    <SiteTitle />
+    <HomepageWrapper {changeBackground}/>
+</div>

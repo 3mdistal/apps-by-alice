@@ -58,7 +58,7 @@
 
     <header out:transitionOut
         bind:this="{siteHeaderContainer}"
-        class="site-header-container my-2vh mx-auto mt-[4em] flex max-w-[80vw] flex-col items-center justify-around gap-y-[1em] sm:gap-y-[2em] md:flex-row lg:gap-x-[2em]"
+        class="site-header-container mx-auto flex max-w-[80vw] flex-col items-center justify-around gap-y-[1em] sm:gap-y-[2em] md:flex-row lg:gap-x-[2em]"
     >
         <img
             bind:this="{logo}"
