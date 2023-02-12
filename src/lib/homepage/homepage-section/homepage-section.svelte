@@ -1,22 +1,26 @@
 <script>
-	import { fade } from "svelte/transition";
 	import { state } from "../../stores";
 	import gsap from "gsap";
 
 	export let color;
 	export let name;
-	export let moveWrapperUp;
+	// export let moveWrapperUp;
 
 	let section;
 
-	function animateOut(e) {
-		gsap.to(e.target, { y: 0, ease: "elastic.out", duration: 2 });
+	function animateOut() {
+		gsap.to(section, { y: 0, ease: "elastic.out", duration: 2 });
 	}
 
-	function outTransition(e) {
-		animateOut(e);
-		state.set(name);
-		moveWrapperUp();
+	function animateOut2() {
+		gsap.to(section, { y: "-100vh", delay: .15, ease: "power4.in" })
+	}
+
+	function delay() {
+		let duration = 500;
+		return {
+			duration,
+		};
 	}
 
 	function handleMouseEnter(e) {
@@ -24,33 +28,34 @@
 	}
 
 	function handleMouseLeave(e) {
-		animateOut(e)
+		animateOut(e);
+	}
+
+	function setState() {
+		animateOut()
+		animateOut2()
+		state.set(name);
 	}
 </script>
 
-<a
-	href="{name}"
-	data-sveltekit-prefetch
-	class="homepage-section {name} {$state == 'home' ? 'hover-color' : ''}"
-	style="background:{color};"
-	bind:this="{section}"
-	on:mouseenter="{handleMouseEnter}"
-	on:mouseleave="{handleMouseLeave}"
-	on:click="{outTransition}"
-	aria-label="{name}"
-	out:fade
-	in:fade|local="{{ delay: 250 }}"
->
-	{#if $state == "home"}
-		<div
-			class="homepage-section-menu-link {name}"
-			in:fade="{{ delay: 250 }}"
-			out:fade
-		>
-			<h1>{name}</h1>
-		</div>
-	{/if}
-</a>
+	<a
+		href="{name}"
+		data-sveltekit-prefetch
+		class="homepage-section {name} {$state == 'home' ? 'hover-color' : ''}"
+		style="background:{color};"
+		bind:this="{section}"
+		on:mouseenter="{handleMouseEnter}"
+		on:mouseleave="{handleMouseLeave}"
+		on:click="{setState}"
+		aria-label="{name}"
+		out:delay
+	>
+		{#if $state === "home" || name}
+			<div class="homepage-section-menu-link {name}">
+				<h1>{name}</h1>
+			</div>
+		{/if}
+	</a>
 
 <style lang="scss">
 	.hover-color {

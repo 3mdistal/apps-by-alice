@@ -1,7 +1,6 @@
 <script>
-    import { state } from "../stores";
-    import { onMount } from "svelte";
     import gsap from "gsap";
+    import { onMount } from "svelte";
 
     let siteHeaderContainer;
     let logo;
@@ -32,6 +31,10 @@
         return tl;
     }
 
+    onMount(() => {
+        inAnimation()
+    })
+
     function outAnimation() {
         const tl = gsap.timeline();
 
@@ -39,7 +42,6 @@
             opacity: 0,
             x: "-200%",
             rotation: "-360deg",
-            duration: 1,
             ease: "back",
         });
         tl.to(siteTitle, { opacity: 0, duration: 0.5, ease: "power1.out" }, "<");
@@ -47,30 +49,10 @@
 
         return tl;
     }
-
-    onMount(() => {
-        const options = {
-            rootMargin: "-150px 0px 0px 0px",
-        };
-
-        const callback = (entries) => {
-            for (let entry of entries) {
-                if (entry.isIntersecting) {
-                    $state = "home";
-                }
-            }
-        };
-
-        const observer = new IntersectionObserver(callback, options);
-        observer.observe(siteHeaderContainer);
-        inAnimation();
-    });
 </script>
 
-{#if $state === "home"}
+
     <header
-        in:inAnimation
-        out:outAnimation
         bind:this="{siteHeaderContainer}"
         class="site-header-container my-2vh mx-auto mt-[4em] flex max-w-[80vw] flex-col items-center justify-around gap-y-[1em] sm:gap-y-[2em] md:flex-row lg:gap-x-[2em]"
     >
@@ -95,7 +77,6 @@
             </p>
         </div>
     </header>
-{/if}
 
 <style lang="scss">
     .site-title {

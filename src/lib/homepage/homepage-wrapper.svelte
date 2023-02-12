@@ -5,19 +5,9 @@
 	import { onMount } from "svelte";
 
 	let homepageWrapper;
-	export let changeBackgroundColor;
 
-	function moveWrapperUp() {
-		gsap.to(homepageWrapper, {
-			y: "-100vh",
-			delay: 0.15,
-			ease: "power4.in",
-		});
-		changeBackgroundColor();
-	}
-
-	onMount(() => {
-		homepageWrapper.style.opacity = 1;
+	function springIn() {
+		state.set("home")
 		gsap.from(homepageWrapper.children, {
 			scaleY: 0.3,
 			opacity: 0,
@@ -26,22 +16,25 @@
 			delay: 1.5,
 			stagger: 0.1,
 		});
+	}
+
+	onMount(() => {
+		homepageWrapper.style.opacity = 1;
+		springIn();
+		
 	});
 </script>
 
-<div>
-	<nav
-		class="relative bottom-[-40px] h-[100vh] w-[100%] opacity-0"
-		bind:this="{homepageWrapper}"
-	>
-		{#each $names as name}
-			{#if $state == "home" || $state == name}
-				<HomepageSection
-					color="{$backgroundColors[name]}"
-					name="{name}"
-					moveWrapperUp="{moveWrapperUp}"
-				/>
-			{/if}
-		{/each}
-	</nav>
-</div>
+<nav
+	class="relative bottom-[-40px] h-[100vh] w-[100%] opacity-0"
+	bind:this="{homepageWrapper}"
+>
+	{#each $names as name}
+		{#if $state == "home" || name}
+			<HomepageSection
+				color="{$backgroundColors[name]}"
+				name="{name}"
+			/>
+		{/if}
+	{/each}
+</nav>
