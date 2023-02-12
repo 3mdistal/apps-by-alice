@@ -9,6 +9,13 @@
         gsap.to(document.body, {backgroundColor: `${$backgroundColors[$state]}`, delay: delay})
     }
 
+    function delay() {
+		let duration = 1500;
+		return {
+			duration,
+		};
+	}
+
     onMount(() => {
         state.set("home")
         changeBackground()
@@ -17,7 +24,7 @@
 </script>
 
 
-<div class="relative h-[100dvh] overflow-hidden flex-col pt-4 md:pt-[6vh]" >
+<div out:delay class="relative h-[100dvh] overflow-hidden flex-col pt-4 md:pt-[6vh]" >
     <SiteTitle />
     <HomepageWrapper {changeBackground}/>
 </div>
