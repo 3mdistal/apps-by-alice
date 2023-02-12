@@ -9,14 +9,19 @@
 	let section;
 	let hover = true;
 
-	function animateOut() {
+	function easeDown() {
 		gsap.to(section, { y: 0, ease: "elastic.out", duration: 2 });
 	}
 
-	function animateOut2() {
-		gsap.to(section, { y: "-50vh", delay: .25, ease: "power4.in", duration: .75})
+	function animateOut() {
+		gsap.to(section, {
+			y: "-50vh",
+			delay: 0.25,
+			ease: "power4.in",
+			duration: 0.75,
+		});
 	}
-	
+
 	function delay() {
 		let duration = 1500;
 		return {
@@ -32,57 +37,39 @@
 
 	function handleMouseLeave(e) {
 		if (hover) {
-			animateOut(e);
+			easeDown();
 		}
 	}
 
 	function setState() {
 		state.set(name);
 		hover = false;
-		animateOut()
-		animateOut2()
-		transitionOutWrapper()
+		easeDown();
+		animateOut();
+		transitionOutWrapper();
 	}
 </script>
 
-	<a
-		href="{name}"
-		data-sveltekit-prefetch
-		class="homepage-section {name} {$state == 'home' ? 'hover-color' : ''}"
-		style="background:{color};"
-		bind:this="{section}"
-		on:mouseenter="{handleMouseEnter}"
-		on:mouseleave="{handleMouseLeave}"
-		on:click="{setState}"
-		aria-label="{name}"
-		out:delay
-	>
-		{#if $state === "home" || name}
-			<div class="homepage-section-menu-link {name}">
-				<h1>{name}</h1>
-			</div>
-		{/if}
-	</a>
+<a
+	href="{name}"
+	name="{name}"
+	class="homepage-section h-[100%] absolute bottom-0 w-[100%] {name} hover:saturate-150 hover:brightness-95 hover:hue-rotate-[5deg] focus:saturate-[175%] focus:brightness-[85%] focus:hue-rotate-[10deg]"
+	style="background:{color};"
+	bind:this="{section}"
+	on:mouseenter="{handleMouseEnter}"
+	on:mouseleave="{handleMouseLeave}"
+	on:click="{setState}"
+	out:delay
+>
+	{#if $state === "home" || name}
+		<div class="homepage-section-menu-link {name} absolute">
+			<h1>{name}</h1>
+		</div>
+	{/if}
+</a>
 
 <style lang="scss">
-	.hover-color {
-		&:hover {
-			filter: saturate(150%) brightness(95%) hue-rotate(5deg);
-			cursor: pointer;
-		}
-
-		&:focus {
-			filter: saturate(175%) brightness(85%) hue-rotate(10deg);
-		}
-	}
-
 	.homepage-section {
-		height: 100%;
-		position: absolute;
-		bottom: 0%;
-		width: 100%;
-		opacity: 100%;
-
 		&.about {
 			clip-path: url(#about-path);
 		}
@@ -108,10 +95,6 @@
 	}
 
 	.homepage-section-menu-link {
-		position: absolute;
-		pointer-events: none;
-		transition: 0.5s;
-
 		&.about {
 			top: 15%;
 			left: 33%;
@@ -143,10 +126,6 @@
 	}
 
 	@media screen and (max-width: 45rem) {
-		.homepage-wrapper {
-			margin-top: 6%;
-		}
-
 		.homepage-section {
 			&.studio {
 				clip-path: url(#studio-path-mobile);
