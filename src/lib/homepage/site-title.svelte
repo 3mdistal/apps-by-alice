@@ -35,8 +35,8 @@
         inAnimation()
     })
 
-    function outAnimation() {
-        const tl = gsap.timeline();
+   function outAnimation() {
+    const tl = gsap.timeline();
 
         tl.to(logo, {
             opacity: 0,
@@ -48,11 +48,15 @@
         tl.to(subtitle, { opacity: 0, duration: 0.5, ease: "power1.out" }, "<");
 
         return tl;
+   }
+
+    function transitionOut() {
+        outAnimation()
     }
 </script>
 
 
-    <header
+    <header out:transitionOut
         bind:this="{siteHeaderContainer}"
         class="site-header-container my-2vh mx-auto mt-[4em] flex max-w-[80vw] flex-col items-center justify-around gap-y-[1em] sm:gap-y-[2em] md:flex-row lg:gap-x-[2em]"
     >

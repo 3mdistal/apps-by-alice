@@ -7,31 +7,37 @@
 	// export let moveWrapperUp;
 
 	let section;
+	let hover = true;
 
 	function animateOut() {
 		gsap.to(section, { y: 0, ease: "elastic.out", duration: 2 });
 	}
 
 	function animateOut2() {
-		gsap.to(section, { y: "-100vh", delay: .15, ease: "power4.in" })
+		gsap.to(section, { y: "-50vh", delay: .25, ease: "power4.in", duration: .75})
 	}
 
 	function delay() {
-		let duration = 500;
+		let duration = 1000;
 		return {
 			duration,
 		};
 	}
 
 	function handleMouseEnter(e) {
-		gsap.to(e.target, { y: -30, ease: "elastic", duration: 2 });
+		if (hover) {
+			gsap.to(e.target, { y: -30, ease: "elastic", duration: 2 });
+		}
 	}
 
 	function handleMouseLeave(e) {
-		animateOut(e);
+		if (hover) {
+			animateOut(e);
+		}
 	}
 
 	function setState() {
+		hover = false;
 		animateOut()
 		animateOut2()
 		state.set(name);

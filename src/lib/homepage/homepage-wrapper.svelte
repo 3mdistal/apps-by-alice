@@ -18,6 +18,10 @@
 		});
 	}
 
+	function transitionOut() {
+		gsap.to(homepageWrapper, { y: "10vh", ease: "power4.out" })
+	}
+
 	onMount(() => {
 		homepageWrapper.style.opacity = 1;
 		springIn();
@@ -28,6 +32,7 @@
 <nav
 	class="relative bottom-[-40px] h-[100vh] w-[100%] opacity-0"
 	bind:this="{homepageWrapper}"
+	out:transitionOut
 >
 	{#each $names as name}
 		{#if $state == "home" || name}
