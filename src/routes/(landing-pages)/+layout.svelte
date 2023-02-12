@@ -1,6 +1,6 @@
 <script>
-    import TopButton from "../../lib/icons/top-button.svelte";
+    import HomeButton from "$lib/icons/home-button.svelte";
 </script>
 
-<TopButton />
+<HomeButton />
 <slot />
