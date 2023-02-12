@@ -1,77 +1,67 @@
 <script>
-	import { fade } from "svelte/transition";
 	import { state } from "../../stores";
 	import gsap from "gsap";
 
 	export let color;
 	export let name;
-	export let moveWrapperUp;
+	// export let moveWrapperUp;
 
 	let section;
+	let hover = true;
 
-	function animateOut(e) {
-		gsap.to(e.target, { y: 0, ease: "elastic.out", duration: 1 })
+	function animateOut() {
+		gsap.to(section, { y: 0, ease: "elastic.out", duration: 2 });
 	}
 
-	function afterTimeout(e) {
-		window.location.href = `${name}`;
+	function animateOut2() {
+		gsap.to(section, { y: "-50vh", delay: .25, ease: "power4.in", duration: .75})
 	}
 
-	function handleClickSection(e) {
-		animateOut(e);
-		section.blur();
-		state.set(name);
-		setTimeout(afterTimeout, 500);
-		moveWrapperUp();
-	}
-
-	function handleKeyDown(e) {
-		switch (e.keyCode) {
-			case 13:
-			case 32:
-				animateOut(e);
-				state.set(name);
-				setTimeout(() => (window.location.href = `${name}`), 2000);
-				break;
-			default:
-				break;
-		}
+	function delay() {
+		let duration = 1500;
+		return {
+			duration,
+		};
 	}
 
 	function handleMouseEnter(e) {
-		gsap.to(e.target, { y: -30, ease: "elastic", duration: 2 });
+		if (hover) {
+			gsap.to(e.target, { y: -30, ease: "elastic", duration: 2 });
+		}
 	}
 
 	function handleMouseLeave(e) {
-		animateOut(e);
+		if (hover) {
+			animateOut(e);
+		}
+	}
+
+	function setState() {
+		hover = false;
+		animateOut()
+		animateOut2()
+		state.set(name);
 	}
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div
-	class="homepage-section {name} {$state == 'home' ? 'hover-color' : ''}"
-	style="background:{color};"
-	bind:this="{section}"
-	on:click="{handleClickSection}"
-	on:mouseenter="{handleMouseEnter}"
-	on:mouseleave="{handleMouseLeave}"
-	on:keydown="{handleKeyDown}"
-	tabindex="0"
-	role="navigation"
-	aria-label="{name}"
-	out:fade|local
-	in:fade|local="{{ delay: 250 }}"
->
-	{#if $state == "home"}
-		<div
-			class="homepage-section-menu-link {name}"
-			in:fade="{{ delay: 250 }}"
-			out:fade
-		>
-			<h1>{name}</h1>
-		</div>
-	{/if}
-</div>
+	<a
+		href="{name}"
+		data-sveltekit-prefetch
+		class="homepage-section {name} {$state == 'home' ? 'hover-color' : ''}"
+		style="background:{color};"
+		bind:this="{section}"
+		on:mouseenter="{handleMouseEnter}"
+		on:mouseleave="{handleMouseLeave}"
+		on:click="{setState}"
+		aria-label="{name}"
+		out:delay
+	>
+		{#if $state === "home" || name}
+			<div class="homepage-section-menu-link {name}">
+				<h1>{name}</h1>
+			</div>
+		{/if}
+	</a>
 
 <style lang="scss">
 	.hover-color {

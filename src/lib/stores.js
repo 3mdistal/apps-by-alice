@@ -13,6 +13,7 @@ export const accentColors = readable({
 })
 
 export const backgroundColors = readable({
+    home: "#fafafa",
     about: "#beb5ca",
     studio: "#d6ddf0",
     commissions: "#dcc9c6",
