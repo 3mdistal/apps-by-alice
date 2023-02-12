@@ -47,7 +47,7 @@
 	{#each $names as name}
 		{#if $state == "home" || name}
 			<HomepageSection
-				color="{$backgroundColors[name]}"
+				background="{$backgroundColors[name]}"
 				name="{name}"
 				{transitionOutWrapper}
 			/>
