@@ -9,7 +9,6 @@
 	let homepageWrapper;
 
 	function springIn() {
-		state.set("home")
 		gsap.from(homepageWrapper.children, {
 			scaleY: 0.3,
 			opacity: 0,
@@ -29,7 +28,8 @@
 	}
 
 	function transitionOut() {
-		changeBackground()
+		let delay = .75
+		changeBackground(delay)
 		easeOut()
 	}
 
