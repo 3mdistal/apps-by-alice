@@ -10,32 +10,13 @@
 	let section;
 
 	function animateOut(e) {
-		gsap.to(e.target, { y: 0, ease: "elastic.out", duration: 1 })
+		gsap.to(e.target, { y: 0, ease: "elastic.out", duration: 2 });
 	}
 
-	function afterTimeout() {
-		window.location.href = `${name}`;
-	}
-
-	function handleClickSection(e) {
+	function outTransition(e) {
 		animateOut(e);
-		section.blur();
 		state.set(name);
-		setTimeout(afterTimeout, 1000);
 		moveWrapperUp();
-	}
-
-	function handleKeyDown(e) {
-		switch (e.keyCode) {
-			case 13:
-			case 32:
-				animateOut(e);
-				state.set(name);
-				setTimeout(afterTimeout, 1000);
-				break;
-			default:
-				break;
-		}
 	}
 
 	function handleMouseEnter(e) {
@@ -43,21 +24,19 @@
 	}
 
 	function handleMouseLeave(e) {
-		animateOut(e);
+		animateOut(e)
 	}
 </script>
 
-<!-- svelte-ignore a11y-no-noninteractive-tabindex -->
-<div
+<a
+	href="{name}"
+	data-sveltekit-prefetch
 	class="homepage-section {name} {$state == 'home' ? 'hover-color' : ''}"
 	style="background:{color};"
 	bind:this="{section}"
-	on:click="{handleClickSection}"
 	on:mouseenter="{handleMouseEnter}"
 	on:mouseleave="{handleMouseLeave}"
-	on:keydown="{handleKeyDown}"
-	tabindex="0"
-	role="navigation"
+	on:click="{outTransition}"
 	aria-label="{name}"
 	out:fade
 	in:fade|local="{{ delay: 250 }}"
@@ -71,7 +50,7 @@
 			<h1>{name}</h1>
 		</div>
 	{/if}
-</div>
+</a>
 
 <style lang="scss">
 	.hover-color {
