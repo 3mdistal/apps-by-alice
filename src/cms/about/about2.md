@@ -4,4 +4,4 @@ After leaving Ohio, I stayed in the Midwest, pursuing postgraduate work in Munci
 
 The last few years have found me in a different space. I've always loved creating all shades of art, and I thrive most when I'm learning a new way to do something. Often, my brain pushes me into new territory before I've finished old projects, but I've learned to appreciate all the "incomplete" works I've made along the way. Finally, through this site, I'm sharing so many of them.
 
-Currently, I live in Alexandria, Egypt, learning Arabic among so many other things. I spend my days here working on various projects, whether for myself or commissions for others. If you're interested in hiring me, please send me your idea, and we can brainstorm together to make something extraordinary.
+Currently, I live in Leeds, UK. I'm working as a Content Engineer for Vercel, and continuing my various creative projects. If you're interested in collaborating, please send me your idea, and we can brainstorm together to make something extraordinary.
