@@ -2,8 +2,8 @@
 	export let accent;
 
 	let visibility = true;
-	let client = "Alice";
-	let email = "alice@gmail.com";
+	let client;
+	let email;
 
 	async function contact(event) {
 		const form = event.target;

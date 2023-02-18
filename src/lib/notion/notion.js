@@ -1,10 +1,9 @@
 import { Client } from '@notionhq/client'
-import { NOTION_KEY, COMMISSIONS_DB, SUBSCRIBERS_DB } from '$env/static/private'
 
-const notion = new Client({ auth: NOTION_KEY })
+const notion = new Client({ auth: process.env.NOTION_KEY })
 
-const commissionsDatabaseID = COMMISSIONS_DB
-const subscriberDatabaseID = SUBSCRIBERS_DB
+const commissionsDatabaseID = process.env.COMMISSIONS_DB
+const subscriberDatabaseID = process.env.SUBSCRIBERS_DB
 
 export async function addCommission(name, email, description) {
     try {

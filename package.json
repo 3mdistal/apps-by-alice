@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "preinstall": "npx only-allow pnpm",
-    "dev": "vite dev",
+    "dev": "env-cmd vite dev",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "prettier --plugin-search-dir . --check . && eslint .",
@@ -14,6 +14,7 @@
     "@notionhq/client": "^2.2.3",
     "@sveltejs/kit": "^1.3.2",
     "autoprefixer": "^10.4.13",
+    "env-cmd": "^10.1.0",
     "gsap": "npm:@gsap/shockingly@^3.11.4",
     "mdsvex": "^0.10.6",
     "postcss": "^8.4.21",
