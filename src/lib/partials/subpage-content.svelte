@@ -18,7 +18,7 @@
 			scrollTrigger: {
 				trigger: container,
 				scrub: 1,
-				markers: { startColor: "green", endColor: "red" },
+				// markers: { startColor: "green", endColor: "red" },
 				end: `bottom 80%`,
 				start: `top ${calcHeight() < 600 ? '250%' : '100%'}`
 			},
