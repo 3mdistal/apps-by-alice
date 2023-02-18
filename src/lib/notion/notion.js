@@ -1,5 +1,5 @@
 import { Client } from '@notionhq/client'
-import { NOTION_KEY, COMMISSIONS_DB } from '$env/static/private'
+import { NOTION_KEY, COMMISSIONS_DB, USER_ID_ALICE } from '$env/static/private'
 
 const notion = new Client({ auth: NOTION_KEY })
 
@@ -11,6 +11,7 @@ export async function addCommission(name, email, description) {
         throw Error("Missing API keys from Notion.")
     }
     try {
+        // const response = await notion.users.list()
         const response = await notion.pages.create({
             parent: { database_id: commissionsDatabaseID },
             properties: {
@@ -34,9 +35,17 @@ export async function addCommission(name, email, description) {
                             }
                         }
                     ]
+                },
+                Notify: {
+                    people: [
+                        {
+                            id: USER_ID_ALICE
+                        }
+                    ]
                 }
             }
         })
+        console.log(response)
         return response
     } catch (error) {
         console.error(error.body)
