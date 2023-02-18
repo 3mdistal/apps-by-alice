@@ -7,9 +7,9 @@ export const POST = async (event) => {
     const email = data.get('email')
     const description = data.get('description')
 
-    addCommission(name, email, description)
+    const stream = await addCommission(name, email, description)
 
-    return new Response(json({ success: true }), {
+    return new Response(stream, {
         headers: {
             'Content-Type': 'application/json'
         }
