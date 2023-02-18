@@ -1,12 +1,15 @@
 import { Client } from '@notionhq/client'
+import { NOTION_KEY, COMMISSIONS_DB } from '$env/static/private'
 
-const notion = new Client({ auth: process.env.NOTION_KEY })
+const notion = new Client({ auth: NOTION_KEY })
 
-const commissionsDatabaseID = process.env.COMMISSIONS_DB
+const commissionsDatabaseID = COMMISSIONS_DB
 // const subscriberDatabaseID = process.env.SUBSCRIBERS_DB
 
 export async function addCommission(name, email, description) {
-
+    if (!NOTION_KEY || !COMMISSIONS_DB) {
+        throw Error("Missing API keys from Notion.")
+    }
     try {
         const response = await notion.pages.create({
             parent: { database_id: commissionsDatabaseID },
