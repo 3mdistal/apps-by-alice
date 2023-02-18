@@ -7,10 +7,6 @@ const commissionsDatabaseID = process.env.COMMISSIONS_DB
 
 export async function addCommission(name, email, description) {
 
-    const id = setTimeout(() => res.json({
-        message: "There was an error with the upstream service!"
-    }, duration))
-
     try {
         const response = await notion.pages.create({
             parent: { database_id: commissionsDatabaseID },
@@ -38,10 +34,7 @@ export async function addCommission(name, email, description) {
                 }
             }
         })
-        clearTimeout(id)
-        res.json({
-            message: response
-        })
+        return response
     } catch (error) {
         console.error(error.body)
     }
