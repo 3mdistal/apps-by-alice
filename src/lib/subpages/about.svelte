@@ -1,9 +1,12 @@
 <script>
 	import Socials from "../icons/socials.svelte";
 	import SubpageContent from "../partials/subpage-content.svelte";
-	import About1 from "../../cms/about/about1.svelte";
-	import About2 from "../../cms/about/about2.md";
-	import About3 from "../../cms/about/about3.svelte";
+	import About1 from "$text/about/about1.svelte";
+	import About2 from "$text/about/about2.md";
+	import About3 from "$text/about/about3.svelte";
+	import AuthorPhoto from "$images/about/author-photo.jpg?webp"
+	import Mirror from "$images/about/mirror.jpeg?webp"
+	import Owl from "$images/about/owl.png?webp"
 
 	export let accent;
 </script>
@@ -20,7 +23,7 @@
 	</svelte:fragment>
 	<img
 		slot="image"
-		src="/images/about/owl.png"
+		src={Owl}
 		alt="A painting of a Screech Owl staring eerily at the viewer. Painting by Alice Alexandra Moore."
 	/>
 </SubpageContent>
@@ -37,7 +40,7 @@
 	</svelte:fragment>
 	<img
 		slot="image"
-		src="/images/about/author-photo.jpg"
+		src={AuthorPhoto}
 		alt="Alice Alexandra Moore."
 	/>
 </SubpageContent>
@@ -53,7 +56,7 @@
 	</svelte:fragment>
 	<img
 		slot="image"
-		src="/images/about/mirror.jpeg"
+		src={Mirror}
 		alt="Painting of a person sitting, holding a mirror. By Alice Alexandra Moore."
 	/>
 </SubpageContent>
@@ -93,10 +96,5 @@
 
 	p {
 		margin-bottom: 1.5em;
-	}
-
-	.heading {
-		font-size: clamp(1rem, 1.5vw, 2rem);
-		font-weight: 400;
 	}
 </style>
