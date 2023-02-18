@@ -46,7 +46,7 @@
 </p>
 
 <p>
-    This place, instead, I'm making the *terra sancta* I know how to create
+    This place, instead, I'm making the <em>terra sancta</em> I know how to create
     right now, without all the knowledge I've yet to see before I die. Perhaps
     instead of this studio being a declaration, I can posture myself into the
     shape of a question mark:

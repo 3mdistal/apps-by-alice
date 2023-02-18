@@ -9,7 +9,8 @@ const config = {
 
   kit: {
     alias: {
-      "$images": "/src/cms/images"
+      "$images": "/src/cms/images",
+      "$text": "/src/cms/text"
     },
     adapter: adapter(),
   },

@@ -1,120 +1,70 @@
 <script>
-	import { animate, inView, spring } from "motion";
+	import gsap from "gsap";
+	import ScrollTrigger from "gsap/ScrollTrigger";
 	import { onMount } from "svelte";
 
 	export let flexDirection = "row-reverse";
 	export let accent;
 
+	let container;
 	let heading;
+	let text;
+	let image;
+
+	function animate() {
+		gsap.registerPlugin(ScrollTrigger);
+
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: container,
+				scrub: 1,
+				end: `bottom 80%`,
+				start: `top ${calcHeight() < 600 ? '250%' : '100%'}`
+			},
+		});
+		tl.from(heading, { opacity: 0, y: -50, delay: 0.25 });
+		tl.from(text.children, { opacity: 0, y: 50, stagger: 0.25 });
+		tl.from(image, { opacity: 0, scale: 1.2, duration: 1, ease: "power2.in" }, "<");
+
+		return tl;
+	}
+
+	function calcHeight() {
+		return window.innerHeight
+	}
 
 	onMount(() => {
-		inView(heading, () => {
-			animate(
-				heading,
-				{ opacity: [0, 80, 90, 100], y: [-50, 0] },
-				{
-					delay: 0.25,
-					easing: spring({ velocity: 1000, damping: 10 }),
-				}
-			);
-		});
-
-		const paragraphs = document.querySelectorAll(
-			".subpage-content-wrapper p"
-		);
-
-		paragraphs.forEach((paragraph) => {
-			inView(paragraph, () => {
-				animate(
-					paragraph,
-					{ opacity: [0, 80, 100], y: [25, 0] },
-					{ duration: 1, delay: 0.25 }
-				);
-			});
-		});
-
-		const images = document.querySelectorAll(
-			".subpage-content-wrapper img:not(.social-img)"
-		);
-
-		images.forEach((image) => {
-			inView(image, () => {
-				animate(
-					image,
-					{ opacity: [0, 1], scale: [1.2, 1] },
-					{ easing: "ease-in-out", duration: 1, delay: 0.5 }
-				);
-			});
-		});
+		setTimeout(animate, 1550);
 	});
 </script>
 
-<div class="wrapper subpage-content-wrapper">
+<div id="you" class="w-[75%] mx-auto" bind:this="{container}">
 	<h2
 		bind:this="{heading}"
 		style="color: {accent}"
-		class="[&>*]:text-inherit"
+		class="text-left [&_*]:text-inherit md:text-center"
 	>
 		<slot name="heading" />
 	</h2>
-	<div class="content" style="flex-direction: {flexDirection}">
+	<div
+		class="flex-col md:flex gap-x-[3em] gap-y-[5em] justify-between items-start"
+		style="flex-direction: {flexDirection}"
+	>
 		<div
 			class="text children:mb-10 children:last:mb-0 text-left max-w-[60ch]"
+			bind:this="{text}"
 		>
-			<slot
-				name="text"
-				style="color: {accent}"
-			/>
-			<div class="button">
+			<slot name="text" style="color: {accent}" />
+			<div class="mt-[3m] flex justify-center">
 				<slot name="button" class="button" />
 			</div>
 		</div>
 
-		<div class="image">
+		<div
+			class="max-w-[80%] mx-auto md:max-w-[50%] sticky top-[1em]"
+			bind:this="{image}"
+		>
 			<slot name="image" />
 		</div>
 	</div>
 </div>
-
-<style lang="scss">
-	.wrapper {
-		width: 75%;
-		margin: 0 auto;
-		text-align: center;
-	}
-
-	.image {
-		max-width: 50%;
-		position: sticky;
-		top: 1em;
-
-		@media screen and (max-width: 45rem) {
-			max-width: 80%;
-			margin: 0 auto;
-		}
-	}
-
-	.content {
-		display: flex;
-		justify-content: space-between;
-		align-items: flex-start;
-		column-gap: 5em;
-
-		@media screen and (max-width: 45rem) {
-			flex-direction: column !important;
-			row-gap: 3em;
-		}
-	}
-
-	h2 {
-		@media screen and (max-width: 45rem) {
-			text-align: left;
-		}
-	}
-
-	.button {
-		margin-top: 3em;
-		display: flex;
-		justify-content: center;
-	}
-</style>
