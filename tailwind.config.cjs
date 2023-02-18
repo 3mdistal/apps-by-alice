@@ -25,6 +25,9 @@ const config = {
 			fontFamily: {
 				'sans': ['Lato', 'Arial', 'sans-serif']
 			},
+			fontSize: {
+				dynamicHeader: "clamp(1.5rem, 3vw, 4rem)"
+			},
 			screens: {
 				'sm': '600px'
 			}
