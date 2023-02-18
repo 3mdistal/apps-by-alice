@@ -18,14 +18,13 @@
 			scrollTrigger: {
 				trigger: container,
 				scrub: 1,
-				// markers: { startColor: "green", endColor: "red" },
 				end: `bottom 80%`,
 				start: `top ${calcHeight() < 600 ? '250%' : '100%'}`
 			},
 		});
 		tl.from(heading, { opacity: 0, y: -50, delay: 0.25 });
 		tl.from(text.children, { opacity: 0, y: 50, stagger: 0.25 });
-		tl.from(image, { opacity: 0, scale: 1.2 }, "<");
+		tl.from(image, { opacity: 0, scale: 1.2, duration: 1, ease: "power2.in" }, "<");
 
 		return tl;
 	}
