@@ -1,11 +1,17 @@
 <script>
-    import gsap from "gsap";
+    import { fade } from "svelte/transition";
     let container;
+
+    function back() {
+        history.back();
+    }
 </script>
 
 <div
-    class="h-[100%] bg-black p-4 tracking-wide text-white children:text-inherit"
-    bind:this={container}
+    class="h-[100%] min-h-[100vh] bg-black px-4 py-10 tracking-wide text-white [&_*]:text-inherit"
+    in:fade="{{ duration: 500 }}"
+    out:fade="{{ duration: 500 }}"
+    bind:this="{container}"
 >
     <h1 class="mb-2 text-5xl md:text-7xl">
         <slot name="title" />
@@ -22,4 +28,9 @@
     <div class="max-w-[60ch] [&_p]:mb-[1em] [&_*]:text-inherit">
         <slot name="text" />
     </div>
+    <p class="text-right text-4xl md:text-6xl">
+        <a on:click|preventDefault="{back}" href="/" class="inline-block p-6"
+            >back.</a
+        >
+    </p>
 </div>

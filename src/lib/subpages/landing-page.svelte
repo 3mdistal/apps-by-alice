@@ -1,6 +1,8 @@
 <script>
 	import gsap from "gsap";
 	import { onMount } from "svelte";
+	import { onDestroy } from "svelte";
+	import { state } from "../stores";
 
 	export let src = "";
 	export let alt = "";
@@ -32,7 +34,15 @@
 	}
 
 	onMount(() => {
-		setTimeout(transitionIn, 1500);
+		if ($state !== "home") {
+			setTimeout(transitionIn, 1500);
+			return;
+		}
+		setTimeout(transitionIn, 100)
+	});
+
+	onDestroy(() => {
+		state.set("home");
 	});
 </script>
 
