@@ -22,7 +22,7 @@
     <Button
         slot="button"
         text="Let's make it."
-        url="mailto:commissions@alicealexandra.com"
+        url="#form"
         accent="{accent}"
         background="{background}"
     />
