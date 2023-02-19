@@ -19,7 +19,7 @@
 				trigger: container,
 				scrub: 1,
 				end: `bottom 80%`,
-				start: `top ${calcHeight() < 600 ? '250%' : '100%'}`
+				start: `top ${calcHeight()}`
 			},
 		});
 		tl.from(heading, { opacity: 0, y: -50, delay: 0.25 });
@@ -30,7 +30,13 @@
 	}
 
 	function calcHeight() {
-		return window.innerHeight
+		if (window.height < 600) {
+			return '300%'
+		}
+		if (window.height < 900) {
+			return '200%'
+		}
+		return '100%'
 	}
 
 	onMount(() => {
