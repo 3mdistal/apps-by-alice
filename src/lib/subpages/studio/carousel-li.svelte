@@ -27,8 +27,7 @@
 						trigger: container,
 						scrub: true,
 						start: "-100vh 80%",
-						end: "top 50%",
-						markers: { startColor: "green", endColor: "red" },
+						end: "top 50%"
 					},
 				}
 			).fromTo(
