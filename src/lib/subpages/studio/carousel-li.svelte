@@ -27,7 +27,7 @@
 						trigger: container,
 						scrub: true,
 						start: "-100vh 80%",
-						end: "top 50%"
+						end: "top 50%",
 					},
 				}
 			).fromTo(
@@ -64,12 +64,12 @@
 		class="md:invisible z-10 h-[100%] w-[100%] bg-black bg-opacity-50 px-10 py-5 md:opacity-0 md:transition-all md:duration-500 md:group-hover:visible md:group-hover:opacity-100 md:h-auto md:w-auto"
 	>
 		<p
-			class="md:text-sm font-thin text-white md:transition-all md:duration-500 md:group-hover:text-4xl"
+			class="md:text-sm font:extra-light md:font-thin text-white md:transition-all md:duration-500 md:group-hover:text-4xl"
 		>
 			{title}
 		</p>
 		<p
-			class="md:text-sm text-white md:transition-all md:duration-500 md:group-hover:text-2xl"
+			class="font-medium md:font-light md:text-sm text-white md:transition-all md:duration-500 md:group-hover:text-2xl"
 		>
 			{subtitle}
 		</p>
