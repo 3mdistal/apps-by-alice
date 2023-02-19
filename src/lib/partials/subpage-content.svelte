@@ -19,7 +19,7 @@
 				trigger: container,
 				scrub: 1,
 				end: `bottom 80%`,
-				start: `top ${calcHeight() < 600 ? '250%' : '100%'}`
+				start: `top ${calcHeight()}`
 			},
 		});
 		tl.from(heading, { opacity: 0, y: -50, delay: 0.25 });
@@ -30,7 +30,11 @@
 	}
 
 	function calcHeight() {
-		return window.innerHeight
+
+		if (window.innerWidth <= 768) {
+			return (container.offsetHeight - 450)
+		}
+		return (container.offsetHeight)
 	}
 
 	onMount(() => {
@@ -38,7 +42,7 @@
 	});
 </script>
 
-<div id="you" class="w-[75%] mx-auto" bind:this="{container}">
+<div class="w-[75%] mx-auto" bind:this="{container}">
 	<h2
 		bind:this="{heading}"
 		style="color: {accent}"
