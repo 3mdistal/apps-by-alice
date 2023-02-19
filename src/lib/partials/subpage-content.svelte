@@ -30,13 +30,11 @@
 	}
 
 	function calcHeight() {
-		if (window.height < 600) {
-			return '300%'
+
+		if (window.innerWidth <= 768) {
+			return (container.offsetHeight - 450)
 		}
-		if (window.height < 900) {
-			return '200%'
-		}
-		return '100%'
+		return (container.offsetHeight)
 	}
 
 	onMount(() => {
@@ -44,7 +42,7 @@
 	});
 </script>
 
-<div id="you" class="w-[75%] mx-auto" bind:this="{container}">
+<div class="w-[75%] mx-auto" bind:this="{container}">
 	<h2
 		bind:this="{heading}"
 		style="color: {accent}"
