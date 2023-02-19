@@ -1,33 +1,49 @@
 <script>
-	import CarouselLi from './carousel-li.svelte';
-	import { scroll, animate, glide } from 'motion';
-	import { onMount } from 'svelte';
+	import CarouselLi from "./carousel-li.svelte";
+	import { onMount } from "svelte";
+	import gsap from "gsap";
+	import ScrollTrigger from "gsap/ScrollTrigger";
+
+	import BirdTMI from "$images/studio/bird-tmi.jpg?webp";
+	import FlowerP from "$images/studio/flower-p.jpg?webp";
+	import MirrorB from "$images/studio/mirror-b.jpg?webp";
+	import PianoHFC from "$images/studio/piano-hfc.jpg?webp";
+	import CityJ from "$images/studio/city-j.jpg?webp";
+	import SnakesI from "$images/studio/snakes-i.jpg?webp";
 
 	export let accent;
 	export let background;
 
-	let frame;
 	let container;
+	let frame;
 	let carousel;
 
-	const scrollOptions = {
-		target: container,
-		offset: ['start -1.5', 'end 1']
-	};
+	function scrollAnimate() {
+		gsap.registerPlugin(ScrollTrigger);
+		if (window.innerWidth > 768) {
+			gsap.to(carousel, {
+				x: "-100vw",
+				scrollTrigger: {
+					trigger: container,
+					scrub: 0.5,
+					start: "top top",
+					end: "bottom bottom",
+				},
+			});
+		}
+	}
 
 	onMount(() => {
-		if (window.innerWidth > 782) {
-			scroll(animate(carousel, { translateX: ['0', '-50%'] }, { easing: glide }), scrollOptions);
-		}
+		setTimeout(scrollAnimate, 1550);
 	});
 </script>
 
-<div class="spacer" />
+<div class="spacer"></div>
 
-<div bind:this={container} class=" h-auto max-w-[100%] md:h-[150vw]">
+<div bind:this="{container}" class=" h-auto max-w-[100%] md:h-[200vw]">
 	<div
-		bind:this={frame}
-		class="max-h-none top-0 max-w-[100%] overflow-hidden pt-16 md:sticky md:max-h-[100vh]"
+		bind:this="{frame}"
+		class="top-0 max-w-[100%] overflow-hidden pt-16 md:sticky md:h-[100vh]"
 		style="background-color:{accent}"
 	>
 		<p
@@ -38,54 +54,47 @@
 		</p>
 
 		<ul
-			bind:this={carousel}
-			class="flex h-auto w-auto flex-col gap-y-1 gap-x-1 pt-1 md:h-[80vh] md:w-[200%] md:flex-row"
+			bind:this="{carousel}"
+			class="flex h-auto w-auto flex-col gap-y-1 gap-x-1 pt-1 md:h-[80vh] md:w-[200vw] md:flex-row"
 			style="background-color:{background}"
 		>
 			<CarouselLi
-				src="/images/studio/bird-tmi.jpg"
+				src="{BirdTMI}"
 				alt="Watercolor bird, confident and flying."
 				title="These Makeshift Idiotika"
 				subtitle="A shifting, tilting world."
-				href="/studio/tmi"
+				href="studio/tmi"
 			/>
 			<CarouselLi
-				src="/images/studio/flower-p.jpg"
+				src="{FlowerP}"
 				alt="A flower in the darkness."
 				title="Postcards"
 				subtitle="Sudden stories."
-				href="/studio/postcards"
+				href="studio/postcards"
 			/>
 			<CarouselLi
-				src="/images/studio/mirror-b.jpg"
+				src="{MirrorB}"
 				alt="A girl touching her face in a mirror."
 				title="Betson, Ohio"
 				subtitle="Novel in Calendar"
-				href="/studio/betson"
+				href="studio/betson"
 			/>
 			<CarouselLi
-				src="/images/studio/piano-hfc.jpg"
+				src="{PianoHFC}"
 				alt="A relatively destroyed grand piano in front of the ruins of a building."
 				title="Hymns for Calliope"
 				subtitle="Poems"
 				href="/studio/hfc"
 			/>
 			<CarouselLi
-				src="/images/studio/city.jpg"
+				src="{CityJ}"
 				alt="A city lit up at night."
 				title="Jukebox"
 				subtitle="Music compositions."
 				href="/studio/jukebox"
 			/>
 			<CarouselLi
-				src="/images/studio/house-hfc.jpg"
-				alt="A black and white house, looking about 100 years old."
-				title="Blog"
-				subtitle="Thoughts about anything."
-				href="/studio/blog"
-			/>
-			<CarouselLi
-				src="/images/studio/snakes-tmi.jpg"
+				src="{SnakesI}"
 				alt="A bunch of worms poking up through a surreal landscape."
 				title="Illustrations"
 				subtitle="Visual art."

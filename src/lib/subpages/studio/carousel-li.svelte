@@ -1,40 +1,77 @@
 <script>
-	export let src = '';
-	export let alt = '';
-	export let title = '';
-	export let subtitle = '';
-	export let href = '#';
+	import gsap from "gsap";
+	import ScrollTrigger from "gsap/ScrollTrigger";
+	import { onMount } from "svelte";
 
-	let tempRef = '#';
-	let clicked = false;
+	export let src = "";
+	export let alt = "";
+	export let title = "";
+	export let subtitle = "";
+	export let href = "";
 
-	function handleClick() {
-		if (clicked) {
-			window.open(href);
-		}
+	let container;
+	let textContainer;
 
-		if (window.innerWidth > 782) {
-			window.open(href);
-		} else {
-			clicked = true;
+	function animateBlack() {
+		if (window.innerWidth <= 768) {
+			gsap.registerPlugin(ScrollTrigger);
+			const tl = gsap.timeline();
+			tl.fromTo(
+				textContainer,
+				{
+					opacity: 0,
+				},
+				{
+					opacity: 1,
+					scrollTrigger: {
+						trigger: container,
+						scrub: true,
+						start: "-100vh 80%",
+						end: "top 50%"
+					},
+				}
+			).fromTo(
+				textContainer,
+				{
+					opacity: 1,
+				},
+				{
+					opacity: 0,
+					scrollTrigger: {
+						trigger: container,
+						scrub: true,
+						start: "-100vh 10%",
+						end: "top -80%",
+					},
+				}
+			);
 		}
 	}
+
+	onMount(() => {
+		setTimeout(animateBlack, 1550);
+	});
 </script>
 
 <a
-	href={tempRef}
-	on:click|preventDefault={handleClick}
-	class="group relative flex h-[100%] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover transition-all duration-700 ease-in-out hover:grow-[3] md:w-auto"
+	href="{href}"
+	bind:this="{container}"
+	class="group relative flex h-[30vh] md:h-[100%] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover md:transition-all md:duration-500 ease-in-out md:hover:grow-[3] md:w-auto"
 >
-	<img {src} {alt} class="absolute z-0 w-[100%]" />
+	<img src="{src}" alt="{alt}" class="absolute z-0 w-[100%]" />
 	<div
-		class="invisible z-10 h-[100%] w-[100%] bg-black bg-opacity-50 px-10 py-5 opacity-0 transition-all duration-700 group-hover:visible group-hover:opacity-100 md:h-auto md:w-auto"
+		bind:this="{textContainer}"
+		class="md:invisible z-10 h-[100%] w-[100%] bg-black bg-opacity-50 px-10 py-5 md:opacity-0 md:transition-all md:duration-500 md:group-hover:visible md:group-hover:opacity-100 md:h-auto md:w-auto"
 	>
 		<p
-			class="text-sm font-thin text-white transition-all duration-700 group-hover:text-3xl md:group-hover:text-4xl"
+			class="md:text-sm font-thin text-white md:transition-all md:duration-500 md:group-hover:text-4xl"
 		>
 			{title}
 		</p>
-		<p class="text-sm text-white transition-all duration-700 md:group-hover:text-2xl">{subtitle}</p>
+		<p
+			class="md:text-sm text-white md:transition-all md:duration-500 md:group-hover:text-2xl"
+		>
+			{subtitle}
+		</p>
 	</div>
 </a>

@@ -16,7 +16,7 @@ const config = {
 				'blog-bg': '#838391',
 				'connect-bg': '#eeeded',
 
-				'about-bg-hover':'#7f6e9c',
+				'about-bg-hover': '#7f6e9c',
 				'studio-bg-hover': '#99a6cc',
 				'commissions-bg-hover': '#c9a4a3',
 				'blog-bg-hover': '#67647a',
