@@ -3,6 +3,7 @@
 	import { onMount } from "svelte";
 	import gsap from "gsap";
 	import ScrollTrigger from "gsap/ScrollTrigger";
+	import { state } from "../../stores";
 
 	import BirdTMI from "$images/studio/bird-tmi.jpg?webp";
 	import FlowerP from "$images/studio/flower-p.jpg?webp";
@@ -34,7 +35,11 @@
 	}
 
 	onMount(() => {
-		setTimeout(scrollAnimate, 1550);
+		if ($state !== "home") {
+			setTimeout(scrollAnimate, 1550);
+			return;
+		}
+		setTimeout(scrollAnimate, 50);
 	});
 </script>
 
@@ -66,13 +71,6 @@
 				href="studio/tmi"
 			/>
 			<CarouselLi
-				src="{FlowerP}"
-				alt="A flower in the darkness."
-				title="Postcards"
-				subtitle="Sudden stories."
-				href="studio/postcards"
-			/>
-			<CarouselLi
 				src="{MirrorB}"
 				alt="A girl touching her face in a mirror."
 				title="Betson, Ohio"
@@ -94,11 +92,18 @@
 				href="/studio/jukebox"
 			/>
 			<CarouselLi
-				src="{SnakesI}"
+				src="{FlowerP}"
 				alt="A bunch of worms poking up through a surreal landscape."
 				title="Illustrations"
 				subtitle="Visual art."
 				href="/studio/illustrations"
+			/>
+			<CarouselLi
+				src="{SnakesI}"
+				alt="A flower in the darkness."
+				title="Postcards"
+				subtitle="Sudden stories."
+				href="studio/postcards"
 			/>
 		</ul>
 	</div>
