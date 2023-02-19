@@ -209,7 +209,7 @@
 	</div>
 	<div class="spacer"></div>
 	<div class="villain">
-		<div>
+		<div id="form">
 			<Form accent="{accent}" />
 		</div>
 	</div>
@@ -396,6 +396,7 @@
 		background-size: cover;
 		background-repeat: no-repeat;
 		padding: 10em clamp(2em, 20vw, 20em);
+		min-height: 100vh;
 
 		& div {
 			width: 100%;

@@ -38,7 +38,7 @@
 
 <div
 	bind:this="{container}"
-	class="[&>*]:opacity-0 pt-40 pb-20 min-h-[100vh]"
+	class="[&>*]:opacity-0 pt-40 min-h-[100vh]"
 	style="background-color: {background}"
 >
 	<div
