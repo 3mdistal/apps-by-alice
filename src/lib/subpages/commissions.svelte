@@ -87,7 +87,6 @@
 			const tl = gsap.timeline({
 				scrollTrigger: {
 					trigger: descriptions,
-					markers: { startColor: "green", endColor: "red" },
 					scrub: true,
 					end: "bottom 50%",
 				},
