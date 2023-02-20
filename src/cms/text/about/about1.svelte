@@ -20,7 +20,13 @@
 <p>
     This website, as you might notice, is incomplete. I lovingly call it the
     eternal beta. As a solo designer and developer who thrives taking on complex
-    ideas, I might never iron out everything, but I'll always be improving.
+    ideas, I might never iron out everything, but I'll <a
+        style="color:{accent}"
+        class="hover:underline font-medium"
+        href="https://github.com/3mdistal/portfolio"
+        rel="noreferrer"
+        target="_blank">always be improving</a
+    >.
 </p>
 
 <p>
