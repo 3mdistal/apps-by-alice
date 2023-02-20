@@ -1,7 +1,8 @@
 <script>
 	import Form from "../partials/form.svelte";
 
-	import { animate, inView, stagger, timeline } from "motion";
+	import gsap from "gsap";
+	import ScrollTrigger from "gsap/ScrollTrigger";
 	import { onMount } from "svelte";
 
 	export let accent;
@@ -13,74 +14,110 @@
 	let ambitious;
 	let descriptions;
 
-	onMount(() => {
-		inView(heroText, () => {
-			animate(
-				heroText,
-				{ opacity: [0, 1], scale: [1.5, 1] },
-				{ duration: 1, delay: 0.25 }
-			);
+	function heroAnimation() {
+		gsap.from(heroText, {
+			scrollTrigger: {
+				trigger: heroText,
+				scrub: true,
+				end: "bottom 70%",
+			},
+			opacity: 0,
+			scale: 1.5,
+			duration: 1,
 		});
+	}
 
-		const header_sequence = [
-			[header, { opacity: [0, 1] }, { duration: 0.5 }],
-			[
+	function headerAnimation() {
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: header,
+				scrub: true,
+				end: "bottom 30%",
+			},
+		});
+		tl.from(header, { opacity: 0, duration: 0.5 })
+			.from(
 				header.querySelector("img"),
-				{ opacity: [0, 1], scale: [0.6, 1] },
-				{ duration: 0.5, easing: "ease-in-out" },
-			],
-			[
+				{
+					opacity: 0,
+					scale: 0.6,
+					duration: 0.5,
+				},
+				"<"
+			)
+			.from(
 				header.querySelectorAll("p"),
-				{ opacity: [0, 1] },
-				{ delay: stagger(0.25), duration: 1 },
-			],
-		];
-
-		inView(header, () => {
-			timeline(header_sequence);
-		});
-
-		const truth_sequence = [
-			[
-				truth.querySelector("h2"),
-				{ opacity: [0, 0.85], y: [-100, 0] },
-				{ duration: 0.5 },
-			],
-			[
-				truth.querySelector(".heading"),
-				{ opacity: [0, 1], x: [50, 0] },
-				{ duration: 0.5, delay: 0.5 },
-			],
-			[
-				truth.querySelectorAll("p:not(.heading)"),
-				{ opacity: [0, 0.9], y: [50, 0] },
-				{ duration: 1, delay: stagger(0.25, { start: 1 }) },
-			],
-		];
-
-		inView(truth, () => {
-			timeline(truth_sequence, { delay: 0.5 });
-		});
-
-		inView(ambitious, () => {
-			animate(
-				ambitious,
-				{ opacity: [0, 1], scaleX: [0.8, 1] },
-				{ duration: 1, delay: 0.5 }
+				{ opacity: 0, stagger: 0.25, duration: 1 },
+				"<"
 			);
-		});
+	}
 
-		const descriptions_sequence = [
-			[
-				descriptions.querySelectorAll("*"),
-				{ opacity: [0, 1] },
-				{ delay: stagger(0.25), duration: 1 },
-			],
-		];
-
-		inView(descriptions, () => {
-			timeline(descriptions_sequence);
+	function truthsAnimation() {
+		const tl = gsap.timeline({
+			scrollTrigger: {
+				trigger: truth,
+				scrub: true,
+				end: "70% 50%",
+			},
 		});
+		tl.from(truth.querySelector("h2"), { opacity: 0, y: -100 }, "<")
+			.from(truth.querySelector(".heading"), { opacity: 0, x: -50 }, "<")
+			.from(
+				truth.querySelectorAll("p:not(.heading)"),
+				{
+					opacity: 0,
+					y: 50,
+					stagger: 0.25,
+				},
+				"<"
+			);
+	}
+
+	function ambitiousAnimation() {
+		gsap.from(ambitious, {
+			opacity: 0,
+			scale: 0.8,
+			scrollTrigger: { trigger: ambitious, scrub: true },
+			end: "bottom 20%",
+		});
+	}
+
+	function descriptionsAnimation() {
+		if (window.innerWidth > 768) {
+			const tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: descriptions,
+					scrub: true,
+					end: "bottom 50%",
+				},
+			});
+			tl.from(descriptions.querySelectorAll(".text"), {
+				opacity: 0,
+				y: -100,
+				stagger: 0.25,
+			}).from(
+				descriptions.querySelectorAll(".image"),
+				{
+					opacity: 0,
+					y: 100,
+					stagger: 0.1,
+				},
+				"<"
+			);
+		}
+	}
+
+	function animateAll() {
+		gsap.registerPlugin(ScrollTrigger);
+		heroAnimation();
+		headerAnimation();
+		truthsAnimation();
+		ambitiousAnimation();
+		descriptionsAnimation();
+	}
+
+	onMount(() => {
+		setTimeout(animateAll, 1550);
 	});
 </script>
 
