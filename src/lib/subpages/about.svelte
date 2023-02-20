@@ -4,9 +4,9 @@
 	import About1 from "$text/about/about1.svelte";
 	import About2 from "$text/about/about2.md";
 	import About3 from "$text/about/about3.svelte";
-	import AuthorPhoto from "$images/about/author-photo.jpg?webp"
-	import Mirror from "$images/about/mirror.jpeg?webp"
-	import Owl from "$images/about/owl.png?webp"
+	import AuthorPhoto from "$images/about/author-photo.jpg?webp";
+	import Mirror from "$images/about/mirror.jpeg?webp";
+	import Owl from "$images/about/owl.png?webp";
 
 	export let accent;
 </script>
@@ -23,7 +23,7 @@
 	</svelte:fragment>
 	<img
 		slot="image"
-		src={Owl}
+		src="{Owl}"
 		alt="A painting of a Screech Owl staring eerily at the viewer. Painting by Alice Alexandra Moore."
 	/>
 </SubpageContent>
@@ -38,11 +38,7 @@
 	<svelte:fragment slot="text">
 		<About2 />
 	</svelte:fragment>
-	<img
-		slot="image"
-		src={AuthorPhoto}
-		alt="Alice Alexandra Moore."
-	/>
+	<img slot="image" src="{AuthorPhoto}" alt="Alice Alexandra Moore." />
 </SubpageContent>
 
 <div class="spacer"></div>
@@ -52,11 +48,11 @@
 		>why do i limit my definition of meaningful?</svelte:fragment
 	>
 	<svelte:fragment slot="text">
-		<About3 {accent}/>
+		<About3 accent="{accent}" />
 	</svelte:fragment>
 	<img
 		slot="image"
-		src={Mirror}
+		src="{Mirror}"
 		alt="Painting of a person sitting, holding a mirror. By Alice Alexandra Moore."
 	/>
 </SubpageContent>
@@ -70,12 +66,23 @@
 	<div
 		class="flex md:max-w-[80%] max-w-none justify-center flex-wrap md:flex-nowrap"
 	>
-		<p class="md:basis-1/2 max-w-[80%]">
-			Though I have plans of fuller, richer ways to engage with the work
-			here—even to contribute—this is what I have for now. My ears are
-			open, and as such, I may take my time to consider before replying.
-			I'll get back to you as I'm able.
-		</p>
+		<div class="md:basis-1/2 max-w-[80%]">
+			<p>
+				Though I have plans of fuller, richer ways to engage with the
+				work here—even to contribute—this is what I have for now. My
+				ears are open, and as such, I may take my time to consider
+				before replying. I'll get back to you as I'm able.
+			</p>
+			<p>
+				Also, if you have ideas for the site or notice any bugs, please <a
+					class="font-medium hover:underline"
+					style="color: {accent}"
+					href="https://github.com/3mdistal/portfolio"
+					rel="noreferrer"
+					target="_blank">let me know on my Github</a
+				> or socials.
+			</p>
+		</div>
 		<div class="md:basis-1/2">
 			<Socials />
 		</div>
