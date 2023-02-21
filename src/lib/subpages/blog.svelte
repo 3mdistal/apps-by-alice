@@ -13,16 +13,20 @@
     </h3>
     <div>
         <p>
-            <a class="hover:underline" href="/blog/on-launching"
-                >On Launching (Officially) This Site</a
+            <a
+                data-sveltekit-preload-code="eager"
+                class="hover:underline"
+                href="/blog/on-launching">On Launching (Officially) This Site</a
             >
         </p>
         <p>21 Feb 2023</p>
     </div>
     <div>
         <p>
-            <a class="hover:underline" href="/blog/coming-soon"
-                >Blog Coming Soon!</a
+            <a
+                data-sveltekit-preload-code="eager"
+                class="hover:underline"
+                href="/blog/coming-soon">Blog Coming Soon!</a
             >
         </p>
         <p>01 Feb 2023</p>

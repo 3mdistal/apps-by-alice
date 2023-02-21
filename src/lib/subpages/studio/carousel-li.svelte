@@ -54,6 +54,7 @@
 </script>
 
 <a
+	data-sveltekit-preload-code="eager"
 	href="{href}"
 	bind:this="{container}"
 	class="group relative flex h-[30vh] md:h-[100%] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover md:transition-all md:duration-500 ease-in-out md:hover:grow-[3] md:w-auto"
