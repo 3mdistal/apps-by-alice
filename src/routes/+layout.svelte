@@ -1,6 +1,7 @@
 <script>
 	import "../app.css";
 	import Logo from "../cms/images/logo/logo.png";
+	import OGImage from "$images/logo/OG-image.jpeg"
 	import Svgs from "../lib/icons/svgs.svelte";
 </script>
 
@@ -30,7 +31,7 @@
 		property="og:description"
 		content="The studio of Alice Alexandra Moore. Creative work, ramblings, commissions and more."
 	/>
-	<meta property="og:image" content="{Logo}" />
+	<meta property="og:image" content="{OGImage}" />
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image" />
@@ -41,7 +42,7 @@
 		name="twitter:description"
 		content="The studio of Alice Alexandra Moore. Creative work, ramblings, commissions and more."
 	/>
-	<meta name="twitter:image" content="{Logo}" />
+	<meta name="twitter:image" content="{OGImage}" />
 
 	<!-- Meta Tags Generated via https://www.opengraph.xyz -->
 </svelte:head>
