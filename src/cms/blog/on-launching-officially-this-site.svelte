@@ -55,11 +55,9 @@
         rel="noreferrer"
         class="font-medium hover:underline"
     >
-        log an issue on Github
-    </a>, and the rest of you can
+        log an issue on Github</a>, and the rest of you can
     <a href="/connect" class="font-medium hover:underline">
-        spam my various inboxes
-    </a>.
+        spam my various inboxes</a>.
 </p>
 
 <p>
