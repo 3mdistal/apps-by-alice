@@ -9,9 +9,9 @@
 </script>
 
 <LandingPage
-    header="unearth some thoughts (soon)."
+    header="unearth some thoughts."
     description="I'll be using the blog to keep you up to date on creative
-			work, site revisions, and life updates."
+			work, site revisions, and life updates. Check out the posts below!"
     src="{Bird}"
     alt="A painting of a colorful bird in flight."
     flexReverse
