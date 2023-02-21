@@ -5,16 +5,16 @@
 
 <p>But now I'm officially launching. So, what's new?</p>
 
-<p>Article contents:</p>
+<br />
 
-<ol>
-    <li>Why is there a new site?</li>
-    <li>Nerding out about design choices</li>
-    <li>What to expect from the blog</li>
-    <li>Waxing philosophical about creating in public</li>
+<ol class="[&_a]:font-medium hover:[&_a]:underline">
+    <li><a href="#1">Why is there a new site?</a></li>
+    <li><a href="#2">Nerding out about design choices</a></li>
+    <li><a href="#3">What to expect from the blog</a></li>
+    <li><a href="#4">Waxing philosophical about creating in public</a></li>
 </ol>
 
-<h2>Why is there a new site?</h2>
+<h2 id="1">Why is there a new site?</h2>
 
 <p>
     I started this site in Summer 2022, after hitting the creative limitations
@@ -49,9 +49,17 @@
 
 <p>
     That doesn't, by any stretch of the imagination, mean you won't find bugs.
-    I'd really appreciate any feedback on broken shit; you tech folks can log an
-    issue on Github [link to issues], and the rest of you can spam my various
-    inboxes [link to connect].
+    I'd really appreciate any feedback on broken shit; you tech folks can <a
+        href="https://github.com/3mdistal/portfolio"
+        target="_blank"
+        rel="noreferrer"
+        class="font-medium hover:underline"
+    >
+        log an issue on Github
+    </a>, and the rest of you can
+    <a href="/connect" class="font-medium hover:underline">
+        spam my various inboxes
+    </a>.
 </p>
 
 <p>
@@ -59,7 +67,7 @@
     developer velocity.
 </p>
 
-<h2>Nerding out about design choices</h2>
+<h2 id="2">Nerding out about design choices</h2>
 
 <p>I want a site that makes people smile.</p>
 
@@ -133,13 +141,17 @@
 
 <p>
     Luckily, in all of this, I have so many great inspirations to look to. I'm
-    constantly on tech Twitter and awwwards [link] harvesting new techniques.
-    Despite what I've said above about sites feeling stale, we live in a wealth
-    of ideas, if you know where to look. I'll write more about inspirations in
-    the near future.
+    constantly on tech Twitter and <a
+        href="https://www.awwwards.com"
+        target="_blank"
+        rel="noreferrer"
+        class="font-medium hover:underline">Awwwards</a
+    > harvesting new techniques. Despite what I've said above about sites feeling
+    stale, we live in a wealth of ideas, if you know where to look. I'll write more
+    about inspirations in the near future.
 </p>
 
-<h2>What to expect from the blog</h2>
+<h2 id="3">What to expect from the blog</h2>
 
 <p>
     I've been even quieter than usual the past two years on socials, besides the
@@ -174,7 +186,7 @@
     newsletter, but maybe that's too 2010s. Let me know what you prefer!
 </p>
 
-<h2>Waxing philosophical about creating in public</h2>
+<h2 id="4">Waxing philosophical about creating in public</h2>
 
 <p>
     For those of you who were readers of my old site, you may be asking, “Why
@@ -197,15 +209,14 @@
 
 <p>
     What do I mean by this? My poems often have long lines or tricky formatting.
-    I've sometimes photoshopped stories to creatively destroy the text [link to
-    the Tinker]. While journals have graciously accepted these experimental
-    pieces, I have seen a lot of compromises made to fit the works in print or
-    on the web.
+    I've sometimes photoshopped stories to creatively destroy the text. While
+    journals have graciously accepted these experimental pieces, I have seen a
+    lot of compromises made to fit the works in print or on the web.
 </p>
 
 <p>
-    Also, I don't want to share work when it feels <em>stale</em> to me. Writers often
-    wait years before seeing work accepted, and longer before it's actually
+    Also, I don't want to share work when it feels <em>stale</em> to me. Writers
+    often wait years before seeing work accepted, and longer before it's actually
     published. Often many years. By the time the readers engages, the author has
     moved on.
 </p>
@@ -251,7 +262,11 @@
 </p>
 
 <style lang="scss">
-    li {
+    ol > li {
+        list-style-type: lower-roman;
+        margin-left: 2em;
+    }
+    ul > li {
         list-style-type: disc;
         margin-left: 2em;
     }
