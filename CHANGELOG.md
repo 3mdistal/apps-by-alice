@@ -1,5 +1,5 @@
 ## 0.2.0
-*Changes in progress. Hoping to complete by March 1, 2023.*
+*21 February 2023*
 
 **Features**
 - Notion backend for commissions form, including email notification system.
