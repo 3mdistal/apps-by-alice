@@ -12,7 +12,10 @@
   }
 
   p {
-    @apply text-xl lg:text-2xl md:text-xl lg:leading-relaxed
+    @apply text-xl lg:text-2xl lg:leading-relaxed
+  }
+  li {
+    @apply text-xl lg:text-2xl lg:leading-relaxed mb-[1em]
   }
 }
 
