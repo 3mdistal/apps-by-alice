@@ -44,10 +44,11 @@
 </script>
 
 <a
+	data-sveltekit-preload-code="hover"
 	href="{name}"
 	name="{name}"
 	class="homepage-section h-[100%] absolute bottom-0 w-[100%] {name} hover:saturate-150 hover:brightness-95 hover:hue-rotate-[5deg] focus:saturate-[175%] focus:brightness-[85%] focus:hue-rotate-[10deg]"
-	style:background
+	style:background="{background}"
 	bind:this="{section}"
 	on:mouseenter="{handleMouseEnter}"
 	on:mouseleave="{handleMouseLeave}"
