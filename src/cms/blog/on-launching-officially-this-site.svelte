@@ -104,7 +104,7 @@
     <li>Curious what the site is? About.</li>
     <li>Came here to work with me? Commissions.</li>
     <li>Want to read the blog? . . . Blog.</li>
-    <li>Just wanna chat? Connect</li>
+    <li>Just wanna chat? Connect.</li>
 </ul>
 
 <p>
@@ -128,10 +128,11 @@
         page give me the palette I'd like to smear over the rest of the site.
     </li>
     <li>
-        <strong>Shape language</strong> is another aspect of the site that I want
-        to push. It's clear on the homepage but quickly lost elsewhere. This will
-        just take time and technical skill. Working with the shapes on the homepage
-        wasn't an easy programming task (as anyone who's worked with `clip-path`
+        <strong>Shape language</strong> is another aspect of the site that I
+        want to push. It's clear on the homepage but quickly lost elsewhere.
+        This will just take time and technical skill. Working with the shapes on
+        the homepage wasn't an easy programming task (as anyone who's worked
+        with <code>clip-path</code>
         might know). I need to find more efficient ways to translate weird shapes
         to all screen sizes.
     </li>
