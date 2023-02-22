@@ -23,7 +23,8 @@ const config = {
 				'connect-bg-hover': '#d6c9c7'
 			},
 			fontFamily: {
-				'sans': ['Lato', 'Arial', 'sans-serif']
+				'sans': ['Lato', 'Arial', 'sans-serif'],
+				'mono': ['Cutive Mono', 'mono']
 			},
 			fontSize: {
 				dynamicHeader: "clamp(1.5rem, 3vw, 4rem)"
