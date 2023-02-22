@@ -33,9 +33,15 @@
 <aside>
     <p>
         💡 This site is made entirely with SvelteKit deployed to Vercel. You can
-        visit my Github to see the code and quickly realize that everything is
-        held together by sheer willpower. The `readme` and `changelog` will give
-        you a better picture of my technical hopes.
+        <a
+            href="https://github.com/3mdistal/portfolio"
+            target="_blank"
+            rel="noreferrer"
+            class="font-medium hover:underline">visit my Github</a
+        >
+        to see the code and quickly realize that everything is held together by sheer
+        willpower. The <code>readme</code> and <code>changelog</code> will give you
+        a better picture of my technical hopes.
     </p>
     <p></p>
 </aside>
@@ -55,9 +61,11 @@
         rel="noreferrer"
         class="font-medium hover:underline"
     >
-        log an issue on Github</a>, and the rest of you can
+        log an issue on Github</a
+    >, and the rest of you can
     <a href="/connect" class="font-medium hover:underline">
-        spam my various inboxes</a>.
+        spam my various inboxes</a
+    >.
 </p>
 
 <p>
@@ -275,5 +283,9 @@
         & p {
             scale: 0.8;
         }
+    }
+    code,
+    a {
+        color: hsl(185, 64%, 78%);
     }
 </style>

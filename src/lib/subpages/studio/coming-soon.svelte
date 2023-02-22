@@ -13,7 +13,7 @@
     out:fade="{{ duration: 500 }}"
     bind:this="{container}"
 >
-    <h1 class="mb-2 text-5xl md:text-7xl">
+    <h1 class="mb-2 text-5xl md:text-7xl text-white">
         <slot name="title" />
     </h1>
     <p class="mb-[1em] max-w-[30ch] text-2xl md:text-4xl">
@@ -21,16 +21,24 @@
     </p>
     <hr class="my-10 mx-10 opacity-50" />
     <p>
-        <em class="mr-4 text-inherit">tl;dr</em>
+        <em class="mr-4 text-white font-medium">tl;dr</em>
         <slot name="summary" />
     </p>
     <hr class="my-10 mx-10 opacity-50" />
-    <div class="max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em] [&_*]:text-inherit">
+    <div
+        class="max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em] [&_*]:text-inherit"
+    >
         <slot name="text" />
     </div>
     <p class="text-right text-4xl md:text-6xl">
-        <a on:click|preventDefault="{back}" href="/" class="inline-block p-6"
+        <a on:click|preventDefault="{back}" href="/" class="inline-block text-white p-6"
             >back.</a
         >
     </p>
 </div>
+
+<style lang="scss">
+    * {
+        color: #e1e1e1;
+    }
+</style>
