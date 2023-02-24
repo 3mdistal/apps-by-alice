@@ -15,8 +15,9 @@
   let summary = type;
 </script>
 
-<ComingSoon data="{data}">
-  <svelte:fragment slot="title">{title}</svelte:fragment>
-  <svelte:fragment slot="subtitle">{subtitle}</svelte:fragment>
-  <svelte:fragment slot="summary">{summary}</svelte:fragment>
-</ComingSoon>
+<ComingSoon
+  data="{data}"
+  title="{title}"
+  subtitle="{subtitle}"
+  summary="{summary}"
+/>

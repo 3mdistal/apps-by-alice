@@ -5,11 +5,11 @@
   let container;
 
   export let data;
+  export let title;
+  export let subtitle;
+  export let summary;
 
   let {
-    post: {
-      results: [{ type, paragraph }],
-    },
     post: { results },
   } = data;
 
@@ -27,15 +27,15 @@
   bind:this="{container}"
 >
   <h1 class="mb-2 text-5xl md:text-7xl text-white">
-    <slot name="title" />
+    {title}
   </h1>
   <p class="mb-[1em] max-w-[30ch] text-2xl md:text-4xl">
-    <slot name="subtitle" />
+    {subtitle}
   </p>
   <hr class="my-10 mx-10 opacity-50" />
   <p>
     <em class="mr-4 text-white font-medium">tl;dr</em>
-    <slot name="summary" />
+    {summary}
   </p>
   <hr class="my-10 mx-10 opacity-50" />
   <div
