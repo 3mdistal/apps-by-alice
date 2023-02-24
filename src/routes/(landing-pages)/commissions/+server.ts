@@ -1,17 +1,14 @@
 import { addCommission } from "$lib/notion/notion";
-import type { RequestEvent } from "@sveltejs/kit";
+import type { RequestHandler } from "@sveltejs/kit";
+import { json } from "@sveltejs/kit";
 
-export const POST = async (event: RequestEvent) => {
-  const data = await event.request.formData();
-  const name = data.get("name");
-  const email = data.get("email");
-  const description = data.get("description");
+export const POST: RequestHandler = async ({ request }) => {
+  const formData = await request.formData();
+  const name = String(formData.get("name"));
+  const email = String(formData.get("email"));
+  const description = String(formData.get("description"));
 
   const stream = await addCommission(name, email, description);
 
-  return new Response(stream, {
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
+  return json(stream);
 };
