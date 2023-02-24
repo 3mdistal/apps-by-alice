@@ -6,6 +6,6 @@ Lately, some things have happened in my life that make me comfortable being a li
 
 There's nothing wrong with that. I actually quite like my coworkers and my job. But I do find myself with a lot of extra opinions that have no place to go. Opinions that tend to range from the creative sphere to the technical to the philosophical and back again all in one sitting.
 
-Which means they're not really appropriate to publish anywhere but my own blog, where you, dear reader, can choose to plumb the depths or skip it entirely. I like the idea of writing a bit where I'm not beholden to any rules. Where I can say *fuck* in the same sentence I wax all too eloquent about a recent graphic novel. Where I can be me.
+Which means they're not really appropriate to publish anywhere but my own blog, where you, dear reader, can choose to plumb the depths or skip it entirely. I like the idea of writing a bit where I'm not beholden to any rules. Where I can say _fuck_ in the same sentence I wax all too eloquent about a recent graphic novel. Where I can be me.
 
 So, stay tuned. Like a lot of things on the site, I'll be developing this for a bit before I release content. Just because I get to be myself here doesn't mean I won't be editing.
