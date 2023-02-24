@@ -1,12 +1,12 @@
 <script lang="ts">
-  import { onMount } from "svelte";
-
   export let accent: string;
   export let data;
 
-  onMount(() => {
-    console.dir(data.post.results[0].properties.Name.title[0].text);
-  });
+  let {
+    post: { results },
+  } = data;
+
+  console.log(results[0].properties["Formatted Publication Date"]);
 </script>
 
 <div
@@ -18,27 +18,19 @@
   >
     Posts
   </h3>
-  {#each data.post.results as result}
+  {#each results as result}
     <div>
       <p>
         <a
-          data-sveltekit-preload-code="eager"
-          class="hover:underline"
-          href="/blog/on-launching"
+          data-sveltekit-preload-code="hover"
+          class="hover:underline active:text-gray-400"
+          href="blog/{result.properties.Slug.url}"
           >{result.properties.Name.title[0].text.content}</a
         >
       </p>
-      <p>21 Feb 2023</p>
+      <p>
+        {result.properties["Formatted Publication Date"].formula.string}
+      </p>
     </div>
   {/each}
-  <!-- <div>
-    <p>
-      <a
-        data-sveltekit-preload-code="eager"
-        class="hover:underline"
-        href="/blog/coming-soon">Blog Coming Soon!</a
-      >
-    </p>
-    <p>01 Feb 2023</p>
-  </div> -->
 </div>

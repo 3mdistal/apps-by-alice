@@ -11,6 +11,8 @@ const notion = new Client({ auth: NOTION_KEY });
 const commissionsDatabaseID = COMMISSIONS_DB;
 const blogsDatabaseID = BLOGS_DB;
 
+const today = new Date(Date.now()).toISOString();
+
 export async function addCommission(
   name: string,
   email: string,
@@ -63,16 +65,22 @@ export async function addCommission(
   }
 }
 
-export async function getBlogs() {
+export async function getBlogs(slug?: string) {
   try {
     const response = await notion.databases.query({
       database_id: blogsDatabaseID,
       filter: {
         and: [
           {
-            property: "Status",
-            select: {
-              equals: "Published",
+            property: "Publication Date",
+            date: {
+              on_or_before: today,
+            },
+          },
+          {
+            property: "Slug",
+            url: {
+              equals: slug ? slug : "",
             },
           },
         ],
@@ -85,6 +93,7 @@ export async function getBlogs() {
       ],
     });
     console.log(response);
+    console.log(response.results[0].id);
     return response;
   } catch (error) {
     let errorMessage = "Posting to commissions failed generically.";
@@ -95,26 +104,44 @@ export async function getBlogs() {
   }
 }
 
-// export async function addSubscriber(name, email) {
-//     try {
-//         const response = await notion.pages.create({
-//             parent: {database_id: subscriberDatabaseID },
-//             properties: {
-//                 title: {
-//                     title: [
-//                         {
-//                             "text": {
-//                                 "content": name
-//                             }
-//                         }
-//                     ]
-//                 },
-//                 Email: {
-//                     email: email
-//                 }
-//             }
-//         })
-//     } catch (error) {
-//         console.error(error.body)
-//     }
-// }
+export async function getContent(slug?: string) {
+  try {
+    const query = await notion.databases.query({
+      database_id: blogsDatabaseID,
+      filter: {
+        and: [
+          {
+            property: "Publication Date",
+            date: {
+              on_or_before: today,
+            },
+          },
+          {
+            property: "Slug",
+            url: {
+              equals: slug ? slug : "",
+            },
+          },
+        ],
+      },
+      sorts: [
+        {
+          direction: "descending",
+          property: "Publication Date",
+        },
+      ],
+    });
+
+    const content = await notion.blocks.children.list({
+      block_id: query.results[0].id,
+    });
+    console.log(content);
+    return content;
+  } catch (error) {
+    let errorMessage = "Posting to commissions failed generically.";
+    if (error instanceof Error) {
+      errorMessage = error.message;
+    }
+    return errorMessage;
+  }
+}
