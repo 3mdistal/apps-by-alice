@@ -12,4 +12,8 @@ export const load: Load = ({ params }) => {
   };
 };
 
-export const prerender = "auto";
+export const config = {
+  isr: {
+    expiration: 60,
+  },
+};
