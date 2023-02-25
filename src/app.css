@@ -4,18 +4,18 @@
 
 @layer components {
   * {
-    @apply font-sans text-gray-800 font-light m-0 p-0
+    @apply font-sans text-gray-800 font-light m-0 p-0;
   }
 
   h2 {
-    @apply text-2xl lg:text-4xl md:text-3xl font-medium mb-[1.5em]
+    @apply text-2xl lg:text-4xl md:text-3xl font-medium mb-[1.5em];
   }
 
   p {
-    @apply text-xl lg:text-2xl lg:leading-relaxed
+    @apply text-xl lg:text-2xl lg:leading-relaxed;
   }
   li {
-    @apply text-xl lg:text-2xl lg:leading-relaxed mb-[1em]
+    @apply text-xl lg:text-2xl lg:leading-relaxed mb-[1em];
   }
 }
 
@@ -24,7 +24,7 @@
 }
 
 h1 {
-  @apply text-lg md:text-2xl lg:text-3xl
+  @apply text-lg md:text-2xl lg:text-3xl;
 }
 
 body {
@@ -32,7 +32,7 @@ body {
 }
 
 img {
-  @apply w-[100%] h-[100%] object-cover
+  @apply w-[100%] h-[100%] object-cover;
 }
 
 @media (hover: none) {
