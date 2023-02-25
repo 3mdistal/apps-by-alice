@@ -1,4 +1,7 @@
 <script lang="ts">
+  import { onMount } from "svelte/types/runtime/internal/lifecycle";
+
+
   export let accent: string;
   export let data;
 
@@ -7,6 +10,14 @@
   } = data;
 
   console.log(results[0].properties["Formatted Publication Date"]);
+
+  onMount(() => {
+    fetch("/blog", {
+    headers: {
+        'Accept': 'application/json',
+        'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs',
+    }
+  })
 </script>
 
 <div
