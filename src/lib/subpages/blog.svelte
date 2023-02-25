@@ -22,7 +22,7 @@
     <div>
       <p>
         <a
-          data-sveltekit-preload-code="hover"
+          data-sveltekit-preload-code="viewport"
           data-sveltekit-preload-data="hover"
           class="hover:underline active:text-gray-400"
           href="blog/{result.properties.Slug.url}"
