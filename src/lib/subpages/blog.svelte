@@ -27,19 +27,18 @@
   >
     Posts
   </h3>
-  {#each results as result}
+  {#each results as { properties: { Slug: { url }, Name: { title: [{ text: { content: title } }] }, FormattedPublicationDate: { formula: { string: date } } } }}
     <div>
       <p>
         <a
           data-sveltekit-preload-code="viewport"
           data-sveltekit-preload-data="hover"
           class="hover:underline active:text-gray-400"
-          href="blog/{result.properties.Slug.url}"
-          >{result.properties.Name.title[0].text.content}</a
+          href="blog/{url}">{title}</a
         >
       </p>
       <p>
-        {result.properties["Formatted Publication Date"].formula.string}
+        {date}
       </p>
     </div>
   {/each}
