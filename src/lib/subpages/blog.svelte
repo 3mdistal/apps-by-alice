@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte/types/runtime/internal/lifecycle";
+  import { onMount } from "svelte";
 
   export let accent: string;
   export let data;
