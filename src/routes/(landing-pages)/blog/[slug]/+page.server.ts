@@ -15,7 +15,7 @@ export const load: Load = ({ params }) => {
 
 export const config = {
   isr: {
-    expiration: 60,
+    expiration: false,
     bypassToken: BYPASS_TOKEN,
   },
   runtime: "nodejs18.x",
