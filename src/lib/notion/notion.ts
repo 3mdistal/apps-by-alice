@@ -140,7 +140,6 @@ export async function getContent(slug?: string) {
 
     response.push(content);
 
-    console.log(response[0]);
     return response;
   } catch (error) {
     let errorMessage = "Posting to commissions failed generically.";

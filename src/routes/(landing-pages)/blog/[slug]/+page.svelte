@@ -1,5 +1,5 @@
 <script lang="ts">
-  import ComingSoon from "$lib/subpages/studio/coming-soon.svelte";
+  import BlogContent from "$lib/subpages/studio/blog-content.svelte";
   import { onMount } from "svelte";
 
   export let data;
@@ -37,7 +37,7 @@
   });
 </script>
 
-<ComingSoon
+<BlogContent
   results="{results}"
   title="{content}"
   subtitle="{Subtitle}"
