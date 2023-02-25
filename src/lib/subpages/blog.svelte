@@ -23,6 +23,7 @@
       <p>
         <a
           data-sveltekit-preload-code="hover"
+          data-sveltekit-preload-data="hover"
           class="hover:underline active:text-gray-400"
           href="blog/{result.properties.Slug.url}"
           >{result.properties.Name.title[0].text.content}</a
