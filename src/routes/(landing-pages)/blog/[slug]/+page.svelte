@@ -4,20 +4,32 @@
   export let data;
 
   let {
-    post: {
-      results: [{ type, paragraph }],
-    },
-    post: { results },
+    post: [
+      {
+        results: [
+          {
+            properties: {
+              Name: {
+                title: [
+                  {
+                    text: { content },
+                  },
+                ],
+              },
+              Subtitle,
+              Summary,
+            },
+          },
+        ],
+      },
+    ],
+    post: [, { results }],
   } = data;
-
-  let title = type;
-  let subtitle = type;
-  let summary = type;
 </script>
 
 <ComingSoon
-  data="{data}"
-  title="{title}"
-  subtitle="{subtitle}"
-  summary="{summary}"
+  results="{results}"
+  title="{content}"
+  subtitle="{Subtitle}"
+  summary="{Summary}"
 />

@@ -5,3 +5,5 @@ export async function load() {
     post: await getBlogs(),
   };
 }
+
+export const prerender = "true";

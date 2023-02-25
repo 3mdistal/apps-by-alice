@@ -92,8 +92,6 @@ export async function getBlogs(slug?: string) {
         },
       ],
     });
-    console.log(response);
-    console.log(response.results[0].id);
     return response;
   } catch (error) {
     let errorMessage = "Posting to commissions failed generically.";
@@ -106,6 +104,8 @@ export async function getBlogs(slug?: string) {
 
 export async function getContent(slug?: string) {
   try {
+    let response = [];
+
     const query = await notion.databases.query({
       database_id: blogsDatabaseID,
       filter: {
@@ -132,11 +132,16 @@ export async function getContent(slug?: string) {
       ],
     });
 
+    response.push(query);
+
     const content = await notion.blocks.children.list({
       block_id: query.results[0].id,
     });
-    console.log(content);
-    return content;
+
+    response.push(content);
+
+    console.log(response[0]);
+    return response;
   } catch (error) {
     let errorMessage = "Posting to commissions failed generically.";
     if (error instanceof Error) {

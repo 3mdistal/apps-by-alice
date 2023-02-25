@@ -11,3 +11,5 @@ export const load: Load = ({ params }) => {
     post: fetchContent(params.slug),
   };
 };
+
+export const prerender = "auto";

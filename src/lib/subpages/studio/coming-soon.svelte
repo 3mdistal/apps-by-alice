@@ -4,16 +4,10 @@
   import { fade } from "svelte/transition";
   let container;
 
-  export let data;
+  export let results;
   export let title;
   export let subtitle;
   export let summary;
-
-  let {
-    post: { results },
-  } = data;
-
-  console.log(results[0]);
 
   function back() {
     history.back();
@@ -30,12 +24,12 @@
     {title}
   </h1>
   <p class="mb-[1em] max-w-[30ch] text-2xl md:text-4xl">
-    {subtitle}
+    <TextMacro type="{subtitle}" />
   </p>
   <hr class="my-10 mx-10 opacity-50" />
   <p>
     <em class="mr-4 text-white font-medium">tl;dr</em>
-    {summary}
+    <TextMacro type="{summary}" />
   </p>
   <hr class="my-10 mx-10 opacity-50" />
   <div
