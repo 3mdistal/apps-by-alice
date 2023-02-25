@@ -8,8 +8,6 @@
     post: { results },
   } = data;
 
-  console.log(results[0].properties["Formatted Publication Date"]);
-
   onMount(() => {
     fetch("/blog", {
       headers: {

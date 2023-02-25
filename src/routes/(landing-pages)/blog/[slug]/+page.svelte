@@ -1,5 +1,6 @@
 <script lang="ts">
   import ComingSoon from "$lib/subpages/studio/coming-soon.svelte";
+  import { onMount } from "svelte/types/runtime/internal/lifecycle";
 
   export let data;
 
@@ -25,6 +26,15 @@
     ],
     post: [, { results }],
   } = data;
+
+  onMount(() => {
+    fetch(window.location.href, {
+      headers: {
+        Accept: "application/json",
+        "x-prerender-revalidate": "JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs",
+      },
+    });
+  });
 </script>
 
 <ComingSoon
