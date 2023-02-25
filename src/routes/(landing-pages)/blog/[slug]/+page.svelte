@@ -1,6 +1,6 @@
 <script lang="ts">
   import ComingSoon from "$lib/subpages/studio/coming-soon.svelte";
-  import { onMount } from "svelte/types/runtime/internal/lifecycle";
+  import { onMount } from "svelte";
 
   export let data;
 
