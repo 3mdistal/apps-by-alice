@@ -1,31 +1,32 @@
 <script>
-    import Button from "$lib/icons/button.svelte";
-    import Commissions from "$lib/subpages/commissions.svelte";
-    import LandingPage from "$lib/subpages/landing-page.svelte";
-    import Rabbit from "$images/commissions/rabbit-in-hat.png?webp";
+  import Button from "$lib/icons/button.svelte";
+  import Commissions from "$lib/subpages/commissions.svelte";
+  import LandingPage from "$lib/subpages/landing-page.svelte";
+  // @ts-ignore
+  import Rabbit from "$images/commissions/rabbit-in-hat.png?webp";
 
-    const accent = "#642e1a";
-    const background = "#dcc9c6";
+  const accent = "#642e1a";
+  const background = "#dcc9c6";
 </script>
 
-<LandingPage
+<div style="background-color: {background}">
+  <LandingPage
     header="hire me for ambitious projects."
     description="I can help you conjure the ideas you don't know how
-			to get out of thin air. I specialize in organizing difficult
-			to categorize work and creating custom designs and workflows
-			to meet your unique needs."
+                to get out of thin air. I specialize in organizing difficult
+                to categorize work and creating custom designs and workflows
+                to meet your unique needs."
     src="{Rabbit}"
     alt="A painting of a rabbit coming out of a hat."
     accent="{accent}"
-    background="{background}"
->
+  >
     <Button
-        slot="button"
-        text="Let's make it."
-        url="#form"
-        accent="{accent}"
-        background="{background}"
+      slot="button"
+      text="Let's make it."
+      url="#form"
+      accent="{accent}"
+      background="{background}"
     />
-
-    <Commissions accent="{accent}" background="{background}" />
-</LandingPage>
+  </LandingPage>
+  <Commissions accent="{accent}" background="{background}" />
+</div>

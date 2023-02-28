@@ -7,11 +7,14 @@
 }
 
 h1 {
-  @apply mb-2 text-5xl md:text-7xl text-white;
+  color: white;
+  font-size: clamp(2rem, 5vw, 4rem);
+  margin-bottom: 0.25em;
 }
 
 p.subtitle {
-  @apply mb-[1em] max-w-[30ch] text-2xl md:text-4xl text-gray-100;
+  @apply mb-[1em] max-w-[30ch] text-gray-100;
+  font-size: clamp(1.5rem, 3vw, 2rem);
 }
 
 hr {
