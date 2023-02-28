@@ -134,9 +134,13 @@ export async function getContent(slug?: string) {
 
     response.push(query);
 
-    const content = await notion.blocks.children.list({
-      block_id: query.results[0].id,
-    });
+    let content;
+
+    if (query.results[0]?.id) {
+      content = await notion.blocks.children.list({
+        block_id: query.results[0].id,
+      });
+    }
 
     response.push(content);
 
