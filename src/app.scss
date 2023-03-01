@@ -4,6 +4,10 @@
 @tailwind utilities;
 
 @layer components {
+  html {
+    @apply scroll-smooth
+  }
+
   * {
     @apply font-sans text-gray-800 font-light m-0 p-0;
   }

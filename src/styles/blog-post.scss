@@ -33,6 +33,18 @@
     @apply max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em] text-white [&_*]:text-inherit;
   }
 
+  .blog-container .notion-container .toc {
+    @apply my-[2em];
+  }
+
+  .blog-container .notion-container a {
+    @apply font-medium hover:underline text-[#a3e5eb];
+  }
+
+  .blog-container .notion-container code {
+    @apply text-[#a3e5eb]
+  }
+
   .blog-container h2 {
     @apply text-2xl lg:text-4xl md:text-3xl font-medium mt-[2.5em] mb-[1.5em];
   }
