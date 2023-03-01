@@ -2,8 +2,8 @@
   import { state } from "../../stores";
   import gsap from "gsap";
 
-  export let background;
-  export let name;
+  export let background: string;
+  export let name: string;
   export let transitionOutWrapper;
 
   let section;
@@ -57,7 +57,7 @@
 >
   {#if $state === "home" || name}
     <div class="homepage-section-menu-link {name} absolute">
-      <h1>{name}</h1>
+      <h2 class="text-lg md:text-2xl lg:text-3xl font-light">{name}</h2>
     </div>
   {/if}
 </a>
@@ -108,7 +108,7 @@
       right: 20%;
       top: 22%;
 
-      & h1 {
+      & h2 {
         color: #fafafa;
       }
     }

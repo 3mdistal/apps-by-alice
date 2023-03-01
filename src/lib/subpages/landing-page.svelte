@@ -61,11 +61,7 @@
       class="box-border rounded-[5%] border-y-2 py-20 px-5 md:basis-1/2 lg:py-40 lg:px-20"
       style="border-color: {accent}"
     >
-      <h2
-        bind:this="{topHeading}"
-        class="header-2 mb-5"
-        style="color: {accent}"
-      >
+      <h2 bind:this="{topHeading}" class="mb-5" style="color: {accent}">
         {header}
       </h2>
 
