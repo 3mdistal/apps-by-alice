@@ -1,29 +1,29 @@
-<script>
-	import Form from "../partials/form.svelte";
+<script lang="ts">
+	import Form from '../partials/form.svelte';
 
-	import gsap from "gsap";
-	import ScrollTrigger from "gsap/ScrollTrigger";
-	import { onMount } from "svelte";
+	import gsap from 'gsap';
+	import ScrollTrigger from 'gsap/ScrollTrigger';
+	import { onMount } from 'svelte';
 
-	export let accent;
-	export let background;
+	export let accent: string;
+	export let background: string;
 
-	let heroText;
-	let header;
-	let truth;
-	let ambitious;
-	let descriptions;
+	let heroText: HTMLDivElement;
+	let header: HTMLDivElement;
+	let truth: HTMLDivElement;
+	let ambitious: HTMLDivElement;
+	let descriptions: HTMLDivElement;
 
 	function heroAnimation() {
 		gsap.from(heroText, {
 			scrollTrigger: {
 				trigger: heroText,
 				scrub: true,
-				end: "bottom 70%",
+				end: 'bottom 70%'
 			},
 			opacity: 0,
 			scale: 1.5,
-			duration: 1,
+			duration: 1
 		});
 	}
 
@@ -32,24 +32,20 @@
 			scrollTrigger: {
 				trigger: header,
 				scrub: true,
-				end: "bottom 30%",
-			},
+				end: 'bottom 30%'
+			}
 		});
 		tl.from(header, { opacity: 0, duration: 0.5 })
 			.from(
-				header.querySelector("img"),
+				header.querySelector('img'),
 				{
 					opacity: 0,
 					scale: 0.6,
-					duration: 0.5,
+					duration: 0.5
 				},
-				"<"
+				'<'
 			)
-			.from(
-				header.querySelectorAll("p"),
-				{ opacity: 0, stagger: 0.25, duration: 1 },
-				"<"
-			);
+			.from(header.querySelectorAll('p'), { opacity: 0, stagger: 0.25, duration: 1 }, '<');
 	}
 
 	function truthsAnimation() {
@@ -57,19 +53,19 @@
 			scrollTrigger: {
 				trigger: truth,
 				scrub: true,
-				end: "70% 50%",
-			},
+				end: '70% 50%'
+			}
 		});
-		tl.from(truth.querySelector("h2"), { opacity: 0, y: -100 }, "<")
-			.from(truth.querySelector(".heading"), { opacity: 0, x: -50 }, "<")
+		tl.from(truth.querySelector('h2'), { opacity: 0, y: -100 }, '<')
+			.from(truth.querySelector('.heading'), { opacity: 0, x: -50 }, '<')
 			.from(
-				truth.querySelectorAll("p:not(.heading)"),
+				truth.querySelectorAll('p:not(.heading)'),
 				{
 					opacity: 0,
 					y: 50,
-					stagger: 0.25,
+					stagger: 0.25
 				},
-				"<"
+				'<'
 			);
 	}
 
@@ -78,33 +74,34 @@
 			opacity: 0,
 			scale: 0.8,
 			scrollTrigger: { trigger: ambitious, scrub: true },
-			end: "bottom 20%",
+			end: 'bottom 20%'
 		});
 	}
 
 	function descriptionsAnimation() {
-		if (window.innerWidth > 768) {
+		const elements = Array.from(descriptions.children);
+		elements.forEach((description) => {
 			const tl = gsap.timeline({
 				scrollTrigger: {
-					trigger: descriptions,
+					trigger: description,
 					scrub: true,
-					end: "bottom 50%",
-				},
+					end: 'bottom 70%'
+				}
 			});
-			tl.from(descriptions.querySelectorAll(".text"), {
+			tl.from(description.querySelector('.text'), {
 				opacity: 0,
 				y: -100,
-				stagger: 0.25,
+				stagger: 0.25
 			}).from(
-				descriptions.querySelectorAll(".image"),
+				description.querySelector('.image'),
 				{
 					opacity: 0,
 					y: 100,
-					stagger: 0.1,
+					stagger: 0.1
 				},
-				"<"
+				'<'
 			);
-		}
+		});
 	}
 
 	function animateAll() {
@@ -121,17 +118,17 @@
 	});
 </script>
 
-<div class="spacer"></div>
+<div class="spacer" />
 <div class="wrapper">
-	<div class="hero">
-		<div class="text" bind:this="{heroText}">
-			<p style="color: {accent}">
-				Bring your impossible, intangible things.
-			</p>
+	<div
+		class="relative hero w-[100%] h-[100vh] bg-no-repeat bg-cover flex justify-center items-center overflow-hidden bg-[url('/images/commissions/impossible.jpeg')]"
+	>
+		<div class="text" bind:this={heroText}>
+			<p style="color: {accent}">Bring your impossible, intangible things.</p>
 		</div>
 	</div>
-	<div class="spacer"></div>
-	<div class="header" bind:this="{header}" style="border-color: {accent}">
+	<div class="spacer" />
+	<div class="header" bind:this={header} style="border-color: {accent}">
 		<div class="right">
 			<p style="color: {accent}">alice</p>
 			<p style="color: {accent}">alexandra</p>
@@ -146,108 +143,83 @@
 			<p style="color: {accent}">editor</p>
 		</div>
 	</div>
-	<div class="spacer"></div>
-	<div class="truths" bind:this="{truth}" style="background-color: {accent}">
-		<h2 class="header-2">Here are my truths.</h2>
+	<div class="spacer" />
+	<div class="truths" bind:this={truth} style="background-color: {accent}">
+		<h2>Here are my truths.</h2>
 		<div>
-			<p class="header-2 font-light" style="color: {background}">
-				I respect your ideas.
+			<p class="font-medium" style="color: {background}">I respect your ideas.</p>
+			<p style="color: {background}">
+				To me, this is more than a statement. My favorite thing about the process of editing
+				another's work is pulling forward their own voice, their own originality. This stems not
+				from my skill of speaking, but from listening.
 			</p>
 			<p style="color: {background}">
-				To me, this is more than a statement. My favorite thing about
-				the process of editing another's work is pulling forward their
-				own voice, their own originality. This stems not from my skill
-				of speaking, but from listening.
+				I bring this ethic into all my work. I'm most excited about elaborating on your notions,
+				whether it's designing you a website, painting a portrait, or editing your book. You are the
+				focus of my attention, and you should be happy with whatever I create—else I've done my job
+				wrong.
 			</p>
 			<p style="color: {background}">
-				I bring this ethic into all my work. I'm most excited about
-				elaborating on your notions, whether it's designing you a
-				website, painting a portrait, or editing your book. You are the
-				focus of my attention, and you should be happy with whatever I
-				create—else I've done my job wrong.
-			</p>
-			<p style="color: {background}">
-				We can be in conversation as much or as little as you want
-				during my work, and I'll strive to match the product to the
-				image in your head, plus all the creativity and experience I
+				We can be in conversation as much or as little as you want during my work, and I'll strive
+				to match the product to the image in your head, plus all the creativity and experience I
 				bring.
 			</p>
 		</div>
 	</div>
-	<div class="spacer"></div>
-	<div
-		class="ambitious"
-		style="color: {accent}; border-color: {accent}"
-		bind:this="{ambitious}"
-	>
+	<div class="spacer" />
+	<div class="ambitious" style="color: {accent}; border-color: {accent}" bind:this={ambitious}>
 		<p>Ambitious project? Tired of finding experts? I do it all.</p>
 	</div>
-	<div class="descriptions" bind:this="{descriptions}">
+	<div class="descriptions" bind:this={descriptions}>
 		<div class="flex">
 			<div class="text">
-				<h2 class="header-2" style="color: {accent}">Developer</h2>
+				<h2 style="color: {accent}">Developer</h2>
 				<p>
-					Look around the website. Like what you see? I make elegant
-					websites for ambitious projects. I'm passionate about design
-					matching the focus of the work. I've long been frustrated
-					with sites like Medium or Wattpad that don't allow for the
-					full customization the web has to offer. I can work with you
-					to get your content—whatever its type—into a gorgeous
-					layout.
+					Look around the website. Like what you see? I make elegant websites for ambitious
+					projects. I'm passionate about design matching the focus of the work. I've long been
+					frustrated with sites like Medium or Wattpad that don't allow for the full customization
+					the web has to offer. I can work with you to get your content—whatever its type—into a
+					gorgeous layout.
 				</p>
 			</div>
 			<div class="image">
-				<img
-					src="/images/commissions/developer.jpeg"
-					alt="Building blocks of the web."
-				/>
+				<img src="/images/commissions/developer.jpeg" alt="Building blocks of the web." />
 			</div>
 		</div>
 		<div class="flipped flex">
 			<div class="text">
-				<h2 class="header-2" style="color: {accent}">Artist</h2>
+				<h2 style="color: {accent}">Artist</h2>
 				<p>
-					Check out my gallery of art. If you like what you see, I can
-					paint you one even better. I'm constantly learning and
-					improving my art, and each new piece feels like my best. I
-					put an extraordinary level of detail in every painting I
-					make, focusing on brushstrokes, careful coloring, emotion,
-					and dynamic light.
+					Check out my gallery of art. If you like what you see, I can paint you one even better.
+					I'm constantly learning and improving my art, and each new piece feels like my best. I put
+					an extraordinary level of detail in every painting I make, focusing on brushstrokes,
+					careful coloring, emotion, and dynamic light.
 				</p>
 			</div>
 			<div class="image">
-				<img
-					src="/images/commissions/artist.jpeg"
-					alt="Painting of a woman in a cornfield."
-				/>
+				<img src="/images/commissions/artist.jpeg" alt="Painting of a woman in a cornfield." />
 			</div>
 		</div>
 		<div class="flex">
 			<div class="text">
-				<h2 class="header-2" style="color: {accent}">Editor</h2>
+				<h2 style="color: {accent}">Editor</h2>
 				<p>
-					Have an idea? It's never too early to brainstorm together.
-					I'll provide suggestions to move forward your process,
-					concentrating on your passions. If you want to workshop a
-					coherent piece, I'll content edit, looking especially for
-					places to emphasize themes or characters through cutting,
-					adding, and sequencing. I begin line edits only for
-					near-publishable drafts, clarifying word choice and syntax
-					with a poet's eye for details.
+					Have an idea? It's never too early to brainstorm together. I'll provide suggestions to
+					move forward your process, concentrating on your passions. If you want to workshop a
+					coherent piece, I'll content edit, looking especially for places to emphasize themes or
+					characters through cutting, adding, and sequencing. I begin line edits only for
+					near-publishable drafts, clarifying word choice and syntax with a poet's eye for details.
 				</p>
 			</div>
 			<div class="image">
-				<img
-					src="/images/commissions/editor.jpeg"
-					alt="A bust made of yellow flowers."
-				/>
+				<img src="/images/commissions/editor.jpeg" alt="A bust made of yellow flowers." />
 			</div>
 		</div>
 	</div>
-	<div class="spacer"></div>
+	<div class="spacer" />
 	<div class="villain">
 		<div id="form">
-			<Form accent="{accent}" />
+			<Form {accent} />
 		</div>
 	</div>
 </div>
@@ -259,19 +231,9 @@
 	}
 
 	.hero {
-		width: 100%;
-		height: 100vh;
-		position: relative;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		overflow: hidden;
-		background-image: url("/images/commissions/impossible.jpeg");
 		@media (hover: hover) {
 			background-attachment: fixed;
 		}
-		background-size: cover;
-		background-repeat: no-repeat;
 		background-position: 35%;
 
 		& p {
@@ -426,7 +388,7 @@
 	}
 
 	.villain {
-		background-image: url("/images/commissions/villain.jpeg");
+		background-image: url('/images/commissions/villain.jpeg');
 		@media (hover: hover) {
 			background-attachment: fixed;
 		}

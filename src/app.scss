@@ -1,0 +1,39 @@
+@import "styles/blog-post.scss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  * {
+    @apply font-sans text-gray-800 font-light m-0 p-0;
+  }
+
+  h2 {
+    @apply text-2xl lg:text-4xl md:text-3xl font-medium mb-[1.5em];
+  }
+
+  p {
+    @apply text-xl lg:text-2xl lg:leading-relaxed;
+  }
+  li {
+    @apply text-xl lg:text-2xl lg:leading-relaxed mb-[1em];
+  }
+
+  .spacer {
+    height: 25vh;
+  }
+
+  body {
+    background-color: #fafafa;
+  }
+
+  img {
+    @apply w-[100%] h-[100%] object-cover;
+  }
+
+  @media (hover: none) {
+    *:hover {
+      animation: none;
+    }
+  }
+}
