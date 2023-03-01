@@ -8,9 +8,8 @@
   }
 
   .blog-container h1 {
-    color: white;
+    @apply lg:mb-[-.25em] text-white;
     font-size: clamp(2rem, 5vw, 4rem);
-    margin-bottom: 0.25em;
   }
 
   .blog-container p.subtitle {

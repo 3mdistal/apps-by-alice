@@ -79,31 +79,29 @@
 	}
 
 	function descriptionsAnimation() {
-		if (window.innerWidth > 768) {
-			const elements = Array.from(descriptions.children);
-			elements.forEach((description) => {
-				const tl = gsap.timeline({
-					scrollTrigger: {
-						trigger: description,
-						scrub: true,
-						end: 'bottom 70%'
-					}
-				});
-				tl.from(description.querySelector('.text'), {
-					opacity: 0,
-					y: -100,
-					stagger: 0.25
-				}).from(
-					description.querySelector('.image'),
-					{
-						opacity: 0,
-						y: 100,
-						stagger: 0.1
-					},
-					'<'
-				);
+		const elements = Array.from(descriptions.children);
+		elements.forEach((description) => {
+			const tl = gsap.timeline({
+				scrollTrigger: {
+					trigger: description,
+					scrub: true,
+					end: 'bottom 70%'
+				}
 			});
-		}
+			tl.from(description.querySelector('.text'), {
+				opacity: 0,
+				y: -100,
+				stagger: 0.25
+			}).from(
+				description.querySelector('.image'),
+				{
+					opacity: 0,
+					y: 100,
+					stagger: 0.1
+				},
+				'<'
+			);
+		});
 	}
 
 	function animateAll() {
@@ -123,7 +121,7 @@
 <div class="spacer" />
 <div class="wrapper">
 	<div
-		class="hero w-[100%] h-[100vh] bg-no-repeat bg-cover relative flex justify-center items-center overflow-hidden bg-[url('/images/commissions/impossible.jpeg')]"
+		class="relative hero w-[100%] h-[100vh] bg-no-repeat bg-cover flex justify-center items-center overflow-hidden bg-[url('/images/commissions/impossible.jpeg')]"
 	>
 		<div class="text" bind:this={heroText}>
 			<p style="color: {accent}">Bring your impossible, intangible things.</p>
