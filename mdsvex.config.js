@@ -4,7 +4,7 @@ const config = defineConfig({
   extensions: [".svelte.md", ".md", ".svx"],
 
   smartypants: {
-    dashes: "true",
+    dashes: true,
   },
 
   remarkPlugins: [],
