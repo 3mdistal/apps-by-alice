@@ -3,7 +3,10 @@
   It parses it to netural content which can then be styled with an outside stylesheet. */
 
 	import TextMacro from '$lib/notion/text-macro.svelte';
-	import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+	import {
+		listBlockChildren,
+		type BlockObjectResponse
+	} from '@notionhq/client/build/src/api-endpoints';
 	import { onMount } from 'svelte';
 
 	export let results: [BlockObjectResponse];
@@ -40,8 +43,27 @@
 		});
 	}
 
+	function createTOC() {
+		const headerTwos = Array.from(document.querySelectorAll('h2'));
+		const ol = document.createElement('ol');
+		ol.className = 'toc';
+		for (let i = 1; i <= headerTwos.length; i++) {
+			const headerTwo: HTMLHeadingElement = headerTwos[i - 1];
+			headerTwo.id = i;
+			const TOCItem = document.createElement('li');
+			const TOCLink = document.createElement('a');
+			TOCLink.innerText = headerTwo.innerText;
+			TOCLink.href = `#${i}`;
+			TOCItem.appendChild(TOCLink);
+			ol.appendChild(TOCItem);
+		}
+		headerTwos[0]?.parentElement?.insertBefore(ol, headerTwos[0]);
+		return console.log('ToC Created.');
+	}
+
 	onMount(() => {
 		setTimeout(wrapLists);
+		setTimeout(createTOC);
 	});
 </script>
 
