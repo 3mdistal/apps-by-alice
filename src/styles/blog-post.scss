@@ -50,11 +50,11 @@
   }
 
   .blog-container .notion-container .image img {
-    @apply h-[100%] w-[100%] object-contain lg:object-left
+    @apply h-[100%] w-[100%] object-contain lg:object-left rounded-3xl;
   }
 
   .blog-container .notion-container .image {
-    @apply h-[40ch]
+    @apply mt-[2em] mb-[2em] sm:pl-[1em] sm:pr-[3em] pr-[.5em];
   }
 
   .blog-container h2 {
