@@ -45,6 +45,18 @@
     @apply text-[#a3e5eb]
   }
 
+  .blog-container .notion-container blockquote {
+    @apply ml-[2em] max-w-[40ch] italic mt-10 text-gray-300
+  }
+
+  .blog-container .notion-container .image img {
+    @apply h-[100%] w-[100%] object-contain lg:object-left
+  }
+
+  .blog-container .notion-container .image {
+    @apply h-[40ch]
+  }
+
   .blog-container h2 {
     @apply text-2xl lg:text-4xl md:text-3xl font-medium mt-[2.5em] mb-[1.5em];
   }

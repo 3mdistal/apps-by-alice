@@ -3,10 +3,7 @@
   It parses it to netural content which can then be styled with an outside stylesheet. */
 
 	import TextMacro from '$lib/notion/text-macro.svelte';
-	import {
-		listBlockChildren,
-		type BlockObjectResponse
-	} from '@notionhq/client/build/src/api-endpoints';
+	import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 	import { onMount } from 'svelte';
 
 	export let results: [BlockObjectResponse];
@@ -77,11 +74,11 @@
 			<br />
 		{/if}
 	{:else if result.type === 'heading_2'}
-		<h2 id={result.heading_2.rich_text[0].text.content}>
+		<h2>
 			<TextMacro type={result.heading_2} />
 		</h2>
 	{:else if result.type == 'heading_3'}
-		<h3 id={result.heading_3.rich_text[0].text.content}>
+		<h3>
 			<TextMacro type={result.heading_3} />
 		</h3>
 	{:else if result.type == 'numbered_list_item'}
@@ -94,10 +91,22 @@
 		</li>
 	{:else if result.type == 'callout'}
 		<div class="callout">
-			<p>💡</p>
+			<p>{result.callout.icon?.emoji}</p>
 			<p>
 				<TextMacro type={result.callout} />
 			</p>
+		</div>
+	{:else if result.type == 'quote'}
+		<blockquote class="whitespace-pre-line">
+			<TextMacro type={result.quote} />
+		</blockquote>
+	{:else if result.type == 'image'}
+		<div class="image">
+			{#if result.image.type == 'external'}
+				<img src={result.image.external.url} alt={result.image.caption[0]?.plain_text} />
+			{:else if result.image.type == 'file'}
+				<img src={result.image.file.url} alt={result.image.caption[0]?.plain_text} />
+			{/if}
 		</div>
 	{/if}
 {/each}
