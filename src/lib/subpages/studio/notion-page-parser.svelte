@@ -8,6 +8,20 @@
 
 	export let results: [BlockObjectResponse];
 
+	console.log(results[0]);
+
+	function subAndSuper() {
+		const notionContainer = document.querySelector('.notion-container')!;
+		const content = Array.from(notionContainer.querySelectorAll(':scope > *'));
+		const superscript = /\{super:([^}]*)\}/g;
+		const subscript = /\{sub:([^}]*)\}/g;
+		content.forEach((e) => {
+			e.innerHTML = e.innerHTML
+				.replace(superscript, '<sup>$1</sup>')
+				.replace(subscript, '<sub>$1</sub>');
+		});
+	}
+
 	function wrapLists() {
 		// Select all list items
 		const liArray = Array.from(document.querySelectorAll('li'));
@@ -35,7 +49,6 @@
 				i = newParent.nextElementSibling
 			) {
 				newParent.appendChild(i);
-				console.log(i);
 			}
 		});
 	}
@@ -45,7 +58,7 @@
 		const ol = document.createElement('ol');
 		ol.className = 'toc';
 		for (let i = 1; i <= headerTwos.length; i++) {
-			const headerTwo: HTMLHeadingElement = headerTwos[i - 1];
+			const headerTwo: HTMLHeadingElement = headerTwos[i - 1]!;
 			headerTwo.id = i;
 			const TOCItem = document.createElement('li');
 			const TOCLink = document.createElement('a');
@@ -55,10 +68,10 @@
 			ol.appendChild(TOCItem);
 		}
 		headerTwos[0]?.parentElement?.insertBefore(ol, headerTwos[0]);
-		return console.log('ToC Created.');
 	}
 
 	onMount(() => {
+		setTimeout(subAndSuper);
 		setTimeout(wrapLists);
 		setTimeout(createTOC);
 	});
