@@ -1,5 +1,6 @@
-<script>
-	export let type;
+<script lang="ts">
+	import type { RichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
+	export let type: { rich_text: RichTextItemResponse[] };
 </script>
 
 {#each type.rich_text as rich_text}
@@ -11,6 +12,8 @@
 		<em>{rich_text.text.content}</em>
 	{:else if rich_text.annotations.bold}
 		<strong>{rich_text.text.content}</strong>
+	{:else if rich_text.annotations.strikethrough}
+		<span class="line-through">{rich_text.text.content}</span>
 	{:else}
 		{rich_text.text.content}
 	{/if}
