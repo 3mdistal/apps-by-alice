@@ -1,6 +1,7 @@
 <script>
 	import '../app.scss';
 	import Logo from '../cms/images/logo/logo.png';
+	import OGImage from '$images/logo/ogimage.webp';
 	import Svgs from '../lib/icons/svgs.svelte';
 </script>
 
@@ -32,7 +33,7 @@
 		property="og:description"
 		content="The studio of Alice Alexandra Moore. Creative work, ramblings, commissions and more."
 	/>
-	<meta property="og:image" content="/static/images/logos/ogimage.webp" />
+	<meta property="og:image" content={OGImage} />
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image" />
@@ -45,7 +46,7 @@
 		name="twitter:description"
 		content="The studio of Alice Alexandra Moore. Creative work, ramblings, collabs, and more."
 	/>
-	<meta name="twitter:image" content="/static/images/logos/ogimage.webp" />
+	<meta name="twitter:image" content={OGImage} />
 	<meta name="twitter:image:alt" content="The homepage of alicealexandra.com." />
 
 	<!-- Meta Tags Generated via https://www.opengraph.xyz -->
