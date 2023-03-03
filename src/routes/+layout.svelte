@@ -1,7 +1,7 @@
 <script>
 	import '../app.scss';
 	import Logo from '../cms/images/logo/logo.png';
-	import OGImage from '$images/logo/OG-image.jpeg';
+	import OGImage from '$images/logo/OG-image.jpeg?webp';
 	import Svgs from '../lib/icons/svgs.svelte';
 </script>
 
@@ -37,14 +37,17 @@
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@tempoimmaterial" />
+	<meta name="twitter:creator" content="@tempoimmaterial" />
 	<meta name="twitter:domain" content="alicealexandra.com" />
 	<meta name="twitter:url" content="https://www.alicealexandra.com" />
 	<meta name="twitter:title" content="Tempo Immaterial" />
 	<meta
 		name="twitter:description"
-		content="The studio of Alice Alexandra Moore. Creative work, ramblings, commissions and more."
+		content="The studio of Alice Alexandra Moore. Creative work, ramblings, collabs, and more."
 	/>
 	<meta name="twitter:image" content={OGImage} />
+	<meta name="twitter:image:alt" content="The homepage of alicealexandra.com." />
 
 	<!-- Meta Tags Generated via https://www.opengraph.xyz -->
 </svelte:head>
