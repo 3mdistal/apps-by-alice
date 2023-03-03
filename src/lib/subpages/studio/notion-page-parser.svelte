@@ -8,8 +8,6 @@
 
 	export let results: [BlockObjectResponse];
 
-	console.log(results[0]);
-
 	function subAndSuper() {
 		const notionContainer = document.querySelector('.notion-container')!;
 		const content = Array.from(notionContainer.querySelectorAll(':scope > *'));
