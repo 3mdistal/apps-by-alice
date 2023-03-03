@@ -37,8 +37,8 @@
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta property="twitter:domain" content="alicealexandra.com" />
-	<meta property="twitter:url" content="https://www.alicealexandra.com" />
+	<meta name="twitter:domain" content="alicealexandra.com" />
+	<meta name="twitter:url" content="https://www.alicealexandra.com" />
 	<meta name="twitter:title" content="Tempo Immaterial" />
 	<meta
 		name="twitter:description"
