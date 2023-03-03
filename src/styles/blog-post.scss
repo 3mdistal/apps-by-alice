@@ -4,7 +4,7 @@
 
 @layer components {
   .blog-container {
-    @apply h-[100%] min-h-[100vh] bg-black px-4 sm:px-10 py-10 tracking-wide text-white text-inherit;
+    @apply h-[100%] min-h-[100vh] bg-black px-4 sm:px-10 py-16 sm:py-10 tracking-wide text-white text-inherit;
   }
 
   .blog-container h1 {
