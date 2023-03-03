@@ -8,8 +8,6 @@
 
 	export let results: [BlockObjectResponse];
 
-	console.log(results[0]);
-
 	function subAndSuper() {
 		const notionContainer = document.querySelector('.notion-container')!;
 		const content = Array.from(notionContainer.querySelectorAll(':scope > *'));
@@ -104,8 +102,15 @@
 		</li>
 	{:else if result.type == 'callout'}
 		<div class="callout">
-			<p>{result.callout.icon?.emoji}</p>
-			<p>
+			{#if result.callout.icon?.type == 'emoji'}
+				<p>{result.callout.icon.emoji}</p>
+			{:else if result.callout.icon?.type == 'external'}
+				<div><img src={result.callout.icon.external.url} alt="" /></div>
+			{:else if result.callout.icon?.type == 'file'}
+				<div><img src={result.callout.icon.file.url} alt="" /></div>
+			{/if}
+
+			<p class="whitespace-pre-line">
 				<TextMacro type={result.callout} />
 			</p>
 		</div>
