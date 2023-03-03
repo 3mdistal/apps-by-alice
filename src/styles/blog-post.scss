@@ -8,12 +8,12 @@
   }
 
   .blog-container h1 {
-    @apply lg:mb-[-.25em] text-white;
+    @apply text-white;
     font-size: clamp(2rem, 5vw, 4rem);
   }
 
   .blog-container p.subtitle {
-    @apply mb-[1em] max-w-[30ch] text-gray-100;
+    @apply mb-[1em] max-w-[30ch] text-gray-100 md:leading-9;
     font-size: clamp(1.5rem, 3vw, 2rem);
   }
 
@@ -22,11 +22,11 @@
   }
 
   .blog-container p.summary {
-    @apply text-gray-100;
+    @apply text-gray-100 max-w-[45ch] flex;
   }
 
   .blog-container p.summary em {
-    @apply mr-4 text-white font-medium;
+    @apply mr-4 text-white font-medium block;
   }
 
   .blog-container .notion-container {
