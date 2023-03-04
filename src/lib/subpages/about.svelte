@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Socials from '$lib/icons/socials.svelte';
 	import SubpageContent from '$lib/partials/subpage-content.svelte';
 	import About1 from '$text/about/about1.svelte';
 	import About2 from '$text/about/about2.svelte';
