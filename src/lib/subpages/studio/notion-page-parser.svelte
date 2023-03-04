@@ -24,7 +24,7 @@
 		// Select all list items
 		const liArray = Array.from(document.querySelectorAll('li'));
 
-		const firstSiblings = [];
+		const firstSiblings: HTMLLIElement[] = [];
 
 		// Loop through all list items to get first sibling of new group
 		liArray.forEach((li) => {
@@ -39,7 +39,7 @@
 		// Loop over each first sibling to create new parent for group
 		firstSiblings.forEach((fs) => {
 			const newParent = document.createElement(fs.classList.contains('ordered') ? 'ol' : 'ul');
-			fs.parentNode.insertBefore(newParent, fs);
+			fs.parentNode!.insertBefore(newParent, fs);
 			// Loop over parent siblings until they're not <li>
 			for (
 				let i = newParent.nextElementSibling;
@@ -57,7 +57,7 @@
 		ol.className = 'toc';
 		for (let i = 1; i <= headerTwos.length; i++) {
 			const headerTwo: HTMLHeadingElement = headerTwos[i - 1]!;
-			headerTwo.id = i;
+			headerTwo.id = i.toString();
 			const TOCItem = document.createElement('li');
 			const TOCLink = document.createElement('a');
 			TOCLink.innerText = headerTwo.innerText;

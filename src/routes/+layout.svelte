@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import '../app.scss';
 	import Logo from '../cms/images/logo/logo.png';
 	import OGImage from '$images/logo/ogimage.webp';

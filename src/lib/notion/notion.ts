@@ -85,7 +85,7 @@ export async function getBlogs(slug?: string) {
 		});
 		return response;
 	} catch (error) {
-		let errorMessage = 'Posting to commissions failed generically.';
+		let errorMessage = 'Retrieving blogs failed generically.';
 		if (error instanceof Error) {
 			errorMessage = error.message;
 		}
