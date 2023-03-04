@@ -121,7 +121,7 @@
 <div class="spacer" />
 <div class="wrapper">
 	<div
-		class="relative hero w-[100%] h-[100vh] bg-no-repeat bg-cover flex justify-center items-center overflow-hidden bg-[url('/images/commissions/impossible.jpeg')]"
+		class="hero relative flex h-[100vh] w-[100%] items-center justify-center overflow-hidden bg-[url('/images/commissions/impossible.jpeg')] bg-cover bg-no-repeat"
 	>
 		<div class="text" bind:this={heroText}>
 			<p style="color: {accent}">Bring your impossible, intangible things.</p>
