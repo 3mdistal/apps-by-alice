@@ -1,12 +1,12 @@
-<script>
+<script lang="ts">
 	import Logo from '$images/logo/logo.png?webp';
 	import PlainCircle from '$images/logo/plain-circle.svg';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 
-	let button;
-	let logo;
-	let circle;
+	let button: HTMLAnchorElement;
+	let logo: HTMLImageElement;
+	let circle: HTMLDivElement;
 
 	function fadeIn() {
 		gsap.to(button, { opacity: 1, rotate: '360deg' });
