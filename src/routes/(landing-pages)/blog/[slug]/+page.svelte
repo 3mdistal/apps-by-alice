@@ -1,5 +1,5 @@
 <script lang="ts">
-	import NotionPageParser from '$lib/subpages/studio/notion-page-parser.svelte';
+	import NotionPageParser from '$lib/notion/notion-page-parser.svelte';
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import TextMacro from '$lib/notion/text-macro.svelte';
