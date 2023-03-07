@@ -3,9 +3,6 @@ import { NOTION_KEY, COMMISSIONS_DB, BLOGS_DB, USER_ID_ALICE } from '$env/static
 
 const notion = new Client({ auth: NOTION_KEY });
 
-const commissionsDatabaseID = COMMISSIONS_DB;
-const blogsDatabaseID = BLOGS_DB;
-
 const today = new Date(Date.now()).toISOString();
 
 export async function addCommission(name: string, email: string, description: string) {
@@ -14,7 +11,7 @@ export async function addCommission(name: string, email: string, description: st
 	}
 	try {
 		const response = await notion.pages.create({
-			parent: { database_id: commissionsDatabaseID },
+			parent: { database_id: COMMISSIONS_DB },
 			properties: {
 				title: {
 					title: [
@@ -59,7 +56,7 @@ export async function addCommission(name: string, email: string, description: st
 export async function getBlogs(slug?: string) {
 	try {
 		const response = await notion.databases.query({
-			database_id: blogsDatabaseID,
+			database_id: BLOGS_DB,
 			filter: {
 				and: [
 					{
@@ -98,7 +95,7 @@ export async function getContent(slug?: string) {
 		let response = [];
 
 		const query = await notion.databases.query({
-			database_id: blogsDatabaseID,
+			database_id: BLOGS_DB,
 			filter: {
 				and: [
 					{

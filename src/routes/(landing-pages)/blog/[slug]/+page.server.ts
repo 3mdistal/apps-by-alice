@@ -1,6 +1,5 @@
 import { getContent } from '$lib/notion/notion';
 import type { Load } from '@sveltejs/kit';
-import { BYPASS_TOKEN } from '$env/static/private';
 
 export const load: Load = ({ params }) => {
 	const fetchContent = async (slug: string) => {
@@ -13,10 +12,4 @@ export const load: Load = ({ params }) => {
 	};
 };
 
-export const config = {
-	isr: {
-		expiration: false,
-		bypassToken: BYPASS_TOKEN
-	},
-	runtime: 'nodejs18.x'
-};
+export const prerender = true;
