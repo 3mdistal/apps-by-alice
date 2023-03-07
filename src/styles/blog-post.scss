@@ -4,33 +4,33 @@
 
 @layer components {
   .blog-container {
-    @apply h-[100%] min-h-[100vh] bg-black px-4 sm:px-10 py-16 sm:py-10 tracking-wide text-white text-inherit;
+    @apply h-[100%] min-h-[100vh] dark:bg-black bg-gray-200 px-4 sm:px-10 py-16 sm:py-10 tracking-wide dark:text-white text-gray-900 text-inherit;
   }
 
   .blog-container h1 {
-    @apply text-white;
+    @apply dark:text-white;
     font-size: clamp(2rem, 5vw, 4rem);
   }
 
   .blog-container p.subtitle {
-    @apply mb-[1em] max-w-[30ch] text-gray-100 md:leading-9;
+    @apply mb-[1em] max-w-[30ch] dark:text-gray-100 text-gray-700 md:leading-9;
     font-size: clamp(1.5rem, 3vw, 2rem);
   }
 
   .blog-container hr {
-    @apply my-10 mx-10 opacity-50;
+    @apply my-10 mx-10 dark:border-white border-black opacity-50;
   }
 
   .blog-container p.summary {
-    @apply text-gray-100 max-w-[45ch] flex;
+    @apply dark:text-gray-100 text-gray-800 max-w-[45ch] flex;
   }
 
   .blog-container p.summary em {
-    @apply mr-4 text-white font-medium block;
+    @apply mr-4 dark:text-white text-gray-900 font-medium block;
   }
 
   .blog-container .notion-container {
-    @apply max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em] text-white [&_*]:text-inherit;
+    @apply max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em] [&_*]:text-inherit;
   }
 
   .blog-container .notion-container .toc {
@@ -38,11 +38,11 @@
   }
 
   .blog-container .notion-container a {
-    @apply font-medium hover:underline text-[#a3e5eb];
+    @apply font-medium hover:underline dark:text-[#a3e5eb] text-[#31676c];
   }
 
   .blog-container .notion-container code {
-    @apply text-[#a3e5eb]
+    @apply dark:text-[#a3e5eb] text-[#31676c]
   }
 
   .blog-container .notion-container blockquote {
@@ -57,17 +57,17 @@
     @apply mt-[2em] mb-[2em] sm:pl-[1em] sm:pr-[3em] pr-[.5em];
   }
 
-  .blog-container h2 {
-    @apply text-2xl lg:text-4xl md:text-3xl font-medium mt-[2.5em] mb-[1.5em];
+  .blog-container .notion-container h2 {
+    @apply text-2xl lg:text-4xl md:text-3xl font-medium mt-[2.5em] mb-[1.5em] dark:text-white text-gray-900;
   }
 
-  .blog-container h3 {
-    @apply mt-[1.5em] mb-[1em] font-medium text-2xl md:text-3xl;
+  .blog-container .notion-container h3 {
+    @apply mt-[1.5em] mb-[1em] font-medium text-2xl md:text-3xl dark:text-white text-gray-900;
   }
 
-  .blog-container ol,
-  .blog-container ul {
-    @apply ml-[2em];
+  .blog-container .notion-container ol,
+  .blog-container .notion-container ul {
+    @apply ml-[2em] dark:text-gray-200;
   }
 
   .blog-container ol {
@@ -79,20 +79,18 @@
   }
 
   .blog-container div.callout {
-    @apply mt-10 mb-6 flex gap-x-4 px-4 md:gap-x-10 md:px-20 items-start;
+    @apply mt-10 mb-6 flex gap-x-4 px-4 md:gap-x-10 md:px-20 items-start bg-gray-300 dark:bg-[#141414] pt-10 pb-6 rounded-lg;
   }
 
-  .blog-container div.callout > :first-child {
+  .blog-container .notion-container div.callout > :first-child {
     @apply text-2xl md:text-4xl;
   }
 
-  .blog-container div.callout > :last-child {
+  .blog-container .notion-container div.callout > :last-child {
     @apply text-lg md:text-xl;
   }
 
-  /* TODO: Refactor callout to pull icon from notion and set the font sizes and things here. */
-
-  .blog-container p {
-    @apply text-white;
+  .blog-container .notion-container p {
+    @apply dark:text-gray-200 text-gray-600;
   }
 }

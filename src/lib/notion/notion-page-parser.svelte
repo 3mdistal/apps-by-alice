@@ -126,6 +126,7 @@
 					<img src={result.image.external.url} alt={result.image.caption[0]?.plain_text} />
 				{:else if result.image.type == 'file'}
 					<img
+						class="aspect-video"
 						src={result.image.file.url}
 						alt={result.image.caption[0]?.plain_text
 							? result.image.caption[0].plain_text
