@@ -8,6 +8,10 @@
 
 	export let results: [BlockObjectResponse];
 
+	function populateImages(e: Event) {
+		e.target.src = e.target.src;
+	}
+
 	function subAndSuper() {
 		const notionContainer = document.querySelector('.notion-container')!;
 		const content = Array.from(notionContainer.querySelectorAll(':scope > *'));
@@ -124,10 +128,11 @@
 				<img src={result.image.external.url} alt={result.image.caption[0]?.plain_text} />
 			{:else if result.image.type == 'file'}
 				<img
+					on:error={populateImages}
 					src={result.image.file.url}
 					alt={result.image.caption[0]?.plain_text
 						? result.image.caption[0].plain_text
-						: "Image not showing? Just refresh the page. It's an error I'm still trying to figure out."}
+						: 'Loading . . .'}
 				/>
 			{/if}
 		</div>
