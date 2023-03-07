@@ -8,6 +8,10 @@
 
 	export let results: [BlockObjectResponse];
 
+	function populateImages(e: Event) {
+		e.target.src = e.target.src;
+	}
+
 	function subAndSuper() {
 		const notionContainer = document.querySelector('.notion-container')!;
 		const content = Array.from(notionContainer.querySelectorAll(':scope > *'));
@@ -119,11 +123,17 @@
 			<TextMacro type={result.quote} />
 		</blockquote>
 	{:else if result.type == 'image'}
-		<div class="image">
+		<div class="image relative">
 			{#if result.image.type == 'external'}
 				<img src={result.image.external.url} alt={result.image.caption[0]?.plain_text} />
 			{:else if result.image.type == 'file'}
-				<img src={result.image.file.url} alt={result.image.caption[0]?.plain_text} />
+				<img
+					on:error={populateImages}
+					src={result.image.file.url}
+					alt={result.image.caption[0]?.plain_text
+						? result.image.caption[0].plain_text
+						: 'Loading . . .'}
+				/>
 			{/if}
 		</div>
 	{/if}
