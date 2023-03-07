@@ -119,11 +119,16 @@
 			<TextMacro type={result.quote} />
 		</blockquote>
 	{:else if result.type == 'image'}
-		<div class="image">
+		<div class="image relative">
 			{#if result.image.type == 'external'}
 				<img src={result.image.external.url} alt={result.image.caption[0]?.plain_text} />
 			{:else if result.image.type == 'file'}
-				<img src={result.image.file.url} alt={result.image.caption[0]?.plain_text} />
+				<img
+					src={result.image.file.url}
+					alt={result.image.caption[0]?.plain_text
+						? result.image.caption[0].plain_text
+						: "Image not showing? Just refresh the page. It's an error I'm still trying to figure out."}
+				/>
 			{/if}
 		</div>
 	{/if}
