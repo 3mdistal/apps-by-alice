@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import TextMacro from '$lib/notion/text-macro.svelte';
+	import { blogImagesLoading } from '$lib/stores';
 
 	export let data;
 
@@ -35,7 +36,13 @@
 				Accept: 'application/json',
 				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
 			}
-		});
+		})
+			.then(() => {
+				results = results;
+			})
+			.then(() => {
+				blogImagesLoading.set(false);
+			});
 	});
 </script>
 
