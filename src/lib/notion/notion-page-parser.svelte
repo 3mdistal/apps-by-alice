@@ -3,14 +3,11 @@
   It parses it to netural content which can then be styled with an outside stylesheet. */
 
 	import TextMacro from '$lib/notion/text-macro.svelte';
+	import { blogImagesLoading } from '$lib/stores';
 	import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 	import { onMount } from 'svelte';
 
 	export let results: [BlockObjectResponse];
-
-	function populateImages(e: Event) {
-		e.target.src = e.target.src;
-	}
 
 	function subAndSuper() {
 		const notionContainer = document.querySelector('.notion-container')!;
@@ -79,7 +76,7 @@
 	});
 </script>
 
-{#each results as result}
+{#each results as result (result.id)}
 	{#if result.type == 'paragraph'}
 		{#if result.paragraph.rich_text.length > 0}
 			<p>
@@ -123,18 +120,19 @@
 			<TextMacro type={result.quote} />
 		</blockquote>
 	{:else if result.type == 'image'}
-		<div class="image relative">
-			{#if result.image.type == 'external'}
-				<img src={result.image.external.url} alt={result.image.caption[0]?.plain_text} />
-			{:else if result.image.type == 'file'}
-				<img
-					on:error={populateImages}
-					src={result.image.file.url}
-					alt={result.image.caption[0]?.plain_text
-						? result.image.caption[0].plain_text
-						: 'Loading . . .'}
-				/>
-			{/if}
-		</div>
+		{#key $blogImagesLoading}
+			<div class="image relative">
+				{#if result.image.type == 'external'}
+					<img src={result.image.external.url} alt={result.image.caption[0]?.plain_text} />
+				{:else if result.image.type == 'file'}
+					<img
+						src={result.image.file.url}
+						alt={result.image.caption[0]?.plain_text
+							? result.image.caption[0].plain_text
+							: 'Loading . . .'}
+					/>
+				{/if}
+			</div>
+		{/key}
 	{/if}
 {/each}
