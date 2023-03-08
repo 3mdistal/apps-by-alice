@@ -11,11 +11,6 @@
 		post: { results }
 	} = data;
 
-	function loadingSpinner(text: string) {
-		text = 'Loading . . .';
-		return text;
-	}
-
 	onMount(() => {
 		fetch('/blog', {
 			headers: {
@@ -33,8 +28,7 @@
 			<a
 				data-sveltekit-preload-code="viewport"
 				data-sveltekit-preload-data="hover"
-				on:click={() => setTimeout(() => (title = loadingSpinner(title)), 20)}
-				class="text-white font-medium hover:underline"
+				class="text-white font-medium hover:underline active:text-gray-400"
 				href="blog/{url}">{title}</a
 			>
 		</p>

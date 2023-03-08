@@ -1,7 +1,9 @@
 <script lang="ts">
 	import NotionPageParser from '$lib/notion/notion-page-parser.svelte';
+	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import TextMacro from '$lib/notion/text-macro.svelte';
+	import { blogImagesLoading } from '$lib/stores';
 
 	export let data;
 
@@ -27,6 +29,21 @@
 		],
 		post: [, { results }]
 	} = data;
+
+	onMount(() => {
+		fetch(window.location.href, {
+			headers: {
+				Accept: 'application/json',
+				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
+			}
+		})
+			.then(() => {
+				results = results;
+			})
+			.then(() => {
+				blogImagesLoading.set(false);
+			});
+	});
 </script>
 
 <div class="blog-container" in:fade={{ duration: 500 }}>
