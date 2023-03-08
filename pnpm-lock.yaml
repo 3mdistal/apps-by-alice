@@ -16,6 +16,7 @@ importers:
       eslint-config-prettier: ^8.6.0
       eslint-plugin-svelte3: ^4.0.0
       gsap: ^3.11.4
+      highlight.js: ^11.7.0
       mdsvex: ^0.10.6
       motion: ^10.15.5
       postcss: ^8.4.21
@@ -25,6 +26,7 @@ importers:
       sass: ^1.58.3
       svelte: ^3.55.1
       svelte-check: ^3.0.4
+      svelte-highlight: ^7.2.0
       svelte-preprocess: ^5.0.1
       tailwindcss: ^3.2.7
       tslib: ^2.5.0
@@ -45,6 +47,7 @@ importers:
       eslint-config-prettier: 8.6.0_eslint@8.35.0
       eslint-plugin-svelte3: 4.0.0_n4ieifq2d7jq3sqoe474cgqlim
       gsap: 3.11.4
+      highlight.js: 11.7.0
       mdsvex: 0.10.6_svelte@3.55.1
       motion: 10.15.5
       postcss: 8.4.21
@@ -54,6 +57,7 @@ importers:
       sass: 1.58.3
       svelte: 3.55.1
       svelte-check: 3.0.4_yqhbri7c5yusomev55u36f7etq
+      svelte-highlight: 7.2.0
       svelte-preprocess: 5.0.1_o53ofcihxu4urxldnfcp5z27ga
       tailwindcss: 3.2.7_postcss@8.4.21
       tslib: 2.5.0
@@ -1597,6 +1601,11 @@ packages:
     resolution: {integrity: sha512-COpmrF2NOg4TBWUJ5UVyaCU2A88wEMkUPK4hNqyCkqHbxT92BbvfjoSozkAIIm6XhicGlJHhFdullInrdhwU8Q==}
     dev: true
 
+  /highlight.js/11.7.0:
+    resolution: {integrity: sha512-1rRqesRFhMO/PRF+G86evnyJkCgaZFOI+Z6kdj15TA18funfoqJXvgPCLSf0SWq3SRfg1j3HlDs8o4s3EGq1oQ==}
+    engines: {node: '>=12.0.0'}
+    dev: true
+
   /https-proxy-agent/5.0.1:
     resolution: {integrity: sha512-dFcAjpTQFgoLMzC2VwU+C/CbS7uRL0lWmxDITmqm7C+7F0Odmj6s9l6alZc6AELXhrnggM2CeWSXHGOdX2YtwA==}
     engines: {node: '>= 6'}
@@ -2567,6 +2576,12 @@ packages:
       - sass
       - stylus
       - sugarss
+    dev: true
+
+  /svelte-highlight/7.2.0:
+    resolution: {integrity: sha512-mOJltSmozHNuaIE4tglrOBQ9X/8sKoQMJfqm+YZUuHvzfAcefWtZVDFml2oUrEv8iehM79mdA9+0orhUWIrxWw==}
+    dependencies:
+      highlight.js: 11.7.0
     dev: true
 
   /svelte-hmr/0.15.1_svelte@3.55.1:
