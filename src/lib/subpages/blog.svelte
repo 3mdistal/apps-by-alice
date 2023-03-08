@@ -26,6 +26,7 @@
 	<div class="flex flex-col lg:flex-row mb-6 justify-between md:gap-x-[2vw]">
 		<p>
 			<a
+				on:click={() => (title = 'Loading . . .')}
 				data-sveltekit-preload-code="viewport"
 				data-sveltekit-preload-data="hover"
 				class="text-white font-medium hover:underline active:text-gray-400"

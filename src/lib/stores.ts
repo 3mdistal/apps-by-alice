@@ -1,4 +1,5 @@
-import { readable, writable } from 'svelte/store';
+import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import { readable, writable, type Writable } from 'svelte/store';
 
 export const state = writable('home');
 
@@ -21,4 +22,4 @@ export const backgroundColors = readable({
 	connect: '#eeeded'
 });
 
-export const blogImagesLoading = writable(true);
+export const currentBlog: Writable<[BlockObjectResponse]> = writable();
