@@ -11,3 +11,7 @@ export const load: Load = ({ params }) => {
 		post: fetchContent(params['slug'] as string)
 	};
 };
+
+export const config = {
+	runtime: 'edge'
+};
