@@ -3,9 +3,13 @@
 	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import TextMacro from '$lib/notion/text-macro.svelte';
-	import { blogImagesLoading } from '$lib/stores';
+	import { currentBlog } from '$lib/stores';
+	import type {
+		ListBlockChildrenResponse,
+		QueryDatabaseResponse
+	} from '@notionhq/client/build/src/api-endpoints';
 
-	export let data;
+	export let data: Promise<QueryDatabaseResponse | ListBlockChildrenResponse>;
 
 	let {
 		post: [
@@ -30,19 +34,17 @@
 		post: [, { results }]
 	} = data;
 
+	currentBlog.set(results);
+
 	onMount(() => {
 		fetch(window.location.href, {
 			headers: {
 				Accept: 'application/json',
 				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
 			}
-		})
-			.then(() => {
-				results = results;
-			})
-			.then(() => {
-				blogImagesLoading.set(false);
-			});
+		}).then(() => {
+			currentBlog.set(results);
+		});
 	});
 </script>
 
@@ -60,7 +62,7 @@
 	</p>
 	<hr />
 	<div class="notion-container">
-		<NotionPageParser {results} />
+		<NotionPageParser />
 	</div>
 	<p class="text-right text-4xl md:text-6xl">
 		<a href="/blog" class="inline-block text-white p-6">back.</a>
