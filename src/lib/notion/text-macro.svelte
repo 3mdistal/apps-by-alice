@@ -9,11 +9,11 @@
 	{:else if rich_text.annotations.code}
 		<code>{rich_text.text.content}</code>
 	{:else if rich_text.annotations.italic}
-		<em>{rich_text.text.content}</em>
+		<em class="text-inherit">{rich_text.text.content}</em>
 	{:else if rich_text.annotations.bold}
-		<strong>{rich_text.text.content}</strong>
+		<strong class="text-inherit">{rich_text.text.content}</strong>
 	{:else if rich_text.annotations.strikethrough}
-		<span class="line-through">{rich_text.text.content}</span>
+		<span class="line-through text-inherit">{rich_text.text.content}</span>
 	{:else}
 		{rich_text.text.content}
 	{/if}

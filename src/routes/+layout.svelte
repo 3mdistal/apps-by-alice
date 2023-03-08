@@ -16,7 +16,6 @@
 		rel="stylesheet"
 	/>
 	<link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet" />
-	<link rel="stylesheet" />
 
 	<!-- HTML Meta Tags -->
 	<title>Tempo Immaterial</title>

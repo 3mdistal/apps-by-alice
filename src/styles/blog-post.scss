@@ -4,7 +4,7 @@
 
 @layer components {
   .blog-container {
-    @apply h-[100%] min-h-[100vh] dark:bg-black bg-gray-200 px-4 sm:px-10 py-16 sm:py-10 tracking-wide dark:text-white text-gray-900 text-inherit;
+    @apply h-[100%] min-h-[100vh] dark:bg-black bg-gray-200 px-4 sm:px-10 py-16 sm:py-10 tracking-wide dark:text-white text-gray-900 [&_sup]:text-inherit [&_sub]:text-inherit;
   }
 
   .blog-container h1 {
@@ -30,7 +30,7 @@
   }
 
   .blog-container .notion-container {
-    @apply max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em] [&_*]:text-inherit;
+    @apply max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em];
   }
 
   .blog-container .notion-container .toc {
@@ -43,6 +43,10 @@
 
   .blog-container .notion-container code {
     @apply dark:text-[#a3e5eb] text-[#31676c]
+  }
+
+  .blog-container .notion-container pre code {
+    @apply dark:text-gray-300
   }
 
   .blog-container .notion-container blockquote {
@@ -67,7 +71,7 @@
 
   .blog-container .notion-container ol,
   .blog-container .notion-container ul {
-    @apply ml-[2em] dark:text-gray-200;
+    @apply ml-[2em] dark:text-gray-200 [&_li]:text-inherit;
   }
 
   .blog-container ol {

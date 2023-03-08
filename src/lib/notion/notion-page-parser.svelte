@@ -6,8 +6,18 @@
 	import { blogImagesLoading } from '$lib/stores';
 	import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 	import { onMount } from 'svelte';
+	import { Highlight } from 'svelte-highlight';
+	import typescript from 'svelte-highlight/languages/typescript';
+	import DarkCodeTheme from 'svelte-highlight/styles/agate';
+	import LightCodeTheme from 'svelte-highlight/styles/a11y-light';
 
 	export let results: [BlockObjectResponse];
+
+	let darkMode: boolean;
+
+	function setDarkMode() {
+		darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+	}
 
 	function subAndSuper() {
 		const notionContainer = document.querySelector('.notion-container')!;
@@ -73,6 +83,7 @@
 		setTimeout(subAndSuper);
 		setTimeout(wrapLists);
 		setTimeout(createTOC);
+		setTimeout(setDarkMode);
 	});
 </script>
 
@@ -126,7 +137,7 @@
 					<img src={result.image.external.url} alt={result.image.caption[0]?.plain_text} />
 				{:else if result.image.type == 'file'}
 					<img
-						class="aspect-video"
+						class="aspect-video text-white"
 						src={result.image.file.url}
 						alt={result.image.caption[0]?.plain_text
 							? result.image.caption[0].plain_text
@@ -135,5 +146,21 @@
 				{/if}
 			</div>
 		{/key}
+	{:else if result.type === 'code'}
+		<div
+			class="[&_span]:font-mono pb-6 dark:[&_span.hljs-params]:text-gray-300 dark:[&_span.hljs-property]:text-gray-300 [&_code]:text-lg [&_code]:tracking-tighter [&_.hljs]:rounded-lg [&_.hljs]:bg-gray-300 dark:[&_.hljs]:bg-[#141414]"
+		>
+			{#if result.code.language === 'typescript'}
+				<Highlight language={typescript} code={result.code.rich_text[0]?.plain_text} />
+			{/if}
+		</div>
 	{/if}
 {/each}
+
+<svelte:head>
+	{#if darkMode}
+		{@html DarkCodeTheme}
+	{:else}
+		{@html LightCodeTheme}
+	{/if}
+</svelte:head>
