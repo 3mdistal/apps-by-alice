@@ -3,6 +3,7 @@
 
 	export let id: string;
 	export let alt: string;
+	export let callout = false;
 
 	const refreshContent = async () => {
 		const response = await fetch('/blog/api', {
@@ -13,8 +14,14 @@
 			}
 		});
 
+		let source;
+
 		const content = await response.json();
-		const source = content.image.file.url;
+		if (callout) {
+			source = content.callout.icon.file.url;
+		} else {
+			source = content.image.file.url;
+		}
 
 		return source;
 	};
@@ -23,7 +30,7 @@
 {#await refreshContent()}
 	<LoadingSpinner />
 {:then source}
-	<img class="aspect-video text-white" {alt} src={source} />
+	<img class="{callout ? '' : 'aspect-video'} text-white" {alt} src={source} />
 {:catch error}
 	<p>{error}</p>
 {/await}
