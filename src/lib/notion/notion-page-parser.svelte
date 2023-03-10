@@ -9,6 +9,7 @@
 	import DarkCodeTheme from 'svelte-highlight/styles/agate';
 	import LightCodeTheme from 'svelte-highlight/styles/a11y-light';
 	import { currentBlog } from '$lib/stores';
+	import NotionImage from './notion-image.svelte';
 
 	let darkMode: boolean;
 
@@ -18,7 +19,7 @@
 
 	function subAndSuper() {
 		const notionContainer = document.querySelector('.notion-container')!;
-		const content = Array.from(notionContainer.querySelectorAll(':scope > *'));
+		const content = Array.from(notionContainer.querySelectorAll(':scope>p'));
 		const superscript = /\{super:([^}]*)\}/g;
 		const subscript = /\{sub:([^}]*)\}/g;
 		content.forEach((e) => {
@@ -117,9 +118,7 @@
 				<div><img src={result.callout.icon.external.url} alt="" /></div>
 			{:else if result.callout.icon?.type == 'file'}
 				<div>
-					{#key $currentBlog}
-						<img src={result.callout.icon.file.url} alt="" />
-					{/key}
+					<img src={result.callout.icon.file.url} alt="" />
 				</div>
 			{/if}
 
@@ -136,15 +135,11 @@
 			{#if result.image.type == 'external'}
 				<img src={result.image.external.url} alt={result.image.caption[0]?.plain_text} />
 			{:else if result.image.type == 'file'}
-				{#key $currentBlog}
-					<img
-						class="aspect-video text-white"
-						src={result.image.file.url}
-						alt={result.image.caption[0]?.plain_text
-							? result.image.caption[0].plain_text
-							: 'Loading . . .'}
-					/>
-				{/key}
+				<!-- <img src={result.image.file.url} alt="" /> -->
+				<NotionImage
+					id={result.id}
+					alt={result.image.caption[0]?.plain_text ? result.image.caption[0].plain_text : ''}
+				/>
 			{/if}
 		</div>
 	{:else if result.type === 'code'}

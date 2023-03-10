@@ -135,3 +135,10 @@ export async function getContent(slug?: string) {
 		return errorMessage;
 	}
 }
+
+export async function retrieveBlock(id: string) {
+	const content = await notion.blocks.retrieve({
+		block_id: id
+	});
+	return content;
+}
