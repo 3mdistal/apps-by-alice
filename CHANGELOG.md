@@ -1,3 +1,46 @@
+## 0.3.0
+
+_10 March 2023_
+
+**The Notion CMS has landed.**
+
+**Features**
+
+- Blog posts populated from Notion database.
+- Blog entries populated from Notion.
+  - Automatically generated Table of Contents for each post.
+  - Custom subscript and superscript tags.
+  - Space made for custom Notion components that will map to certain Svelte components, like a "real" CMS.
+- Blog post light mode / dark mode.
+- Syntax highlighting for code examples on the blog.
+
+**Enhancements**
+
+- Incremental Static Regeneration (ISR) implemented throughout blog, for fast cached data.
+- Github added to social media area.
+- Home button on landing pages and blogs has been given an animation for clarity.
+- Scroll smoothing on the blog.
+- Open Graph images and descriptions added.
+
+**Refactors**
+
+- Typescript implmented, app-wide. Will fix all my red squigglies eventually.
+
+**Bugfixes**
+
+- Images from Notion properly updated when Notion link expires.
+- On the dev side, got Prettier to work correctly with sorting Tailwind classes.
+
+**Upcoming Goals**
+
+- Tailwind app-wide, design system further solidified.
+- Design improvements to site to match homepage aesthetic more.
+- App-wide light mode / dark mode.
+- Homepage transitions cleaned up (currently using timeouts but should be listening to transition end).
+- Vite ImageTools fixed up to function.
+- Fleshing out the studio pages with content.
+- More content moved over to the CMS to separate concerns.
+
 ## 0.2.0
 
 _21 February 2023_
@@ -25,7 +68,7 @@ _21 February 2023_
 - Store deprecated in favor of blog.
 - Bio updated.
 
-**Bugs**
+**Bugfixes**
 
 - Commissions button no longer reveals email.
 - Graphical performance issues on Safari across devices.
