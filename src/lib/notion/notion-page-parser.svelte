@@ -19,7 +19,7 @@
 
 	function subAndSuper() {
 		const notionContainer = document.querySelector('.notion-container')!;
-		const content = Array.from(notionContainer.querySelectorAll(':scope>p'));
+		const content = Array.from(notionContainer.querySelectorAll('p, h1, h2, h3, li'));
 		const superscript = /\{super:([^}]*)\}/g;
 		const subscript = /\{sub:([^}]*)\}/g;
 		content.forEach((e) => {
@@ -118,7 +118,7 @@
 				<div><img src={result.callout.icon.external.url} alt="" /></div>
 			{:else if result.callout.icon?.type == 'file'}
 				<div>
-					<img src={result.callout.icon.file.url} alt="" />
+					<NotionImage id={result.id} alt="" callout />
 				</div>
 			{/if}
 
