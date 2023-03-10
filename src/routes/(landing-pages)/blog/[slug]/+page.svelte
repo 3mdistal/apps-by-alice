@@ -1,15 +1,17 @@
 <script lang="ts">
 	import NotionPageParser from '$lib/notion/notion-page-parser.svelte';
-	import { onMount } from 'svelte';
 	import { fade } from 'svelte/transition';
 	import TextMacro from '$lib/notion/text-macro.svelte';
 	import { currentBlog } from '$lib/stores';
 	import type {
-		ListBlockChildrenResponse,
-		QueryDatabaseResponse
+		BlockObjectResponse,
+		PageObjectResponse
 	} from '@notionhq/client/build/src/api-endpoints';
+	import { onMount } from 'svelte';
 
-	export let data: Promise<QueryDatabaseResponse | ListBlockChildrenResponse>;
+	export let data: {
+		post: [{ results: [PageObjectResponse] }, { results: [BlockObjectResponse] }];
+	};
 
 	let {
 		post: [
@@ -29,12 +31,14 @@
 						}
 					}
 				]
-			}
-		],
-		post: [, { results }]
+			},
+			{ results: content }
+		]
 	} = data;
 
-	currentBlog.set(results);
+	if (content) {
+		currentBlog.set(content);
+	}
 
 	onMount(() => {
 		fetch(window.location.href, {
@@ -42,8 +46,6 @@
 				Accept: 'application/json',
 				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
 			}
-		}).then(() => {
-			currentBlog.set(results);
 		});
 	});
 </script>
