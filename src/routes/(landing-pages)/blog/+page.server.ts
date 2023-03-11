@@ -1,16 +1,16 @@
-import { getBlogs } from "$lib/notion/notion";
-import { BYPASS_TOKEN } from "$env/static/private";
+import { getBlogs } from '$lib/notion/notion';
+import { BYPASS_TOKEN } from '$env/static/private';
 
 export async function load() {
-  return {
-    post: await getBlogs(),
-  };
+	return {
+		post: await getBlogs()
+	};
 }
 
 export const config = {
-  isr: {
-    expiration: false,
-    bypassToken: BYPASS_TOKEN,
-  },
-  runtime: "nodejs18.x",
+	isr: {
+		expiration: false,
+		bypassToken: BYPASS_TOKEN
+	},
+	runtime: 'nodejs18.x'
 };

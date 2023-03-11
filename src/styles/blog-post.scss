@@ -3,98 +3,98 @@
 @tailwind utilities;
 
 @layer components {
-  .blog-container {
-    @apply h-[100%] min-h-[100vh] dark:bg-black bg-gray-200 px-4 sm:px-10 py-16 sm:py-10 tracking-wide dark:text-white text-gray-900 [&_sup]:text-inherit [&_sub]:text-inherit;
-  }
+	.blog-container {
+		@apply h-[100%] min-h-[100vh] dark:bg-black bg-gray-200 px-4 sm:px-10 py-16 sm:py-10 tracking-wide dark:text-white text-gray-900 [&_sup]:text-inherit [&_sub]:text-inherit;
+	}
 
-  .blog-container h1 {
-    @apply dark:text-white;
-    font-size: clamp(2rem, 5vw, 4rem);
-  }
+	.blog-container h1 {
+		@apply dark:text-white;
+		font-size: clamp(2rem, 5vw, 4rem);
+	}
 
-  .blog-container p.subtitle {
-    @apply mb-[1em] max-w-[30ch] dark:text-gray-100 text-gray-700 md:leading-9;
-    font-size: clamp(1.5rem, 3vw, 2rem);
-  }
+	.blog-container p.subtitle {
+		@apply mb-[1em] max-w-[30ch] dark:text-gray-100 text-gray-700 md:leading-9;
+		font-size: clamp(1.5rem, 3vw, 2rem);
+	}
 
-  .blog-container hr {
-    @apply my-10 mx-10 dark:border-white border-black opacity-50;
-  }
+	.blog-container hr {
+		@apply my-10 mx-10 dark:border-white border-black opacity-50;
+	}
 
-  .blog-container p.summary {
-    @apply dark:text-gray-100 text-gray-800 max-w-[45ch] flex;
-  }
+	.blog-container p.summary {
+		@apply dark:text-gray-100 text-gray-800 max-w-[45ch] flex;
+	}
 
-  .blog-container p.summary em {
-    @apply mr-4 dark:text-white text-gray-900 font-medium block;
-  }
+	.blog-container p.summary em {
+		@apply mr-4 dark:text-white text-gray-900 font-medium block;
+	}
 
-  .blog-container .notion-container {
-    @apply max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em];
-  }
+	.blog-container .notion-container {
+		@apply max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em];
+	}
 
-  .blog-container .notion-container .toc {
-    @apply my-[2em];
-  }
+	.blog-container .notion-container .toc {
+		@apply my-[2em];
+	}
 
-  .blog-container .notion-container a {
-    @apply font-medium hover:underline dark:text-[#a3e5eb] text-[#31676c];
-  }
+	.blog-container .notion-container a {
+		@apply font-medium hover:underline dark:text-[#a3e5eb] text-[#31676c];
+	}
 
-  .blog-container .notion-container code {
-    @apply dark:text-[#a3e5eb] text-[#31676c]
-  }
+	.blog-container .notion-container code {
+		@apply dark:text-[#a3e5eb] text-[#31676c];
+	}
 
-  .blog-container .notion-container pre code {
-    @apply dark:text-gray-300
-  }
+	.blog-container .notion-container pre code {
+		@apply dark:text-gray-300;
+	}
 
-  .blog-container .notion-container blockquote {
-    @apply ml-[2em] max-w-[40ch] italic mt-10 text-gray-300
-  }
+	.blog-container .notion-container blockquote {
+		@apply ml-[2em] max-w-[40ch] italic mt-10 text-gray-300;
+	}
 
-  .blog-container .notion-container .image img {
-    @apply h-[100%] w-[100%] object-contain lg:object-left rounded-3xl;
-  }
+	.blog-container .notion-container .image img {
+		@apply h-[100%] w-[100%] object-contain lg:object-left rounded-3xl;
+	}
 
-  .blog-container .notion-container .image {
-    @apply mt-[2em] mb-[2em] sm:pl-[1em] sm:pr-[3em] pr-[.5em];
-  }
+	.blog-container .notion-container .image {
+		@apply mt-[2em] mb-[2em] sm:pl-[1em] sm:pr-[3em] pr-[.5em];
+	}
 
-  .blog-container .notion-container h2 {
-    @apply text-2xl lg:text-4xl md:text-3xl font-medium mt-[2.5em] mb-[1.5em] dark:text-white text-gray-900;
-  }
+	.blog-container .notion-container h2 {
+		@apply text-2xl lg:text-4xl md:text-3xl font-medium mt-[2.5em] mb-[1.5em] dark:text-white text-gray-900;
+	}
 
-  .blog-container .notion-container h3 {
-    @apply mt-[1.5em] mb-[1em] font-medium text-2xl md:text-3xl dark:text-white text-gray-900;
-  }
+	.blog-container .notion-container h3 {
+		@apply mt-[1.5em] mb-[1em] font-medium text-2xl md:text-3xl dark:text-white text-gray-900;
+	}
 
-  .blog-container .notion-container ol,
-  .blog-container .notion-container ul {
-    @apply ml-[2em] dark:text-gray-200 [&_li]:text-inherit;
-  }
+	.blog-container .notion-container ol,
+	.blog-container .notion-container ul {
+		@apply ml-[2em] dark:text-gray-200 [&_li]:text-inherit;
+	}
 
-  .blog-container ol {
-    @apply list-decimal;
-  }
+	.blog-container ol {
+		@apply list-decimal;
+	}
 
-  .blog-container ul {
-    @apply list-disc;
-  }
+	.blog-container ul {
+		@apply list-disc;
+	}
 
-  .blog-container div.callout {
-    @apply mt-10 mb-6 flex gap-x-4 px-4 md:gap-x-10 md:px-20 items-start bg-gray-300 dark:bg-[#141414] pt-10 pb-6 rounded-lg;
-  }
+	.blog-container div.callout {
+		@apply mt-10 mb-6 flex gap-x-4 px-4 md:gap-x-10 md:px-20 items-start bg-gray-300 dark:bg-[#141414] pt-10 pb-6 rounded-lg;
+	}
 
-  .blog-container .notion-container div.callout > :first-child {
-    @apply text-2xl md:text-4xl;
-  }
+	.blog-container .notion-container div.callout > :first-child {
+		@apply text-2xl md:text-4xl;
+	}
 
-  .blog-container .notion-container div.callout > :last-child {
-    @apply text-lg md:text-xl;
-  }
+	.blog-container .notion-container div.callout > :last-child {
+		@apply text-lg md:text-xl;
+	}
 
-  .blog-container .notion-container p {
-    @apply dark:text-gray-200 text-gray-600;
-  }
+	.blog-container .notion-container p {
+		@apply dark:text-gray-200 text-gray-600;
+	}
 }
