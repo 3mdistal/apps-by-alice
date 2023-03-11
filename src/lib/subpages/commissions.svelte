@@ -128,14 +128,22 @@
 		</div>
 	</div>
 	<div class="spacer" />
-	<div class="header" bind:this={header} style="border-color: {accent}">
-		<div class="right">
+	<div
+		class="[&_p]:md:text-2xl [&_p]:lg:text-3xl [&_p]:lg:text-4xl header border-2 rounded-lg max-w-[350px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[800px] md:gap-x-8 gap-x-4 flex justify-center items-center mx-auto py-[3em] px-[1em]"
+		bind:this={header}
+		style="border-color: {accent}"
+	>
+		<div class="text-right">
 			<p style="color: {accent}">alice</p>
 			<p style="color: {accent}">alexandra</p>
 			<p style="color: {accent}">moore</p>
 		</div>
 		<div>
-			<img src="/images/commissions/circle.svg" alt="" />
+			<img
+				class="w-[100px] sm:w-[125px] md:w-[150px] lg:w-[200px]"
+				src="/images/commissions/circle.svg"
+				alt=""
+			/>
 		</div>
 		<div>
 			<p style="color: {accent}">developer</p>
@@ -246,31 +254,6 @@
 			z-index: 100;
 			border-radius: 10px;
 			margin: 0 2em 0 2em;
-		}
-	}
-
-	.header {
-		padding: 3em 0;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		column-gap: clamp(1em, 2vw, 3em);
-		border: 2px solid;
-		border-radius: 10px;
-		width: clamp(275px, 60%, 1000px);
-		margin: 0 auto;
-
-		& img {
-			width: clamp(50px, 20vw, 300px);
-		}
-
-		& .right {
-			text-align: right;
-		}
-
-		& p {
-			font-size: clamp(1rem, 2.5vw, 5rem);
-			font-weight: 300;
 		}
 	}
 
