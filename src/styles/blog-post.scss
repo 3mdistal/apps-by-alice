@@ -4,7 +4,7 @@
 
 @layer components {
 	.blog-container {
-		@apply h-[100%] min-h-[100vh] dark:bg-black bg-gray-200 px-4 sm:px-10 py-16 sm:py-10 tracking-wide dark:text-white text-gray-900 [&_sup]:text-inherit [&_sub]:text-inherit;
+		@apply h-[100%] min-h-[100vh] bg-gray-200 px-4 py-16 tracking-wide text-gray-900 dark:bg-black dark:text-white sm:px-10 sm:py-10 [&_sub]:text-inherit [&_sup]:text-inherit;
 	}
 
 	.blog-container h1 {
@@ -13,20 +13,20 @@
 	}
 
 	.blog-container p.subtitle {
-		@apply mb-[1em] max-w-[30ch] dark:text-gray-100 text-gray-700 md:leading-9;
+		@apply mb-[1em] max-w-[30ch] text-gray-700 dark:text-gray-100 md:leading-9;
 		font-size: clamp(1.5rem, 3vw, 2rem);
 	}
 
 	.blog-container hr {
-		@apply my-10 mx-10 dark:border-white border-black opacity-50;
+		@apply my-10 mx-10 border-black opacity-50 dark:border-white;
 	}
 
 	.blog-container p.summary {
-		@apply dark:text-gray-100 text-gray-800 max-w-[45ch] flex;
+		@apply flex max-w-[45ch] text-gray-800 dark:text-gray-100;
 	}
 
 	.blog-container p.summary em {
-		@apply mr-4 dark:text-white text-gray-900 font-medium block;
+		@apply mr-4 block font-medium text-gray-900 dark:text-white;
 	}
 
 	.blog-container .notion-container {
@@ -38,11 +38,11 @@
 	}
 
 	.blog-container .notion-container a {
-		@apply font-medium hover:underline dark:text-[#a3e5eb] text-[#31676c];
+		@apply font-medium text-[#31676c] hover:underline dark:text-[#a3e5eb];
 	}
 
 	.blog-container .notion-container code {
-		@apply dark:text-[#a3e5eb] text-[#31676c];
+		@apply text-[#31676c] dark:text-[#a3e5eb];
 	}
 
 	.blog-container .notion-container pre code {
@@ -50,23 +50,23 @@
 	}
 
 	.blog-container .notion-container blockquote {
-		@apply ml-[2em] max-w-[40ch] italic mt-10 text-gray-300;
+		@apply ml-[2em] mt-10 max-w-[40ch] italic text-gray-300;
 	}
 
 	.blog-container .notion-container .image img {
-		@apply h-[100%] w-[100%] object-contain lg:object-left rounded-3xl;
+		@apply h-[100%] w-[100%] rounded-3xl object-contain lg:object-left;
 	}
 
 	.blog-container .notion-container .image {
-		@apply mt-[2em] mb-[2em] sm:pl-[1em] sm:pr-[3em] pr-[.5em];
+		@apply mt-[2em] mb-[2em] pr-[.5em] sm:pl-[1em] sm:pr-[3em];
 	}
 
 	.blog-container .notion-container h2 {
-		@apply text-2xl lg:text-4xl md:text-3xl font-medium mt-[2.5em] mb-[1.5em] dark:text-white text-gray-900;
+		@apply mt-[2.5em] mb-[1.5em] text-2xl font-medium text-gray-900 dark:text-white md:text-3xl lg:text-4xl;
 	}
 
 	.blog-container .notion-container h3 {
-		@apply mt-[1.5em] mb-[1em] font-medium text-2xl md:text-3xl dark:text-white text-gray-900;
+		@apply mt-[1.5em] mb-[1em] text-2xl font-medium text-gray-900 dark:text-white md:text-3xl;
 	}
 
 	.blog-container .notion-container ol,
@@ -83,7 +83,7 @@
 	}
 
 	.blog-container div.callout {
-		@apply mt-10 mb-6 flex gap-x-4 px-4 md:gap-x-10 md:px-20 items-start bg-gray-300 dark:bg-[#141414] pt-10 pb-6 rounded-lg;
+		@apply mt-10 mb-6 flex items-start gap-x-4 rounded-lg bg-gray-300 px-4 pt-10 pb-6 dark:bg-[#141414] md:gap-x-10 md:px-20;
 	}
 
 	.blog-container .notion-container div.callout > :first-child {
@@ -95,6 +95,6 @@
 	}
 
 	.blog-container .notion-container p {
-		@apply dark:text-gray-200 text-gray-600;
+		@apply text-gray-600 dark:text-gray-200;
 	}
 }

@@ -22,7 +22,7 @@
 	});
 </script>
 
-<div out:delay class="relative h-[100dvh] overflow-hidden flex-col pt-4 md:pt-[6vh]">
+<div out:delay class="relative h-[100dvh] flex-col overflow-hidden pt-4 md:pt-[6vh]">
 	<SiteTitle />
 	<HomepageWrapper {changeBackground} />
 </div>

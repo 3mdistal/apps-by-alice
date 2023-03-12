@@ -1,4 +1,4 @@
-<div class="w-[20ch] md:w-[55ch] aspect-video flex justify-center items-center md:pr-[10ch]">
+<div class="flex aspect-video w-[20ch] items-center justify-center md:w-[55ch] md:pr-[10ch]">
 	<div class="loader" />
 </div>
 

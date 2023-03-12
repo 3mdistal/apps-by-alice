@@ -31,13 +31,13 @@
 {#if visibility}
 	{#if loading}
 		<div
-			class="md:py-[30%] py-[50%] font-medium [&_*]:font-medium [&_*]:text-xl md:[&_*]:text-3xl [&>*]:text-inherit text-[#642e1a]"
+			class="py-[50%] font-medium text-[#642e1a] md:py-[30%] [&>*]:text-inherit [&_*]:text-xl [&_*]:font-medium md:[&_*]:text-3xl"
 		>
 			<p class="mb-4">Submitting your info . . .</p>
 		</div>
 	{:else}
 		<form on:submit|preventDefault={contact} method="POST">
-			<p class="text-dynamicHeader text-center mb-[1em]" style="color: {accent}">
+			<p class="mb-[1em] text-center text-dynamicHeader" style="color: {accent}">
 				Let's make something together.
 			</p>
 			<div class="form-flex">
@@ -63,7 +63,7 @@
 	{/if}
 {:else}
 	<div
-		class="md:py-[30%] py-[50%] font-medium [&_*]:font-medium [&_*]:text-xl md:[&_*]:text-3xl [&>*]:text-inherit text-[#642e1a]"
+		class="py-[50%] font-medium text-[#642e1a] md:py-[30%] [&>*]:text-inherit [&_*]:text-xl [&_*]:font-medium md:[&_*]:text-3xl"
 	>
 		<p class="mb-4">
 			Thank you, <span class="text-amber-700">{client}</span>, for your submission!

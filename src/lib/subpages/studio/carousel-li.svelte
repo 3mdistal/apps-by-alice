@@ -57,20 +57,20 @@
 	data-sveltekit-preload-code="eager"
 	{href}
 	bind:this={container}
-	class="group relative flex h-[30vh] md:h-[100%] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover md:transition-all md:duration-500 ease-in-out md:hover:grow-[3] md:w-auto"
+	class="group relative flex h-[30vh] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover ease-in-out md:h-[100%] md:w-auto md:transition-all md:duration-500 md:hover:grow-[3]"
 >
 	<img {src} {alt} class="absolute z-0 w-[100%]" />
 	<div
 		bind:this={textContainer}
-		class="md:invisible z-10 h-[100%] w-[100%] bg-black bg-opacity-50 px-10 py-5 md:opacity-0 md:transition-all md:duration-500 md:group-hover:visible md:group-hover:opacity-100 md:h-auto md:w-auto"
+		class="z-10 h-[100%] w-[100%] bg-black bg-opacity-50 px-10 py-5 md:invisible md:h-auto md:w-auto md:opacity-0 md:transition-all md:duration-500 md:group-hover:visible md:group-hover:opacity-100"
 	>
 		<p
-			class="md:text-sm font:extra-light md:font-thin text-white md:transition-all md:duration-500 md:group-hover:text-4xl"
+			class="font:extra-light text-white md:text-sm md:font-thin md:transition-all md:duration-500 md:group-hover:text-4xl"
 		>
 			{title}
 		</p>
 		<p
-			class="font-medium md:font-light md:text-sm text-white md:transition-all md:duration-500 md:group-hover:text-2xl"
+			class="font-medium text-white md:text-sm md:font-light md:transition-all md:duration-500 md:group-hover:text-2xl"
 		>
 			{subtitle}
 		</p>

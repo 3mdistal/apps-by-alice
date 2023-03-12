@@ -20,7 +20,7 @@
 	designer and developer who thrives taking on complex ideas, I might never iron out everything, but
 	I'll <a
 		style="color:{accent}"
-		class="hover:underline font-medium"
+		class="font-medium hover:underline"
 		href="https://github.com/3mdistal/portfolio"
 		rel="noreferrer"
 		target="_blank">always be improving</a

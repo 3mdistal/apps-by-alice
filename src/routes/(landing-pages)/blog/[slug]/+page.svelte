@@ -67,6 +67,6 @@
 		<NotionPageParser />
 	</div>
 	<p class="text-right text-4xl md:text-6xl">
-		<a href="/blog" class="inline-block text-white p-6">back.</a>
+		<a href="/blog" class="inline-block p-6 text-white">back.</a>
 	</p>
 </div>

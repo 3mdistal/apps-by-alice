@@ -119,17 +119,17 @@
 </script>
 
 <div class="spacer" />
-<div class="wrapper">
+<div class="max-w-[100vw] overflow-hidden">
 	<div
 		class="hero relative flex h-[100vh] w-[100%] items-center justify-center overflow-hidden bg-[url('/images/commissions/impossible.jpeg')] bg-cover bg-no-repeat"
 	>
-		<div class="text" bind:this={heroText}>
+		<div class="text p-[3em]" bind:this={heroText}>
 			<p style="color: {accent}">Bring your impossible, intangible things.</p>
 		</div>
 	</div>
 	<div class="spacer" />
 	<div
-		class="[&_p]:md:text-2xl [&_p]:lg:text-3xl [&_p]:lg:text-4xl header border-2 rounded-lg max-w-[350px] sm:max-w-[400px] md:max-w-[450px] lg:max-w-[800px] md:gap-x-8 gap-x-4 flex justify-center items-center mx-auto py-[3em] px-[1em]"
+		class="header mx-auto flex max-w-[350px] items-center justify-center gap-x-4 rounded-lg border-2 py-[3em] px-[1em] sm:max-w-[400px] md:max-w-[450px] md:gap-x-8 lg:max-w-[800px] [&_p]:md:text-2xl [&_p]:lg:text-3xl [&_p]:lg:text-4xl"
 		bind:this={header}
 		style="border-color: {accent}"
 	>
@@ -233,11 +233,6 @@
 </div>
 
 <style lang="scss">
-	.wrapper {
-		max-width: 100vw;
-		overflow: hidden;
-	}
-
 	.hero {
 		@media (hover: hover) {
 			background-attachment: fixed;
@@ -249,7 +244,6 @@
 		}
 
 		& .text {
-			padding: 3em;
 			background-color: rgba(255, 255, 255, 0.5);
 			z-index: 100;
 			border-radius: 10px;

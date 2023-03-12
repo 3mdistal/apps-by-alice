@@ -9,18 +9,18 @@
 	}
 
 	* {
-		@apply font-sans text-gray-800 font-light m-0 p-0;
+		@apply m-0 p-0 font-sans font-light text-gray-800;
 	}
 
 	h2 {
-		@apply text-2xl lg:text-4xl md:text-3xl font-medium mb-[1.5em];
+		@apply mb-[1.5em] text-2xl font-medium md:text-3xl lg:text-4xl;
 	}
 
 	p {
 		@apply text-xl lg:text-2xl lg:leading-relaxed;
 	}
 	li {
-		@apply text-xl lg:text-2xl lg:leading-relaxed mb-[1em];
+		@apply mb-[1em] text-xl lg:text-2xl lg:leading-relaxed;
 	}
 
 	.spacer {
@@ -32,7 +32,7 @@
 	}
 
 	img {
-		@apply w-[100%] h-[100%] object-cover;
+		@apply h-[100%] w-[100%] object-cover;
 	}
 
 	@media (hover: none) {

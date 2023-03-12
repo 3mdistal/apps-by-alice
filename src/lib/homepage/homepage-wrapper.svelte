@@ -40,7 +40,7 @@
 </script>
 
 <nav
-	class="md:absolute relative md:bottom-[-35vh] h-[100vh] w-[100%] opacity-0"
+	class="relative h-[100vh] w-[100%] opacity-0 md:absolute md:bottom-[-35vh]"
 	bind:this={homepageWrapper}
 >
 	{#each $names as name}

@@ -41,26 +41,26 @@
 	});
 </script>
 
-<div class="w-[75%] mx-auto" bind:this={container}>
+<div class="mx-auto w-[75%]" bind:this={container}>
 	<h2
 		bind:this={heading}
 		style="color: {accent}"
-		class="text-left [&_*]:text-inherit md:text-center"
+		class="text-left md:text-center [&_*]:text-inherit"
 	>
 		<slot name="heading" />
 	</h2>
 	<div
-		class="flex-col md:flex gap-x-[3em] gap-y-[5em] justify-between items-start"
+		class="flex-col items-start justify-between gap-x-[3em] gap-y-[5em] md:flex"
 		style="flex-direction: {flexDirection}"
 	>
-		<div class="text children:mb-10 children:last:mb-0 text-left max-w-[60ch]" bind:this={text}>
+		<div class="text max-w-[60ch] text-left children:mb-10 children:last:mb-0" bind:this={text}>
 			<slot name="text" style="color: {accent}" />
 			<div class="mt-[3m] flex justify-center">
 				<slot name="button" class="button" />
 			</div>
 		</div>
 
-		<div class="max-w-[80%] mx-auto md:max-w-[50%] sticky top-[1em]" bind:this={image}>
+		<div class="sticky top-[1em] mx-auto max-w-[80%] md:max-w-[50%]" bind:this={image}>
 			<slot name="image" />
 		</div>
 	</div>
