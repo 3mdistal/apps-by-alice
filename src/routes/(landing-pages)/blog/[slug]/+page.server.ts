@@ -5,7 +5,6 @@ import { BYPASS_TOKEN } from '$env/static/private';
 export const load: Load = ({ params }) => {
 	const fetchContent = async (slug: string) => {
 		const res = await getContent(slug);
-		console.log("Content fetched.")
 		return res;
 	};
 
@@ -13,7 +12,6 @@ export const load: Load = ({ params }) => {
 		const res1 = await getContent(slug);
 		if (res1[1].next_cursor) {
 			const res2 = await getRestOfContent(res1[0].results[0].id, res1[1].next_cursor);
-			console.log("Rest fetched.")
 			return(res2)
 		}
 		return null;
