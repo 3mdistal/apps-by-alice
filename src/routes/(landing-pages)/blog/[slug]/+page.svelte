@@ -42,6 +42,7 @@
 
 	const logRest = async () => {
 		const res = await data.nested.restOfContent;
+		if (!res) return;
 		const arr = [...content, ...res.results];
 		currentBlog.set(arr);
 	};
@@ -74,6 +75,6 @@
 		<NotionPageParser />
 	</div>
 	<p class="text-right text-4xl md:text-6xl">
-		<a href="/blog" class="inline-block p-6 text-white">back.</a>
+		<a href="/blog" class="inline-block p-6  text-gray-900 dark:text-white">back.</a>
 	</p>
 </div>

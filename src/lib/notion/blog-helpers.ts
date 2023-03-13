@@ -1,6 +1,5 @@
-export function subAndSuper() {
-	const notionContainer = document.querySelector('.notion-container')!;
-	const content = Array.from(notionContainer.querySelectorAll('p, h1, h2, h3, li'));
+export function subAndSuper(context: HTMLElement) {
+	const content = Array.from(context.querySelectorAll('p, h1, h2, h3, li'));
 	const superscript = /\{super:([^}]*)\}/g;
 	const subscript = /\{sub:([^}]*)\}/g;
 	content.forEach((e) => {
@@ -10,9 +9,9 @@ export function subAndSuper() {
 	});
 }
 
-export function wrapLists() {
+export function wrapLists(context: HTMLElement) {
 	// Select all list items
-	const liArray = Array.from(document.querySelectorAll('li'));
+	const liArray = Array.from(context.querySelectorAll('li'));
 
 	const firstSiblings: HTMLLIElement[] = [];
 
