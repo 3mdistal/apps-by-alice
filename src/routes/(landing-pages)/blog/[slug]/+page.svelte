@@ -40,6 +40,12 @@
 		currentBlog.set(content);
 	}
 
+	const logRest = async () => {
+		const res = await data.nested.restOfContent;
+		const arr = [...content, ...res.results];
+		currentBlog.set(arr);
+	};
+
 	onMount(() => {
 		fetch(window.location.href, {
 			headers: {
@@ -47,6 +53,7 @@
 				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
 			}
 		});
+		logRest();
 	});
 </script>
 

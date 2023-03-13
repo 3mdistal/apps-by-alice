@@ -93,8 +93,10 @@
 		>
 			{#if result.code.language === 'typescript'}
 				<Highlight language={typescript} code={result.code.rich_text[0]?.plain_text} />
-			{:else if result.code.language === 'html'}
+			{:else if result.code.language === 'php'}
 				<HighlightSvelte code={result.code.rich_text[0]?.plain_text} />
+			{:else if (result.code.language = 'html')}
+				{@html result.code.rich_text[0]?.plain_text}
 			{/if}
 		</div>
 	{/if}

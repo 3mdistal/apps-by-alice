@@ -111,7 +111,7 @@ export async function getContent(slug?: string) {
 					direction: 'descending',
 					property: 'Publication Date'
 				}
-			]
+			],
 		});
 
 		response.push(query);
@@ -129,6 +129,22 @@ export async function getContent(slug?: string) {
 		return response;
 	} catch (error) {
 		let errorMessage = 'Posting to commissions failed generically.';
+		if (error instanceof Error) {
+			errorMessage = error.message;
+		}
+		return errorMessage;
+	}
+}
+
+export async function getRestOfContent(id: string, next_cursor: string) {
+	try {
+		const response = await notion.blocks.children.list({
+			block_id: id,
+			start_cursor: next_cursor
+		});
+		return response;
+	} catch (error) {
+		let errorMessage = 'Retrieving blogs failed generically.';
 		if (error instanceof Error) {
 			errorMessage = error.message;
 		}
