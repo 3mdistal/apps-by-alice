@@ -38,13 +38,13 @@
 <a
 	href="/"
 	bind:this={button}
-	class="w-14 h-14 md:w-20 md:h-20 fixed top-2 md:top-6 md:right-6 right-2 z-10 opacity-0"
+	class="fixed top-2 right-2 z-10 h-14 w-14 opacity-0 md:top-6 md:right-6 md:h-20 md:w-20"
 	on:mouseenter={seeBack}
 	on:mouseleave={hideBack}
 >
-	<img src={Logo} alt="Home button logo." class="absolute w-[100%] h-[100%]" bind:this={logo} />
-	<div bind:this={circle} class="absolute w-[100%] h-[100%] flex justify-center items-center">
-		<img src={PlainCircle} class="absolute w-[100%] h-[100%]" alt="Home button logo." />
-		<p class="text-white z-10 text-sm md:text-xl font-medium">home.</p>
+	<img src={Logo} alt="Home button logo." class="absolute h-[100%] w-[100%]" bind:this={logo} />
+	<div bind:this={circle} class="absolute flex h-[100%] w-[100%] items-center justify-center">
+		<img src={PlainCircle} class="absolute h-[100%] w-[100%]" alt="Home button logo." />
+		<p class="z-10 text-sm font-medium text-white md:text-xl">home.</p>
 	</div>
 </a>

@@ -40,6 +40,12 @@
 		currentBlog.set(content);
 	}
 
+	const logRest = async () => {
+		const res = await data.nested.restOfContent;
+		const arr = [...content, ...res.results];
+		currentBlog.set(arr);
+	};
+
 	onMount(() => {
 		fetch(window.location.href, {
 			headers: {
@@ -47,6 +53,7 @@
 				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
 			}
 		});
+		logRest();
 	});
 </script>
 
@@ -67,6 +74,6 @@
 		<NotionPageParser />
 	</div>
 	<p class="text-right text-4xl md:text-6xl">
-		<a href="/blog" class="inline-block text-white p-6">back.</a>
+		<a href="/blog" class="inline-block p-6 text-white">back.</a>
 	</p>
 </div>

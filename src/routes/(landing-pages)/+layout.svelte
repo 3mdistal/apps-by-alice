@@ -1,5 +1,5 @@
 <script>
-    import HomeButton from "$lib/icons/home-button.svelte";
+	import HomeButton from '$lib/icons/home-button.svelte';
 </script>
 
 <HomeButton />

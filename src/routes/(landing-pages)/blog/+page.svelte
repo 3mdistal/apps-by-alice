@@ -22,7 +22,7 @@
 		{accent}
 		textWhite
 	/>
-	<div class="py-20 mx-auto w-[90%] md:w-[60%]">
+	<div class="mx-auto w-[90%] py-20 md:w-[60%]">
 		<Blog {accent} {data} />
 	</div>
 </div>

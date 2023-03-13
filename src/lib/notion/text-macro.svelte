@@ -13,7 +13,7 @@
 	{:else if rich_text.annotations.bold}
 		<strong class="text-inherit">{rich_text.text.content}</strong>
 	{:else if rich_text.annotations.strikethrough}
-		<span class="line-through text-inherit">{rich_text.text.content}</span>
+		<span class="text-inherit line-through">{rich_text.text.content}</span>
 	{:else}
 		{rich_text.text.content}
 	{/if}

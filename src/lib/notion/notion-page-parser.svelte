@@ -89,12 +89,14 @@
 		</div>
 	{:else if result.type === 'code'}
 		<div
-			class="[&_span]:font-mono pb-6 dark:[&_span.hljs-params]:text-gray-300 dark:[&_span.language-css]:text-gray-300 dark:[&_span.language-javascript]:text-gray-300 dark:[&_span.hljs-name]:text-red-300 [&_span.hljs-name]:text-teal-700 dark:[&_span.hljs-property]:text-gray-300 [&_code]:text-lg [&_code]:tracking-tighter [&_.hljs]:rounded-lg [&_.hljs]:bg-gray-300 dark:[&_.hljs]:bg-[#141414]"
+			class="pb-6 [&_.hljs]:rounded-lg [&_.hljs]:bg-gray-300 dark:[&_.hljs]:bg-[#141414] [&_code]:text-lg [&_code]:tracking-tighter [&_span.hljs-name]:text-teal-700 dark:[&_span.hljs-name]:text-red-300 dark:[&_span.hljs-params]:text-gray-300 dark:[&_span.hljs-property]:text-gray-300 dark:[&_span.language-css]:text-gray-300 dark:[&_span.language-javascript]:text-gray-300 [&_span]:font-mono"
 		>
 			{#if result.code.language === 'typescript'}
 				<Highlight language={typescript} code={result.code.rich_text[0]?.plain_text} />
-			{:else if result.code.language === 'html'}
+			{:else if result.code.language === 'php'}
 				<HighlightSvelte code={result.code.rich_text[0]?.plain_text} />
+			{:else if (result.code.language = 'html')}
+				{@html result.code.rich_text[0]?.plain_text}
 			{/if}
 		</div>
 	{/if}

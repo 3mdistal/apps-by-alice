@@ -21,15 +21,15 @@
 	});
 </script>
 
-<h3 class="mb-[1em] text-2xl md:text-3xl lg:text-4xl font-medium" style="color: {accent}">Posts</h3>
+<h3 class="mb-[1em] text-2xl font-medium md:text-3xl lg:text-4xl" style="color: {accent}">Posts</h3>
 {#each results as { properties: { Slug: { url }, Name: { title: [{ text: { content: title } }] }, FormattedPublicationDate: { formula: { string: date } } } }}
-	<div class="flex flex-col lg:flex-row mb-6 justify-between md:gap-x-[2vw]">
+	<div class="mb-6 flex flex-col justify-between md:gap-x-[2vw] lg:flex-row">
 		<p>
 			<a
 				on:click={() => (title = 'Loading . . .')}
 				data-sveltekit-preload-code="viewport"
 				data-sveltekit-preload-data="hover"
-				class="text-white font-medium hover:underline active:text-gray-400"
+				class="font-medium text-white hover:underline active:text-gray-400"
 				href="blog/{url}">{title}</a
 			>
 		</p>

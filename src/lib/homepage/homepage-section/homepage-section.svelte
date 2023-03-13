@@ -48,7 +48,7 @@
 	data-sveltekit-preload-data="hover"
 	href={name}
 	title={name}
-	class="homepage-section h-[100%] absolute bottom-0 w-[100%] {name} hover:saturate-150 hover:brightness-95 hover:hue-rotate-[5deg] focus:saturate-[175%] focus:brightness-[85%] focus:hue-rotate-[10deg]"
+	class="homepage-section absolute bottom-0 h-[100%] w-[100%] {name} hover:brightness-95 hover:hue-rotate-[5deg] hover:saturate-150 focus:brightness-[85%] focus:hue-rotate-[10deg] focus:saturate-[175%]"
 	style:background
 	bind:this={section}
 	on:mouseenter={handleMouseEnter}
@@ -57,7 +57,7 @@
 >
 	{#if $state === 'home' || name}
 		<div class="homepage-section-menu-link {name} absolute">
-			<h2 class="text-lg md:text-2xl lg:text-3xl font-light">{name}</h2>
+			<h2 class="text-lg font-light md:text-2xl lg:text-3xl">{name}</h2>
 		</div>
 	{/if}
 </a>
