@@ -111,7 +111,7 @@ export async function getContent(slug?: string) {
 					direction: 'descending',
 					property: 'Publication Date'
 				}
-			],
+			]
 		});
 
 		response.push(query);
