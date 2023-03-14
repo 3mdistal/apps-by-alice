@@ -37,7 +37,7 @@
 	}
 
 	onMount(() => {
-		setTimeout(animate, 1550);
+		animate();
 	});
 </script>
 

@@ -24,11 +24,11 @@
 		subAndSuper(context);
 		wrapLists(context);
 		createTOC();
+		setDarkMode();
 	};
 
 	onMount(() => {
 		runBlogHelpers();
-		setTimeout(setDarkMode);
 	});
 </script>
 

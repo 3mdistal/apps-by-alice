@@ -25,7 +25,8 @@
 		tl.to(
 			document.body,
 			{
-				backgroundColor: background
+				backgroundColor: background,
+				delay: 0.25
 			},
 			'<'
 		);

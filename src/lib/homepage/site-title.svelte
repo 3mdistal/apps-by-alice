@@ -1,6 +1,7 @@
 <script lang="ts">
 	import gsap from 'gsap';
 	import { onMount } from 'svelte';
+	import { state } from '$lib/stores';
 
 	let logo: HTMLImageElement;
 	let siteTitle: HTMLParagraphElement;
@@ -48,31 +49,29 @@
 
 		return tl;
 	}
-
-	function transitionOut() {
-		outAnimation();
-	}
 </script>
 
-<header
-	out:transitionOut
-	class="site-header-container mx-auto flex max-w-[80vw] flex-col items-center justify-around gap-y-[1em] sm:gap-y-[2em] md:flex-row lg:gap-x-[2em]"
->
-	<img
-		bind:this={logo}
-		src="images/logos/logo.svg"
-		alt="The logo for Tempo Immaterial."
-		class="w-16 opacity-0 sm:w-24 md:w-32 lg:w-48"
-	/>
-	<div>
-		<p bind:this={siteTitle} class="site-title mb-[0.5em] text-center tracking-[0.4em] opacity-0">
-			tempo immaterial
-		</p>
-		<p bind:this={subtitle} class="subtitle text-center tracking-[0.15em] opacity-0">
-			work by alice alexandra moore
-		</p>
-	</div>
-</header>
+{#if $state === 'home'}
+	<header
+		out:outAnimation
+		class="site-header-container mx-auto flex max-w-[80vw] flex-col items-center justify-around gap-y-[1em] sm:gap-y-[2em] md:flex-row lg:gap-x-[2em]"
+	>
+		<img
+			bind:this={logo}
+			src="images/logos/logo.svg"
+			alt="The logo for Tempo Immaterial."
+			class="w-16 opacity-0 sm:w-24 md:w-32 lg:w-48"
+		/>
+		<div>
+			<p bind:this={siteTitle} class="site-title mb-[0.5em] text-center tracking-[0.4em] opacity-0">
+				tempo immaterial
+			</p>
+			<p bind:this={subtitle} class="subtitle text-center tracking-[0.15em] opacity-0">
+				work by alice alexandra moore
+			</p>
+		</div>
+	</header>
+{/if}
 
 <style lang="scss">
 	.site-title {

@@ -104,7 +104,7 @@
 		});
 	}
 
-	function animateAll() {
+	async function animateAll() {
 		gsap.registerPlugin(ScrollTrigger);
 		heroAnimation();
 		headerAnimation();
@@ -114,7 +114,7 @@
 	}
 
 	onMount(() => {
-		setTimeout(animateAll, 1550);
+		setTimeout(animateAll, 50);
 	});
 </script>
 
