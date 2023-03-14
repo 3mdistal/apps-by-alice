@@ -34,11 +34,7 @@
 	}
 
 	onMount(() => {
-		if ($state !== 'home') {
-			setTimeout(transitionIn, 1500);
-			return;
-		}
-		setTimeout(transitionIn, 500);
+		transitionIn();
 	});
 
 	onDestroy(() => {

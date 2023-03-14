@@ -1,8 +1,7 @@
 <script>
 	import LandingPage from '$lib/subpages/landing-page.svelte';
 	import Studio from '$lib/subpages/studio/studio.svelte';
-	// @ts-ignore
-	import Piano from '$images/studio/piano-with-chair.png?webp';
+	import Piano from '$images/studio/piano-with-chair.webp';
 
 	const accent = '#243269';
 	const background = '#d6ddf0';

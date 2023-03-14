@@ -1,10 +1,8 @@
 <script lang="ts">
-	import HomepageSection from './homepage-section/homepage-section.svelte';
-	import { state, backgroundColors, names } from '../stores';
+	import HomepageSection from '$lib/homepage/homepage-section.svelte';
+	import { backgroundColors, names } from '../stores';
 	import gsap from 'gsap';
 	import { onMount } from 'svelte';
-
-	export let changeBackground: Function;
 
 	let homepageWrapper: HTMLElement;
 
@@ -28,8 +26,6 @@
 	}
 
 	function transitionOutWrapper() {
-		let delay = 0.75;
-		changeBackground(delay);
 		easeOut();
 	}
 
@@ -44,8 +40,6 @@
 	bind:this={homepageWrapper}
 >
 	{#each $names as name}
-		{#if $state == 'home' || name}
-			<HomepageSection background={$backgroundColors[name]} {name} {transitionOutWrapper} />
-		{/if}
+		<HomepageSection background={$backgroundColors[name]} {name} {transitionOutWrapper} />
 	{/each}
 </nav>

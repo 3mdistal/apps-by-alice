@@ -40,10 +40,6 @@
 	}
 
 	onMount(() => {
-		if ($state !== 'home') {
-			setTimeout(scrollAnimate, 1550);
-			return;
-		}
 		setTimeout(scrollAnimate, 50);
 	});
 </script>

@@ -49,7 +49,7 @@
 	}
 
 	onMount(() => {
-		setTimeout(animateBlack, 1550);
+		animateBlack();
 	});
 </script>
 

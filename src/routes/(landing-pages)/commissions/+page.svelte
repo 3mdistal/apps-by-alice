@@ -2,8 +2,7 @@
 	import Button from '$lib/icons/button.svelte';
 	import Commissions from '$lib/subpages/commissions.svelte';
 	import LandingPage from '$lib/subpages/landing-page.svelte';
-	// @ts-ignore
-	import Rabbit from '$images/commissions/rabbit-in-hat.png?webp';
+	import Rabbit from '$images/commissions/rabbit-in-hat.webp';
 
 	const accent = '#642e1a';
 	const background = '#dcc9c6';

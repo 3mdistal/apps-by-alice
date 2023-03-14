@@ -31,7 +31,7 @@
 	}
 
 	onMount(() => {
-		setTimeout(populate, 1500);
+		populate();
 	});
 </script>
 

@@ -1,13 +1,9 @@
 <script lang="ts">
 	import gsap from 'gsap';
 	import { onMount } from 'svelte';
-	// @ts-ignore
-	import Rabbit from '$images/social-media/soundcloud-rabbit.png?webp';
-	// @ts-ignore
-	import PolarBear from '$images/social-media/insta-polar-bear.png';
-	// @ts-ignore
-	import Squirrel from '$images/social-media/twitter-squirrel.png';
-	// @ts-ignore
+	import Rabbit from '$images/social-media/soundcloud-rabbit.webp';
+	import PolarBear from '$images/social-media/insta-polar-bear.webp';
+	import Squirrel from '$images/social-media/twitter-squirrel.webp';
 	import Cat from '$images/social-media/github-cat.webp';
 
 	let container: HTMLDivElement;
