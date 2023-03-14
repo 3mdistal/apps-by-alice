@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { RichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
-	export let type: { rich_text: RichTextItemResponse[] };
+	import type { TextRichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
+	export let type: { rich_text: TextRichTextItemResponse[] };
 </script>
 
 {#each type.rich_text as rich_text}

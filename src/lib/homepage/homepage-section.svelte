@@ -1,6 +1,7 @@
 <script lang="ts">
-	import { state } from '../../stores';
+	import { state } from '$lib/stores';
 	import gsap from 'gsap';
+	import { goto } from '$app/navigation';
 
 	export let background: string;
 	export let name: string;
@@ -9,35 +10,47 @@
 	let section: HTMLAnchorElement;
 	let hover = true;
 
-	function easeDown() {
-		gsap.to(section, { y: 0, ease: 'elastic.out', duration: 2 });
+	function ease(yPos: number) {
+		gsap.to(section, { y: yPos, ease: 'elastic.out', duration: 2 });
 	}
 
 	function animateOut() {
-		gsap.to(section, {
+		const tl = gsap.timeline({ onComplete: navigate });
+		tl.to(section, {
 			y: '-50vh',
 			delay: 0.25,
 			ease: 'power4.in',
 			duration: 0.75
 		});
+		tl.to(
+			document.body,
+			{
+				backgroundColor: background
+			},
+			'<'
+		);
 	}
 
 	function handleMouseEnter() {
 		if (hover) {
-			gsap.to(section, { y: -30, ease: 'elastic', duration: 2 });
+			ease(-30);
 		}
 	}
 
 	function handleMouseLeave() {
 		if (hover) {
-			easeDown();
+			ease(0);
 		}
 	}
 
-	function setState() {
+	function navigate() {
+		goto(name);
+	}
+
+	function handleClick() {
 		state.set(name);
 		hover = false;
-		easeDown();
+		ease(0);
 		animateOut();
 		transitionOutWrapper();
 	}
@@ -53,13 +66,11 @@
 	bind:this={section}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
-	on:click={setState}
+	on:click|preventDefault={handleClick}
 >
-	{#if $state === 'home' || name}
-		<div class="homepage-section-menu-link {name} absolute">
-			<h2 class="text-lg font-light md:text-2xl lg:text-3xl">{name}</h2>
-		</div>
-	{/if}
+	<div class="homepage-section-menu-link {name} absolute">
+		<h2 class="text-lg font-light md:text-2xl lg:text-3xl">{name}</h2>
+	</div>
 </a>
 
 <style lang="scss">

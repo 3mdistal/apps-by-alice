@@ -19,12 +19,12 @@
 		darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
 	}
 
-	async function runBlogHelpers() {
+	const runBlogHelpers = async () => {
 		await tick();
 		subAndSuper(context);
 		wrapLists(context);
 		createTOC();
-	}
+	};
 
 	onMount(() => {
 		runBlogHelpers();
