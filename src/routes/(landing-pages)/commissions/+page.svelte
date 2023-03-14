@@ -8,6 +8,10 @@
 	const background = '#dcc9c6';
 </script>
 
+<svelte:head>
+	<link rel="preload" as="image" href={Rabbit} />
+</svelte:head>
+
 <div style="background-color: {background}">
 	<LandingPage
 		header="hire me for ambitious projects."
