@@ -42,6 +42,10 @@
 	});
 </script>
 
+<svelte:head>
+	<link rel="preload" as="image" href={src} />
+</svelte:head>
+
 <div
 	bind:this={container}
 	class="min-h-[100vh] pt-40 [&>*]:opacity-0"
