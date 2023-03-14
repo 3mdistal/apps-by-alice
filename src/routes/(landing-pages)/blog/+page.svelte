@@ -1,7 +1,6 @@
 <script lang="ts">
 	import LandingPage from '$lib/subpages/landing-page.svelte';
-	// @ts-ignore
-	import Bird from '$images/blog/bird.png?webp';
+	import Bird from '$images/blog/bird.webp';
 	import Blog from '$lib/subpages/blog.svelte';
 	import type { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
 
