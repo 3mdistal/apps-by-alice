@@ -12,10 +12,10 @@ export const load: Load = ({ params }) => {
 		const res1 = await getContent(slug);
 		if (res1[1].next_cursor) {
 			const res2 = await getRestOfContent(res1[0].results[0].id, res1[1].next_cursor);
-			return(res2)
+			return res2;
 		}
 		return null;
-	}
+	};
 
 	return {
 		post: fetchContent(params['slug'] as string),
