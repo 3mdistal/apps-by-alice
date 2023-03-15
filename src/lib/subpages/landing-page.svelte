@@ -42,11 +42,7 @@
 	});
 </script>
 
-<div
-	bind:this={container}
-	class="min-h-[100vh] pt-40 [&>*]:opacity-0"
-	style="background-color: {background}"
->
+<div bind:this={container} class="pt-40 [&>*]:opacity-0" style="background-color: {background}">
 	<div
 		class="flex flex-wrap items-center gap-x-10 gap-y-10 px-5 md:flex-nowrap lg:px-20 {noPadding
 			? 'justify-between'

@@ -35,7 +35,7 @@
 				href="blog/{url}">{title}</a
 			>
 		</p>
-		<p class="row-start-2 md:col-span-2 text-white italic"><TextMacro type={Subtitle} /></p>
+		<p class="row-start-2 italic text-white md:col-span-2"><TextMacro type={Subtitle} /></p>
 		<p class="row-start-3 text-white md:col-start-3 md:row-start-1">
 			{date}
 		</p>

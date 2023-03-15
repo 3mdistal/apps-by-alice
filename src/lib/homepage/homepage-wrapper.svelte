@@ -36,7 +36,7 @@
 </script>
 
 <nav
-	class="relative h-[100vh] w-[100%] opacity-0 md:absolute md:bottom-[-35vh]"
+	class="relative h-[100vh] w-[100%] opacity-0 lg:absolute lg:bottom-[-35vh]"
 	bind:this={homepageWrapper}
 >
 	{#each $names as name}

@@ -15,7 +15,11 @@
 
 <div class="spacer" />
 
-<SubpageContent {accent}>
+<SubpageContent
+	{accent}
+	imageSource={Owl}
+	imageAlt="A painting of a Screech Owl staring eerily at the viewer. Painting by Alice Alexandra Moore."
+>
 	<svelte:fragment slot="heading">
 		<strong>tempo immaterial</strong>, verb,
 		<em>to dream of perpetual insufficiency.</em>
@@ -23,37 +27,35 @@
 	<svelte:fragment slot="text">
 		<About1 {accent} />
 	</svelte:fragment>
-	<img
-		slot="image"
-		src={Owl}
-		alt="A painting of a Screech Owl staring eerily at the viewer. Painting by Alice Alexandra Moore."
-	/>
 </SubpageContent>
 
 <div class="spacer" />
 
-<SubpageContent flexDirection="row" {accent}>
+<SubpageContent
+	flexDirection="row"
+	{accent}
+	imageSource={AuthorPhoto}
+	imageAlt="Alice Alexandra Moore"
+>
 	<svelte:fragment slot="heading">
 		i grew up in a backwoods town, just above the Ohio River.
 	</svelte:fragment>
 	<svelte:fragment slot="text">
 		<About2 />
 	</svelte:fragment>
-	<img slot="image" src={AuthorPhoto} alt="Alice Alexandra Moore." />
 </SubpageContent>
 
 <div class="spacer" />
 
-<SubpageContent {accent}>
+<SubpageContent
+	{accent}
+	imageSource={Mirror}
+	imageAlt="Painting of a person sitting, holding a mirror. By Alice Alexandra Moore."
+>
 	<svelte:fragment slot="heading">why do i limit my definition of meaningful?</svelte:fragment>
 	<svelte:fragment slot="text">
 		<About3 {accent} />
 	</svelte:fragment>
-	<img
-		slot="image"
-		src={Mirror}
-		alt="Painting of a person sitting, holding a mirror. By Alice Alexandra Moore."
-	/>
 </SubpageContent>
 
 <div class="spacer" />
@@ -80,11 +82,6 @@
 <style lang="scss">
 	strong {
 		font-weight: 600;
-	}
-
-	img {
-		object-fit: contain;
-		border-radius: 50px;
 	}
 
 	p {

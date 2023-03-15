@@ -131,7 +131,7 @@
 		}
 	}
 
-	@media screen and (max-width: 45rem) {
+	@media screen and (max-width: 1024px) {
 		.homepage-section {
 			&.studio {
 				clip-path: url(#studio-path-mobile);
@@ -164,7 +164,7 @@
 			}
 
 			&.commissions {
-				right: 20%;
+				right: 25%;
 			}
 
 			&.blog {

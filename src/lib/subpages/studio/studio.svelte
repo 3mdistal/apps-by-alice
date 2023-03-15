@@ -3,7 +3,6 @@
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import ScrollTrigger from 'gsap/ScrollTrigger';
-	import { state } from '../../stores';
 
 	// @ts-ignore
 	import BirdTMI from '$images/studio/bird-tmi.jpg?webp';
