@@ -5,6 +5,8 @@
 
 	export let flexDirection = 'row-reverse';
 	export let accent = '';
+	export let imageSource = '';
+	export let imageAlt = '';
 
 	let container: HTMLElement;
 	let heading: HTMLElement;
@@ -61,7 +63,7 @@
 		</div>
 
 		<div class="sticky top-[1em] mx-auto max-w-[80%] md:max-w-[50%]" bind:this={image}>
-			<slot name="image" />
+			<img class="rounded-3xl" src={imageSource} alt={imageAlt} />
 		</div>
 	</div>
 </div>
