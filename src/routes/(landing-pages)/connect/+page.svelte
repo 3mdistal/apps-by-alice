@@ -10,7 +10,7 @@
 
 <LandingPage
 	header="let's keep in touch."
-	description="Feel free to reach out to me on any of my socials."
+	description="Feel free to reach out to me on any of my socials!"
 	accent="#726a12"
 	background="#eeeded"
 >
