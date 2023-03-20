@@ -1,6 +1,11 @@
 <script>
 	import Socials from '$lib/icons/socials.svelte';
 	import LandingPage from '$lib/subpages/landing-page.svelte';
+	import { onMount } from 'svelte';
+
+	onMount(() => {
+		document.body.style.backgroundColor = '#eeeded';
+	});
 </script>
 
 <LandingPage
