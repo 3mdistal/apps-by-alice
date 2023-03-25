@@ -8,15 +8,19 @@
 
 	let container: HTMLDivElement;
 
-	onMount(() => {
+	function popIn() {
 		gsap.from(container.children, {
 			opacity: 0,
 			y: 100,
 			ease: 'elastic',
 			duration: 2,
-			delay: 0.5,
+			delay: 0.25,
 			stagger: 0.1
 		});
+	}
+
+	onMount(() => {
+		setTimeout(popIn, 50);
 	});
 
 	function handleMouseEnterSocialImage(e: Event) {
