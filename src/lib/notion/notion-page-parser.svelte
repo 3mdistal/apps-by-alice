@@ -101,6 +101,10 @@
 					{@html result.code.rich_text[0]?.plain_text}
 				{/if}
 			</div>
+		{:else if result.type === 'divider'}
+			<div class="px-[30%] md:px-[35%] pt-2 pb-10">
+				<hr />
+			</div>
 		{/if}
 	{/each}
 </div>
