@@ -1,5 +1,5 @@
 <script lang="ts">
-	import CarouselLi from './carousel-li.svelte';
+	import CarouselLi from '$lib/subpages/studio/carousel-li.svelte';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	import ScrollTrigger from 'gsap/ScrollTrigger';

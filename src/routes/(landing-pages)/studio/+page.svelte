@@ -1,6 +1,6 @@
 <script>
 	import LandingPage from '$lib/subpages/landing-page.svelte';
-	import Studio from '$lib/subpages/studio/studio.svelte';
+	import Studio from './studio.svelte';
 	import Piano from '$images/studio/piano-with-chair.webp';
 
 	const accent = '#243269';
