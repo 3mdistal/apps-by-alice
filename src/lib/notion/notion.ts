@@ -125,7 +125,6 @@ export async function getContent(slug?: string) {
 		}
 
 		response.push(content);
-
 		return response;
 	} catch (error) {
 		let errorMessage = 'Posting to commissions failed generically.';
