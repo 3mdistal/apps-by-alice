@@ -11,6 +11,9 @@
 	import { currentBlog } from '$lib/stores';
 	import NotionImage from './notion-image.svelte';
 	import { subAndSuper, wrapLists, createTOC } from './blog-helpers';
+	import Socials from '$lib/icons/socials.svelte';
+	import mermaid from 'mermaid';
+	let config = { startOnLoad: true };
 
 	let darkMode: boolean;
 	let context: HTMLDivElement;
@@ -25,10 +28,17 @@
 		wrapLists(context);
 		createTOC();
 		setDarkMode();
+		mermaid.initialize(config);
+		mermaid.contentLoaded();
 	};
 
 	onMount(() => {
 		runBlogHelpers();
+		console.log(
+			$currentBlog[1].code.language,
+			$currentBlog[2].code.language,
+			$currentBlog[3].code.language
+		);
 	});
 </script>
 
@@ -97,8 +107,22 @@
 					<Highlight language={typescript} code={result.code.rich_text[0]?.plain_text} />
 				{:else if result.code.language === 'php'}
 					<HighlightSvelte code={result.code.rich_text[0]?.plain_text} />
-				{:else if (result.code.language = 'html')}
-					{@html result.code.rich_text[0]?.plain_text}
+				{:else if result.code.language === 'mermaid'}
+					<pre class="mermaid">
+						{result.code.rich_text[0]?.plain_text}
+					</pre>
+				{:else if result.code.language === 'plain text'}
+					{#if result.code.rich_text[0]?.plain_text.includes('Socials')}
+						{#if result.code.rich_text[0]?.plain_text.includes('small')}
+							<div class="w-20">
+								<Socials />
+							</div>
+						{:else}
+							<Socials />
+						{/if}
+					{:else}
+						{@html result.code.rich_text[0]?.plain_text}
+					{/if}
 				{/if}
 			</div>
 		{:else if result.type === 'divider'}
