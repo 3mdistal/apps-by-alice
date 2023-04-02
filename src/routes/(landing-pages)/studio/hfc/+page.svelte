@@ -140,7 +140,7 @@
 								</p>
 							</a>
 							{#if open[poem.id] === true}
-								<div>
+								<div class="-mt-12">
 									{#each poemContent[poem.id].results as stanza}
 										<p
 											class="mb-8 max-w-[60ch] text-sm sm:text-lg text-white md:text-xl xl:text-2xl"
@@ -156,7 +156,7 @@
 											toggleOpen(poem.id, section.id);
 										}}
 										href="/studio/hfc"
-										><p class="text-center text-3xl text-white md:text-4xl lg:text-5xl">
+										><p class="mt-32 text-right text-2xl text-white md:text-3xl lg:text-4xl">
 											close.
 										</p></a
 									>
