@@ -3,6 +3,7 @@
 	import TextMacro from '$lib/notion/text-macro.svelte';
 
 	export let data;
+	console.log(data);
 	let open = {};
 	let poemContent = {};
 	let poemLoading = {};
@@ -17,15 +18,15 @@
 		});
 
 		const content = await response.json();
-		console.log(content);
 		poemContent[id] = content;
 	};
 
-	function scroll(poemID) {
-		document.getElementById(poemID).scrollIntoView({ behavior: 'smooth' });
+	function scroll(sectionID) {
+		const section = document.getElementById(sectionID);
+		section.scrollIntoView();
 	}
 
-	async function toggleOpen(poem) {
+	async function toggleOpen(poem, section) {
 		if (open[poem] === true) {
 			open[poem] = false;
 		} else if (open[poem] === false) {
@@ -36,7 +37,7 @@
 			poemLoading[poem] = false;
 			open[poem] = true;
 		}
-		scroll(poem);
+		scroll(section);
 	}
 
 	const {
@@ -61,7 +62,7 @@
 	<div class="spacer" />
 	{#each sections as section}
 		{#if section.properties.Name.title[0].plain_text === 'introduction'}
-			<div class="flex flex-col items-center justify-center px-5 md:px-10 min-h-[100dvh]">
+			<div class="flex min-h-[100dvh] flex-col items-center justify-center px-5 md:px-10">
 				<div class="flex max-w-[60ch] flex-col gap-y-5 text-2xl">
 					<h2 class="text-white">Author's Note</h2>
 					<p class="whitespace-pre-line">
@@ -105,19 +106,21 @@
 				</div>
 			</div>
 			<div
-				class="relative min-h-[100dvh] flex items-center py-20"
+				id={section.id}
+				class="relative flex min-h-[100dvh] items-center py-20"
 				style="background-image: url({section.properties.secondaryImage
 					.url}); background-size: cover; background-position: center; background-attachment: fixed;"
 			>
-				<div class="absolute h-[100%] w-[100%] bg-black bg-opacity-70" />
-				<div class="z-10 relative flex flex-col w-[100%] items-center gap-y-20 px-5">
+				<div class="absolute h-[100%] w-[100%] bg-black bg-opacity-75" />
+				<div
+					class="relative z-10 flex w-[100%] flex-col md:items-center gap-y-20 px-5 overflow-x-scroll"
+				>
 					{#each poems as poem}
 						{#if poem.properties.sectionName.formula.string === section.properties.Name.title[0].plain_text}
 							<a
 								class="p-4 hover:[&>p]:text-[#cfcdcb]"
-								on:click|preventDefault={() => toggleOpen(poem.id)}
+								on:click|preventDefault={() => toggleOpen(poem.id, section.id)}
 								href={poem.properties.Slug.formula.string}
-								id={poem.id}
 							>
 								<p class="text-center text-3xl text-white md:text-4xl lg:text-5xl">
 									{#if poemLoading[poem.id] === false || !poemLoading[poem.id]}
@@ -128,15 +131,20 @@
 								</p>
 							</a>
 							{#if open[poem.id] === true}
-								<div class="overflow-x-scroll sm:overflow-visible">
+								<div>
 									{#each poemContent[poem.id].results as stanza}
-										<p class="text-white text-lg md:text-xl mb-8 max-w-[60ch]">
+										<p
+											class="mb-8 max-w-[60ch] text-sm sm:text-lg text-white md:text-xl"
+											style="white-space: {poem.properties.NotLineated.checkbox === false
+												? 'pre'
+												: ''}"
+										>
 											<TextMacro type={stanza.paragraph} />
 										</p>
 									{/each}
 									<a
 										on:click|preventDefault={() => {
-											toggleOpen(poem.id);
+											toggleOpen(poem.id, section.id);
 										}}
 										href="/studio/hfc"
 										><p class="text-center text-3xl text-white md:text-4xl lg:text-5xl">
