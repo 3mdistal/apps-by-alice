@@ -34,11 +34,6 @@
 
 	onMount(() => {
 		runBlogHelpers();
-		console.log(
-			$currentBlog[1].code.language,
-			$currentBlog[2].code.language,
-			$currentBlog[3].code.language
-		);
 	});
 </script>
 

@@ -1,9 +1,9 @@
 <script>
 	import Piano from '$images/studio/hfc/hero-hfc-lq.webp';
 	import TextMacro from '$lib/notion/text-macro.svelte';
+	import { onMount } from 'svelte';
 
 	export let data;
-	console.log(data);
 	let open = {};
 	let poemContent = {};
 	let poemLoading = {};
@@ -46,6 +46,15 @@
 			poems: { results: poems }
 		}
 	} = data;
+
+	onMount(() => {
+		fetch('/studio/hfc', {
+			headers: {
+				Accept: 'application/json',
+				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
+			}
+		});
+	});
 </script>
 
 <div class="bg-black">
@@ -134,7 +143,7 @@
 								<div>
 									{#each poemContent[poem.id].results as stanza}
 										<p
-											class="mb-8 max-w-[60ch] text-sm sm:text-lg text-white md:text-xl"
+											class="mb-8 max-w-[60ch] text-sm sm:text-lg text-white md:text-xl xl:text-2xl"
 											style="white-space: {poem.properties.NotLineated.checkbox === false
 												? 'pre'
 												: ''}"

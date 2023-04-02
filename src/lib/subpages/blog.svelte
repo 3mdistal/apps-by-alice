@@ -19,7 +19,6 @@
 				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
 			}
 		});
-		console.log(results);
 	});
 </script>
 
