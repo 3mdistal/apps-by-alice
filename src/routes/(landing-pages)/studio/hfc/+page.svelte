@@ -122,7 +122,7 @@
 			>
 				<div class="absolute h-[100%] w-[100%] bg-black bg-opacity-75" />
 				<div
-					class="relative z-10 flex w-[100%] flex-col md:items-center gap-y-20 px-5 overflow-x-scroll"
+					class="relative z-10 flex w-[100%] flex-col md:items-center gap-y-20 px-5 overflow-x-scroll md:overflow-x-visible"
 				>
 					{#each poems as poem}
 						{#if poem.properties.sectionName.formula.string === section.properties.Name.title[0].plain_text}
