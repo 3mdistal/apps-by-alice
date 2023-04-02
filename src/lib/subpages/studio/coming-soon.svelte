@@ -15,12 +15,12 @@
 			<slot name="subtitle" />
 		</em>
 	</p>
-	<hr class="my-10 mx-10 opacity-50" />
+	<hr class="mx-10 my-10 opacity-50" />
 	<p>
 		<em class="mr-4 font-medium text-white">tl;dr</em>
 		<slot name="summary" />
 	</p>
-	<hr class="my-10 mx-10 opacity-50" />
+	<hr class="mx-10 my-10 opacity-50" />
 	<div class="max-w-[60ch] text-xl lg:text-2xl [&_*]:text-inherit [&_p]:mb-[1em]">
 		<slot name="text" />
 	</div>

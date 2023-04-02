@@ -75,7 +75,7 @@
 		<NotionPageParser />
 	</div>
 	<p class="text-right text-4xl md:text-6xl">
-		<a href="/blog" data-sveltekit-noscroll class="inline-block p-6  text-gray-900 dark:text-white"
+		<a href="/blog" data-sveltekit-noscroll class="inline-block p-6 text-gray-900 dark:text-white"
 			>back.</a
 		>
 	</p>

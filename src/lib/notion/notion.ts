@@ -1,5 +1,12 @@
 import { Client } from '@notionhq/client';
-import { NOTION_KEY, COMMISSIONS_DB, BLOGS_DB, USER_ID_ALICE } from '$env/static/private';
+import {
+	NOTION_KEY,
+	COMMISSIONS_DB,
+	BLOGS_DB,
+	POEMS_SECTIONS_DB,
+	ALL_SCRAPS_DB,
+	USER_ID_ALICE
+} from '$env/static/private';
 
 const notion = new Client({ auth: NOTION_KEY });
 
@@ -46,6 +53,83 @@ export async function addCommission(name: string, email: string, description: st
 		return response;
 	} catch (error) {
 		let errorMessage = 'Posting to commissions failed generically.';
+		if (error instanceof Error) {
+			errorMessage = error.message;
+		}
+		return errorMessage;
+	}
+}
+
+export async function getSections() {
+	try {
+		const response = await notion.databases.query({
+			database_id: POEMS_SECTIONS_DB,
+			filter: {
+				and: [
+					{
+						property: 'Published',
+						checkbox: {
+							equals: true
+						}
+					}
+				]
+			},
+			sorts: [
+				{
+					direction: 'ascending',
+					property: 'Sequence'
+				}
+			]
+		});
+		return response;
+	} catch (error) {
+		let errorMessage = 'Retrieving sections failed generically.';
+		if (error instanceof Error) {
+			errorMessage = error.message;
+		}
+		return errorMessage;
+	}
+}
+
+export async function getScraps() {
+	try {
+		const response = await notion.databases.query({
+			database_id: ALL_SCRAPS_DB,
+			filter: {
+				and: [
+					{
+						property: 'Published',
+						checkbox: {
+							equals: true
+						}
+					}
+				]
+			},
+			sorts: [
+				{
+					direction: 'ascending',
+					property: 'Sequence'
+				}
+			]
+		});
+		return response;
+	} catch (error) {
+		let errorMessage = 'Retrieving scraps failed generically.';
+		if (error instanceof Error) {
+			errorMessage = error.message;
+		}
+		return errorMessage;
+	}
+}
+
+export async function getPoem(id: string) {
+	try {
+		const response = await notion.blocks.children.list({
+			block_id: id
+		});
+		return response;
+	} catch (error) {
+		let errorMessage = 'Retrieving poem failed generically.';
 		if (error instanceof Error) {
 			errorMessage = error.message;
 		}

@@ -38,7 +38,7 @@
 <a
 	href="/"
 	bind:this={button}
-	class="fixed top-2 right-2 z-10 h-14 w-14 opacity-0 md:top-6 md:right-6 md:h-20 md:w-20"
+	class="fixed right-2 top-2 z-10 h-14 w-14 opacity-0 md:right-6 md:top-6 md:h-20 md:w-20"
 	on:mouseenter={seeBack}
 	on:mouseleave={hideBack}
 >

@@ -126,7 +126,7 @@
 				{/if}
 			</div>
 		{:else if result.type === 'divider'}
-			<div class="px-[30%] md:px-[35%] pt-2 pb-10">
+			<div class="px-[30%] pb-10 pt-2 md:px-[35%]">
 				<hr />
 			</div>
 		{/if}

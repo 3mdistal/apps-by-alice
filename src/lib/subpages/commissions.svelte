@@ -129,7 +129,7 @@
 	</div>
 	<div class="spacer" />
 	<div
-		class="header mx-auto flex max-w-[350px] items-center justify-center gap-x-4 rounded-lg border-2 py-[3em] px-[1em] sm:max-w-[400px] md:max-w-[450px] md:gap-x-8 lg:max-w-[800px] [&_p]:md:text-2xl [&_p]:lg:text-3xl [&_p]:lg:text-4xl"
+		class="header mx-auto flex max-w-[350px] items-center justify-center gap-x-4 rounded-lg border-2 px-[1em] py-[3em] sm:max-w-[400px] md:max-w-[450px] md:gap-x-8 lg:max-w-[800px] [&_p]:md:text-2xl [&_p]:lg:text-3xl [&_p]:lg:text-4xl"
 		bind:this={header}
 		style="border-color: {accent}"
 	>

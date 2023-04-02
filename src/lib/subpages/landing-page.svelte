@@ -50,7 +50,7 @@
 	>
 		<div
 			bind:this={bordered}
-			class="sm:px-15 box-border rounded-[5%] border-y-2 py-20 px-10 md:basis-1/2 lg:py-40 lg:px-20"
+			class="sm:px-15 box-border rounded-[5%] border-y-2 px-10 py-20 md:basis-1/2 lg:px-20 lg:py-40"
 			style="border-color: {accent}"
 		>
 			<h2 bind:this={topHeading} class="mb-5" style="color: {accent}">
@@ -61,7 +61,7 @@
 				{description}
 			</p>
 
-			<div bind:this={button} class="mt-10 mr-5 flex justify-end">
+			<div bind:this={button} class="mr-5 mt-10 flex justify-end">
 				<slot name="button" />
 			</div>
 		</div>
