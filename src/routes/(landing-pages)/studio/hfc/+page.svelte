@@ -10,7 +10,6 @@
 
 	const fetchContent = async (id) => {
 		if (poemContent[id]) return;
-		console.log('fetching');
 		const response = await fetch('/studio/hfc/api', {
 			method: 'POST',
 			body: JSON.stringify({ id }),
@@ -18,7 +17,6 @@
 				'content-type': 'application/json'
 			}
 		});
-		console.log('done fetch');
 
 		const content = await response.json();
 		poemContent[id] = content;
