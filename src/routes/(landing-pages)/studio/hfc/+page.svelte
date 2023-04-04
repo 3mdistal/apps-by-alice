@@ -9,6 +9,8 @@
 	let poemLoading = {};
 
 	const fetchContent = async (id) => {
+		if (poemContent[id]) return;
+		console.log('fetching');
 		const response = await fetch('/studio/hfc/api', {
 			method: 'POST',
 			body: JSON.stringify({ id }),
@@ -16,6 +18,7 @@
 				'content-type': 'application/json'
 			}
 		});
+		console.log('done fetch');
 
 		const content = await response.json();
 		poemContent[id] = content;
@@ -29,7 +32,10 @@
 	async function toggleOpen(poem, section) {
 		if (open[poem] === true) {
 			open[poem] = false;
+			scroll(section);
 		} else if (open[poem] === false) {
+			open[poem] = true;
+		} else if (poemContent[poem]) {
 			open[poem] = true;
 		} else {
 			poemLoading[poem] = true;
@@ -37,7 +43,6 @@
 			poemLoading[poem] = false;
 			open[poem] = true;
 		}
-		scroll(section);
 	}
 
 	const {
@@ -57,21 +62,24 @@
 	});
 </script>
 
-<div class="bg-black">
-	<div>
-		<div class="relative mx-auto aspect-square md:aspect-auto md:h-[100dvh]">
+<div class="h-[100vh] snap-y snap-proximity overflow-y-scroll bg-black">
+	<div class="snap-start">
+		<div
+			class="relative mx-auto aspect-square bg-cover bg-center md:aspect-auto md:h-[100lvh] md:bg-fixed"
+			style="background-image: url({Piano})"
+		>
 			<div class="absolute left-[10%] top-[30%] z-10">
 				<h1 class="text-3xl text-white md:text-4xl lg:text-5xl xl:text-6xl">hymns for calliope</h1>
 				<p class="text-white">poems</p>
 			</div>
-			<div class="absolute h-[100%] w-[100%] bg-black opacity-50" />
-			<img class="object-[50%_70%]" src={Piano} alt="A broken piano in front of a building." />
+			<div class="absolute h-[100%] w-[100%] bg-black opacity-60" />
 		</div>
 	</div>
-	<div class="spacer" />
 	{#each sections as section}
 		{#if section.properties.Name.title[0].plain_text === 'introduction'}
-			<div class="flex min-h-[100dvh] flex-col items-center justify-center px-5 md:px-10">
+			<div
+				class="flex min-h-[100lvh] snap-start flex-col items-center justify-center px-5 md:px-10"
+			>
 				<div class="flex max-w-[60ch] flex-col gap-y-5 text-2xl">
 					<h2 class="text-white">Author's Note</h2>
 					<p class="whitespace-pre-line">
@@ -82,10 +90,10 @@
 			<div class="spacer" />
 		{:else}
 			<div
-				class="flex min-h-[100dvh] flex-col justify-center gap-y-24 bg-[#bcbab7] p-4 sm:gap-y-32 lg:gap-y-12"
+				class="flex min-h-[100lvh] snap-start flex-col justify-center gap-y-24 bg-[#bcbab7] p-4 sm:gap-y-32 lg:gap-y-12"
 			>
 				<div
-					class="relative grid min-h-[40dvh] grid-cols-6 grid-rows-6 lg:flex lg:items-center 2xl:px-32"
+					class="relative grid min-h-[40lvh] grid-cols-6 grid-rows-6 lg:flex lg:items-center 2xl:px-32"
 				>
 					<div
 						class="col-span-5 col-start-1 row-span-full row-start-1 lg:col-span-4 lg:translate-x-10"
@@ -116,19 +124,21 @@
 			</div>
 			<div
 				id={section.id}
-				class="relative flex min-h-[100dvh] items-center py-20"
-				style="background-image: url({section.properties.secondaryImage
-					.url}); background-size: cover; background-position: center; background-attachment: fixed;"
+				class="relative flex min-h-[100lvh] snap-start items-center bg-cover bg-center py-20 sm:bg-fixed"
+				style="background-image: url({section.properties.secondaryImage.url});"
 			>
-				<div class="absolute h-[100%] w-[100%] bg-black bg-opacity-75" />
+				<div class="absolute h-[100%] w-[100%] bg-black bg-opacity-80" />
 				<div
-					class="relative z-10 flex w-[100%] flex-col md:items-center gap-y-20 px-5 overflow-x-scroll md:overflow-x-visible"
+					class="relative z-10 flex w-[100%] flex-col gap-y-20 overflow-x-scroll px-5 md:items-center md:overflow-x-visible"
 				>
 					{#each poems as poem}
 						{#if poem.properties.sectionName.formula.string === section.properties.Name.title[0].plain_text}
 							<a
 								class="p-4 hover:[&>p]:text-[#cfcdcb]"
 								on:click|preventDefault={() => toggleOpen(poem.id, section.id)}
+								on:mouseenter={() => {
+									fetchContent(poem.id);
+								}}
 								href={poem.properties.Slug.formula.string}
 							>
 								<p class="text-center text-3xl text-white md:text-4xl lg:text-5xl">
@@ -143,7 +153,7 @@
 								<div class="-mt-12">
 									{#each poemContent[poem.id].results as stanza}
 										<p
-											class="mb-8 max-w-[60ch] text-sm sm:text-lg text-white md:text-xl xl:text-2xl"
+											class="mb-8 max-w-[60ch] text-sm text-white sm:text-lg md:text-xl xl:text-2xl"
 											style="white-space: {poem.properties.NotLineated.checkbox === false
 												? 'pre'
 												: ''}"
