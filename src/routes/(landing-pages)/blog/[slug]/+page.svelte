@@ -60,7 +60,7 @@
 
 <svelte:head>
 	<title>{title}</title>
-	<meta name="description" content={`${summary} A blog by Alice Alexandra Moore.`} />
+	<meta name="description" content="A blog by Alice Alexandra Moore." />
 </svelte:head>
 
 <div class="blog-container" in:fade={{ duration: 500 }}>
