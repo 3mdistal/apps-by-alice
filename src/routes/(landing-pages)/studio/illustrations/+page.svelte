@@ -4,6 +4,14 @@
 	import ComingSoonIllustrations from '$text/studio/illustrations/coming-soon-illustrations.md';
 </script>
 
+<svelte:head>
+	<title>Illustrations</title>
+	<meta
+		name="description"
+		content="Illustrations, paintings, and other visual art from Alice Alexandra Moore."
+	/>
+</svelte:head>
+
 <ComingSoon>
 	<svelte:fragment slot="title">illustrations</svelte:fragment>
 

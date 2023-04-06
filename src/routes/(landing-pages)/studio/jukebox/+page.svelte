@@ -4,6 +4,14 @@
 	import ComingSoonJukebox from '$text/studio/jukebox/coming-soon-jukebox.md';
 </script>
 
+<svelte:head>
+	<title>Jukebox</title>
+	<meta
+		name="description"
+		content="Music and compositions by Alice Alexandra Moore. Find her work on Soundcloud, Spotify, Apple Music, and Tidal."
+	/>
+</svelte:head>
+
 <ComingSoon>
 	<svelte:fragment slot="title">jukebox</svelte:fragment>
 

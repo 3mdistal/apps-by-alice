@@ -8,6 +8,14 @@
 	const background = '#beb5ca';
 </script>
 
+<svelte:head>
+	<title>hymns for calliope</title>
+	<meta
+		name="About"
+		content="Biographical page to get to know Alice Alexandra Moore and why she cares about what she does."
+	/>
+</svelte:head>
+
 <div style="background-color: {background}">
 	<LandingPage
 		header="i'm alice, a digital creator."

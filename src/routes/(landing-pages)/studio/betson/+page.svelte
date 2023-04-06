@@ -4,6 +4,14 @@
 	import ComingSoonBetson from '$text/studio/betson/coming-soon-betson.md';
 </script>
 
+<svelte:head>
+	<title>Betson, Ohio</title>
+	<meta
+		name="description"
+		content="In the backwoods, tangled undergrowth dictates creatures and canopies. A novel by Alice Alexandra Moore, based on where she grew up."
+	/>
+</svelte:head>
+
 <ComingSoon>
 	<svelte:fragment slot="title">betson, ohio</svelte:fragment>
 

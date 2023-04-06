@@ -10,6 +10,14 @@
 	const background = '#838391';
 </script>
 
+<svelte:head>
+	<title>Blog</title>
+	<meta
+		name="description"
+		content="Blog entries and writing that doesn't quite fit anywhere else, from Alice Alexandra Moore."
+	/>
+</svelte:head>
+
 <div style="background-color: {background}">
 	<LandingPage
 		header="unearth some thoughts."

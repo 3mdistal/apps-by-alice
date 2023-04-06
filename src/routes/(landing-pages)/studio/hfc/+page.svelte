@@ -60,6 +60,11 @@
 	});
 </script>
 
+<svelte:head>
+	<title>hymns for calliope</title>
+	<meta name="description" content="Collected poems by Alice Alexandra Moore." />
+</svelte:head>
+
 <div class="h-[100vh] snap-y snap-proximity overflow-y-scroll bg-black">
 	<div class="snap-start">
 		<div

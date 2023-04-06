@@ -58,6 +58,11 @@
 	});
 </script>
 
+<svelte:head>
+	<title>{title}</title>
+	<meta name="description" content="A blog by Alice Alexandra Moore." />
+</svelte:head>
+
 <div class="blog-container" in:fade={{ duration: 500 }}>
 	<h1>
 		{title}
