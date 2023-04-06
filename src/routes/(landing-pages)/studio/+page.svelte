@@ -7,6 +7,14 @@
 	const background = '#d6ddf0';
 </script>
 
+<svelte:head>
+	<title>Studio</title>
+	<meta
+		name="description"
+		content="The studio works of Alice Alexandra Moore. Enjoy fiction, fantasy, poetry, illustrations, music, essays, and more."
+	/>
+</svelte:head>
+
 <LandingPage
 	header="i keep chasing new ideas."
 	description="I've always been someone who dabbles in everything; learning

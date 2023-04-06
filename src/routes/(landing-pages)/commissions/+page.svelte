@@ -8,6 +8,14 @@
 	const background = '#dcc9c6';
 </script>
 
+<svelte:head>
+	<title>Commissions</title>
+	<meta
+		name="description"
+		content="Let's collaborate! I specialize in organizing difficult to categorize work and creating custom designs and workflows to meet your needs. All work by Alice Alexandra Moore."
+	/>
+</svelte:head>
+
 <div style="background-color: {background}">
 	<LandingPage
 		header="hire me for ambitious projects."

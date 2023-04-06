@@ -8,6 +8,11 @@
 	});
 </script>
 
+<svelte:head>
+	<title>Connect</title>
+	<meta name="description" content="Social media links for Alice Alexandra Moore." />
+</svelte:head>
+
 <LandingPage
 	header="let's keep in touch."
 	description="Feel free to reach out to me on any of my socials!"

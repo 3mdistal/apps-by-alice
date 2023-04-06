@@ -4,6 +4,14 @@
 	import ComingSoonTMI from '$text/studio/tmi/coming-soon-tmi.svelte.md';
 </script>
 
+<svelte:head>
+	<title>These Makeshift Idiotika</title>
+	<meta
+		name="description"
+		content="A sprawling world of lovers and fiends, torn by an ever-titling landscape. Fantasy world-building from Alice Alexandra Moore."
+	/>
+</svelte:head>
+
 <ComingSoon>
 	<svelte:fragment slot="title">these makeshift idiotika</svelte:fragment>
 
