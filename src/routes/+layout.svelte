@@ -19,10 +19,6 @@
 
 	<!-- HTML Meta Tags -->
 	<title>Tempo Immaterial</title>
-	<meta
-		name="description"
-		content="The studio of Alice Alexandra Moore. Creative work, ramblings, commissions and more."
-	/>
 
 	<!-- Facebook Meta Tags -->
 	<meta property="og:url" content="https://www.alicealexandra.com" />

@@ -19,6 +19,11 @@
 	<link rel="preload" as="image" href={Piano} />
 	<link rel="preload" as="image" href={Rabbit} />
 	<link rel="preload" as="image" href={Bird} />
+
+	<meta
+		name="description"
+		content="The studio of Alice Alexandra Moore. Creative work, ramblings, commissions and more."
+	/>
 </svelte:head>
 
 <div class="relative h-[100dvh] flex-col overflow-hidden pt-4 md:pt-[6vh]">
