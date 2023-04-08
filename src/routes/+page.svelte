@@ -8,18 +8,21 @@
 	import Rabbit from '$images/commissions/rabbit-in-hat.webp';
 	import Bird from '$images/blog/bird.webp';
 
+	function preloadImages(...imageUrls: string[]) {
+		imageUrls.forEach((url) => {
+			const img = new Image();
+			img.src = url;
+		});
+	}
+
 	onMount(() => {
 		state.set('home');
 		document.body.style.backgroundColor = '#fafafa';
+		preloadImages(Flowers, Piano, Rabbit, Bird);
 	});
 </script>
 
 <svelte:head>
-	<link rel="preload" as="image" href={Flowers} />
-	<link rel="preload" as="image" href={Piano} />
-	<link rel="preload" as="image" href={Rabbit} />
-	<link rel="preload" as="image" href={Bird} />
-
 	<meta
 		name="description"
 		content="The studio of Alice Alexandra Moore. Creative work, ramblings, commissions and more."

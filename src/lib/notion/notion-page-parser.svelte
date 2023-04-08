@@ -34,11 +34,6 @@
 
 	onMount(() => {
 		runBlogHelpers();
-		console.log(
-			$currentBlog[1].code.language,
-			$currentBlog[2].code.language,
-			$currentBlog[3].code.language
-		);
 	});
 </script>
 
@@ -107,6 +102,8 @@
 					<Highlight language={typescript} code={result.code.rich_text[0]?.plain_text} />
 				{:else if result.code.language === 'php'}
 					<HighlightSvelte code={result.code.rich_text[0]?.plain_text} />
+				{:else if result.code.language === 'html'}
+					{@html result.code.rich_text[0]?.plain_text}
 				{:else if result.code.language === 'mermaid'}
 					<pre class="mermaid">
 						{result.code.rich_text[0]?.plain_text}

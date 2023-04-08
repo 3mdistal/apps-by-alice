@@ -5,12 +5,14 @@
 	import { currentBlog } from '$lib/stores';
 	import type {
 		BlockObjectResponse,
-		PageObjectResponse
+		ListBlockChildrenResponse,
+		QueryDatabaseResponse
 	} from '@notionhq/client/build/src/api-endpoints';
 	import { onMount } from 'svelte';
 
 	export let data: {
-		post: [{ results: [PageObjectResponse] }, { results: [BlockObjectResponse] }];
+		post: [QueryDatabaseResponse, ListBlockChildrenResponse];
+		nested: { restOfContent: ListBlockChildrenResponse };
 	};
 
 	let {
@@ -27,7 +29,8 @@
 								]
 							},
 							Subtitle: subtitle,
-							Summary: summary
+							Summary: summary,
+							OGDescription: ogDescription
 						}
 					}
 				]
@@ -37,13 +40,16 @@
 	} = data;
 
 	if (content) {
-		currentBlog.set(content);
+		currentBlog.set(content as [BlockObjectResponse]);
 	}
 
 	const logRest = async () => {
 		const res = await data.nested.restOfContent;
 		if (!res) return;
-		const arr = [...content, ...res.results];
+		const arr: Array<BlockObjectResponse> = [
+			...(content as [BlockObjectResponse]),
+			...(res.results as [BlockObjectResponse])
+		];
 		currentBlog.set(arr);
 	};
 
@@ -60,7 +66,7 @@
 
 <svelte:head>
 	<title>{title}</title>
-	<meta name="description" content="A blog by Alice Alexandra Moore." />
+	<meta name="description" content={ogDescription.rich_text[0].plain_text} />
 </svelte:head>
 
 <div class="blog-container" in:fade={{ duration: 500 }}>
