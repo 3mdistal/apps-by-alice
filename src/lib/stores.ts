@@ -22,4 +22,4 @@ export const backgroundColors = readable({
 	connect: '#eeeded'
 });
 
-export const currentBlog: Writable<[BlockObjectResponse]> = writable();
+export const currentBlog: Writable<Array<BlockObjectResponse>> = writable();
