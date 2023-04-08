@@ -8,7 +8,7 @@
 	import Rabbit from '$images/commissions/rabbit-in-hat.webp';
 	import Bird from '$images/blog/bird.webp';
 
-	function preloadImages(...imageUrls) {
+	function preloadImages(...imageUrls: string[]) {
 		imageUrls.forEach((url) => {
 			const img = new Image();
 			img.src = url;
