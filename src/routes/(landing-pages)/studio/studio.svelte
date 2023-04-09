@@ -58,20 +58,6 @@
 			style="background-color:{background}"
 		>
 			<CarouselLi
-				src={BirdTMI}
-				alt="Watercolor bird, confident and flying."
-				title="These Makeshift Idiotika"
-				subtitle="A shifting, tilting world."
-				href="studio/tmi"
-			/>
-			<CarouselLi
-				src={MirrorB}
-				alt="A girl touching her face in a mirror."
-				title="Betson, Ohio"
-				subtitle="Novel in Calendar"
-				href="studio/betson"
-			/>
-			<CarouselLi
 				src={PianoHFC}
 				alt="A relatively destroyed grand piano in front of the ruins of a building."
 				title="Hymns for Calliope"
@@ -79,11 +65,28 @@
 				href="/studio/hfc"
 			/>
 			<CarouselLi
+				src={BirdTMI}
+				alt="Watercolor bird, confident and flying."
+				title="These Makeshift Idiotika"
+				subtitle="A shifting, tilting world."
+				href="studio/tmi"
+				comingSoon
+			/>
+			<CarouselLi
+				src={MirrorB}
+				alt="A girl touching her face in a mirror."
+				title="Betson, Ohio"
+				subtitle="Novel in Calendar"
+				href="studio/betson"
+				comingSoon
+			/>
+			<CarouselLi
 				src={CityJ}
 				alt="A city lit up at night."
 				title="Jukebox"
 				subtitle="Music compositions."
 				href="/studio/jukebox"
+				comingSoon
 			/>
 			<CarouselLi
 				src={FlowerP}
@@ -91,6 +94,7 @@
 				title="Illustrations"
 				subtitle="Visual art."
 				href="/studio/illustrations"
+				comingSoon
 			/>
 			<CarouselLi
 				src={SnakesI}
@@ -98,6 +102,7 @@
 				title="Postcards"
 				subtitle="Sudden stories."
 				href="studio/postcards"
+				comingSoon
 			/>
 		</ul>
 	</div>
