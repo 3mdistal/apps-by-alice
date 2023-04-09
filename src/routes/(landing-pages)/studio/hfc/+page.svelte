@@ -22,9 +22,9 @@
 		poemContent[id] = content;
 	};
 
-	function scroll(sectionID) {
+	function scroll(sectionID, scrollBehavior = 'auto') {
 		const section = document.getElementById(sectionID);
-		section.scrollIntoView();
+		section.scrollIntoView({ behavior: scrollBehavior });
 	}
 
 	async function toggleOpen(poem, section) {
@@ -81,16 +81,15 @@
 	{#each sections as section}
 		{#if section.properties.Name.title[0].plain_text === 'introduction'}
 			<div
-				class="flex min-h-[100lvh] snap-start flex-col items-center justify-center px-5 md:px-10"
+				class="flex min-h-[100lvh] snap-start flex-col items-center justify-center px-5 py-10 md:px-10"
 			>
-				<div class="flex max-w-[60ch] flex-col gap-y-5 text-2xl">
-					<h2 class="text-white">Author's Note</h2>
-					<p class="whitespace-pre-line">
-						<em class="text-white"><TextMacro type={section.properties.Quote} /></em>
+				<div class="flex max-w-[60ch] flex-col">
+					<h2 class="text-2xl font-light text-white sm:text-3xl xl:text-4xl">Author's Note</h2>
+					<p class="whitespace-pre-line text-[1.1rem] sm:text-xl md:text-2xl">
+						<em class="text-[#cfcdcb]"><TextMacro type={section.properties.Quote} /></em>
 					</p>
 				</div>
 			</div>
-			<div class="spacer" />
 		{:else}
 			<div
 				class="flex min-h-[100lvh] snap-start flex-col justify-center gap-y-24 bg-[#bcbab7] p-4 sm:gap-y-32 lg:gap-y-12"
@@ -103,16 +102,18 @@
 					>
 						<img src={section.cover.external.url} alt="" />
 					</div>
-					<div
-						class="absolute col-start-3 row-start-5 min-w-[60vw] bg-white px-4 py-8 sm:row-start-6 lg:static lg:col-start-4 lg:row-start-4 lg:min-w-[35ch] lg:-translate-x-10 lg:translate-y-20 lg:text-2xl xl:text-3xl"
+					<a
+						class="absolute col-start-3 row-start-5 min-w-[60vw] bg-white hover:bg-[#efefef] px-4 py-8 sm:row-start-6 lg:static lg:col-start-4 lg:row-start-4 lg:min-w-[35ch] lg:-translate-x-10 lg:translate-y-20 lg:text-2xl xl:text-3xl"
+						href={`#${section.id}`}
+						on:click|preventDefault={() => scroll(section.id, 'smooth')}
 					>
 						<p class="text-center text-sm text-black sm:text-lg">
 							<TextMacro type={section.properties.Act} />
 						</p>
-						<p class="text-center text-2xl text-black sm:text-3xl xl:text-4xl">
+						<h2 class="m-0 text-center text-2xl font-light text-black sm:text-3xl xl:text-4xl">
 							{section.properties.Name.title[0].plain_text}
-						</p>
-					</div>
+						</h2>
+					</a>
 				</div>
 				<div class="sm:px-10 md:px-20 lg:px-32 xl:px-52 2xl:px-[26rem]">
 					<div class="bg-black p-8 lg:p-20">
@@ -144,13 +145,13 @@
 								}}
 								href={poem.properties.Slug.formula.string}
 							>
-								<p class="text-center text-3xl text-white md:text-4xl lg:text-5xl">
+								<h3 class="text-center text-3xl font-light text-white md:text-4xl lg:text-5xl">
 									{#if poemLoading[poem.id] === false || !poemLoading[poem.id]}
 										{poem.properties.Name.title[0].plain_text}
 									{:else}
 										Loading...
 									{/if}
-								</p>
+								</h3>
 							</a>
 							{#if open[poem.id] === true}
 								<div class="-mt-12">
