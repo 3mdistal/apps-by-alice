@@ -6,8 +6,6 @@
 </script>
 
 <svelte:head>
-	<!-- Google tag (gtag.js) -->
-	<!-- Google tag (gtag.js) -->
 	<script async src="https://www.googletagmanager.com/gtag/js?id=G-PDT964J1J3"></script>
 	<script>
 		window.dataLayer = window.dataLayer || [];
@@ -28,8 +26,6 @@
 		rel="stylesheet"
 	/>
 	<link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet" />
-
-	<!-- HTML Meta Tags -->
 
 	<!-- Facebook Meta Tags -->
 	<meta property="og:url" content="https://www.alicealexandra.com" />
@@ -54,8 +50,6 @@
 	/>
 	<meta name="twitter:image" content={OGImage} />
 	<meta name="twitter:image:alt" content="The homepage of alicealexandra.com." />
-
-	<!-- Meta Tags Generated via https://www.opengraph.xyz -->
 </svelte:head>
 
 <Svgs />
