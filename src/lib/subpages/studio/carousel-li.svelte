@@ -8,6 +8,7 @@
 	export let title = '';
 	export let subtitle = '';
 	export let href = '';
+	export let comingSoon = false;
 
 	let container: HTMLAnchorElement;
 	let textContainer: HTMLDivElement;
@@ -74,5 +75,12 @@
 		>
 			{subtitle}
 		</p>
+		{#if comingSoon}
+			<p
+				class="font-medium md:text-sm md:font-light md:transition-all md:duration-500 md:group-hover:text-2xl"
+			>
+				<em class="text-white">Coming soon.</em>
+			</p>
+		{/if}
 	</div>
 </a>
