@@ -23,11 +23,11 @@
 </script>
 
 <svelte:head>
+	<title>Tempo Immaterial</title>
 	<meta
 		name="description"
 		content="The studio of Alice Alexandra Moore. Creative work, ramblings, commissions and more."
 	/>
-	<title>Tempo Immaterial</title>
 </svelte:head>
 
 <div class="relative h-[100dvh] flex-col overflow-hidden pt-4 md:pt-[6vh]">
