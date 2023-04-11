@@ -13,7 +13,6 @@
 
 	function fadeIn() {
 		gsap.to('.opacity-0', {
-			delay: 0.25,
 			duration: 1,
 			opacity: 1,
 			ease: 'power2.inOut'
@@ -48,7 +47,7 @@
 			class="object-right md:object-[50%_35%]"
 		/>
 	</div>
-	<div class="w-[90%] py-20 md:w-[60%]">
+	<div class="w-[90%] py-20 md:w-[60%] relative z-[10]">
 		<Blog {accent} {data} />
 	</div>
 </div>
