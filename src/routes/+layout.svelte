@@ -6,16 +6,6 @@
 </script>
 
 <svelte:head>
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-PDT964J1J3"></script>
-	<script>
-		window.dataLayer = window.dataLayer || [];
-		function gtag() {
-			dataLayer.push(arguments);
-		}
-		gtag('js', new Date());
-
-		gtag('config', 'G-PDT964J1J3');
-	</script>
 	<meta charset="utf-8" />
 	<link rel="icon" type="image" href={Logo} />
 	<meta name="viewport" content="width=device-width" />

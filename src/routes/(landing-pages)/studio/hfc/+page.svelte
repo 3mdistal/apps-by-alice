@@ -103,7 +103,7 @@
 						<img src={section.cover.external.url} alt="" />
 					</div>
 					<a
-						class="absolute col-start-3 row-start-5 min-w-[60vw] bg-white hover:bg-[#efefef] px-4 py-8 sm:row-start-6 lg:static lg:col-start-4 lg:row-start-4 lg:min-w-[35ch] lg:-translate-x-10 lg:translate-y-20 lg:text-2xl xl:text-3xl"
+						class="absolute col-start-3 row-start-5 min-w-[60vw] bg-white px-4 py-8 hover:bg-[#efefef] sm:row-start-6 lg:static lg:col-start-4 lg:row-start-4 lg:min-w-[35ch] lg:-translate-x-10 lg:translate-y-20 lg:text-2xl xl:text-3xl"
 						href={`#${section.id}`}
 						on:click|preventDefault={() => scroll(section.id, 'smooth')}
 					>

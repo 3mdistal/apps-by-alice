@@ -23,3 +23,5 @@ export const backgroundColors = readable({
 });
 
 export const currentBlog: Writable<Array<BlockObjectResponse>> = writable();
+
+export const analyticsCookie: Writable<boolean> = writable(false);
