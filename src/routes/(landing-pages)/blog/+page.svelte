@@ -2,8 +2,9 @@
 	import Bird from '$images/blog/bird.webp';
 	import Blog from '$lib/subpages/blog.svelte';
 	import type { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import { gsap } from 'gsap';
+	import { state } from '$lib/stores';
 
 	export let data: { post: QueryDatabaseResponse };
 
@@ -21,6 +22,10 @@
 
 	onMount(() => {
 		fadeIn();
+	});
+
+	onDestroy(() => {
+		state.set('home');
 	});
 </script>
 
