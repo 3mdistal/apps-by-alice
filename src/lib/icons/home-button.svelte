@@ -53,12 +53,7 @@
 	});
 </script>
 
-<div class="fixed right-2 top-2 flex items-center md:right-6 md:top-6">
-	{#if $analyticsCookie === false}
-		<div bind:this={consentForm} class="opacity-0">
-			<AnalyticsConsent />
-		</div>
-	{/if}
+<div class="fixed z-[100] right-2 top-2 flex items-center md:right-6 md:top-6">
 	<a
 		href="/"
 		bind:this={button}
@@ -72,4 +67,11 @@
 			<p class="z-10 text-sm font-medium text-white md:text-xl">home.</p>
 		</div>
 	</a>
+</div>
+<div class="fixed bottom-6 flex justify-center sm:justify-end w-[100vw] md:right-6 z-[100]">
+	{#if $analyticsCookie === false}
+		<div bind:this={consentForm} class="opacity-0">
+			<AnalyticsConsent />
+		</div>
+	{/if}
 </div>
