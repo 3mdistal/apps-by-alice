@@ -13,7 +13,6 @@
 
 	function fadeIn() {
 		gsap.to('.opacity-0', {
-			delay: 0.25,
 			duration: 1,
 			opacity: 1,
 			ease: 'power2.inOut'
