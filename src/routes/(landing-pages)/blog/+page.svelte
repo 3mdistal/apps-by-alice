@@ -37,7 +37,7 @@
 </svelte:head>
 
 <div
-	class="opacity-0 min-h-[100vh] flex items-center justify-center"
+	class="opacity-0 min-h-[100svh] flex items-stretch sm:items-center justify-center"
 	style="background-color: {background}"
 >
 	<div class="justify-center flex w-full h-full fixed opacity-10">
