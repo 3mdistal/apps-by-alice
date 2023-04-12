@@ -3,28 +3,29 @@
 	import PlainCircle from '$images/logo/plain-circle.svg';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import AnalyticsConsent from '$lib/partials/analytics-consent.svelte';
-	import { analyticsCookie } from '$lib/stores';
+	// import AnalyticsConsent from '$lib/partials/analytics-consent.svelte';
+	// import { analyticsCookie } from '$lib/stores';
 
 	let button: HTMLAnchorElement;
 	let logo: HTMLImageElement;
 	let circle: HTMLDivElement;
-	let consentForm: HTMLDivElement;
+	// let consentForm: HTMLDivElement;
 
-	function checkForCookie() {
-		const cookie = document.cookie
-			.split(';')
-			.find((cookie) => cookie.includes('analytics_consent'));
-		if (cookie) {
-			analyticsCookie.set(true);
-		} else {
-			analyticsCookie.set(false);
-		}
-	}
+	// function checkForCookie() {
+	// 	const cookie = document.cookie
+	// 		.split(';')
+	// 		.find((cookie) => cookie.includes('analytics_consent'));
+	// 	if (cookie) {
+	// 		analyticsCookie.set(true);
+	// 	} else {
+	// 		analyticsCookie.set(false);
+	// 	}
+	// }
 
 	function fadeIn() {
 		const tl = gsap.timeline();
-		tl.to(button, { opacity: 1, rotate: '360deg' }).to(consentForm, { opacity: 1, duration: 0.5 });
+		tl.to(button, { opacity: 1, rotate: '360deg' });
+		// .to(consentForm, { opacity: 1, duration: 0.5 });
 	}
 
 	function seeBack() {
@@ -47,9 +48,9 @@
 
 	onMount(() => {
 		populate();
-		if ($analyticsCookie === false) {
-			checkForCookie();
-		}
+		// if ($analyticsCookie === false) {
+		// 	checkForCookie();
+		// }
 	});
 </script>
 
@@ -68,10 +69,10 @@
 		</div>
 	</a>
 </div>
-<div class="fixed bottom-6 flex justify-center sm:justify-end w-[100vw] md:right-6 z-[100]">
+<!-- <div class="fixed bottom-6 flex justify-center sm:justify-end w-[100vw] md:right-6 z-[100]">
 	{#if $analyticsCookie === false}
 		<div bind:this={consentForm} class="opacity-0">
 			<AnalyticsConsent />
 		</div>
 	{/if}
-</div>
+</div> -->
