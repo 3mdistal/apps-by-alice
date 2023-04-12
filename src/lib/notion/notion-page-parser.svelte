@@ -51,25 +51,25 @@
 			<h2>
 				<TextMacro type={result.heading_2} />
 			</h2>
-		{:else if result.type == 'heading_3'}
+		{:else if result.type === 'heading_3'}
 			<h3>
 				<TextMacro type={result.heading_3} />
 			</h3>
-		{:else if result.type == 'numbered_list_item'}
+		{:else if result.type === 'numbered_list_item'}
 			<li class="ordered">
 				<TextMacro type={result.numbered_list_item} />
 			</li>
-		{:else if result.type == 'bulleted_list_item'}
+		{:else if result.type === 'bulleted_list_item'}
 			<li>
 				<TextMacro type={result.bulleted_list_item} />
 			</li>
-		{:else if result.type == 'callout'}
+		{:else if result.type === 'callout'}
 			<div class="callout">
-				{#if result.callout.icon?.type == 'emoji'}
+				{#if result.callout.icon?.type === 'emoji'}
 					<p>{result.callout.icon.emoji}</p>
-				{:else if result.callout.icon?.type == 'external'}
+				{:else if result.callout.icon?.type === 'external'}
 					<div><img src={result.callout.icon.external.url} alt="" /></div>
-				{:else if result.callout.icon?.type == 'file'}
+				{:else if result.callout.icon?.type === 'file'}
 					<div>
 						<NotionImage id={result.id} alt="" callout />
 					</div>
@@ -79,15 +79,15 @@
 					<TextMacro type={result.callout} />
 				</p>
 			</div>
-		{:else if result.type == 'quote'}
+		{:else if result.type === 'quote'}
 			<blockquote class="whitespace-pre-line">
 				<TextMacro type={result.quote} />
 			</blockquote>
-		{:else if result.type == 'image'}
+		{:else if result.type === 'image'}
 			<div class="image relative">
-				{#if result.image.type == 'external'}
+				{#if result.image.type === 'external'}
 					<img src={result.image.external.url} alt={result.image.caption[0]?.plain_text} />
-				{:else if result.image.type == 'file'}
+				{:else if result.image.type === 'file'}
 					<NotionImage
 						id={result.id}
 						alt={result.image.caption[0]?.plain_text ? result.image.caption[0].plain_text : ''}
