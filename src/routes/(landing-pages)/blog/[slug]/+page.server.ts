@@ -19,9 +19,7 @@ export const load: Load = ({ params }) => {
 
 	return {
 		post: fetchContent(params['slug'] as string),
-		nested: {
-			restOfContent: fetchMoreContent(params['slug'] as string)
-		}
+		restOfContent: fetchMoreContent(params['slug'] as string)
 	};
 };
 
