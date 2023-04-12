@@ -8,15 +8,17 @@
 	import typescript from 'svelte-highlight/languages/typescript';
 	import DarkCodeTheme from 'svelte-highlight/styles/agate';
 	import LightCodeTheme from 'svelte-highlight/styles/a11y-light';
-	import { currentBlog } from '$lib/stores';
 	import NotionImage from './notion-image.svelte';
 	import { subAndSuper, wrapLists, createTOC } from './blog-helpers';
 	import Socials from '$lib/icons/socials.svelte';
 	import mermaid from 'mermaid';
+	import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+	import NotionSyncedBlock from './notion-synced-block.svelte';
 	let config = { startOnLoad: true };
 
 	let darkMode: boolean;
 	let context: HTMLDivElement;
+	export let results: Array<BlockObjectResponse>;
 
 	function setDarkMode() {
 		darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -38,7 +40,7 @@
 </script>
 
 <div bind:this={context}>
-	{#each $currentBlog as result (result.id)}
+	{#each results as result (result.id)}
 		{#if result.type == 'paragraph'}
 			{#if result.paragraph.rich_text.length > 0}
 				<p>
@@ -126,6 +128,8 @@
 			<div class="px-[30%] pb-10 pt-2 md:px-[35%]">
 				<hr />
 			</div>
+		{:else if result.type === 'synced_block'}
+			<NotionSyncedBlock id={result.synced_block.synced_from.block_id} />
 		{/if}
 	{/each}
 </div>

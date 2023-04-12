@@ -235,7 +235,13 @@ export async function getRestOfContent(id: string, next_cursor: string) {
 	}
 }
 
-export async function retrieveBlock(id: string) {
+export async function retrieveBlock(id: string, method: string) {
+	if (method === 'children') {
+		const content = await notion.blocks.children.list({
+			block_id: id
+		});
+		return content;
+	}
 	const content = await notion.blocks.retrieve({
 		block_id: id
 	});
