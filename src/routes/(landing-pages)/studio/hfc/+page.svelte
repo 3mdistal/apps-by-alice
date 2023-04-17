@@ -138,12 +138,12 @@
 					{#each poems as poem}
 						{#if poem.properties.sectionName.formula.string === section.properties.Name.title[0].plain_text}
 							<a
-								class="p-4 hover:[&>p]:text-[#cfcdcb]"
+								class="p-4 hover:[&>h3]:text-[#cfcdcb]"
 								on:click|preventDefault={() => toggleOpen(poem.id, section.id)}
 								on:mouseenter={() => {
 									fetchContent(poem.id);
 								}}
-								href={poem.properties.Slug.formula.string}
+								href=""
 							>
 								<h3 class="text-center text-3xl font-light text-white md:text-4xl lg:text-5xl">
 									{#if poemLoading[poem.id] === false || !poemLoading[poem.id]}
