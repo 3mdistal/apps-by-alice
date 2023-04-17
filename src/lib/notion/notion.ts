@@ -200,14 +200,23 @@ export async function getContent(slug?: string) {
 
 		response.push(query);
 
-		let content;
+		async function listChildren(cursor?: string | undefined) {
+			if (query.results[0]?.id) {
+				const res = await notion.blocks.children.list({
+					block_id: query.results[0].id,
+					start_cursor: cursor ? cursor : undefined
+				});
 
-		if (query.results[0]?.id) {
-			content = await notion.blocks.children.list({
-				block_id: query.results[0].id
-			});
+				if (res?.has_more === true) {
+					const more_res = await listChildren(res.next_cursor);
+					res.results.push(...more_res.results);
+				}
+
+				return res;
+			}
+			return;
 		}
-
+		const content = await listChildren();
 		response.push(content);
 		return response;
 	} catch (error) {

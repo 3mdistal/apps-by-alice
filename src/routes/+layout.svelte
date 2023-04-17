@@ -3,6 +3,11 @@
 	import Logo from '../cms/images/logo/logo.png';
 	import OGImage from '$images/logo/ogimage.webp';
 	import Svgs from '../lib/icons/svgs.svelte';
+
+	// Vercel Analytics
+	import { dev } from '$app/environment';
+	import { inject } from '@vercel/analytics';
+	inject({ mode: dev ? 'development' : 'production' });
 </script>
 
 <svelte:head>

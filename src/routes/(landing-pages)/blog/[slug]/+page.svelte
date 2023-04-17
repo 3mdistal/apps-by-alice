@@ -31,7 +31,6 @@
 
 	export let data: {
 		post: [QueryDatabaseResponse, ListBlockChildrenResponse];
-		restOfContent: ListBlockChildrenResponse;
 	};
 
 	let context: HTMLDivElement;
@@ -57,8 +56,7 @@
 				]
 			},
 			{ results: content }
-		],
-		restOfContent
+		]
 	} = data;
 
 	onMount(() => {
@@ -97,9 +95,6 @@
 	<hr />
 	<div class="notion-container" bind:this={context}>
 		<NotionPageParser results={content} />
-		{#if restOfContent}
-			<NotionPageParser results={restOfContent.results} />
-		{/if}
 	</div>
 	<p class="text-right text-4xl md:text-6xl">
 		<a href="/blog" data-sveltekit-noscroll class="inline-block p-6 text-gray-900 dark:text-white"
