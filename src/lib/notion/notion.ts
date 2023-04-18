@@ -216,7 +216,32 @@ export async function getContent(slug?: string) {
 			}
 			return;
 		}
+
+		async function fetchSyncedBlockContent(syncedBlockId) {
+			// Fetch the content of the original block using the ID
+			const originalBlock = await notion.blocks.children.list({
+				block_id: syncedBlockId
+			});
+
+			// Replace the synced_block with the content of the original block
+			return originalBlock;
+		}
+
 		const content = await listChildren();
+
+		// Iterate through the content and replace synced blocks with their content
+		for (let i = 0; i < content.results.length; i++) {
+			const block = content.results[i];
+
+			if (block.type === 'synced_block') {
+				const originalBlockContent = await fetchSyncedBlockContent(
+					block.synced_block.synced_from.block_id
+				);
+				// Replace the synced block with the content of the original block
+				content.results.splice(i, 1, ...originalBlockContent.results);
+			}
+		}
+
 		response.push(content);
 		return response;
 	} catch (error) {
@@ -228,21 +253,21 @@ export async function getContent(slug?: string) {
 	}
 }
 
-export async function getRestOfContent(id: string, next_cursor: string) {
-	try {
-		const response = await notion.blocks.children.list({
-			block_id: id,
-			start_cursor: next_cursor
-		});
-		return response;
-	} catch (error) {
-		let errorMessage = 'Retrieving blogs failed generically.';
-		if (error instanceof Error) {
-			errorMessage = error.message;
-		}
-		return errorMessage;
-	}
-}
+// export async function getRestOfContent(id: string, next_cursor: string) {
+// 	try {
+// 		const response = await notion.blocks.children.list({
+// 			block_id: id,
+// 			start_cursor: next_cursor
+// 		});
+// 		return response;
+// 	} catch (error) {
+// 		let errorMessage = 'Retrieving blogs failed generically.';
+// 		if (error instanceof Error) {
+// 			errorMessage = error.message;
+// 		}
+// 		return errorMessage;
+// 	}
+// }
 
 export async function retrieveBlock(id: string, method: string) {
 	if (method === 'children') {
