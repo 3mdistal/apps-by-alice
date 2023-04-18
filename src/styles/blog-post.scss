@@ -22,11 +22,15 @@
 	}
 
 	.blog-container p.summary {
-		@apply flex max-w-[45ch] text-gray-800 dark:text-gray-100;
+		@apply flex  max-w-[45ch];
 	}
 
 	.blog-container p.summary em {
-		@apply mr-4 block font-medium text-gray-900 dark:text-white;
+		@apply block w-[5ch] font-medium text-gray-900 dark:text-white;
+	}
+
+	.blog-container p.summary span {
+		@apply block w-[35ch] text-gray-700 dark:text-gray-100;
 	}
 
 	.blog-container .notion-container {
