@@ -5,6 +5,9 @@ const config = {
 	plugins: [imagetools(), sveltekit()],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
+	},
+	optimizeDeps: {
+		include: ['gsap', 'gsap/dist/ScrollTrigger']
 	}
 };
 
