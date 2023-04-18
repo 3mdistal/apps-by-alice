@@ -7,6 +7,10 @@ import {
 	ALL_SCRAPS_DB,
 	USER_ID_ALICE
 } from '$env/static/private';
+import type {
+	PartialBlockObjectResponse,
+	BlockObjectResponse
+} from '@notionhq/client/build/src/api-endpoints';
 
 const notion = new Client({ auth: NOTION_KEY });
 
@@ -174,10 +178,11 @@ export async function getBlogs(slug?: string) {
 	}
 }
 
-export async function getContent(slug?: string) {
+export async function getBlogBySlug(slug?: string) {
 	try {
 		let response = [];
 
+		// Fetch blog article by its slug
 		const query = await notion.databases.query({
 			database_id: BLOGS_DB,
 			filter: {
@@ -185,7 +190,7 @@ export async function getContent(slug?: string) {
 					{
 						property: 'Slug',
 						url: {
-							equals: slug ? slug : ''
+							equals: slug || ''
 						}
 					}
 				]
@@ -200,16 +205,16 @@ export async function getContent(slug?: string) {
 
 		response.push(query);
 
-		async function listChildren(cursor?: string | undefined) {
+		async function listChildren(cursor?: string) {
 			if (query.results[0]?.id) {
 				const res = await notion.blocks.children.list({
 					block_id: query.results[0].id,
-					start_cursor: cursor ? cursor : undefined
+					...(cursor && { start_cursor: cursor })
 				});
 
-				if (res?.has_more === true) {
-					const more_res = await listChildren(res.next_cursor);
-					res.results.push(...more_res.results);
+				if (res?.has_more) {
+					const moreRes = await listChildren(res.next_cursor as string);
+					res.results.push(...(moreRes?.results || []));
 				}
 
 				return res;
@@ -217,28 +222,38 @@ export async function getContent(slug?: string) {
 			return;
 		}
 
-		async function fetchSyncedBlockContent(syncedBlockId) {
-			// Fetch the content of the original block using the ID
+		// Fetch the content of the original block using the ID
+		async function fetchSyncedBlockContent(syncedBlockId: string) {
 			const originalBlock = await notion.blocks.children.list({
 				block_id: syncedBlockId
 			});
 
-			// Replace the synced_block with the content of the original block
 			return originalBlock;
 		}
 
 		const content = await listChildren();
 
-		// Iterate through the content and replace synced blocks with their content
-		for (let i = 0; i < content.results.length; i++) {
-			const block = content.results[i];
+		function isBlockObjectResponse(
+			block: PartialBlockObjectResponse | BlockObjectResponse | undefined
+		): block is BlockObjectResponse {
+			return (block as BlockObjectResponse).type !== undefined;
+		}
 
-			if (block.type === 'synced_block') {
-				const originalBlockContent = await fetchSyncedBlockContent(
-					block.synced_block.synced_from.block_id
-				);
-				// Replace the synced block with the content of the original block
-				content.results.splice(i, 1, ...originalBlockContent.results);
+		// Replace synced blocks with their content
+		if (content) {
+			for (let i = 0; i < content.results.length; i++) {
+				const block = content.results[i];
+
+				if (
+					isBlockObjectResponse(block) &&
+					block.type === 'synced_block' &&
+					block.synced_block.synced_from !== null
+				) {
+					const originalBlockContent = await fetchSyncedBlockContent(
+						block.synced_block.synced_from.block_id
+					);
+					content.results.splice(i, 1, ...originalBlockContent.results);
+				}
 			}
 		}
 
