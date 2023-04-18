@@ -2,7 +2,7 @@
 	import Form from '../partials/form.svelte';
 
 	import gsap from 'gsap';
-	import ScrollTrigger from 'gsap/ScrollTrigger';
+	import { loadScrollTrigger } from '$lib/partials/load-scroll-trigger';
 	import { onMount } from 'svelte';
 
 	export let accent: string;
@@ -104,8 +104,8 @@
 		});
 	}
 
-	async function animateAll() {
-		gsap.registerPlugin(ScrollTrigger);
+	async function animateAll(sti) {
+		gsap.registerPlugin(sti);
 		heroAnimation();
 		headerAnimation();
 		truthsAnimation();
@@ -113,8 +113,11 @@
 		descriptionsAnimation();
 	}
 
-	onMount(() => {
-		setTimeout(animateAll, 50);
+	let scrollTriggerInstance;
+
+	onMount(async () => {
+		scrollTriggerInstance = await loadScrollTrigger();
+		setTimeout(() => animateAll(scrollTriggerInstance), 50);
 	});
 </script>
 

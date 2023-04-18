@@ -1,6 +1,6 @@
 <script lang="ts">
 	import gsap from 'gsap';
-	import ScrollTrigger from 'gsap/ScrollTrigger';
+	import { loadScrollTrigger } from '$lib/partials/load-scroll-trigger';
 	import { onMount } from 'svelte';
 
 	export let src = '';
@@ -13,9 +13,9 @@
 	let container: HTMLAnchorElement;
 	let textContainer: HTMLDivElement;
 
-	function animateBlack() {
+	function animateBlack(sti) {
 		if (window.innerWidth <= 768) {
-			gsap.registerPlugin(ScrollTrigger);
+			gsap.registerPlugin(sti);
 			const tl = gsap.timeline();
 			tl.fromTo(
 				textContainer,
@@ -49,8 +49,11 @@
 		}
 	}
 
-	onMount(() => {
-		setTimeout(animateBlack, 50);
+	let scrollTriggerInstance;
+
+	onMount(async () => {
+		scrollTriggerInstance = await loadScrollTrigger();
+		animateBlack(scrollTriggerInstance);
 	});
 </script>
 
