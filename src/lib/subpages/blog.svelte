@@ -23,9 +23,9 @@
 </script>
 
 <h3 class="mb-[1em] text-2xl font-medium md:text-3xl lg:text-4xl" style="color: {accent}">Posts</h3>
-{#each results as { properties: { Slug: { url }, Name: { title: [{ text: { content: title } }] }, Subtitle, FormattedPublicationDate: { formula: { string: date } } } }}
-	<div class="mb-6 grid grid-cols-1 md:grid-cols-3">
-		<p class="col-span-1 md:col-span-2">
+{#each results as { properties: { Slug: { url }, Name: { title: [{ text: { content: title } }] }, Subtitle, Category: { select: { name: category } }, ReadTime: { formula: { string: readingTime } }, FormattedPublicationDate: { formula: { string: date } } } }}
+	<div class="mb-6 grid grid-cols-2 md:grid-cols-3">
+		<p class="col-span-2 md:col-span-2">
 			<a
 				on:click={() => (title = 'Loading . . .')}
 				data-sveltekit-preload-code="viewport"
@@ -34,9 +34,14 @@
 				href="blog/{url}">{title}</a
 			>
 		</p>
-		<p class="row-start-2 italic text-white md:col-span-2"><TextMacro type={Subtitle} /></p>
-		<p class="row-start-3 text-white md:col-start-3 md:row-start-1">
+		<p class="row-start-2 italic text-gray-100 col-span-2"><TextMacro type={Subtitle} /></p>
+		<p class="row-start-3 text-gray-100 md:col-start-3 md:row-start-1">
 			{date}
 		</p>
+		<div class="col-start-2 md:col-start-1 flex justify-end md:justify-start">
+			<p class="text-gray-100">
+				{category}
+			</p>
+		</div>
 	</div>
 {/each}

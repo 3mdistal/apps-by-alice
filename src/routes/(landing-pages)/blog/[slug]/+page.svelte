@@ -50,7 +50,13 @@
 							},
 							Subtitle: subtitle,
 							Summary: summary,
-							OGDescription: ogDescription
+							OGDescription: ogDescription,
+							ReadTime: {
+								formula: { string: readingTime }
+							},
+							Category: {
+								select: { name: category }
+							}
 						}
 					}
 				]
@@ -88,9 +94,25 @@
 		<TextMacro type={subtitle} />
 	</p>
 	<hr />
+	<p class="summary mb-4">
+		<em>type</em>
+		<span>{category}</span>
+	</p>
+	<p class="summary mb-4">
+		<em>time</em>
+		<span
+			>{#if readingTime !== '1 minutes'}
+				{readingTime}
+			{:else}
+				1 minute
+			{/if}</span
+		>
+	</p>
 	<p class="summary">
 		<em>tl;dr</em>
-		<TextMacro type={summary} />
+		<span>
+			<TextMacro type={summary} />
+		</span>
 	</p>
 	<hr />
 	<div class="notion-container" bind:this={context}>
