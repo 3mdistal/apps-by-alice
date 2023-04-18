@@ -81,5 +81,3 @@
 		</a>
 	</div>
 </div>
-
-<div class="hidden"><a rel="me" href="https://hachyderm.io/@tempoimmaterial">Mastodon</a></div>

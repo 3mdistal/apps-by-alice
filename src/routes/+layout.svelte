@@ -1,7 +1,6 @@
 <script lang="ts">
 	import '../app.scss';
 	import Logo from '../cms/images/logo/logo.png';
-	import OGImage from '$images/logo/ogimage.webp';
 	import Svgs from '../lib/icons/svgs.svelte';
 
 	// Vercel Analytics
@@ -21,30 +20,6 @@
 		rel="stylesheet"
 	/>
 	<link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet" />
-
-	<!-- Facebook Meta Tags -->
-	<meta property="og:url" content="https://www.alicealexandra.com" />
-	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Tempo Immaterial" />
-	<meta
-		property="og:description"
-		content="The studio of Alice Alexandra Moore. Creative work, ramblings, commissions and more."
-	/>
-	<meta property="og:image" content={OGImage} />
-
-	<!-- Twitter Meta Tags -->
-	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@tempoimmaterial" />
-	<meta name="twitter:creator" content="@tempoimmaterial" />
-	<meta name="twitter:domain" content="alicealexandra.com" />
-	<meta name="twitter:url" content="https://www.alicealexandra.com" />
-	<meta name="twitter:title" content="Tempo Immaterial" />
-	<meta
-		name="twitter:description"
-		content="The studio of Alice Alexandra Moore. Creative work, ramblings, collabs, and more."
-	/>
-	<meta name="twitter:image" content={OGImage} />
-	<meta name="twitter:image:alt" content="The homepage of alicealexandra.com." />
 </svelte:head>
 
 <Svgs />
