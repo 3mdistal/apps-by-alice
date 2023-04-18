@@ -1,6 +1,6 @@
 <script lang="ts">
 	import gsap from 'gsap';
-	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+	import { loadScrollTrigger } from '$lib/partials/load-scroll-trigger';
 	import { onMount } from 'svelte';
 
 	export let flexDirection = 'row-reverse';
@@ -13,8 +13,8 @@
 	let text: HTMLElement;
 	let image: HTMLElement;
 
-	function animate() {
-		gsap.registerPlugin(ScrollTrigger);
+	function animate(sti) {
+		gsap.registerPlugin(sti);
 
 		const tl = gsap.timeline({
 			scrollTrigger: {
@@ -38,8 +38,11 @@
 		return container.offsetHeight;
 	}
 
-	onMount(() => {
-		animate();
+	let scrollTriggerInstance;
+
+	onMount(async () => {
+		scrollTriggerInstance = await loadScrollTrigger();
+		animate(scrollTriggerInstance);
 	});
 </script>
 
