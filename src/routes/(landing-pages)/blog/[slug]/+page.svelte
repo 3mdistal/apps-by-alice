@@ -57,6 +57,9 @@
 							Category: {
 								select: { name: category }
 							}
+						},
+						cover: {
+							external: { url: coverURL }
 						}
 					}
 				]
@@ -66,6 +69,7 @@
 	} = data;
 
 	onMount(() => {
+		console.log(coverURL);
 		runBlogHelpers();
 		fetch(window.location.href, {
 			headers: {
@@ -78,7 +82,30 @@
 
 <svelte:head>
 	<title>{title}</title>
+	<meta name="og:title" content={title} />
 	<meta name="description" content={ogDescription.rich_text[0].plain_text} />
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content="https://www.alicealexandra.com/blog" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Blog - Tempo Immaterial" />
+	<meta property="og:description" content={ogDescription.rich_text[0].plain_text} />
+	<meta property="og:image" content={coverURL} />
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@tempoimmaterial" />
+	<meta name="twitter:creator" content="@tempoimmaterial" />
+	<meta name="twitter:domain" content="alicealexandra.com" />
+	<meta name="twitter:url" content="https://www.alicealexandra.com/blog" />
+	<meta name="twitter:title" content="Blog - Tempo Immaterial" />
+	<meta name="twitter:description" content={ogDescription.rich_text[0].plain_text} />
+	<meta name="twitter:image" content={coverURL} />
+	<meta
+		name="twitter:image:alt"
+		content="Open graph representation of this blog article, {title}."
+	/>
+
 	{#if darkMode}
 		{@html DarkCodeTheme}
 	{:else}
