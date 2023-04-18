@@ -2,7 +2,7 @@
 	import CarouselLi from '$lib/subpages/studio/carousel-li.svelte';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import ScrollTrigger from 'gsap/ScrollTrigger';
+	import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
 	// @ts-ignore
 	import BirdTMI from '$images/studio/bird-tmi.jpg?webp';
