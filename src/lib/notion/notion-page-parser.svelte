@@ -3,7 +3,6 @@
   It parses it to netural content which can then be styled with an outside stylesheet. */
 
 	import TextMacro from '$lib/notion/text-macro.svelte';
-	import { onMount } from 'svelte';
 	import { Highlight, HighlightSvelte } from 'svelte-highlight';
 	import typescript from 'svelte-highlight/languages/typescript';
 
