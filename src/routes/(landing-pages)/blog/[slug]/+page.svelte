@@ -42,24 +42,24 @@
 					{
 						properties: {
 							Name: {
-								title: [
+								title = [
 									{
-										text: { content: title }
+										text: { content: '' }
 									}
 								]
 							},
-							Subtitle: subtitle,
-							Summary: summary,
-							OGDescription: ogDescription,
+							Subtitle: subtitle = { rich_text: [{ text: { content: '' } }] },
+							Summary: summary = { rich_text: [{ text: { content: '' } }] },
+							OGDescription: ogDescription = '',
 							ReadTime: {
-								formula: { string: readingTime }
+								formula: { string: readingTime = '' }
 							},
 							Category: {
-								select: { name: category }
+								select: { name: category = '' }
 							}
 						},
 						cover: {
-							external: { url: coverURL }
+							external: { url: coverURL = '' }
 						}
 					}
 				]
@@ -68,8 +68,13 @@
 		]
 	} = data;
 
+	let articleTitle = '';
+
+	if (title[0] && title[0].text && title[0].text.content) {
+		articleTitle = title[0].text.content;
+	}
+
 	onMount(() => {
-		console.log(coverURL);
 		runBlogHelpers();
 		fetch(window.location.href, {
 			headers: {
@@ -81,8 +86,8 @@
 </script>
 
 <svelte:head>
-	<title>{title}</title>
-	<meta name="og:title" content={title} />
+	<title>{articleTitle}</title>
+	<meta name="og:title" content={articleTitle} />
 	<meta name="description" content={ogDescription.rich_text[0].plain_text} />
 
 	<!-- Facebook Meta Tags -->
@@ -103,7 +108,7 @@
 	<meta name="twitter:image" content={coverURL} />
 	<meta
 		name="twitter:image:alt"
-		content="Open graph representation of this blog article, {title}."
+		content="Open graph representation of this blog article, {articleTitle}."
 	/>
 
 	{#if darkMode}
@@ -115,7 +120,7 @@
 
 <div class="blog-container" in:fade={{ duration: 500 }}>
 	<h1>
-		{title}
+		{articleTitle}
 	</h1>
 	<p class="subtitle">
 		<TextMacro type={subtitle} />
