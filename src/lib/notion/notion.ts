@@ -5,7 +5,8 @@ import {
 	BLOGS_DB,
 	POEMS_SECTIONS_DB,
 	ALL_SCRAPS_DB,
-	USER_ID_ALICE
+	USER_ID_ALICE,
+	SUBSCRIBERS_DB
 } from '$env/static/private';
 import type {
 	PartialBlockObjectResponse,
@@ -295,4 +296,26 @@ export async function retrieveBlock(id: string, method: string) {
 		block_id: id
 	});
 	return content;
+}
+
+export async function addSubscriber(email: string) {
+	try {
+		const response = await notion.pages.create({
+			parent: {
+				database_id: SUBSCRIBERS_DB
+			},
+			properties: {
+				Email: {
+					email: email
+				}
+			}
+		});
+		return response;
+	} catch (error) {
+		let errorMessage = 'Adding email failed generically.';
+		if (error instanceof Error) {
+			errorMessage = error.message;
+		}
+		return errorMessage;
+	}
 }
