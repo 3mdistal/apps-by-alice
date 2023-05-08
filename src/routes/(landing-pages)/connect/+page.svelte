@@ -1,5 +1,7 @@
 <script lang="ts">
 	import Socials from '$lib/icons/socials.svelte';
+	import { onDestroy } from 'svelte';
+
 	let loading = false;
 	let visibility = true;
 	let email: string;
@@ -24,6 +26,10 @@
 			throw new Error(message);
 		}
 	}
+
+	onDestroy(() => {
+		state.set('home');
+	});
 </script>
 
 <svelte:head>
@@ -67,14 +73,3 @@
 		<Socials />
 	</div>
 </div>
-
-<!-- <LandingPage
-	header="let's keep in touch."
-	description="Feel free to reach out to me on any of my socials!"
-	accent="#726a12"
-	background="#eeeded"
->
-	<span slot="image">
-		<Socials />
-	</span>
-</LandingPage> -->
