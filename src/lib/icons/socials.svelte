@@ -34,7 +34,7 @@
 
 <div
 	bind:this={container}
-	class="container grid h-[100%] w-[100%] grid-cols-2 [&_img]:h-[100%] [&_img]:w-[100%]"
+	class="grid h-[100%] w-[100%] grid-cols-2 md:grid-cols-4 [&_img]:h-[100%] [&_img]:w-[100%]"
 >
 	<div>
 		<a href="https://www.instagram.com/alice.alexandra.moore" target="_blank" rel="noreferrer">
