@@ -1,6 +1,7 @@
 <script lang="ts">
 	import Socials from '$lib/icons/socials.svelte';
 	import { onDestroy } from 'svelte';
+	import { state } from '$lib/stores';
 
 	let loading = false;
 	let visibility = true;
