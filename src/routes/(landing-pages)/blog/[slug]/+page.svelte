@@ -93,7 +93,7 @@
 	<!-- Facebook Meta Tags -->
 	<meta property="og:url" content="https://www.alicealexandra.com/blog" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Blog - Tempo Immaterial" />
+	<meta property="og:title" content="Blog - {articleTitle}" />
 	<meta property="og:description" content={ogDescription.rich_text[0].plain_text} />
 	<meta property="og:image" content={coverURL} />
 
@@ -103,7 +103,7 @@
 	<meta name="twitter:creator" content="@tempoimmaterial" />
 	<meta name="twitter:domain" content="alicealexandra.com" />
 	<meta name="twitter:url" content="https://www.alicealexandra.com/blog" />
-	<meta name="twitter:title" content="Blog - Tempo Immaterial" />
+	<meta name="twitter:title" content="Blog - {articleTitle}" />
 	<meta name="twitter:description" content={ogDescription.rich_text[0].plain_text} />
 	<meta name="twitter:image" content={coverURL} />
 	<meta
@@ -118,21 +118,26 @@
 	{/if}
 </svelte:head>
 
-<div class="blog-container" in:fade={{ duration: 500 }}>
-	<h1>
+<div
+	class="blog-container h-[100%] min-h-[100vh] bg-gray-200 px-4 py-16 tracking-wide text-gray-900 dark:bg-black dark:text-white sm:px-10 sm:py-10 [&_sub]:text-inherit [&_sup]:text-inherit"
+	in:fade={{ duration: 500 }}
+>
+	<h1 class="dark:text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl md:mb-4">
 		{articleTitle}
 	</h1>
-	<p class="subtitle">
+	<p
+		class="mb-[1em] max-w-[45ch] text-gray-700 dark:text-gray-100 md:leading-9 text-xl md:text-2xl"
+	>
 		<TextMacro type={subtitle} />
 	</p>
-	<hr />
-	<p class="summary mb-4">
-		<em>type</em>
-		<span>{category}</span>
+	<hr class="mx-10 my-10 border-black opacity-50 dark:border-white" />
+	<p class="flex max-w-[45ch] mb-4">
+		<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">type</em>
+		<span class="block w-[35ch] text-gray-700 dark:text-gray-100">{category}</span>
 	</p>
-	<p class="summary mb-4">
-		<em>time</em>
-		<span
+	<p class="flex max-w-[45ch] mb-4">
+		<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">time</em>
+		<span class="block w-[35ch] text-gray-700 dark:text-gray-100"
 			>{#if readingTime !== '1 minutes'}
 				{readingTime}
 			{:else}
@@ -140,14 +145,14 @@
 			{/if}</span
 		>
 	</p>
-	<p class="summary">
-		<em>tl;dr</em>
-		<span>
+	<p class="flex max-w-[45ch]">
+		<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">tl;dr</em>
+		<span class="block w-[35ch] text-gray-700 dark:text-gray-100">
 			<TextMacro type={summary} />
 		</span>
 	</p>
-	<hr />
-	<div class="notion-container" bind:this={context}>
+	<hr class="mx-10 my-10 border-black opacity-50 dark:border-white" />
+	<div class="notion-container max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em]" bind:this={context}>
 		<NotionPageParser results={content} />
 	</div>
 	<p class="text-right text-4xl md:text-6xl">
