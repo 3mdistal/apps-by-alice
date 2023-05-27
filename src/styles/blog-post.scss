@@ -3,40 +3,6 @@
 @tailwind utilities;
 
 @layer components {
-	.blog-container {
-		@apply h-[100%] min-h-[100vh] bg-gray-200 px-4 py-16 tracking-wide text-gray-900 dark:bg-black dark:text-white sm:px-10 sm:py-10 [&_sub]:text-inherit [&_sup]:text-inherit;
-	}
-
-	.blog-container h1 {
-		@apply dark:text-white;
-		font-size: clamp(2rem, 5vw, 4rem);
-	}
-
-	.blog-container p.subtitle {
-		@apply mb-[1em] max-w-[30ch] text-gray-700 dark:text-gray-100 md:leading-9;
-		font-size: clamp(1.5rem, 3vw, 2rem);
-	}
-
-	.blog-container hr {
-		@apply mx-10 my-10 border-black opacity-50 dark:border-white;
-	}
-
-	.blog-container p.summary {
-		@apply flex  max-w-[45ch];
-	}
-
-	.blog-container p.summary em {
-		@apply block w-[5ch] font-medium text-gray-900 dark:text-white;
-	}
-
-	.blog-container p.summary span {
-		@apply block w-[35ch] text-gray-700 dark:text-gray-100;
-	}
-
-	.blog-container .notion-container {
-		@apply max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em];
-	}
-
 	.blog-container .notion-container .toc {
 		@apply my-[2em];
 	}

@@ -8,7 +8,7 @@
 
 	async function contact(event: Event) {
 		loading = true;
-		const form = event.target;
+		const form = event.target as HTMLFormElement;
 		const data = new FormData(form);
 
 		const response = await fetch('/commissions', {
