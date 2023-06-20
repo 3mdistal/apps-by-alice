@@ -36,18 +36,20 @@
 	/>
 </svelte:head>
 
-<div
-	class="opacity-0 h-[100svh] flex items-stretch sm:items-center justify-center"
-	style="background-color: {background}"
->
-	<div class="justify-center flex w-full h-full fixed opacity-10">
-		<img
-			src={Bird}
-			alt="A painting of a colorful bird in flight."
-			class="object-right md:object-[50%_35%]"
-		/>
+<div class="opacity-0">
+	<div class="absolute z-20 flex w-full items-center justify-center py-20">
+		<div class="relative w-[90%] md:w-[60%] lg:left-10">
+			<Blog {accent} {data} />
+		</div>
 	</div>
-	<div class="w-[90%] py-20 md:w-[60%] relative z-[10]">
-		<Blog {accent} {data} />
+	<div class="fixed h-full w-full">
+		<div>
+			<img
+				src={Bird}
+				alt="A painting of a colorful bird in flight."
+				class="absolute z-10 object-right opacity-10 md:object-[50%_35%]"
+			/>
+		</div>
+		<div class="absolute inset-0 h-full w-full opacity-100" style="background-color: {background}" />
 	</div>
 </div>

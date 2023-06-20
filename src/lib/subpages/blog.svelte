@@ -34,11 +34,11 @@
 				href="blog/{url}">{title}</a
 			>
 		</p>
-		<p class="row-start-2 italic text-gray-100 col-span-2"><TextMacro type={Subtitle} /></p>
+		<p class="col-span-2 row-start-2 italic text-gray-100"><TextMacro type={Subtitle} /></p>
 		<p class="row-start-3 text-gray-100 md:col-start-3 md:row-start-1">
 			{date}
 		</p>
-		<div class="col-start-2 md:col-start-1 flex justify-end md:justify-start">
+		<div class="col-start-2 flex justify-end md:col-start-1 md:justify-start">
 			<p class="text-gray-100">
 				{category}
 			</p>

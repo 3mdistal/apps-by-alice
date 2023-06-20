@@ -122,20 +122,20 @@
 	class="blog-container h-[100%] min-h-[100vh] bg-gray-200 px-4 py-16 tracking-wide text-gray-900 dark:bg-black dark:text-white sm:px-10 sm:py-10 [&_sub]:text-inherit [&_sup]:text-inherit"
 	in:fade={{ duration: 500 }}
 >
-	<h1 class="dark:text-white text-4xl sm:text-5xl md:text-6xl lg:text-7xl md:mb-4">
+	<h1 class="text-4xl dark:text-white sm:text-5xl md:mb-4 md:text-6xl lg:text-7xl">
 		{articleTitle}
 	</h1>
 	<p
-		class="mb-[1em] max-w-[45ch] text-gray-700 dark:text-gray-100 md:leading-9 text-xl md:text-2xl"
+		class="mb-[1em] max-w-[45ch] text-xl text-gray-700 dark:text-gray-100 md:text-2xl md:leading-9"
 	>
 		<TextMacro type={subtitle} />
 	</p>
 	<hr class="mx-10 my-10 border-black opacity-50 dark:border-white" />
-	<p class="flex max-w-[45ch] mb-4">
+	<p class="mb-4 flex max-w-[45ch]">
 		<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">type</em>
 		<span class="block w-[35ch] text-gray-700 dark:text-gray-100">{category}</span>
 	</p>
-	<p class="flex max-w-[45ch] mb-4">
+	<p class="mb-4 flex max-w-[45ch]">
 		<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">time</em>
 		<span class="block w-[35ch] text-gray-700 dark:text-gray-100"
 			>{#if readingTime !== '1 minutes'}

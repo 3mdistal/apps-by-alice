@@ -54,7 +54,7 @@
 	});
 </script>
 
-<div class="fixed z-[100] right-2 top-2 flex items-center md:right-6 md:top-6">
+<div class="fixed right-2 top-2 z-[100] flex items-center md:right-6 md:top-6">
 	<a
 		href="/"
 		bind:this={button}
