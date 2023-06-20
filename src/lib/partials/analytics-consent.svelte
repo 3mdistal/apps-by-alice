@@ -30,9 +30,9 @@
 
 <div
 	bind:this={consent}
-	class="grid sm:grid-cols-5 grid-cols-2 grid-rows-2 sm:grid-rows-1 items-center rounded-lg bg-white bg-opacity-90 py-4 pr-4 pl-6 [&_a]:mx-8 sm:[&_a]:mx-4 [&_a]:py-1 [&_a]:rounded-lg [&_*]:text-sm xl:[&_*]:text-lg"
+	class="grid grid-cols-2 grid-rows-2 items-center rounded-lg bg-white bg-opacity-90 py-4 pl-6 pr-4 sm:grid-cols-5 sm:grid-rows-1 [&_*]:text-sm xl:[&_*]:text-lg [&_a]:mx-8 [&_a]:rounded-lg [&_a]:py-1 sm:[&_a]:mx-4"
 >
-	<p class="col-span-3 text-[#838391] mb-3 sm:mb-0">
+	<p class="col-span-3 mb-3 text-[#838391] sm:mb-0">
 		Can I chart how you browse my site to see patterns in my user base?
 	</p>
 	<a
@@ -43,7 +43,7 @@
 		Yep
 	</a>
 	<a
-		class="cursor-pointer col-span-1 border border-[#838391] text-center text-[#838391] hover:bg-[#838391] hover:text-white"
+		class="col-span-1 cursor-pointer border border-[#838391] text-center text-[#838391] hover:bg-[#838391] hover:text-white"
 		on:click|preventDefault={() => handleConsent(false)}
 		href="/"
 	>

@@ -38,7 +38,7 @@
 	<meta name="description" content="Social media links for Alice Alexandra Moore." />
 </svelte:head>
 
-<div class="bg-[#eeeded] min-h-[100lvh] px-4 py-20 md:flex flex-col items-center justify-center">
+<div class="min-h-[100lvh] flex-col items-center justify-center bg-[#eeeded] px-4 py-20 md:flex">
 	<h2 class="text-[#726a12]">let's keep in touch.</h2>
 	<p>My monthly newsletter highlights what I've been up to:</p>
 	<div class="mt-5">
@@ -46,7 +46,7 @@
 			{#if loading}
 				<p>Submitting your info . . .</p>
 			{:else}
-				<form on:submit|preventDefault={subscribe} class="grid grid-cols-3 gap-x-2 max-w-[400px]">
+				<form on:submit|preventDefault={subscribe} class="grid max-w-[400px] grid-cols-3 gap-x-2">
 					<label for="email" class="hidden">Your email:</label>
 					<input
 						id="email"
@@ -55,15 +55,15 @@
 						name="email"
 						required
 						placeholder="queen.doe@gmail.com"
-						class="px-5 py-1 w-full col-span-2 md:text-xl"
+						class="col-span-2 w-full px-5 py-1 md:text-xl"
 					/>
-					<button class="px-5 py-1 bg-[#726a12] text-white w-full md:text-xl">Subscribe</button>
+					<button class="w-full bg-[#726a12] px-5 py-1 text-white md:text-xl">Subscribe</button>
 				</form>
 			{/if}
 		{:else}
 			<p>
 				Thank you for subscribing! You will receive the monthly newsletter at <span
-					class="text-[#726a12] font-medium">{email}</span
+					class="font-medium text-[#726a12]">{email}</span
 				>.
 			</p>
 		{/if}
