@@ -119,44 +119,41 @@
 </svelte:head>
 
 <div
-	class="blog-container flex flex-col items-center w-full h-full min-h-[100vh] bg-gray-200 px-4 py-16 tracking-wide text-gray-900 dark:bg-black dark:text-white sm:px-10 sm:py-10 [&_sub]:text-inherit [&_sup]:text-inherit"
+	class="blog-container h-full min-h-[100vh] bg-gray-200 px-4 py-16 tracking-wide text-gray-900 dark:bg-black dark:text-white sm:px-10 sm:py-10 md:flex md:flex-col md:items-center md:px-20 xl:px-60 2xl:px-80 [&_sub]:text-inherit [&_sup]:text-inherit"
 	in:fade={{ duration: 500 }}
 >
-<div>
-
-	<h1 class="text-4xl dark:text-white sm:text-5xl md:mb-4 md:text-6xl lg:text-7xl">
-		{articleTitle}
-	</h1>
-	<p
-		class="max-w-[45ch] text-xl text-gray-700 dark:text-gray-100 md:text-2xl md:leading-9"
-	>
-		<em class="text-gray-300"><TextMacro type={subtitle} /></em>
-	</p>
-	</div>
-	<hr class="mx-10 my-10 w-full border-black opacity-50 dark:border-white" />
 	<div>
-	<p class="mb-4 flex max-w-[45ch]">
-		<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">type</em>
-		<span class="block w-[35ch] text-gray-700 dark:text-gray-100">{category}</span>
-	</p>
-	<p class="mb-4 flex max-w-[45ch]">
-		<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">time</em>
-		<span class="block w-[35ch] text-gray-700 dark:text-gray-100"
-			>{#if readingTime !== '1 minutes'}
-				{readingTime}
-			{:else}
-				1 minute
-			{/if}</span
-		>
-	</p>
-	<p class="flex max-w-[45ch]">
-		<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">tl;dr</em>
-		<span class="block w-[35ch] text-gray-700 dark:text-gray-100">
-			<TextMacro type={summary} />
-		</span>
-	</p>
+		<h1 class="text-4xl dark:text-white sm:text-5xl md:mb-4 md:text-6xl lg:text-7xl">
+			{articleTitle}
+		</h1>
+		<p class="max-w-[45ch] text-xl text-gray-700 dark:text-gray-100 md:text-2xl md:leading-9">
+			<em class="text-gray-300"><TextMacro type={subtitle} /></em>
+		</p>
 	</div>
-	<hr class="mx-10 w-full my-10 border-black opacity-50 dark:border-white" />
+	<hr class="my-10 w-full border-black opacity-50 dark:border-white" />
+	<div>
+		<p class="mb-4 flex max-w-[45ch]">
+			<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">type</em>
+			<span class="block w-[35ch] text-gray-700 dark:text-gray-100">{category}</span>
+		</p>
+		<p class="mb-4 flex max-w-[45ch]">
+			<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">time</em>
+			<span class="block w-[35ch] text-gray-700 dark:text-gray-100"
+				>{#if readingTime !== '1 minutes'}
+					{readingTime}
+				{:else}
+					1 minute
+				{/if}</span
+			>
+		</p>
+		<p class="flex max-w-[45ch]">
+			<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">tl;dr</em>
+			<span class="block w-[35ch] text-gray-700 dark:text-gray-100">
+				<TextMacro type={summary} />
+			</span>
+		</p>
+	</div>
+	<hr class="my-10 w-full border-black opacity-50 dark:border-white" />
 	<div class="notion-container max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em]" bind:this={context}>
 		<NotionPageParser results={content} />
 	</div>
