@@ -50,6 +50,9 @@
 				class="absolute z-10 object-right opacity-10 md:object-[50%_35%]"
 			/>
 		</div>
-		<div class="absolute inset-0 h-full w-full opacity-100" style="background-color: {background}" />
+		<div
+			class="absolute inset-0 h-full w-full opacity-100"
+			style="background-color: {background}"
+		/>
 	</div>
 </div>
