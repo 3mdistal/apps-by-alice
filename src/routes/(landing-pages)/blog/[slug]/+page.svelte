@@ -119,7 +119,7 @@
 </svelte:head>
 
 <div
-	class="blog-container h-[100%] min-h-[100vh] bg-gray-200 px-4 py-16 tracking-wide text-gray-900 dark:bg-black dark:text-white sm:px-10 sm:py-10 [&_sub]:text-inherit [&_sup]:text-inherit"
+	class="blog-container h-full min-h-[100vh] w-full bg-gray-200 px-4 py-16 tracking-wide text-gray-900 dark:bg-black dark:text-white sm:px-10 sm:py-10 [&_sub]:text-inherit [&_sup]:text-inherit"
 	in:fade={{ duration: 500 }}
 >
 	<h1 class="text-4xl dark:text-white sm:text-5xl md:mb-4 md:text-6xl lg:text-7xl">
