@@ -56,7 +56,9 @@
 							},
 							Category: {
 								select: { name: category = '' }
-							}
+							},
+							Slug: {
+								url = '' }
 						},
 						cover: {
 							external: { url: coverURL = '' }
@@ -91,7 +93,7 @@
 	<meta name="description" content={ogDescription.rich_text[0].plain_text} />
 
 	<!-- Facebook Meta Tags -->
-	<meta property="og:url" content="https://www.alicealexandra.com/blog" />
+	<meta property="og:url" content="https://www.alicealexandra.com/blog/{url}" />
 	<meta property="og:type" content="website" />
 	<meta property="og:title" content="Blog - {articleTitle}" />
 	<meta property="og:description" content={ogDescription.rich_text[0].plain_text} />
