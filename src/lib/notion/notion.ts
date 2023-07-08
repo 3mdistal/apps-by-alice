@@ -64,6 +64,7 @@ export async function retrieveBlock(id: string) {
 	return content;
 }
 
+// Unique to commissions, needs refactored to generic create page.
 export async function addCommission(name: string, email: string, description: string) {
 	if (!NOTION_KEY || !COMMISSIONS_DB) {
 		throw Error('Missing API keys from Notion.');
@@ -112,6 +113,7 @@ export async function addCommission(name: string, email: string, description: st
 	}
 }
 
+// Unique to subscribers, needs refactored to generic create page.
 export async function addSubscriber(email: string) {
 	try {
 		const response = await notion.pages.create({
