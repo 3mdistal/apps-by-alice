@@ -23,7 +23,7 @@
 </script>
 
 <h3 class="mb-[1em] text-2xl font-medium md:text-3xl lg:text-4xl" style="color: {accent}">Posts</h3>
-{#each results as { properties: { Slug: { url }, Name: { title: [{ text: { content: title } }] }, Subtitle, Category: { select: { name: category } }, ReadTime: { formula: { string: readingTime } }, FormattedPublicationDate: { formula: { string: date } } } }}
+{#each results as { properties: { Slug: { url }, Name: { title: [{ text: { content: title } }] }, Subtitle, Category: { select: { name: category } }, FormattedPublicationDate: { formula: { string: date } } } }}
 	<div class="mb-6 grid grid-cols-2 md:grid-cols-3">
 		<p class="col-span-2 md:col-span-2">
 			<a

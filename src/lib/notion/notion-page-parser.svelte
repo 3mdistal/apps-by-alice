@@ -9,7 +9,6 @@
 	import NotionImage from './notion-image.svelte';
 	import Socials from '$lib/icons/socials.svelte';
 	import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-	import NotionSyncedBlock from './notion-synced-block.svelte';
 
 	export let results: Array<BlockObjectResponse>;
 </script>
@@ -102,7 +101,5 @@
 		<div class="px-[30%] pb-10 pt-2 md:px-[35%]">
 			<hr />
 		</div>
-	{:else if result.type === 'synced_block'}
-		<NotionSyncedBlock id={result.synced_block.synced_from.block_id} />
 	{/if}
 {/each}

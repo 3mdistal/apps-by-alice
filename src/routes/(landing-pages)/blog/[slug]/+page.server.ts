@@ -1,10 +1,29 @@
-import { getBlogBySlug } from '$lib/notion/notion';
+import { queryDatabase, listChildren } from '$lib/notion/notion';
 import type { Load } from '@sveltejs/kit';
-import { BYPASS_TOKEN } from '$env/static/private';
+import { BYPASS_TOKEN, BLOGS_DB } from '$env/static/private';
 
 export const load: Load = ({ params }) => {
 	const fetchContent = async (slug: string) => {
-		const res = await getBlogBySlug(slug);
+		const blogFilter = {
+			and: [
+				{
+					property: 'Slug',
+					url: {
+						equals: slug
+					}
+				}
+			]
+		};
+		const res = [];
+
+		// Query blogs database for blog with matching slug.
+		const query = await queryDatabase(BLOGS_DB, blogFilter);
+		res.push(query);
+
+		// Get the content of the blog post.
+		const content = await listChildren(query.results[0].id);
+		res.push(content);
+
 		return res;
 	};
 
