@@ -73,6 +73,7 @@ export async function retrieveBlock(id: string) {
 	return content;
 }
 
+// Unique to commissions, needs refactored to generic create page.
 export async function addCommission(name: string, email: string, description: string) {
 	throwIfMissing();
 	const response = await notion.pages.create({
@@ -111,6 +112,7 @@ export async function addCommission(name: string, email: string, description: st
 	return response;
 }
 
+// Unique to subscribers, needs refactored to generic create page.
 export async function addSubscriber(email: string) {
 	throwIfMissing();
 	const response = await notion.pages.create({
