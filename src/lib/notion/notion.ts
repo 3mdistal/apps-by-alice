@@ -1,21 +1,68 @@
 import { Client } from '@notionhq/client';
-import {
-	NOTION_KEY,
-	COMMISSIONS_DB,
-	BLOGS_DB,
-	POEMS_SECTIONS_DB,
-	ALL_SCRAPS_DB,
-	USER_ID_ALICE,
-	SUBSCRIBERS_DB
-} from '$env/static/private';
-import type {
-	PartialBlockObjectResponse,
-	BlockObjectResponse
-} from '@notionhq/client/build/src/api-endpoints';
+import { NOTION_KEY, COMMISSIONS_DB, USER_ID_ALICE, SUBSCRIBERS_DB } from '$env/static/private';
 
 const notion = new Client({ auth: NOTION_KEY });
 
-const today = new Date(Date.now()).toISOString();
+// For listing all the children of a database. It can also be used to filter and sort.
+export async function queryDatabase(id: string, filter?: object, sorts?: Array<object>) {
+	try {
+		const response = await notion.databases.query({
+			database_id: id,
+			filter: filter,
+			sorts: sorts
+		});
+		return response;
+	} catch (error) {
+		let errorMessage = 'Retrieving database failed generically.';
+		if (error instanceof Error) {
+			errorMessage = error.message;
+		}
+		return errorMessage;
+	}
+}
+
+// For listing all the children of a block. Generally, this is then passed to the renderer.
+export async function listChildren(id: string, cursor?: string) {
+	try {
+		const response = await notion.blocks.children.list({
+			block_id: id,
+			...(cursor && { start_cursor: cursor })
+		});
+
+		// If there are more children, recursively call this function again.
+		if (response?.has_more) {
+			const moreResponse = await listChildren(id, response.next_cursor as string);
+			response.results.push(...(moreResponse?.results || []));
+		}
+
+		// Replace synced blocks with static content.
+		if (response.results) {
+			for (let i = 0; i < response.results.length; i++) {
+				const block = response.results[i];
+
+				if (block.type === 'synced_block' && block.synced_block.synced_from !== null) {
+					const originalBlockContent = await listChildren(block.synced_block.synced_from.block_id);
+					response.results.splice(i, 1, ...originalBlockContent.results);
+				}
+			}
+		}
+		return response;
+	} catch (error) {
+		let errorMessage = 'Retrieving children failed generically.';
+		if (error instanceof Error) {
+			errorMessage = error.message;
+		}
+		return errorMessage;
+	}
+}
+
+// For refreshing images.
+export async function retrieveBlock(id: string) {
+	const content = await notion.blocks.retrieve({
+		block_id: id
+	});
+	return content;
+}
 
 export async function addCommission(name: string, email: string, description: string) {
 	if (!NOTION_KEY || !COMMISSIONS_DB) {
@@ -63,239 +110,6 @@ export async function addCommission(name: string, email: string, description: st
 		}
 		return errorMessage;
 	}
-}
-
-export async function getSections() {
-	try {
-		const response = await notion.databases.query({
-			database_id: POEMS_SECTIONS_DB,
-			filter: {
-				and: [
-					{
-						property: 'Published',
-						checkbox: {
-							equals: true
-						}
-					}
-				]
-			},
-			sorts: [
-				{
-					direction: 'ascending',
-					property: 'Sequence'
-				}
-			]
-		});
-		return response;
-	} catch (error) {
-		let errorMessage = 'Retrieving sections failed generically.';
-		if (error instanceof Error) {
-			errorMessage = error.message;
-		}
-		return errorMessage;
-	}
-}
-
-export async function getScraps() {
-	try {
-		const response = await notion.databases.query({
-			database_id: ALL_SCRAPS_DB,
-			filter: {
-				and: [
-					{
-						property: 'Published',
-						checkbox: {
-							equals: true
-						}
-					}
-				]
-			},
-			sorts: [
-				{
-					direction: 'ascending',
-					property: 'Sequence'
-				}
-			]
-		});
-		return response;
-	} catch (error) {
-		let errorMessage = 'Retrieving scraps failed generically.';
-		if (error instanceof Error) {
-			errorMessage = error.message;
-		}
-		return errorMessage;
-	}
-}
-
-export async function getPoem(id: string) {
-	try {
-		const response = await notion.blocks.children.list({
-			block_id: id
-		});
-		return response;
-	} catch (error) {
-		let errorMessage = 'Retrieving poem failed generically.';
-		if (error instanceof Error) {
-			errorMessage = error.message;
-		}
-		return errorMessage;
-	}
-}
-
-export async function getBlogs(slug?: string) {
-	try {
-		const response = await notion.databases.query({
-			database_id: BLOGS_DB,
-			filter: {
-				and: [
-					{
-						property: 'Publication Date',
-						date: {
-							on_or_before: today
-						}
-					},
-					{
-						property: 'Slug',
-						url: {
-							equals: slug ? slug : ''
-						}
-					}
-				]
-			},
-			sorts: [
-				{
-					direction: 'descending',
-					property: 'Publication Date'
-				}
-			]
-		});
-		return response;
-	} catch (error) {
-		let errorMessage = 'Retrieving blogs failed generically.';
-		if (error instanceof Error) {
-			errorMessage = error.message;
-		}
-		return errorMessage;
-	}
-}
-
-export async function getBlogBySlug(slug?: string) {
-	try {
-		let response = [];
-
-		// Fetch blog article by its slug
-		const query = await notion.databases.query({
-			database_id: BLOGS_DB,
-			filter: {
-				and: [
-					{
-						property: 'Slug',
-						url: {
-							equals: slug || ''
-						}
-					}
-				]
-			},
-			sorts: [
-				{
-					direction: 'descending',
-					property: 'Publication Date'
-				}
-			]
-		});
-
-		response.push(query);
-
-		async function listChildren(cursor?: string) {
-			if (query.results[0]?.id) {
-				const res = await notion.blocks.children.list({
-					block_id: query.results[0].id,
-					...(cursor && { start_cursor: cursor })
-				});
-
-				if (res?.has_more) {
-					const moreRes = await listChildren(res.next_cursor as string);
-					res.results.push(...(moreRes?.results || []));
-				}
-
-				return res;
-			}
-			return;
-		}
-
-		// Fetch the content of the original block using the ID
-		async function fetchSyncedBlockContent(syncedBlockId: string) {
-			const originalBlock = await notion.blocks.children.list({
-				block_id: syncedBlockId
-			});
-
-			return originalBlock;
-		}
-
-		const content = await listChildren();
-
-		function isBlockObjectResponse(
-			block: PartialBlockObjectResponse | BlockObjectResponse | undefined
-		): block is BlockObjectResponse {
-			return (block as BlockObjectResponse).type !== undefined;
-		}
-
-		// Replace synced blocks with their content
-		if (content) {
-			for (let i = 0; i < content.results.length; i++) {
-				const block = content.results[i];
-
-				if (
-					isBlockObjectResponse(block) &&
-					block.type === 'synced_block' &&
-					block.synced_block.synced_from !== null
-				) {
-					const originalBlockContent = await fetchSyncedBlockContent(
-						block.synced_block.synced_from.block_id
-					);
-					content.results.splice(i, 1, ...originalBlockContent.results);
-				}
-			}
-		}
-
-		response.push(content);
-		return response;
-	} catch (error) {
-		let errorMessage = 'Posting to commissions failed generically.';
-		if (error instanceof Error) {
-			errorMessage = error.message;
-		}
-		return errorMessage;
-	}
-}
-
-// export async function getRestOfContent(id: string, next_cursor: string) {
-// 	try {
-// 		const response = await notion.blocks.children.list({
-// 			block_id: id,
-// 			start_cursor: next_cursor
-// 		});
-// 		return response;
-// 	} catch (error) {
-// 		let errorMessage = 'Retrieving blogs failed generically.';
-// 		if (error instanceof Error) {
-// 			errorMessage = error.message;
-// 		}
-// 		return errorMessage;
-// 	}
-// }
-
-export async function retrieveBlock(id: string, method: string) {
-	if (method === 'children') {
-		const content = await notion.blocks.children.list({
-			block_id: id
-		});
-		return content;
-	}
-	const content = await notion.blocks.retrieve({
-		block_id: id
-	});
-	return content;
 }
 
 export async function addSubscriber(email: string) {

@@ -57,8 +57,7 @@
 							Category: {
 								select: { name: category = '' }
 							},
-							Slug: {
-								url = '' }
+							Slug: { url = '' }
 						},
 						cover: {
 							external: { url: coverURL = '' }
