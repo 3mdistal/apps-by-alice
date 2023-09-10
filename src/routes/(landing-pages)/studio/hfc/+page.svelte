@@ -1,14 +1,32 @@
-<script>
-	import Piano from '$images/studio/hfc/hero-hfc-lq.webp';
+<script lang="ts">
 	import TextMacro from '$lib/notion/text-macro.svelte';
+	import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints.js';
 	import { onMount } from 'svelte';
 
-	export let data;
-	let open = {};
-	let poemContent = {};
-	let poemLoading = {};
+	export let data: Data;
 
-	const fetchContent = async (id) => {
+	type Data = {
+		props: {
+			sections: { results: PageObjectResponse[] };
+			poems: { results: PageObjectResponse[] };
+		};
+	};
+
+	const {
+		props: {
+			sections: { results: sections },
+			poems: { results: poems }
+		}
+	} = data;
+
+	let open: Record<string, boolean> = {};
+	let poemContent: Record<string, boolean> = {};
+	let poemLoading: Record<string, boolean> = {};
+
+	let Piano =
+		'https://ik.imagekit.io/tempoimmaterial/tr:w-1500/hymns%20for%20calliope/ruined%20piano?updatedAt=1694350822403';
+
+	const fetchContent = async (id: string) => {
 		if (poemContent[id]) return;
 		const response = await fetch('/studio/hfc/api', {
 			method: 'POST',
@@ -22,18 +40,10 @@
 		poemContent[id] = content;
 	};
 
-	function scroll(sectionID, scrollBehavior = 'auto') {
-		const section = document.getElementById(sectionID);
-		section.scrollIntoView({ behavior: scrollBehavior });
-	}
-
-	async function toggleOpen(poem, section) {
+	async function toggleOpen(poem: string) {
 		if (open[poem] === true) {
 			open[poem] = false;
-			scroll(section);
-		} else if (open[poem] === false) {
-			open[poem] = true;
-		} else if (poemContent[poem]) {
+		} else if (open[poem] === false && poemContent[poem] === true) {
 			open[poem] = true;
 		} else {
 			poemLoading[poem] = true;
@@ -43,12 +53,11 @@
 		}
 	}
 
-	const {
-		props: {
-			sections: { results: sections },
-			poems: { results: poems }
-		}
-	} = data;
+	function scroll(id: string, behavior: ScrollBehavior) {
+		const element = document.getElementById(id);
+		if (!element) return;
+		element.scrollIntoView({ behavior });
+	}
 
 	onMount(() => {
 		fetch('/studio/hfc', {
@@ -79,7 +88,7 @@
 		</div>
 	</div>
 	{#each sections as section}
-		{#if section.properties.Name.title[0].plain_text === 'introduction'}
+		{#if section.properties['Name'] && section.properties['Name'].title[0].plain_text === 'introduction'}
 			<div
 				class="flex min-h-[100lvh] snap-start flex-col items-center justify-center px-5 py-10 md:px-10"
 			>
@@ -90,7 +99,7 @@
 					</p>
 				</div>
 			</div>
-		{:else}
+		{:else if section.properties['Name'] && section.cover}
 			<div
 				class="flex min-h-[100lvh] snap-start flex-col justify-center gap-y-24 bg-[#bcbab7] p-4 sm:gap-y-32 lg:gap-y-12"
 			>
@@ -100,7 +109,7 @@
 					<div
 						class="col-span-5 col-start-1 row-span-full row-start-1 lg:col-span-4 lg:translate-x-10"
 					>
-						<img src={section.cover.external.url} alt="" />
+						<img src={section.cover.external.url} alt="" loading="lazy" />
 					</div>
 					<a
 						class="absolute col-start-3 row-start-5 min-w-[60vw] bg-white px-4 py-8 hover:bg-[#efefef] sm:row-start-6 lg:static lg:col-start-4 lg:row-start-4 lg:min-w-[35ch] lg:-translate-x-10 lg:translate-y-20 lg:text-2xl xl:text-3xl"
@@ -111,7 +120,7 @@
 							<TextMacro type={section.properties.Act} />
 						</p>
 						<h2 class="m-0 text-center text-2xl font-light text-black sm:text-3xl xl:text-4xl">
-							{section.properties.Name.title[0].plain_text}
+							{section.properties['Name'].title[0].plain_text}
 						</h2>
 					</a>
 				</div>
@@ -121,7 +130,7 @@
 							<em class="text-[#cfcdcb]"><TextMacro type={section.properties.Quote} /></em>
 						</p>
 						<p class="text-sm text-white md:text-lg">
-							—<TextMacro type={section.properties.QuoteAuthor} />
+							—<TextMacro type={section.properties['QuoteAuthor']} />
 						</p>
 					</div>
 				</div>
@@ -136,7 +145,7 @@
 					class="relative z-10 flex w-[100%] flex-col gap-y-20 overflow-x-scroll px-5 md:items-center md:overflow-x-visible"
 				>
 					{#each poems as poem}
-						{#if poem.properties.sectionName.formula.string === section.properties.Name.title[0].plain_text}
+						{#if poem.properties['sectionName'].formula.string === section.properties.Name.title[0].plain_text}
 							<a
 								class="p-4 hover:[&>h3]:text-[#cfcdcb]"
 								on:click|preventDefault={() => toggleOpen(poem.id, section.id)}
@@ -167,7 +176,7 @@
 									{/each}
 									<a
 										on:click|preventDefault={() => {
-											toggleOpen(poem.id, section.id);
+											toggleOpen(poem.id);
 										}}
 										href="/studio/hfc"
 										><p class="mt-32 text-right text-2xl text-white md:text-3xl lg:text-4xl">
