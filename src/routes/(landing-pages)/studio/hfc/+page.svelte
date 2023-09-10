@@ -23,7 +23,8 @@
 	let poemContent: Record<string, boolean> = {};
 	let poemLoading: Record<string, boolean> = {};
 
-	let Piano = 'https://ik.imagekit.io/tempoimmaterial/tr:w-1500/hymns%20for%20calliope/ruined%20piano?updatedAt=1694350822403'
+	let Piano =
+		'https://ik.imagekit.io/tempoimmaterial/tr:w-1500/hymns%20for%20calliope/ruined%20piano?updatedAt=1694350822403';
 
 	const fetchContent = async (id: string) => {
 		if (poemContent[id]) return;
@@ -50,6 +51,12 @@
 			poemLoading[poem] = false;
 			open[poem] = true;
 		}
+	}
+
+	function scroll(id: string, behavior: ScrollBehavior) {
+		const element = document.getElementById(id);
+		if (!element) return;
+		element.scrollIntoView({ behavior });
 	}
 
 	onMount(() => {
