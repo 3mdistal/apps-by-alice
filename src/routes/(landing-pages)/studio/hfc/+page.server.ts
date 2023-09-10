@@ -1,7 +1,8 @@
 import { queryDatabase } from '$lib/notion/notion';
 import { BYPASS_TOKEN, POEMS_SECTIONS_DB, ALL_SCRAPS_DB } from '$env/static/private';
+import type { Sort, Filter } from '$lib/notion/notion';
 
-const sectionsFilter = {
+const sectionsFilter: Filter = {
 	and: [
 		{
 			property: 'Published',
@@ -12,14 +13,14 @@ const sectionsFilter = {
 	]
 };
 
-const sectionsSorts = [
+const sectionsSorts: Sort = [
 	{
 		direction: 'ascending',
 		property: 'Sequence'
 	}
 ];
 
-const scrapsFilter = {
+const scrapsFilter: Filter = {
 	and: [
 		{
 			property: 'Published',
@@ -30,7 +31,7 @@ const scrapsFilter = {
 	]
 };
 
-const scrapsSorts = [
+const scrapsSorts: Sort = [
 	{
 		direction: 'ascending',
 		property: 'Sequence'
