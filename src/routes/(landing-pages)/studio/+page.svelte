@@ -1,10 +1,20 @@
-<script>
-	import LandingPage from '$lib/subpages/landing-page.svelte';
-	import Studio from './studio.svelte';
-	import Piano from '$images/studio/piano-with-chair.webp';
+<script lang="ts">
+	import StudioCard from './studio-card.svelte';
 
-	const accent = '#243269';
-	const background = '#d6ddf0';
+	const list = [
+		{
+			title: 'betson',
+			subtitle: 'novel in calendar',
+			logo: 'bet',
+			src: '/src/cms/images/studio/mirror-b.jpg'
+		},
+		{
+			title: 'these makeshift idiotika',
+			subtitle: 'a shifting, tilting world',
+			logo: 'tmi',
+			src: '/src/cms/images/studio/bird-tmi.jpg'
+		}
+	];
 </script>
 
 <svelte:head>
@@ -15,18 +25,23 @@
 	/>
 </svelte:head>
 
-<LandingPage
-	header="i keep chasing new ideas."
-	description="I've always been someone who dabbles in everything; learning
-			new arts keeps me happy. In my studio, you'll find
-			paintings, poems, songs, fiction, memoir, fantasy, and more."
-	src={Piano}
-	alt="A painting of an upright piano and empty wooden chair."
-	{accent}
-	{background}
-	flexReverse
->
-	<div id="works">
-		<Studio {accent} {background} />
+<div class="bg-[#d6ddf0]">
+	<!-- Menu Bar -->
+	<div class="sticky top-0 z-20 flex h-[4.5rem] w-full items-center bg-[#243269] pl-8">
+		<p class="text-2xl text-white">studio</p>
 	</div>
-</LandingPage>
+
+	<!-- Break -->
+	<div class="h-[3rem] w-full" />
+
+	<!-- Cards -->
+	<div
+		class="flex flex-col flex-wrap items-center justify-center gap-12 bg-[#d6ddf0] sm:flex-row sm:justify-center sm:px-10"
+	>
+		{#each list as { title, subtitle, logo, src }}
+			<StudioCard {title} {subtitle} {logo} {src} />
+		{/each}
+	</div>
+
+	<div class="h-[3rem] w-full" />
+</div>
