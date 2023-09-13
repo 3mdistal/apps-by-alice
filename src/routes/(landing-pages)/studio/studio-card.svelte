@@ -4,13 +4,15 @@
 	import { onDestroy } from 'svelte';
 	import { state, accentColors, backgroundColors } from '$lib/stores';
 	import Button from '$lib/icons/button.svelte';
+	import TextMacro from '$lib/notion/text-macro.svelte';
+	import type { TextRichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
 
 	export let title = '';
-	export let subtitle = '';
-	export let logo = '';
+	export let subtitle: { rich_text: TextRichTextItemResponse[] };
+	export let logo: { rich_text: TextRichTextItemResponse[] };
 	export let src = '';
 	export let alt = '';
-	export let description = '';
+	export let description: { rich_text: TextRichTextItemResponse[] };
 	export let url = '';
 	export let buttonText = '';
 
@@ -77,11 +79,11 @@
 		<div
 			class="relative z-10 flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[50%] border-2 border-white bg-studio"
 		>
-			<p class="font-logo text-[2.75rem] font-medium text-white">{logo}</p>
+			<p class="font-logo text-[2.75rem] font-medium text-white"><TextMacro type={logo} /></p>
 		</div>
 		<div class="z-10">
 			<p class="mb-6 text-center text-4xl tracking-[.15em] text-white">{title}</p>
-			<p class="text-center text-2xl"><em class="text-white">{subtitle}</em></p>
+			<p class="text-center text-2xl"><em class="text-white"><TextMacro type={subtitle} /></em></p>
 		</div>
 		<img {src} {alt} class="absolute h-full w-full opacity-60" />
 		<div
@@ -95,7 +97,7 @@
 		bind:this={back}
 	>
 		<p class="text 2xl">
-			<em class="text-white">{description}</em>
+			<em class="text-white"><TextMacro type={description} /></em>
 		</p>
 		<Button
 			{url}
