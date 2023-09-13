@@ -7,6 +7,10 @@ settings:
 importers:
 
   .:
+    dependencies:
+      web-vitals:
+        specifier: ^3.4.0
+        version: 3.4.0
     devDependencies:
       '@notionhq/client':
         specifier: ^2.2.13
@@ -4133,6 +4137,10 @@ packages:
       - supports-color
       - terser
     dev: true
+
+  /web-vitals@3.4.0:
+    resolution: {integrity: sha512-n9fZ5/bG1oeDkyxLWyep0eahrNcPDF6bFqoyispt7xkW0xhDzpUBTgyDKqWDi1twT0MgH4HvvqzpUyh0ZxZV4A==}
+    dev: false
 
   /web-worker@1.2.0:
     resolution: {integrity: sha512-PgF341avzqyx60neE9DD+XS26MMNMoUQRz9NOZwW32nPQrF6p77f1htcnjBSEV8BGMKZ16choqUG4hyI0Hx7mA==}
