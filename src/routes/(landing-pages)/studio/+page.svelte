@@ -12,7 +12,7 @@
 	function populate() {
 		const tl = gsap.timeline();
 		tl.to('.card-div', { opacity: 1, duration: 0.5 })
-			.fromTo('img.fixed', { opacity: 0 }, { duration: 1, opacity: 0.4, ease: 'power2.inOut' }, '<')
+			.to('img.fixed', { duration: 1, opacity: 0.4, ease: 'power2.inOut' }, '<')
 			.fromTo('.card-div > *', { opacity: 0 }, { opacity: 1, stagger: 0.1 }, '< .5');
 	}
 
@@ -65,7 +65,7 @@
 	<img
 		src="https://ik.imagekit.io/tempoimmaterial/studio/ink.png?updatedAt=1694604654601"
 		alt=""
-		class="fixed h-full opacity-40"
+		class="fixed h-full opacity-0 opacity-40"
 	/>
 
 	<!-- Break -->
