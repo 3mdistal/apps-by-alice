@@ -101,7 +101,7 @@
 	/>
 </svelte:head>
 
-<div class="min-h-[100vh] bg-studio-bg">
+<div class="min-h-[100lvh] bg-studio-bg">
 	<img
 		src="https://ik.imagekit.io/tempoimmaterial/studio/ink.png?updatedAt=1694604654601"
 		alt=""
