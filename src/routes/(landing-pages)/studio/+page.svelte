@@ -76,6 +76,16 @@
 			description: 'A small collection of digital paintings with accompanying stories.',
 			url: '/studio/illustrations',
 			buttonText: 'to the museum.'
+		},
+		{
+			title: 'and more to come...',
+			subtitle: '',
+			logo: '#',
+			src: 'https://ik.imagekit.io/tempoimmaterial/studio/ink.png?tr=w-316,h-476',
+			alt: 'Ink.',
+			description: `I've got a whole lot in the works.`,
+			url: '/blog/on-continuous-resurrection',
+			buttonText: 'learn about it all.'
 		}
 	];
 
