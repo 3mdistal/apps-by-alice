@@ -20,6 +20,12 @@
 
 	onMount(() => {
 		populate();
+		fetch('/studio', {
+			headers: {
+				Accept: 'application/json',
+				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
+			}
+		});
 	});
 </script>
 
