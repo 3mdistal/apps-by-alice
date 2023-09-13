@@ -1,10 +1,32 @@
-<script>
-	import LandingPage from '$lib/subpages/landing-page.svelte';
-	import Studio from './studio.svelte';
-	import Piano from '$images/studio/piano-with-chair.webp';
+<script lang="ts">
+	import { onMount } from 'svelte';
+	import StudioCard from './studio-card.svelte';
+	import gsap from 'gsap';
 
-	const accent = '#243269';
-	const background = '#d6ddf0';
+	export let data;
+
+	const {
+		cards: { results: cards }
+	} = data;
+
+	function populate() {
+		const tl = gsap.timeline();
+		tl.fromTo(
+			'img.fixed',
+			{ opacity: 0 },
+			{ duration: 1, opacity: 0.4, ease: 'power2.inOut' }
+		).fromTo('.card-div > *', { opacity: 0 }, { opacity: 1, stagger: 0.1 }, '< .5');
+	}
+
+	onMount(() => {
+		populate();
+		fetch('/studio', {
+			headers: {
+				Accept: 'application/json',
+				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
+			}
+		});
+	});
 </script>
 
 <svelte:head>
@@ -15,18 +37,22 @@
 	/>
 </svelte:head>
 
-<LandingPage
-	header="i keep chasing new ideas."
-	description="I've always been someone who dabbles in everything; learning
-			new arts keeps me happy. In my studio, you'll find
-			paintings, poems, songs, fiction, memoir, fantasy, and more."
-	src={Piano}
-	alt="A painting of an upright piano and empty wooden chair."
-	{accent}
-	{background}
-	flexReverse
->
-	<div id="works">
-		<Studio {accent} {background} />
+<div class="min-h-[100lvh] bg-studio-bg">
+	<img
+		src="https://ik.imagekit.io/tempoimmaterial/studio/ink.png?updatedAt=1694604654601"
+		alt=""
+		class="fixed h-full opacity-40"
+	/>
+
+	<!-- Break -->
+	<div class="h-12" />
+
+	<!-- Cards -->
+	<div class="card-div flex flex-wrap items-start justify-center gap-12 sm:justify-center sm:px-10">
+		{#each cards as { properties: { Title: { title: [{ plain_text: title }] }, Subtitle: subtitle, 'Shortened Logo Text': logo, Image: { url: src }, ImageAlt: { rich_text: [{ text: { content: alt } }] }, Description: description, ButtonText: { rich_text: [{ text: { content: buttonText } }] }, Destination: { url } } }}
+			<StudioCard {title} {subtitle} {logo} {src} {alt} {description} {buttonText} {url} />
+		{/each}
 	</div>
-</LandingPage>
+
+	<div class="h-12" />
+</div>

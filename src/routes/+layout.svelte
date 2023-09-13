@@ -20,6 +20,7 @@
 		rel="stylesheet"
 	/>
 	<link href="https://fonts.googleapis.com/css2?family=Cutive+Mono&display=swap" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css2?family=Euphoria+Script&display=swap" rel="stylesheet">
 </svelte:head>
 
 <Svgs />
