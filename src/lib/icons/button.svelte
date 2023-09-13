@@ -1,18 +1,27 @@
 <script>
+	import { createEventDispatcher } from 'svelte';
+
 	export let url = '';
 	export let text = '';
 	export let target = '';
 	export let type = '';
 	export let accent = '';
 	export let background = '';
+
+	const dispatch = createEventDispatcher();
+
+	function load() {
+		dispatch('message', { loading: true });
+	}
 </script>
 
 <a
 	href={url}
 	{target}
 	{type}
-	class="text-l box-content cursor-pointer rounded-md border-2 p-[1em] text-center font-normal no-underline lg:text-xl"
+	class="text-l box-content cursor-pointer rounded-xl border-2 p-[1em] text-center font-normal no-underline lg:text-xl"
 	style="--accent: {accent}; --background: {background}"
+	on:click={load}
 >
 	{text}
 </a>

@@ -6,6 +6,7 @@
 	import Button from '$lib/icons/button.svelte';
 	import TextMacro from '$lib/notion/text-macro.svelte';
 	import type { TextRichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
+	import { fade } from 'svelte/transition';
 
 	export let title = '';
 	export let subtitle: { rich_text: TextRichTextItemResponse[] };
@@ -15,6 +16,8 @@
 	export let description: { rich_text: TextRichTextItemResponse[] };
 	export let url = '';
 	export let buttonText = '';
+
+	let loading = false;
 
 	let card: HTMLDivElement;
 	let front: HTMLDivElement;
@@ -28,6 +31,7 @@
 	}
 
 	function seeBack() {
+		if (loading) return;
 		const tl = gsap.timeline();
 		tl.to(front, { scale: 0.9, duration: 0.1, ease: 'power3.in' })
 			.to(back, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
@@ -41,6 +45,7 @@
 	}
 
 	function hideBack() {
+		if (loading) return;
 		const tl = gsap.timeline();
 		tl.to(front, { scale: 0.9, duration: 0.1, ease: 'power3.in' })
 			.to(back, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
@@ -60,6 +65,10 @@
 	onDestroy(() => {
 		state.set('home');
 	});
+
+	function handleMessage(e) {
+		loading = e.detail.loading;
+	}
 </script>
 
 <div
@@ -99,12 +108,22 @@
 		<p class="text 2xl">
 			<em class="text-white"><TextMacro type={description} /></em>
 		</p>
-		<Button
-			{url}
-			text={buttonText}
-			accent={$backgroundColors.studio}
-			background={$accentColors.studio}
-		/>
+
+		{#if loading}
+			<Button
+				text="please hold..."
+				accent={$accentColors.studio}
+				background={$backgroundColors.studio}
+			/>
+		{:else}
+			<Button
+				{url}
+				text={buttonText}
+				accent={$backgroundColors.studio}
+				background={$accentColors.studio}
+				on:message={handleMessage}
+			/>
+		{/if}
 	</div>
 
 	<!-- Spin Poles -->
