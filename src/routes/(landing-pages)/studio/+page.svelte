@@ -31,10 +31,36 @@
 
 <svelte:head>
 	<title>Studio</title>
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content="https://www.alicealexandra.com/studio" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Studio" />
 	<meta
-		name="description"
-		content="The studio works of Alice Alexandra Moore. Enjoy fiction, fantasy, poetry, illustrations, music, essays, and more."
+		property="og:description"
+		content="The studio works of Alice Alexandra Moore. Enjoy fiction, film, fantasy, poetry, illustrations, music, essays, websites, and more."
 	/>
+	<meta
+		property="og:image"
+		content="https://ik.imagekit.io/tempoimmaterial/studio/studioog?tr=w-750"
+	/>
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@tempoimmaterial" />
+	<meta name="twitter:creator" content="@tempoimmaterial" />
+	<meta name="twitter:domain" content="alicealexandra.com/studio" />
+	<meta name="twitter:url" content="https://www.alicealexandra.com/studio" />
+	<meta name="twitter:title" content="Studio" />
+	<meta
+		name="twitter:description"
+		content="The studio works of Alice Alexandra Moore. Enjoy fiction, film, fantasy, poetry, illustrations, music, essays, websites, and more."
+	/>
+	<meta
+		name="twitter:image"
+		content="https://ik.imagekit.io/tempoimmaterial/studio/studioog?tr=w-750"
+	/>
+	<meta name="twitter:image:alt" content="The studio page of alicealexandra.com." />
 </svelte:head>
 
 <div class="min-h-[100lvh] bg-studio-bg">
