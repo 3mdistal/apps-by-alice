@@ -65,7 +65,7 @@
 	<img
 		src="https://ik.imagekit.io/tempoimmaterial/studio/ink.png?updatedAt=1694604654601"
 		alt=""
-		class="fixed h-full opacity-0 opacity-40"
+		class="fixed h-full opacity-0"
 	/>
 
 	<!-- Break -->
