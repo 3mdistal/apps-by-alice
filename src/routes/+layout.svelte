@@ -2,7 +2,7 @@
 	import '../app.scss';
 	import Logo from '../cms/images/logo/logo.png';
 	import Svgs from '../lib/icons/svgs.svelte';
-	import { webVitals } from '$lib/partials/vitals.ts';
+	import { webVitals } from '$lib/partials/vitals';
 	import { browser } from '$app/environment';
 	import { page } from '$app/stores';
 
