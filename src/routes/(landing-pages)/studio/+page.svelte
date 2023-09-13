@@ -91,11 +91,11 @@
 
 	function populate() {
 		const tl = gsap.timeline();
-		tl.fromTo('img.fixed', { opacity: 0 }, { opacity: 0.4, duration: 0.5 }).fromTo(
-			'.card-div > *',
+		tl.fromTo(
+			'img.fixed',
 			{ opacity: 0 },
-			{ opacity: 1, stagger: 0.1 }
-		);
+			{ duration: 1, opacity: 0.4, ease: 'power2.inOut' }
+		).fromTo('.card-div > *', { opacity: 0 }, { opacity: 1, stagger: 0.1 }, '< .5');
 	}
 
 	onMount(() => {
