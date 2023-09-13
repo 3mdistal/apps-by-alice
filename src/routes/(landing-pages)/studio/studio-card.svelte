@@ -68,7 +68,7 @@
 	role="button"
 	tabindex="0"
 	aria-live="polite"
-	class="relative flex aspect-[2/3] w-[20rem] justify-center overflow-hidden rounded-3xl border-2 border-white drop-shadow-2xl"
+	class="relative flex aspect-[2/3] w-[20rem] cursor-default justify-center overflow-hidden rounded-3xl border-2 border-white drop-shadow-2xl"
 	bind:this={card}
 >
 	<!-- Front of Card -->
