@@ -1,21 +1,26 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
+	import { onDestroy } from 'svelte';
+	import { state, accentColors, backgroundColors } from '$lib/stores';
+	import Button from '$lib/icons/button.svelte';
 
 	export let title = '';
 	export let subtitle = '';
 	export let logo = '';
 	export let src = '';
 	export let alt = '';
+	export let description = '';
+	export let url = '';
+	export let buttonText = '';
 
 	let card: HTMLDivElement;
 	let front: HTMLDivElement;
 	let back: HTMLDivElement;
 
-	function fadeIn() {
+	function reset() {
 		const tl = gsap.timeline();
-		tl.fromTo(card, { opacity: 0 }, { opacity: 1, duration: 1 })
-			.to(back, { rotateY: '-180deg' }, '<')
+		tl.to(back, { rotateY: '-180deg' }, '<')
 			.to(back, { opacity: 0, duration: 0.2 }, '<')
 			.to(back.querySelector('p'), { opacity: 0, duration: 0.1 }, '<');
 	}
@@ -47,7 +52,11 @@
 	}
 
 	onMount(() => {
-		fadeIn();
+		reset();
+	});
+
+	onDestroy(() => {
+		state.set('home');
 	});
 </script>
 
@@ -60,12 +69,13 @@
 	class="relative flex aspect-[2/3] w-[20rem] justify-center overflow-hidden rounded-3xl border-2 border-white drop-shadow-2xl"
 	bind:this={card}
 >
+	<!-- Front of Card -->
 	<div
-		class="absolute flex h-full w-full flex-col items-center justify-center gap-y-16 rounded-3xl bg-[#243269]"
+		class="absolute flex h-full w-full flex-col items-center justify-center gap-y-16 overflow-hidden rounded-3xl bg-studio"
 		bind:this={front}
 	>
 		<div
-			class="relative z-10 flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[50%] border-2 border-white bg-[#243269]"
+			class="relative z-10 flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[50%] border-2 border-white bg-studio"
 		>
 			<p class="font-logo text-[2.75rem] font-medium text-white">{logo}</p>
 		</div>
@@ -73,20 +83,31 @@
 			<p class="mb-6 text-center text-4xl tracking-[.15em] text-white">{title}</p>
 			<p class="text-center text-2xl"><em class="text-white">{subtitle}</em></p>
 		</div>
-		<img {src} {alt} class="absolute h-full w-full opacity-30" />
+		<img {src} {alt} class="absolute h-full w-full opacity-60" />
+		<div
+			class="absolute h-full w-full bg-gradient-to-t from-studio to-transparent opacity-50"
+		></div>
 	</div>
 
+	<!-- Back of Card -->
 	<div
-		class="absolute flex h-full w-full items-center justify-center rounded-3xl bg-[#243269] px-4 opacity-0"
+		class="absolute flex h-full w-full flex-col items-center justify-around rounded-3xl bg-studio px-4 py-10 opacity-0"
 		bind:this={back}
 	>
-		<p class="text 2xl text-white">
-			A whole bunch of description text dynamically pulled from the server.
+		<p class="text 2xl">
+			<em class="text-white">{description}</em>
 		</p>
+		<Button
+			{url}
+			text={buttonText}
+			accent={$backgroundColors.studio}
+			background={$accentColors.studio}
+		/>
 	</div>
 
+	<!-- Spin Poles -->
 	<div class="relative -z-20 flex h-full">
-		<div class="h-[5%] w-1 self-end bg-[#243269]"></div>
-		<div class="h-[5%] w-1 self-start bg-[#243269]"></div>
+		<div class="h-[5%] w-1 self-end bg-studio"></div>
+		<div class="h-[5%] w-1 self-start bg-studio"></div>
 	</div>
 </div>

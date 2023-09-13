@@ -1,20 +1,96 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import StudioCard from './studio-card.svelte';
+	import gsap from 'gsap';
 
-	const list = [
+	interface Card {
+		title: string;
+		subtitle: string;
+		logo: string;
+		src: string;
+		alt: string;
+		description: string;
+		url: string;
+		buttonText: string;
+	}
+
+	const list: Array<Card> = [
+		{
+			title: 'hymns for calliope',
+			subtitle: 'poems',
+			logo: 'hfc',
+			src: 'https://ik.imagekit.io/tempoimmaterial/studio/piano-hfc.jpg?tr=w-316,h-476,fo-right',
+			alt: 'A crumbled grand piano in front of a ruined building.',
+			description: 'Poems collected over time and transitions. Somewhat memoir, somewhat not.',
+			url: '/studio/hfc',
+			buttonText: 'walk slowly.'
+		},
 		{
 			title: 'betson',
 			subtitle: 'novel in calendar',
 			logo: 'bet',
-			src: '/src/cms/images/studio/mirror-b.jpg'
+			src: 'https://ik.imagekit.io/tempoimmaterial/studio/mirror-b.jpg?tr=w-316,h-476',
+			alt: 'A teen girl leaning against a mirror.',
+			description:
+				'A tale firmly rooted in the Midwest gothic, full of ghosts and kids just trying to make it through.',
+			url: '/studio/betson',
+			buttonText: 'get lost inside.'
 		},
 		{
 			title: 'these makeshift idiotika',
 			subtitle: 'a shifting, tilting world',
 			logo: 'tmi',
-			src: '/src/cms/images/studio/bird-tmi.jpg'
+			src: 'https://ik.imagekit.io/tempoimmaterial/studio/bird-tmi.jpg?tr=w-600,h-476,c-force',
+			alt: 'A bird rendered in watercolor.',
+			description:
+				'A sprawl filled with lovers and fiends, all striving to remember an ever-erasing past.',
+			url: '/studio/tmi',
+			buttonText: 'dive in.'
+		},
+		{
+			title: 'illustrations',
+			subtitle: 'visual art',
+			logo: 'art',
+			src: 'https://ik.imagekit.io/tempoimmaterial/studio/flower-p.jpg?tr=w-316,h-476',
+			alt: 'A single flower open against the dark.',
+			description: 'A small collection of digital paintings with accompanying stories.',
+			url: '/studio/illustrations',
+			buttonText: 'to the museum.'
+		},
+		{
+			title: 'jukebox',
+			subtitle: 'compositions',
+			logo: 'j',
+			src: 'https://ik.imagekit.io/tempoimmaterial/studio/city-j.jpg?tr=w-316,h-476,fo-bottom_right',
+			alt: 'A single flower open against the dark.',
+			description: 'Musical musings and improvs, collected here for you to listen and relax.',
+			url: '/studio/jukebox',
+			buttonText: 'turn it up.'
+		},
+		{
+			title: 'postcards',
+			subtitle: 'sudden stories',
+			logo: 'pc',
+			src: 'https://ik.imagekit.io/tempoimmaterial/studio/snakes-i.jpg?tr=w-316,h-476',
+			alt: 'A single flower open against the dark.',
+			description: 'A small collection of digital paintings with accompanying stories.',
+			url: '/studio/illustrations',
+			buttonText: 'to the museum.'
 		}
 	];
+
+	function populate() {
+		const tl = gsap.timeline();
+		tl.fromTo('img.fixed', { opacity: 0 }, { opacity: 0.4, duration: 0.5 }).fromTo(
+			'.card-div > *',
+			{ opacity: 0 },
+			{ opacity: 1, stagger: 0.1 }
+		);
+	}
+
+	onMount(() => {
+		populate();
+	});
 </script>
 
 <svelte:head>
@@ -25,23 +101,22 @@
 	/>
 </svelte:head>
 
-<div class="bg-[#d6ddf0]">
-	<!-- Menu Bar -->
-	<div class="sticky top-0 z-20 flex h-[4.5rem] w-full items-center bg-[#243269] pl-8">
-		<p class="text-2xl text-white">studio</p>
-	</div>
+<div class="min-h-[100vh] bg-studio-bg">
+	<img
+		src="https://ik.imagekit.io/tempoimmaterial/studio/ink.png?updatedAt=1694604654601"
+		alt=""
+		class="fixed opacity-40"
+	/>
 
 	<!-- Break -->
-	<div class="h-[3rem] w-full" />
+	<div class="h-12" />
 
 	<!-- Cards -->
-	<div
-		class="flex flex-col flex-wrap items-center justify-center gap-12 bg-[#d6ddf0] sm:flex-row sm:justify-center sm:px-10"
-	>
-		{#each list as { title, subtitle, logo, src }}
-			<StudioCard {title} {subtitle} {logo} {src} />
+	<div class="card-div flex flex-wrap items-start justify-center gap-12 sm:justify-center sm:px-10">
+		{#each list as { title, subtitle, logo, src, description, alt, url, buttonText }}
+			<StudioCard {title} {subtitle} {logo} {src} {alt} {description} {url} {buttonText} />
 		{/each}
 	</div>
 
-	<div class="h-[3rem] w-full" />
+	<div class="h-12" />
 </div>
