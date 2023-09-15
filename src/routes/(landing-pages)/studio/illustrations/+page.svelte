@@ -1,7 +1,48 @@
 <script>
-	import ComingSoon from '$lib/subpages/studio/coming-soon.svelte';
-	// @ts-ignore
-	import ComingSoonIllustrations from '$text/studio/illustrations/coming-soon-illustrations.md';
+	export let data;
+
+	const {
+		illustrations: { results }
+	} = data;
+
+	let currentURL = '';
+	let all = true;
+
+	function handleClick(event) {
+		if (all === true) {
+			currentURL = event.target.src;
+			console.log(currentURL);
+			document
+				.getElementsByClassName('art-grid')[0]
+				.classList.remove('sm:columns-2', 'md:columns-3', 'lg:columns-4', 'xl:columns-5');
+
+			all = false;
+			history.pushState(null, null, '/studio/illustrations/');
+			window.addEventListener('popstate', () => {
+				currentURL = '';
+				document
+					.getElementsByClassName('art-grid')[0]
+					.classList.add('sm:columns-2', 'md:columns-3', 'lg:columns-4', 'xl:columns-5');
+				all = true;
+			});
+			return;
+		}
+		if (all === false) {
+			currentURL = '';
+			document
+				.getElementsByClassName('art-grid')[0]
+				.classList.add('sm:columns-2', 'md:columns-3', 'lg:columns-4', 'xl:columns-5');
+			all = true;
+			window.removeEventListener('popstate', () => {
+				currentURL = '';
+				document
+					.getElementsByClassName('art-grid')[0]
+					.classList.add('sm:columns-2', 'md:columns-3', 'lg:columns-4', 'xl:columns-5');
+				all = true;
+			});
+			return;
+		}
+	}
 </script>
 
 <svelte:head>
@@ -12,16 +53,25 @@
 	/>
 </svelte:head>
 
-<ComingSoon>
-	<svelte:fragment slot="title">illustrations</svelte:fragment>
-
-	<svelte:fragment slot="subtitle">collected works of disparate instincts</svelte:fragment>
-
-	<svelte:fragment slot="summary">
-		I paint a lot. I'll be putting my art here shortly.
-	</svelte:fragment>
-
-	<svelte:fragment slot="text">
-		<ComingSoonIllustrations />
-	</svelte:fragment>
-</ComingSoon>
+<!-- Art Grid -->
+<div
+	class="art-grid h-full w-full gap-x-0 bg-gray-800 p-2 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5"
+>
+	{#each results as painting}
+		{#if all}
+			<img
+				src={painting.properties.Image.url + '?tr=f-webp,q-10'}
+				alt=""
+				class="w-full p-2 transition-all duration-300 ease-in-out sm:hover:scale-105"
+				on:click={handleClick}
+			/>
+		{:else if currentURL === painting.properties.Image.url + '?tr=f-webp,q-10'}
+			<img
+				src={painting.properties.Image.url + '?tr=f-webp,q-50'}
+				alt=""
+				class="w-full p-2 transition-all duration-300 ease-in-out sm:hover:scale-105"
+				on:click={handleClick}
+			/>
+		{/if}
+	{/each}
+</div>
