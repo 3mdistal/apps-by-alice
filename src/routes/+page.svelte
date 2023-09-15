@@ -4,7 +4,6 @@
 	import { state } from '../lib/stores';
 	import { onMount } from 'svelte';
 	import Flowers from '$images/about/flowers-in-hand.webp';
-	import Piano from '$images/studio/piano-with-chair.webp';
 	import Rabbit from '$images/commissions/rabbit-in-hat.webp';
 	import Bird from '$images/blog/bird.webp';
 
@@ -18,7 +17,7 @@
 	onMount(() => {
 		state.set('home');
 		document.body.style.backgroundColor = '#fafafa';
-		preloadImages(Flowers, Piano, Rabbit, Bird);
+		preloadImages(Flowers, Rabbit, Bird);
 	});
 </script>
 
