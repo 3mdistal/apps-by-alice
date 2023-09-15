@@ -1,4 +1,5 @@
 <script lang="ts">
+	import TextMacro from '$lib/notion/text-macro.svelte';
 	import gsap from 'gsap';
 	import { onMount } from 'svelte';
 
@@ -15,18 +16,19 @@
 	let classList = ['sm:columns-2', 'md:columns-3', 'lg:columns-4', 'xl:columns-5'];
 	let artGrid: HTMLDivElement;
 
+	function callback() {
+		currentURL = '';
+		artGrid.classList.add(...classList, 'p-2');
+		all = true;
+	}
+
 	function handleClick(event: Event) {
 		currentURL = event.target.src;
 		scrollPos = window.scrollY;
 		artGrid.classList.remove(...classList, 'p-2');
-
 		all = false;
 		history.pushState(null, '', '/studio/illustrations/');
-		window.addEventListener('popstate', () => {
-			currentURL = '';
-			artGrid.classList.add(...classList);
-			all = true;
-		});
+		window.addEventListener('popstate', callback);
 		return;
 	}
 
@@ -34,11 +36,7 @@
 		currentURL = '';
 		artGrid.classList.add(...classList, 'p-2');
 		all = true;
-		window.removeEventListener('popstate', () => {
-			currentURL = '';
-			artGrid.classList.add(...classList);
-		});
-		all = true;
+		window.removeEventListener('popstate', callback);
 		return;
 	}
 
@@ -47,6 +45,14 @@
 		if (window.innerWidth > 500) {
 			fadeIn();
 		}
+	}
+
+	function scroll2() {
+		if (window.innerWidth < 500) {
+			window.scrollTo(0, 72);
+			return;
+		}
+		window.scrollTo(0, 0);
 	}
 
 	function lazyLoad() {
@@ -107,16 +113,41 @@
 					use:scroll
 				/>
 			{:else if currentURL === painting.properties.Image.url + lowQuality}
-				<div class="h-screen w-screen">
-					<img
-						src={painting.properties.Image.url + lowQuality}
-						data-src={painting.properties.Image.url + '?tr=f-webp,q-80'}
-						alt=""
-						class="h-full w-full object-contain"
-						on:click={handleClickB}
-						on:contextmenu|preventDefault
-						on:load|once={lazyLoad}
-					/>
+				<div>
+					<div class="sm:h-screen sm:w-screen">
+						<img
+							src={painting.properties.Image.url + lowQuality}
+							data-src={painting.properties.Image.url + '?tr=f-webp,q-80'}
+							alt=""
+							class="h-full w-full object-contain pt-[4.5rem] sm:fixed sm:pt-0"
+							on:click={handleClickB}
+							on:contextmenu|preventDefault
+							on:load|once={lazyLoad}
+							use:scroll2
+						/>
+					</div>
+					<div class="min-h-80 relative w-screen p-10 sm:z-10">
+						<p class="text-4xl text-white sm:text-5xl md:text-6xl">
+							{painting.properties.Name.title[0].plain_text}
+						</p>
+						<p class="text-[1rem]">
+							<em class="text-white">{painting.properties.Date.formula.string}</em>
+						</p>
+						<p
+							class="my-6 max-w-[40ch] text-xl text-white md:max-w-[50ch] lg:max-w-[60ch] xl:text-2xl"
+						>
+							<TextMacro type={painting.properties.Description} />
+						</p>
+						<p
+							class="block cursor-pointer text-right text-4xl text-white lg:absolute lg:bottom-6 lg:right-6 lg:p-4 lg:text-6xl"
+							on:click={() => history.back()}
+						>
+							back.
+						</p>
+						<div
+							class="absolute left-0 top-0 -z-10 h-full w-full bg-gray-900 opacity-100 sm:opacity-75"
+						/>
+					</div>
 				</div>
 			{/if}
 		{/each}
