@@ -70,6 +70,15 @@
 
 		return tl;
 	}
+
+	onMount(() => {
+		fetch('/studio/illustrations', {
+			headers: {
+				Accept: 'application/json',
+				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
+			}
+		});
+	});
 </script>
 
 <svelte:head>
