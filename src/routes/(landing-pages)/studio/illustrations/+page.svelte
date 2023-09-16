@@ -27,7 +27,7 @@
 		scrollPos = window.scrollY;
 		artGrid.classList.remove(...classList, 'p-2');
 		all = false;
-		history.pushState(null, '', '/studio/illustrations/');
+		history.pushState(null, '', '/studio/illustrations');
 		window.addEventListener('popstate', callback);
 		return;
 	}
@@ -42,9 +42,6 @@
 
 	function scroll() {
 		window.scrollTo(0, scrollPos);
-		if (window.innerWidth > 500) {
-			fadeIn();
-		}
 	}
 
 	function scroll2() {
@@ -53,6 +50,7 @@
 			return;
 		}
 		window.scrollTo(0, 0);
+		return;
 	}
 
 	function lazyLoad() {
@@ -65,16 +63,29 @@
 		}
 	}
 
-	function fadeIn() {
-		const tl = gsap.timeline();
-		tl.to('.art-grid > *', {
-			opacity: 1,
-			duration: 0.2,
-			ease: 'power2.inOut',
-			stagger: { amount: 1, from: 'random' }
-		});
+	function fadeIn(event) {
+		if (window.innerWidth < 500) {
+			const tl = gsap.timeline();
+			tl.to(event, { opacity: 1, duration: 0.5, ease: 'power2.inOut' });
 
-		return tl;
+			return {
+				update: () => tl
+			};
+		}
+
+		const tl = gsap.timeline();
+		tl.to(event, { opacity: 1, duration: 0.05 }).fromTo(
+			'.art-grid > *',
+			{ opacity: 0 },
+			{
+				opacity: 1,
+				duration: 0.5,
+				ease: 'power2.inOut',
+				stagger: { amount: 1, from: 'random' }
+			}
+		);
+
+		return { update: () => tl };
 	}
 
 	onMount(() => {
@@ -98,52 +109,63 @@
 <div class="bg-gray-900">
 	<!-- Art Grid -->
 	<div
-		class="art-grid h-full w-full gap-x-0 p-2 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5"
+		class="art-grid h-full w-full gap-x-0 p-2 opacity-0 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5"
 		bind:this={artGrid}
+		use:fadeIn
 	>
 		{#each results as painting}
 			{#if all}
-				<img
-					src={painting.properties.Image.url + lowQuality}
-					loading="lazy"
-					alt=""
-					class="w-full cursor-pointer p-2 transition-all duration-300 ease-in-out sm:opacity-0 sm:hover:scale-105"
-					on:click={handleClick}
-					on:contextmenu|preventDefault
-					use:scroll
-				/>
+				<a href="/studio/illustrations" on:click|preventDefault={handleClick} use:scroll>
+					<img
+						src={painting.properties.Image.url + lowQuality}
+						loading="lazy"
+						alt=""
+						class="w-full cursor-pointer p-2 transition-all duration-300 ease-in-out sm:hover:scale-105"
+						on:contextmenu|preventDefault
+					/>
+				</a>
 			{:else if currentURL === painting.properties.Image.url + lowQuality}
+				<!-- Fullscreen Image -->
 				<div>
 					<div class="sm:h-screen sm:w-screen">
-						<img
-							src={painting.properties.Image.url + lowQuality}
-							data-src={painting.properties.Image.url + '?tr=f-webp,q-80'}
-							alt=""
-							class="h-full w-full object-contain pt-[4.5rem] sm:fixed sm:pt-0"
-							on:click={handleClickB}
-							on:contextmenu|preventDefault
-							on:load|once={lazyLoad}
-							use:scroll2
-						/>
+						<a href="/studio/illustrations" on:click|preventDefault={handleClickB}>
+							<img
+								src={painting.properties.Image.url + lowQuality}
+								data-src={painting.properties.Image.url + '?tr=f-webp,q-80'}
+								alt=""
+								class="h-full w-full object-contain pt-[4.5rem] sm:fixed sm:pt-0"
+								on:contextmenu|preventDefault
+								on:load|once={lazyLoad}
+								use:scroll2
+							/>
+						</a>
 					</div>
 					<div class="min-h-80 relative w-screen p-10 sm:z-10">
+						<!-- Title -->
 						<p class="text-4xl text-white sm:text-5xl md:text-6xl">
 							{painting.properties.Name.title[0].plain_text}
 						</p>
+
+						<!-- Date -->
 						<p class="text-[1rem]">
 							<em class="text-white">{painting.properties.Date.formula.string}</em>
 						</p>
+
+						<!-- Description -->
 						<p
 							class="my-6 max-w-[40ch] text-xl text-white md:max-w-[50ch] lg:max-w-[60ch] xl:text-2xl"
 						>
 							<TextMacro type={painting.properties.Description} />
 						</p>
-						<p
+
+						<!-- Back Button -->
+						<a
 							class="block cursor-pointer text-right text-4xl text-white lg:absolute lg:bottom-6 lg:right-6 lg:p-4 lg:text-6xl"
-							on:click={() => history.back()}
+							on:click|preventDefault={() => history.back()}
+							href="/studio/illustrations"
 						>
 							back.
-						</p>
+						</a>
 						<div
 							class="absolute left-0 top-0 -z-10 h-full w-full bg-gray-900 opacity-100 sm:opacity-75"
 						/>
