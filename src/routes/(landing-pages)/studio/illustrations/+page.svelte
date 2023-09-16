@@ -120,7 +120,7 @@
 						src={painting.properties.Image.url + lowQuality}
 						loading="lazy"
 						alt=""
-						class="ease-in-outsm:hover:scale-105 w-full cursor-pointer p-2 transition-all duration-300"
+						class="w-full cursor-pointer p-2 transition-all duration-300 ease-in-out sm:hover:scale-105"
 						on:contextmenu|preventDefault
 					/>
 				</a>
