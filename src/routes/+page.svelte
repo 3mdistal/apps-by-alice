@@ -33,7 +33,7 @@
 		<p>
 			A production house run by <a
 				class="text-blue-600"
-				href="https://www.instagram.com/shorouk_elkobrsi/">Shorouk Elkobrsi</a
+				href="https://www.instagram.com/anthropotpourri/">Shorouk Elkobrsi</a
 			>
 			and <a class="text-blue-600" href="https://www.alicealexandra.com">Alice Moore</a>.
 		</p>
