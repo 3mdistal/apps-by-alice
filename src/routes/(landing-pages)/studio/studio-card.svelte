@@ -5,21 +5,39 @@
 	import { state, accentColors, backgroundColors } from '$lib/stores';
 	import Button from '$lib/icons/button.svelte';
 	import TextMacro from '$lib/notion/text-macro.svelte';
-	import type { TextRichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
-	import { fade } from 'svelte/transition';
+	import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
-	export let title = '';
-	export let subtitle: { rich_text: TextRichTextItemResponse[] };
-	export let logo: { rich_text: TextRichTextItemResponse[] };
-	export let src = '';
-	export let alt = '';
-	export let description: { rich_text: TextRichTextItemResponse[] };
-	export let url = '';
-	export let buttonText = '';
+	export let card: PageObjectResponse;
+
+	let {
+		properties: {
+			Title: {
+				title: [{ plain_text: title }]
+			},
+			Subtitle: subtitle,
+			'Shortened Logo Text': logo,
+			Image: { url: src },
+			ImageAlt: {
+				rich_text: [
+					{
+						text: { content: alt }
+					}
+				]
+			},
+			Description: description,
+			ButtonText: {
+				rich_text: [
+					{
+						text: { content: buttonText }
+					}
+				]
+			},
+			Destination: { url }
+		}
+	} = card;
 
 	let loading = false;
 
-	let card: HTMLDivElement;
 	let front: HTMLDivElement;
 	let back: HTMLDivElement;
 
@@ -68,6 +86,11 @@
 
 	function handleMessage(e) {
 		loading = e.detail.loading;
+		if (e.detail.focus === true) {
+			seeBack();
+		} else if (e.detail.focus === false) {
+			hideBack();
+		}
 	}
 </script>
 
@@ -78,7 +101,6 @@
 	tabindex="0"
 	aria-live="polite"
 	class="relative flex aspect-[2/3] w-[20rem] cursor-default justify-center overflow-hidden rounded-3xl border-2 border-white drop-shadow-2xl"
-	bind:this={card}
 >
 	<!-- Front of Card -->
 	<div

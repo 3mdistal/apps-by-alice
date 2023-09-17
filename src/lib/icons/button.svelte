@@ -13,6 +13,14 @@
 	function load() {
 		dispatch('message', { loading: true });
 	}
+
+	function handleFocus() {
+		dispatch('message', { focus: true });
+	}
+
+	function handleBlur() {
+		dispatch('message', { focus: false });
+	}
 </script>
 
 <a
@@ -22,6 +30,8 @@
 	class="text-l box-content cursor-pointer rounded-xl border-2 p-[1em] text-center font-normal no-underline lg:text-xl"
 	style="--accent: {accent}; --background: {background}"
 	on:click={load}
+	on:focus={handleFocus}
+	on:blur={handleBlur}
 >
 	{text}
 </a>
