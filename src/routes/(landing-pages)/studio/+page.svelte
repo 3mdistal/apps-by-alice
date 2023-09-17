@@ -29,6 +29,14 @@
 
 <svelte:head>
 	<title>Studio</title>
+	<meta
+		property="description"
+		content="The studio works of Alice Alexandra Moore. Enjoy fiction, film, fantasy, poetry, illustrations, music, essays, websites, and more."
+	/>
+	<meta
+		property="keywords"
+		content="alice, alexandra, moore, alice alexandra moore, alice moore, alexandra moore, studio, fiction, film, fantasy, poetry, illustrations, music, essays, websites"
+	/>
 
 	<!-- Facebook Meta Tags -->
 	<meta property="og:url" content="https://www.alicealexandra.com/studio" />

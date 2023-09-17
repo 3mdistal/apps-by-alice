@@ -104,6 +104,37 @@
 		name="description"
 		content="Illustrations, paintings, and other visual art from Alice Alexandra Moore."
 	/>
+	<meta name="keywords" content="illustrations, paintings, visual art, alice alexandra moore" />
+
+	<!-- Facebook Meta Tags -->
+	<meta property="og:url" content="https://www.alicealexandra.com/studio/illustrations" />
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Illustrations" />
+	<meta
+		property="og:description"
+		content="Illustrations, paintings, and other visual art from Alice Alexandra Moore."
+	/>
+	<meta
+		property="og:image"
+		content="https://ik.imagekit.io/tempoimmaterial/studio/illustrations/still%20across%20the%20waters?tr=w-750"
+	/>
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:site" content="@tempoimmaterial" />
+	<meta name="twitter:creator" content="@tempoimmaterial" />
+	<meta name="twitter:domain" content="alicealexandra.com/studio/illustrations" />
+	<meta name="twitter:url" content="https://www.alicealexandra.com/studio/illustrations" />
+	<meta name="twitter:title" content="Studio" />
+	<meta
+		name="twitter:description"
+		content="Illustrations, paintings, and other visual art from Alice Alexandra Moore."
+	/>
+	<meta
+		name="twitter:image"
+		content="https://ik.imagekit.io/tempoimmaterial/studio/illustrations/still%20across%20the%20waters?tr=w-750"
+	/>
+	<meta name="twitter:image:alt" content="The illustrations page of alicealexandra.com." />
 </svelte:head>
 
 <div class="bg-gray-900">
