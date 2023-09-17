@@ -6,7 +6,8 @@
 	/>
 	<meta name="keywords" content="film, production, house, shorouk, elkobrsi, alice, moore" />
 	<meta name="author" content="Anthropotpourri" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- Facebook -->
 	<meta property="og:title" content="Anthropotpourri" />
 	<meta
 		property="og:description"
@@ -14,6 +15,8 @@
 	/>
 	<meta property="og:image" content="https://unsplash.it/1600/900" />
 	<meta property="og:url" content="https://anthropotpourri.com" />
+
+	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
 	<meta name="twitter:site" content="@tempoimmaterial" />
 	<meta name="twitter:creator" content="@tempoimmaterial" />
@@ -26,21 +29,20 @@
 </svelte:head>
 
 <div
-	class="[&_*]:font-serif w-screen h-screen flex flex-col justify-center items-center gap-y-6 px-4"
+	class="[&_*]:font-serif w-screen h-[100svh] flex flex-col justify-center items-center gap-y-6 px-4"
 >
-	<h1 class="text-3xl">🌸 Anthropotpourri 🌸</h1>
+	<h1 class="text-4xl"><em>anthropotpourri</em></h1>
 	<div class="sm:[&>p]:text-center flex flex-col gap-y-1">
 		<p>
-			A production house run by <a
-				class="text-blue-600"
-				href="https://www.instagram.com/anthropotpourri/">Shorouk Elkobrsi</a
+			A production house run by <a href="https://www.instagram.com/anthropotpourri/"
+				>Shorouk Elkobrsi</a
 			>
-			and <a class="text-blue-600" href="https://www.alicealexandra.com">Alice Moore</a>.
+			and
+			<a href="https://www.alicealexandra.com">Alice Moore</a>.
 		</p>
 		<p>
-			<a class="text-blue-600" href="https://www.instagram.com/anthropotpourri/"
-				>Follow us on Instagram</a
-			> to stay up to date with our latest projects.
+			<a href="https://www.instagram.com/anthropotpourri/">Follow us on Instagram</a> to stay up to date
+			with our latest projects.
 		</p>
 		<p class="mt-4">Full website coming soon!</p>
 	</div>
