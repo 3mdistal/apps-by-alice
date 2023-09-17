@@ -10,16 +10,16 @@
 
 	const dispatch = createEventDispatcher();
 
-	function load() {
-		dispatch('message', { loading: true });
+	function handleClick() {
+		dispatch('clickMessage', { click: true });
 	}
 
 	function handleFocus() {
-		dispatch('message', { focus: true });
+		dispatch('focusMessage', { focus: true });
 	}
 
 	function handleBlur() {
-		dispatch('message', { focus: false });
+		dispatch('focusMessage', { focus: false });
 	}
 </script>
 
@@ -29,7 +29,7 @@
 	{type}
 	class="text-l box-content cursor-pointer rounded-xl border-2 p-[1em] text-center font-normal no-underline lg:text-xl"
 	style="--accent: {accent}; --background: {background}"
-	on:click={load}
+	on:click={handleClick}
 	on:focus={handleFocus}
 	on:blur={handleBlur}
 >

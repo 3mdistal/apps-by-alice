@@ -1,8 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	import { onDestroy } from 'svelte';
-	import { state, accentColors, backgroundColors } from '$lib/stores';
+	import { accentColors, backgroundColors } from '$lib/stores';
 	import Button from '$lib/icons/button.svelte';
 	import TextMacro from '$lib/notion/text-macro.svelte';
 	import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
@@ -40,32 +39,42 @@
 
 	let front: HTMLDivElement;
 	let back: HTMLDivElement;
-	let button: HTMLDivElement;
+	let backText: HTMLParagraphElement;
+
+	let frontOrBack = 'front';
 
 	function reset() {
 		const tl = gsap.timeline();
 		tl.to(back, { rotateY: '-180deg' }, '<')
 			.to(back, { opacity: 0, duration: 0.2 }, '<')
-			.to(back.querySelector('p'), { opacity: 0, duration: 0 }, '<');
+			.to(backText, { opacity: 0, duration: 0 }, '<');
 	}
 
 	function seeBack() {
-		if (loading) return;
+		if (frontOrBack === 'back') return;
+		frontOrBack = 'back';
+
+		if (loading === true) return;
+
 		const tl = gsap.timeline();
-		tl.to(button, { scale: 1, duration: 0.1 })
+		tl.to(back, { scale: 1, duration: 0.01 })
 			.to(front, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
 			.to(back, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
-			.to(front, { rotateY: '180deg' })
+			.to(front, { rotateY: '180deg' }, '<')
 			.to(front, { opacity: 0, duration: 0.2 }, '<')
 			.to(back, { rotateY: '0deg' }, '<')
 			.to(back, { opacity: 1, duration: 0.2 }, '<')
 			.to(back, { scale: 1, duration: 0.3, ease: 'power3.in' }, '< .15')
 			.to(front, { scale: 1, duration: 0.3, ease: 'power3.in' }, '<')
-			.to(back.querySelector('p'), { opacity: 1 }, '<');
+			.to(backText, { opacity: 1 }, '<');
 	}
 
 	function hideBack() {
-		if (loading) return;
+		if (frontOrBack === 'front') return;
+		frontOrBack = 'front';
+
+		if (loading === true) return;
+
 		const tl = gsap.timeline();
 		tl.to(front, { scale: 0.9, duration: 0.1, ease: 'power3.in' })
 			.to(back, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
@@ -73,22 +82,21 @@
 			.to(front, { opacity: 1, duration: 0.2 }, '<')
 			.to(back, { rotateY: '-180deg' }, '<')
 			.to(back, { opacity: 0, duration: 0.2 }, '<')
-			.to(back.querySelector('p'), { opacity: 0, duration: 0.1 }, '<')
+			.to(backText, { opacity: 0, duration: 0.1 }, '<')
 			.to(back, { scale: 1, duration: 0.3, ease: 'power3.in' }, '< .15')
 			.to(front, { scale: 1, duration: 0.3, ease: 'power3.in' }, '<')
-			.to(button, { scale: 0, duration: 0 });
+			.to(back, { scale: 0.01, duration: 0.01 });
 	}
 
 	onMount(() => {
 		reset();
 	});
 
-	onDestroy(() => {
-		state.set('home');
-	});
+	function handleClickMessage(e) {
+		loading = e.detail.click;
+	}
 
-	function handleMessage(e) {
-		loading = e.detail.loading;
+	function handleFocusMessage(e) {
 		if (e.detail.focus === true) {
 			seeBack();
 		} else if (e.detail.focus === false) {
@@ -100,7 +108,7 @@
 <div
 	on:mouseenter={seeBack}
 	on:mouseleave={hideBack}
-	role="button"
+	role="spinbutton"
 	tabindex="0"
 	aria-live="polite"
 	class="relative flex aspect-[2/3] w-[20rem] cursor-default justify-center overflow-hidden rounded-3xl border-2 border-white drop-shadow-2xl"
@@ -116,7 +124,7 @@
 			<p class="font-logo text-[2.75rem] font-medium text-white"><TextMacro type={logo} /></p>
 		</div>
 		<div class="z-10">
-			<p class="mb-6 text-center text-4xl tracking-[.15em] text-white">{title}</p>
+			<h2 class="mb-6 text-center text-4xl font-light tracking-[.15em] text-white">{title}</h2>
 			<p class="text-center text-2xl"><em class="text-white"><TextMacro type={subtitle} /></em></p>
 		</div>
 		<img {src} {alt} class="absolute h-full w-full opacity-60" />
@@ -127,10 +135,10 @@
 
 	<!-- Back of Card -->
 	<div
-		class="absolute flex h-full w-full flex-col items-center justify-around rounded-3xl bg-studio px-4 py-10 opacity-0"
+		class="absolute flex h-full w-full flex-col items-center justify-around rounded-3xl bg-studio px-4 py-24 opacity-0 sm:py-10"
 		bind:this={back}
 	>
-		<p class="text 2xl">
+		<p bind:this={backText} class="text 2xl">
 			<em class="text-white"><TextMacro type={description} /></em>
 		</p>
 
@@ -146,8 +154,8 @@
 				text={buttonText}
 				accent={$backgroundColors.studio}
 				background={$accentColors.studio}
-				on:message={handleMessage}
-				bind:this={button}
+				on:clickMessage={handleClickMessage}
+				on:focusMessage={handleFocusMessage}
 			/>
 		{/if}
 	</div>
