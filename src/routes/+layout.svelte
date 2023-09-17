@@ -1,8 +1,10 @@
 <script>
+	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
 	import '../app.postcss';
 </script>
 
 <svelte:head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 	<link
@@ -11,6 +13,22 @@
 	/>
 </svelte:head>
 
-<div class="bg-pink-50">
+<div
+	style="background-color: --dark: #{$dark}; --mid_dark: #{$mid_dark}; --mid: #{$mid}; --mid_light: #{$mid_light}; --light: #{$light};"
+>
 	<slot />
 </div>
+
+<style>
+	div {
+		background-color: var(--light);
+	}
+
+	:global(h1, p) {
+		color: var(--dark);
+	}
+
+	:global(a) {
+		color: var(--mid_dark);
+	}
+</style>
