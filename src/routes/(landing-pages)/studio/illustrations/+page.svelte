@@ -1,72 +1,108 @@
 <script lang="ts">
 	import TextMacro from '$lib/notion/text-macro.svelte';
 	import gsap from 'gsap';
-	import { onMount } from 'svelte';
+	import { onMount, afterUpdate } from 'svelte';
 
 	export let data;
 
+	// Extracting results from data
 	const {
 		illustrations: { results }
 	} = data;
 
+	// Variables
 	let currentURL = '';
 	let all = true;
 	const lowQuality = '?tr=f-webp,w-400,q-50';
 	let scrollPos = 0;
 	let classList = ['sm:columns-2', 'md:columns-3', 'lg:columns-4', 'xl:columns-5'];
 	let artGrid: HTMLDivElement;
+	let restoreScroll = false;
+
+	// Lifecycle methods
+	afterUpdate(() => {
+		if (restoreScroll) {
+			scrollToPosition(scrollPos);
+			restoreScroll = false;
+		} else {
+			scrollToPosition(window.innerWidth < 500 ? 72 : 0);
+		}
+	});
+
+	onMount(() => {
+		fetch('/studio/illustrations', {
+			headers: {
+				Accept: 'application/json',
+				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
+			}
+		});
+	});
+
+	// Functions
+	function scrollToPosition(position: number) {
+		window.scrollTo(0, position);
+	}
 
 	function callback() {
 		currentURL = '';
-		artGrid.classList.add(...classList, 'p-2');
-		all = true;
+		toggleView('add');
 	}
 
-	function handleClick(event: Event) {
-		currentURL = event.target.src;
-		scrollPos = window.scrollY;
-		artGrid.classList.remove(...classList, 'p-2');
-		all = false;
-		history.pushState(null, '', '/studio/illustrations');
-		window.addEventListener('popstate', callback);
-		return;
+	function manageHistory(add: boolean) {
+		if (add) {
+			history.pushState(null, '', '/studio/illustrations');
+			window.addEventListener('popstate', callback);
+		} else {
+			history.back();
+			window.removeEventListener('popstate', callback);
+		}
 	}
 
-	function handleClickB() {
-		currentURL = '';
-		artGrid.classList.add(...classList, 'p-2');
-		all = true;
-		window.removeEventListener('popstate', callback);
-		return;
-	}
-
-	function scroll() {
-		window.scrollTo(0, scrollPos);
-	}
-
-	function scroll2() {
-		if (window.innerWidth < 500) {
-			window.scrollTo(0, 72);
+	function toggleView(addOrRemove?: 'add' | 'remove') {
+		if (addOrRemove === 'add') {
+			console.log('adding');
+			artGrid.classList.add(...classList, 'p-2');
+			all = true;
+			return;
+		} else if (addOrRemove === 'remove') {
+			console.log('removing');
+			artGrid.classList.remove(...classList, 'p-2');
+			all = false;
 			return;
 		}
-		window.scrollTo(0, 0);
+	}
+
+	function handleClickToFullscreen({ currentTarget }: { currentTarget: Element }) {
+		currentURL = currentTarget!.querySelector('img')!.src;
+		scrollPos = window.scrollY;
+		toggleView('remove');
+		manageHistory(true);
 		return;
 	}
 
-	function lazyLoad() {
-		const img: HTMLImageElement = document.querySelector('img[data-src]');
-		if (img) {
-			img.src = img.dataset.src;
+	function handleClickToGallery() {
+		currentURL = '';
+		toggleView('add');
+		manageHistory(false);
+		restoreScroll = true;
+		return;
+	}
+
+	function lazyLoad(e: Event) {
+		const img = e.currentTarget;
+		if (img instanceof HTMLImageElement && img.dataset['src']) {
+			img.src = img.dataset['src'];
 			img.onload = () => {
 				img.removeAttribute('data-src');
 			};
+			return;
 		}
 	}
 
-	function fadeIn(event) {
-		if (window.innerWidth < 500) {
+	function fadeIn(div: HTMLDivElement) {
+		if (document.documentElement.clientWidth < 500) {
 			const tl = gsap.timeline();
-			tl.to(event, { opacity: 1, duration: 0.5, ease: 'power2.inOut' });
+			tl.to(div, { opacity: 1, duration: 0.5, ease: 'power2.inOut' });
 
 			return {
 				update: () => tl
@@ -74,8 +110,8 @@
 		}
 
 		const tl = gsap.timeline();
-		tl.to(event, { opacity: 1, duration: 0.05 }).fromTo(
-			'.art-grid > *',
+		tl.to(div, { opacity: 1, duration: 0.05 }).fromTo(
+			div.children,
 			{ opacity: 0 },
 			{
 				opacity: 1,
@@ -87,15 +123,6 @@
 
 		return { update: () => tl };
 	}
-
-	onMount(() => {
-		fetch('/studio/illustrations', {
-			headers: {
-				Accept: 'application/json',
-				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
-			}
-		});
-	});
 </script>
 
 <svelte:head>
@@ -147,7 +174,8 @@
 		{#each results as painting}
 			{#if all}
 				<!-- TODO: On 'enter', goes to a white page for some reason. -->
-				<a href="/studio/illustrations" on:click|preventDefault={handleClick} use:scroll>
+				<!-- Grid Items -->
+				<a href="/studio/illustrations" on:click|preventDefault={handleClickToFullscreen}>
 					<img
 						src={painting.properties.Image.url + lowQuality}
 						loading="lazy"
@@ -160,7 +188,7 @@
 				<!-- Fullscreen Image -->
 				<div>
 					<div class="sm:h-screen sm:w-screen">
-						<a href="/studio/illustrations" on:click|preventDefault={handleClickB}>
+						<a href="/studio/illustrations" on:click|preventDefault={handleClickToGallery}>
 							<img
 								src={painting.properties.Image.url + lowQuality}
 								data-src={painting.properties.Image.url + '?tr=f-webp,q-80'}
@@ -168,7 +196,6 @@
 								class="h-full w-full object-contain pt-[4.5rem] sm:fixed sm:pt-0"
 								on:contextmenu|preventDefault
 								on:load|once={lazyLoad}
-								use:scroll2
 							/>
 						</a>
 					</div>

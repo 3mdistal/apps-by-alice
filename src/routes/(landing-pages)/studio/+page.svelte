@@ -1,7 +1,8 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, onDestroy } from 'svelte';
 	import StudioCard from './studio-card.svelte';
 	import gsap from 'gsap';
+	import { backgroundColors, state } from '$lib/stores';
 
 	export let data;
 
@@ -10,20 +11,27 @@
 	} = data;
 
 	function populate() {
+		document.body.style.backgroundColor = $backgroundColors.studio;
 		const tl = gsap.timeline();
 		tl.to('.card-div', { opacity: 1, duration: 0.5 })
-			.to('img.fixed', { duration: 1, opacity: 0.4, ease: 'power2.inOut' }, '<')
+			.to('img.fixed', { duration: 0.4, opacity: 1, ease: 'power2.inOut' }, '<')
+			.to('img.fixed', { duration: 0.8, opacity: 0.4, ease: 'power2.inOut' })
 			.fromTo('.card-div > *', { opacity: 0 }, { opacity: 1, stagger: 0.1 }, '< .5');
+
+		return tl;
 	}
 
 	onMount(() => {
-		populate();
 		fetch('/studio', {
 			headers: {
 				Accept: 'application/json',
 				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
 			}
 		});
+	});
+
+	onDestroy(() => {
+		state.set('home');
 	});
 </script>
 
@@ -69,11 +77,11 @@
 	<meta name="twitter:image:alt" content="The studio page of alicealexandra.com." />
 </svelte:head>
 
-<div class="min-h-[100lvh] bg-studio-bg">
+<div class="min-h-[100lvh] bg-studio-bg" use:populate>
 	<img
 		src="https://ik.imagekit.io/tempoimmaterial/studio/ink.png?updatedAt=1694604654601"
 		alt=""
-		class="fixed h-full opacity-0"
+		class="fixed h-full min-h-[100lvh] opacity-0"
 	/>
 
 	<!-- Break -->
@@ -88,5 +96,6 @@
 		{/each}
 	</div>
 
+	<!-- Break -->
 	<div class="h-12" />
 </div>
