@@ -115,6 +115,7 @@
 	>
 		{#each results as painting}
 			{#if all}
+				<!-- TODO: On 'enter', goes to a white page for some reason. -->
 				<a href="/studio/illustrations" on:click|preventDefault={handleClick} use:scroll>
 					<img
 						src={painting.properties.Image.url + lowQuality}

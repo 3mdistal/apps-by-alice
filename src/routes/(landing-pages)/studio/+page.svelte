@@ -75,8 +75,8 @@
 	<div
 		class="card-div flex flex-wrap items-start justify-center gap-12 opacity-0 sm:justify-center sm:px-10"
 	>
-		{#each cards as { properties: { Title: { title: [{ plain_text: title }] }, Subtitle: subtitle, 'Shortened Logo Text': logo, Image: { url: src }, ImageAlt: { rich_text: [{ text: { content: alt } }] }, Description: description, ButtonText: { rich_text: [{ text: { content: buttonText } }] }, Destination: { url } } }}
-			<StudioCard {title} {subtitle} {logo} {src} {alt} {description} {buttonText} {url} />
+		{#each cards as card}
+			<StudioCard {card} />
 		{/each}
 	</div>
 

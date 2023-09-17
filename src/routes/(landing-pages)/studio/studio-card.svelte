@@ -5,35 +5,55 @@
 	import { state, accentColors, backgroundColors } from '$lib/stores';
 	import Button from '$lib/icons/button.svelte';
 	import TextMacro from '$lib/notion/text-macro.svelte';
-	import type { TextRichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
-	import { fade } from 'svelte/transition';
+	import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
-	export let title = '';
-	export let subtitle: { rich_text: TextRichTextItemResponse[] };
-	export let logo: { rich_text: TextRichTextItemResponse[] };
-	export let src = '';
-	export let alt = '';
-	export let description: { rich_text: TextRichTextItemResponse[] };
-	export let url = '';
-	export let buttonText = '';
+	export let card: PageObjectResponse;
+
+	let {
+		properties: {
+			Title: {
+				title: [{ plain_text: title }]
+			},
+			Subtitle: subtitle,
+			'Shortened Logo Text': logo,
+			Image: { url: src },
+			ImageAlt: {
+				rich_text: [
+					{
+						text: { content: alt }
+					}
+				]
+			},
+			Description: description,
+			ButtonText: {
+				rich_text: [
+					{
+						text: { content: buttonText }
+					}
+				]
+			},
+			Destination: { url }
+		}
+	} = card;
 
 	let loading = false;
 
-	let card: HTMLDivElement;
 	let front: HTMLDivElement;
 	let back: HTMLDivElement;
+	let button: HTMLDivElement;
 
 	function reset() {
 		const tl = gsap.timeline();
 		tl.to(back, { rotateY: '-180deg' }, '<')
 			.to(back, { opacity: 0, duration: 0.2 }, '<')
-			.to(back.querySelector('p'), { opacity: 0, duration: 0.1 }, '<');
+			.to(back.querySelector('p'), { opacity: 0, duration: 0 }, '<');
 	}
 
 	function seeBack() {
 		if (loading) return;
 		const tl = gsap.timeline();
-		tl.to(front, { scale: 0.9, duration: 0.1, ease: 'power3.in' })
+		tl.to(button, { scale: 1, duration: 0.1 })
+			.to(front, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
 			.to(back, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
 			.to(front, { rotateY: '180deg' })
 			.to(front, { opacity: 0, duration: 0.2 }, '<')
@@ -55,7 +75,8 @@
 			.to(back, { opacity: 0, duration: 0.2 }, '<')
 			.to(back.querySelector('p'), { opacity: 0, duration: 0.1 }, '<')
 			.to(back, { scale: 1, duration: 0.3, ease: 'power3.in' }, '< .15')
-			.to(front, { scale: 1, duration: 0.3, ease: 'power3.in' }, '<');
+			.to(front, { scale: 1, duration: 0.3, ease: 'power3.in' }, '<')
+			.to(button, { scale: 0, duration: 0 });
 	}
 
 	onMount(() => {
@@ -68,6 +89,11 @@
 
 	function handleMessage(e) {
 		loading = e.detail.loading;
+		if (e.detail.focus === true) {
+			seeBack();
+		} else if (e.detail.focus === false) {
+			hideBack();
+		}
 	}
 </script>
 
@@ -78,7 +104,6 @@
 	tabindex="0"
 	aria-live="polite"
 	class="relative flex aspect-[2/3] w-[20rem] cursor-default justify-center overflow-hidden rounded-3xl border-2 border-white drop-shadow-2xl"
-	bind:this={card}
 >
 	<!-- Front of Card -->
 	<div
@@ -122,6 +147,7 @@
 				accent={$backgroundColors.studio}
 				background={$accentColors.studio}
 				on:message={handleMessage}
+				bind:this={button}
 			/>
 		{/if}
 	</div>
