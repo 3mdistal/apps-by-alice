@@ -40,18 +40,20 @@
 
 	let front: HTMLDivElement;
 	let back: HTMLDivElement;
+	let button: HTMLDivElement;
 
 	function reset() {
 		const tl = gsap.timeline();
 		tl.to(back, { rotateY: '-180deg' }, '<')
 			.to(back, { opacity: 0, duration: 0.2 }, '<')
-			.to(back.querySelector('p'), { opacity: 0, duration: 0.1 }, '<');
+			.to(back.querySelector('p'), { opacity: 0, duration: 0 }, '<');
 	}
 
 	function seeBack() {
 		if (loading) return;
 		const tl = gsap.timeline();
-		tl.to(front, { scale: 0.9, duration: 0.1, ease: 'power3.in' })
+		tl.to(button, { scale: 1, duration: 0.1 })
+			.to(front, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
 			.to(back, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
 			.to(front, { rotateY: '180deg' })
 			.to(front, { opacity: 0, duration: 0.2 }, '<')
@@ -73,7 +75,8 @@
 			.to(back, { opacity: 0, duration: 0.2 }, '<')
 			.to(back.querySelector('p'), { opacity: 0, duration: 0.1 }, '<')
 			.to(back, { scale: 1, duration: 0.3, ease: 'power3.in' }, '< .15')
-			.to(front, { scale: 1, duration: 0.3, ease: 'power3.in' }, '<');
+			.to(front, { scale: 1, duration: 0.3, ease: 'power3.in' }, '<')
+			.to(button, { scale: 0, duration: 0 });
 	}
 
 	onMount(() => {
@@ -144,6 +147,7 @@
 				accent={$backgroundColors.studio}
 				background={$accentColors.studio}
 				on:message={handleMessage}
+				bind:this={button}
 			/>
 		{/if}
 	</div>
