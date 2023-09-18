@@ -45,6 +45,7 @@
 
 	function callback() {
 		currentURL = '';
+		restoreScroll = true;
 		toggleView('add');
 	}
 
