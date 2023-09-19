@@ -6,6 +6,7 @@
 	import TextMacro from '$lib/notion/text-macro.svelte';
 	import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
+	// Card Data
 	export let card: PageObjectResponse;
 
 	let {
@@ -33,76 +34,126 @@
 			},
 			Destination: { url }
 		}
-	} = card;
+	} = card as unknown as {
+		properties: {
+			Title: {
+				title: [{ plain_text: string }];
+			};
+			Subtitle: any;
+			'Shortened Logo Text': any;
+			Image: { url: string };
+			ImageAlt: {
+				rich_text: [
+					{
+						text: { content: string };
+					}
+				];
+			};
+			Description: any;
+			ButtonText: {
+				rich_text: [
+					{
+						text: { content: string };
+					}
+				];
+			};
+			Destination: { url: string };
+		};
+	};
 
-	let loading = false;
-
+	// UI Elements
 	let front: HTMLDivElement;
 	let back: HTMLDivElement;
 	let backText: HTMLParagraphElement;
 
+	// State Variables
+	let loading = false;
 	let frontOrBack = 'front';
 
+	// Animation Timelines
+	function seeBackTimeline() {
+		// Animation sequence for showing the back of the card
+		const tl = gsap.timeline();
+		tl.to(back, { scale: 1, duration: 0.01 })
+			.to(front, { scale: 0.9, duration: 0.1, ease: 'power4.easeIn' }, '<')
+			.to(back, { scale: 0.9, duration: 0.1, ease: 'power4.easeIn' }, '<')
+			.to(front, { rotateY: '180deg', ease: 'power4.easeIn' }, '<')
+			.to(front, { opacity: 0, duration: 0.2, ease: 'power4.easeIn' }, '<')
+			.to(back, { rotateY: '0deg', ease: 'power4.easeOut' }, '<')
+			.to(back, { opacity: 1, duration: 0.2, ease: 'power4.easeOut' }, '<')
+			.to(back, { scale: 1, duration: 0.3, ease: 'power3.easeOut' }, '< .15')
+			.to(front, { scale: 1, duration: 0.3, ease: 'power3.easeOut' }, '<')
+			.to(backText, { opacity: 1 }, '<');
+
+		return tl;
+	}
+
+	function hideBackTimeline() {
+		// Animation sequence for hiding the back of the card
+		console.log('hiding');
+		const tl = gsap.timeline();
+		tl.to(front, { scale: 0.9, duration: 0.15, ease: 'power4.easeInOut' })
+			.to(back, { scale: 0.9, duration: 0.15, ease: 'power4.easeInOut' }, '<')
+			.to(front, { rotateY: '0deg' })
+			.to(front, { opacity: 1, duration: 0.2 }, '<')
+			.to(back, { rotateY: '-180deg', ease: 'power4.easeOut' }, '<')
+			.to(back, { opacity: 0, duration: 0.2 }, '<')
+			.to(backText, { opacity: 0, duration: 0.1 }, '<')
+			.to(back, { scale: 1, duration: 0.3, ease: 'power4.easeOut' }, '< .25')
+			.to(front, { scale: 1, duration: 0.3, ease: 'power4.easeOut' }, '<')
+			.to(back, { scale: 0.01, duration: 0.01 });
+
+		return tl;
+	}
+
+	// Event Handlers
 	function reset() {
+		// Reset the card to its initial state
 		const tl = gsap.timeline();
 		tl.to(back, { rotateY: '-180deg' }, '<')
 			.to(back, { opacity: 0, duration: 0.2 }, '<')
 			.to(backText, { opacity: 0, duration: 0 }, '<');
+
+		return tl;
 	}
 
 	function seeBack() {
+		// Show the back of the card
 		if (frontOrBack === 'back') return;
 		frontOrBack = 'back';
 
 		if (loading === true) return;
 
-		const tl = gsap.timeline();
-		tl.to(back, { scale: 1, duration: 0.01 })
-			.to(front, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
-			.to(back, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
-			.to(front, { rotateY: '180deg' }, '<')
-			.to(front, { opacity: 0, duration: 0.2 }, '<')
-			.to(back, { rotateY: '0deg' }, '<')
-			.to(back, { opacity: 1, duration: 0.2 }, '<')
-			.to(back, { scale: 1, duration: 0.3, ease: 'power3.in' }, '< .15')
-			.to(front, { scale: 1, duration: 0.3, ease: 'power3.in' }, '<')
-			.to(backText, { opacity: 1 }, '<');
+		seeBackTimeline().play();
 	}
 
 	function hideBack() {
+		// Hide the back of the card
 		if (frontOrBack === 'front') return;
 		frontOrBack = 'front';
 
 		if (loading === true) return;
-
-		const tl = gsap.timeline();
-		tl.to(front, { scale: 0.9, duration: 0.1, ease: 'power3.in' })
-			.to(back, { scale: 0.9, duration: 0.1, ease: 'power3.in' }, '<')
-			.to(front, { rotateY: '0deg' })
-			.to(front, { opacity: 1, duration: 0.2 }, '<')
-			.to(back, { rotateY: '-180deg' }, '<')
-			.to(back, { opacity: 0, duration: 0.2 }, '<')
-			.to(backText, { opacity: 0, duration: 0.1 }, '<')
-			.to(back, { scale: 1, duration: 0.3, ease: 'power3.in' }, '< .15')
-			.to(front, { scale: 1, duration: 0.3, ease: 'power3.in' }, '<')
-			.to(back, { scale: 0.01, duration: 0.01 });
+		hideBackTimeline().play();
 	}
 
-	onMount(() => {
-		reset();
-	});
-
 	function handleClickMessage(e) {
+		// Handle click events from the button
 		loading = e.detail.click;
 	}
 
 	function handleFocusMessage(e) {
+		// Handle focus events from the button
 		if (e.detail.focus === true) {
 			seeBack();
 		} else if (e.detail.focus === false) {
 			hideBack();
 		}
 	}
+
+	// Lifecycle Events
+	onMount(() => {
+		reset().play();
+	});
 </script>
 
 <div
