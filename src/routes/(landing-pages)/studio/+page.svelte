@@ -78,6 +78,8 @@
 </svelte:head>
 
 <div class="min-h-[100lvh] bg-studio-bg" use:populate>
+	<h1 class="absolute scale-0 opacity-0">studio</h1>
+
 	<img
 		src="https://ik.imagekit.io/tempoimmaterial/studio/ink.png?updatedAt=1694604654601"
 		alt=""
