@@ -65,6 +65,7 @@
 	let front: HTMLDivElement;
 	let back: HTMLDivElement;
 	let backText: HTMLParagraphElement;
+	let spinPoles: HTMLDivElement;
 
 	// State Variables
 	let loading = false;
@@ -77,36 +78,60 @@
 		tl.to(back, { scale: 1, duration: 0.01 })
 			.to(front, { scale: 0.9, duration: 0.1, ease: 'power4.easeIn' }, '<')
 			.to(back, { scale: 0.9, duration: 0.1, ease: 'power4.easeIn' }, '<')
-			.to(front, { rotateY: '180deg', ease: 'power4.easeIn' }, '<')
+			.to(front, { rotateY: '180deg', ease: 'power4.easeOut' }, '<')
 			.to(front, { opacity: 0, duration: 0.2, ease: 'power4.easeIn' }, '<')
-			.to(back, { rotateY: '0deg', ease: 'power4.easeOut' }, '<')
+			.to(back, { rotateY: '0deg', ease: 'power4.easeIn' }, '<')
 			.to(back, { opacity: 1, duration: 0.2, ease: 'power4.easeOut' }, '<')
 			.to(back, { scale: 1, duration: 0.3, ease: 'power3.easeOut' }, '< .15')
 			.to(front, { scale: 1, duration: 0.3, ease: 'power3.easeOut' }, '<')
 			.to(backText, { opacity: 1 }, '<');
 
-		return tl;
+		return tl.paused(true);
+	}
+
+	function seeBackTimelineMotionReduced() {
+		const tl = gsap.timeline();
+		tl.to(back, { scale: 1, duration: 0 })
+			.to(spinPoles, { opacity: 0, duration: 0 })
+			.to(back.children, { opacity: 0, duration: 0 })
+			.to(back, { rotateY: '0deg', duration: 0 })
+			.to(back, { opacity: 1 }, '<')
+			.to(front.children, { opacity: 0 }, '<')
+			.to(back.children, { opacity: 1 });
+
+		return tl.paused(true);
 	}
 
 	function hideBackTimeline() {
 		// Animation sequence for hiding the back of the card
-		console.log('hiding');
 		const tl = gsap.timeline();
-		tl.to(front, { scale: 0.9, duration: 0.15, ease: 'power4.easeInOut' })
-			.to(back, { scale: 0.9, duration: 0.15, ease: 'power4.easeInOut' }, '<')
-			.to(front, { rotateY: '0deg' })
+		tl.to(front, { scale: 0.9, duration: 0.1, ease: 'power4.easeOut' })
+			.to(back, { scale: 0.9, duration: 0.1, ease: 'power4.easeOut' }, '<')
+			.to(front, { rotateY: '0deg', duration: 0.2 }, 0.15)
 			.to(front, { opacity: 1, duration: 0.2 }, '<')
-			.to(back, { rotateY: '-180deg', ease: 'power4.easeOut' }, '<')
+			.to(back, { rotateY: '-180deg', duration: 0.2, ease: 'power4.easeOut' }, '<')
 			.to(back, { opacity: 0, duration: 0.2 }, '<')
 			.to(backText, { opacity: 0, duration: 0.1 }, '<')
-			.to(back, { scale: 1, duration: 0.3, ease: 'power4.easeOut' }, '< .25')
-			.to(front, { scale: 1, duration: 0.3, ease: 'power4.easeOut' }, '<')
-			.to(back, { scale: 0.01, duration: 0.01 });
+			.to(back, { scale: 1, duration: 0.05, ease: 'power4.easeIn' }, 0.2)
+			.to(front, { scale: 1, duration: 0.1, ease: 'power4.easeIn' }, '<')
+			.to(back, { scale: 0.01, duration: 0.1 });
 
-		return tl;
+		return tl.paused(true);
+	}
+
+	function hideBackTimelineMotionReduced() {
+		const tl = gsap.timeline();
+		tl.to(back.children, { opacity: 0 })
+			.to(front.children, { opacity: 1 })
+			.to(back, { opacity: 0 }, '<')
+			.to(back, { scale: 0.01, duration: 0 });
+
+		return tl.paused(true);
 	}
 
 	// Event Handlers
+	let prefersReducedMotion: MediaQueryList;
+
 	function reset() {
 		// Reset the card to its initial state
 		const tl = gsap.timeline();
@@ -124,7 +149,13 @@
 
 		if (loading === true) return;
 
+		if (prefersReducedMotion.matches) {
+			seeBackTimelineMotionReduced().play();
+			return;
+		}
+
 		seeBackTimeline().play();
+		return;
 	}
 
 	function hideBack() {
@@ -133,7 +164,14 @@
 		frontOrBack = 'front';
 
 		if (loading === true) return;
+
+		if (prefersReducedMotion.matches) {
+			hideBackTimelineMotionReduced().play();
+			return;
+		}
+
 		hideBackTimeline().play();
+		return;
 	}
 
 	function handleClickMessage(e) {
@@ -152,6 +190,7 @@
 
 	// Lifecycle Events
 	onMount(() => {
+		prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 		reset().play();
 	});
 </script>
@@ -159,9 +198,10 @@
 <div
 	on:mouseenter={seeBack}
 	on:mouseleave={hideBack}
-	role="spinbutton"
+	role="button"
 	tabindex="0"
 	aria-live="polite"
+	aria-expanded="false"
 	class="relative flex aspect-[2/3] w-[20rem] cursor-default justify-center overflow-hidden rounded-3xl border-2 border-white drop-shadow-2xl"
 >
 	<!-- Front of Card -->
@@ -188,6 +228,8 @@
 	<div
 		class="absolute flex h-full w-full flex-col items-center justify-around rounded-3xl bg-studio px-4 py-24 opacity-0 sm:py-10"
 		bind:this={back}
+		aria-labelledby="popover"
+		aria-expanded="true"
 	>
 		<p bind:this={backText} class="text 2xl">
 			<em class="text-white"><TextMacro type={description} /></em>
@@ -212,7 +254,7 @@
 	</div>
 
 	<!-- Spin Poles -->
-	<div class="relative -z-20 flex h-full">
+	<div bind:this={spinPoles} class="relative -z-20 flex h-full">
 		<div class="h-[5%] w-1 self-end bg-studio"></div>
 		<div class="h-[5%] w-1 self-start bg-studio"></div>
 	</div>

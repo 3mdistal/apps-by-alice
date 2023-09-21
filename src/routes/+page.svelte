@@ -1,6 +1,7 @@
 <script lang="ts">
 	import HomepageWrapper from '../lib/homepage/homepage-wrapper.svelte';
 	import SiteTitle from '../lib/homepage/site-title.svelte';
+	import Svgs from '$lib/icons/svgs.svelte';
 	import { state } from '../lib/stores';
 	import { onMount } from 'svelte';
 	import Flowers from '$images/about/flowers-in-hand.webp';
@@ -58,3 +59,5 @@
 	<HomepageWrapper />
 </div>
 <div class="hidden"><a rel="me" href="https://hachyderm.io/@tempoimmaterial">Mastodon</a></div>
+
+<Svgs />
