@@ -76,8 +76,8 @@
 		// Animation sequence for showing the back of the card
 		const tl = gsap.timeline();
 		tl.to(back, { scale: 1, duration: 0.01 })
-			.to(front, { scale: 0.9, duration: 0.1, ease: 'power4.easeIn' }, '<')
-			.to(back, { scale: 0.9, duration: 0.1, ease: 'power4.easeIn' }, '<')
+			.to(front, { scale: 0.96, duration: 0.1, ease: 'power4.easeIn' }, '<')
+			.to(back, { scale: 0.96, duration: 0.1, ease: 'power4.easeIn' }, '<')
 			.to(front, { rotateY: '180deg', ease: 'power4.easeOut' }, '<')
 			.to(front, { opacity: 0, duration: 0.2, ease: 'power4.easeIn' }, '<')
 			.to(back, { rotateY: '0deg', ease: 'power4.easeIn' }, '<')
@@ -105,9 +105,9 @@
 	function hideBackTimeline() {
 		// Animation sequence for hiding the back of the card
 		const tl = gsap.timeline();
-		tl.to(front, { scale: 0.9, duration: 0.1, ease: 'power4.easeOut' })
-			.to(back, { scale: 0.9, duration: 0.1, ease: 'power4.easeOut' }, '<')
-			.to(front, { rotateY: '0deg', duration: 0.2 }, 0.15)
+		tl.to(front, { scale: 0.9, duration: 0.2, ease: 'power4.easeOut' })
+			.to(back, { scale: 0.9, duration: 0.2, ease: 'power4.easeOut' }, '<')
+			.to(front, { rotateY: '0deg', duration: 0.3 }, 0.15)
 			.to(front, { opacity: 1, duration: 0.2 }, '<')
 			.to(back, { rotateY: '-180deg', duration: 0.2, ease: 'power4.easeOut' }, '<')
 			.to(back, { opacity: 0, duration: 0.2 }, '<')
@@ -123,6 +123,7 @@
 		const tl = gsap.timeline();
 		tl.to(back.children, { opacity: 0 })
 			.to(front.children, { opacity: 1 })
+			.to(front.querySelector('.opacity-80'), { opacity: 0.8 }, '<')
 			.to(back, { opacity: 0 }, '<')
 			.to(back, { scale: 0.01, duration: 0 });
 
@@ -170,7 +171,7 @@
 			return;
 		}
 
-		hideBackTimeline().play();
+		setTimeout(() => hideBackTimeline().play(), 200);
 		return;
 	}
 
@@ -218,9 +219,9 @@
 			<h2 class="mb-6 text-center text-4xl font-light tracking-[.15em] text-white">{title}</h2>
 			<p class="text-center text-2xl"><em class="text-white"><TextMacro type={subtitle} /></em></p>
 		</div>
-		<img {src} {alt} class="absolute h-full w-full opacity-60" />
+		<img {src} {alt} class="absolute h-full w-full opacity-80" />
 		<div
-			class="absolute h-full w-full bg-gradient-to-t from-studio to-transparent opacity-50"
+			class="absolute h-full w-full bg-gradient-to-t from-studio to-transparent opacity-80"
 		></div>
 	</div>
 
