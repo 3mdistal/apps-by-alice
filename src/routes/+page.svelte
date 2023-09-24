@@ -1,6 +1,33 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { dark } from '$lib/stores';
+	export let data;
+
+	let {
+		reels: { results }
+	} = data;
+
+	let currentVideo = 0;
+
+	function handleVideoEnded() {
+		if (currentVideo < results.length - 1) {
+			currentVideo++;
+		} else {
+			currentVideo = 0;
+		}
+	}
+
+	function preloadNextVideo() {
+		if (currentVideo < results.length - 1) {
+			const nextVideo = document.createElement('video');
+			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${
+				results[currentVideo + 1].properties.Name.title[0].plain_text
+			}`;
+		} else {
+			const nextVideo = document.createElement('video');
+			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[0].properties.Name.title[0].plain_text}`;
+		}
+	}
 
 	onMount(() => {
 		document.body.style.backgroundColor = `#${$dark}`;
@@ -40,11 +67,14 @@
 <div id="home">
 	<!-- Fullscreen Reel -->
 	<div class="sticky top-0 min-h-screen w-screen">
-		<video autoplay muted loop class="min-h-screen w-screen object-cover">
-			<source
-				src="https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/dummyreel4.mp4"
-				type="video/mp4"
-			/>
+		<video
+			autoplay
+			muted
+			class="min-h-screen w-screen object-cover"
+			src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[currentVideo].properties.Name.title[0].plain_text}`}
+			on:ended={handleVideoEnded}
+			on:canplaythrough={preloadNextVideo}
+		>
 		</video>
 	</div>
 
