@@ -31,6 +31,12 @@
 
 	onMount(() => {
 		document.body.style.backgroundColor = `#${$dark}`;
+		fetch('/', {
+			headers: {
+				Accept: 'application/json',
+				'x-prerender-revalidate': 'ricNek-fuhki0-fuqmec'
+			}
+		});
 	});
 </script>
 
