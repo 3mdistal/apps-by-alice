@@ -51,7 +51,6 @@
 	// Lifecycle
 	onMount(() => {
 		changeColors();
-		preloadNextVideo();
 		fetch('/', {
 			headers: {
 				Accept: 'application/json',
