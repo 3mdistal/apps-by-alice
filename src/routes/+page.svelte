@@ -34,7 +34,7 @@
 		fetch('/', {
 			headers: {
 				Accept: 'application/json',
-				'x-prerender-revalidate': 'ricNek-fuhki0-fuqmec'
+				'x-prerender-revalidate': 'LYm7iK3gwhoFu$aRE3XKtQZFqM@up5rW'
 			}
 		});
 	});
