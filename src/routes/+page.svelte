@@ -84,10 +84,11 @@
 {#if !$menuOpen}
 	<div id="home" class="[&_h1]:select-none [&_h2]:select-none [&_p]:select-none">
 		<!-- Fullscreen Reel -->
-		<div class="sticky top-0 min-h-screen w-screen">
+		<div class="sticky top-0 -z-10 min-h-screen w-screen">
 			<video
 				autoplay
 				muted
+				playsinline
 				class="min-h-screen w-screen object-cover"
 				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[currentVideo].properties.Name.title[0].plain_text}`}
 				on:ended={handleVideoEnded}
@@ -97,7 +98,7 @@
 		</div>
 
 		<!-- Overlay -->
-		<div class="relative min-h-screen w-screen">
+		<div class="relative z-10 min-h-screen w-screen">
 			<div class="absolute h-full w-full bg-[var(--dark)] opacity-70" />
 			<div class="relative flex min-h-screen w-full items-center justify-center">
 				<div class="w-3/4 md:w-screen lg:w-1/2 [&_p]:max-w-[50ch]">
