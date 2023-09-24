@@ -1,3 +1,12 @@
+<script>
+	import { onMount } from 'svelte';
+	import { dark } from '$lib/stores';
+
+	onMount(() => {
+		document.body.style.backgroundColor = `#${$dark}`;
+	});
+</script>
+
 <svelte:head>
 	<title>Anthropotpourri</title>
 	<meta
@@ -28,22 +37,44 @@
 	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
 </svelte:head>
 
-<div
-	class="[&_*]:font-serif w-screen h-[100svh] flex flex-col justify-center items-center gap-y-6 px-4"
->
-	<h1 class="text-4xl"><em>anthropotpourri</em></h1>
-	<div class="sm:[&>p]:text-center flex flex-col gap-y-1">
-		<p>
-			A production house run by <a href="https://www.instagram.com/anthropotpourri/"
-				>Shorouk Elkobrsi</a
-			>
-			and
-			<a href="https://www.alicealexandra.com">Alice Moore</a>.
-		</p>
-		<p>
-			<a href="https://www.instagram.com/anthropotpourri/">Follow us on Instagram</a> to stay up to date
-			with our latest projects.
-		</p>
-		<p class="mt-4">Full website coming soon!</p>
+<div id="home">
+	<!-- Fullscreen Reel -->
+	<div class="sticky top-0 min-h-screen w-screen">
+		<video autoplay muted loop class="min-h-screen w-screen object-cover">
+			<source
+				src="https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/dummyreel4.mp4"
+				type="video/mp4"
+			/>
+		</video>
 	</div>
+
+	<!-- Overlay -->
+	<div class="relative min-h-screen w-screen">
+		<div class="absolute h-full w-full bg-[var(--dark)] opacity-70" />
+		<div class="relative flex min-h-screen w-full items-center justify-center">
+			<div class="w-3/4">
+				<h1 class="mb-2 font-serif text-3xl text-[var(--light)] md:text-6xl">
+					<span class="italic">anthropotpourri</span> (n)
+				</h1>
+				<p class="mb-4 text-xl text-[var(--midLight)]">
+					The cintematographic works of Shorouk Elkobrsi.
+				</p>
+				<p class="text-xl text-[var(--midLight)]">
+					The building of this studio is currently in-progress. To see current work, please visit
+					the <a
+						class="font-bold text-[var(--light)] hover:text-[var(--mid)]"
+						href="https://www.instagram.com/anthropotpourri/">Anthropotpourri Instagram</a
+					>.
+				</p>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div id="studio" class="flex min-h-screen w-screen items-center justify-center bg-[var(--dark)]">
+	<p class="font-serif text-3xl text-[var(--light)] md:text-6xl">studio coming soon...</p>
+</div>
+
+<div id="about" class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)]">
+	<p class="font-serif text-3xl text-[var(--light)] md:text-6xl">about coming soon...</p>
 </div>
