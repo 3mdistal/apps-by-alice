@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { dark } from '$lib/stores';
+	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
 	export let data;
 
 	let {
@@ -9,12 +9,32 @@
 
 	let currentVideo = 0;
 
+	function breakApartColors() {
+		const colors = results[currentVideo].properties.Colors.rich_text[0].plain_text.split(',');
+		const dark = colors[0].trim();
+		const midDark = colors[1].trim();
+		const mid = colors[2].trim();
+		const midLight = colors[3].trim();
+		const light = colors[4].trim();
+		return { dark, midDark, mid, midLight, light };
+	}
+
+	function changeColors() {
+		dark.set(breakApartColors().dark);
+		mid_dark.set(breakApartColors().midDark);
+		mid.set(breakApartColors().mid);
+		mid_light.set(breakApartColors().midLight);
+		light.set(breakApartColors().light);
+	}
+
 	function handleVideoEnded() {
 		if (currentVideo < results.length - 1) {
 			currentVideo++;
 		} else {
 			currentVideo = 0;
 		}
+
+		changeColors();
 	}
 
 	function preloadNextVideo() {
@@ -31,6 +51,7 @@
 
 	onMount(() => {
 		document.body.style.backgroundColor = `#${$dark}`;
+		changeColors();
 		fetch('/', {
 			headers: {
 				Accept: 'application/json',
