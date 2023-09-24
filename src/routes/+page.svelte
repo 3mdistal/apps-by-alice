@@ -53,16 +53,16 @@
 		<div class="absolute h-full w-full bg-[var(--dark)] opacity-70" />
 		<div class="relative flex min-h-screen w-full items-center justify-center">
 			<div class="w-3/4">
-				<h1 class="mb-2 font-serif text-3xl text-[var(--light)] md:text-6xl">
+				<h1 class="mb-2 font-serif text-3xl text-[var(--midLight)] md:text-6xl">
 					<span class="italic">anthropotpourri</span> (n)
 				</h1>
-				<p class="mb-4 text-xl text-[var(--midLight)]">
+				<p class="mb-4 text-xl text-[var(--light)]">
 					The cintematographic works of Shorouk Elkobrsi.
 				</p>
-				<p class="text-xl text-[var(--midLight)]">
+				<p class="text-xl text-[var(--light)]">
 					The building of this studio is currently in-progress. To see current work, please visit
 					the <a
-						class="font-bold text-[var(--light)] hover:text-[var(--mid)]"
+						class="font-bold text-[var(--midLight)] hover:text-[var(--mid)]"
 						href="https://www.instagram.com/anthropotpourri/">Anthropotpourri Instagram</a
 					>.
 				</p>
@@ -72,9 +72,12 @@
 </div>
 
 <div id="studio" class="flex min-h-screen w-screen items-center justify-center bg-[var(--dark)]">
-	<p class="font-serif text-3xl text-[var(--light)] md:text-6xl">studio coming soon...</p>
+	<p class="font-serif text-3xl text-[var(--midLight)] md:text-6xl">studio coming soon...</p>
 </div>
 
 <div id="about" class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)]">
-	<p class="font-serif text-3xl text-[var(--light)] md:text-6xl">about coming soon...</p>
+	<div class="h-[50vh] w-1/2">
+		<p class="font-serif text-3xl text-[var(--midLight)] md:text-6xl">about</p>
+		<p class="text-[var(--light)]">Anthropotpourri is the portfolio work of Shorouk Elkobrsi...</p>
+	</div>
 </div>
