@@ -1,6 +1,7 @@
 <script>
 	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
 	import '../app.postcss';
+	import Menu from './menu.svelte';
 </script>
 
 <svelte:head>
@@ -14,21 +15,8 @@
 </svelte:head>
 
 <div
-	style="background-color: --dark: #{$dark}; --mid_dark: #{$mid_dark}; --mid: #{$mid}; --mid_light: #{$mid_light}; --light: #{$light};"
+	style="--dark: #{$dark}; --midDark: #{$mid_dark}; --mid: #{$mid}; --midLight: #{$mid_light}; --light: #{$light};"
 >
 	<slot />
+	<Menu />
 </div>
-
-<style>
-	div {
-		background-color: var(--light);
-	}
-
-	:global(h1, p) {
-		color: var(--dark);
-	}
-
-	:global(a) {
-		color: var(--mid_dark);
-	}
-</style>
