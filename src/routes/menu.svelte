@@ -1,5 +1,8 @@
 <script lang="ts">
 	import { menuOpen } from '$lib/stores';
+	import { tick } from 'svelte';
+
+	let scrollPosition = 0;
 
 	function handleMenuOpen(e: KeyboardEvent | MouseEvent | TouchEvent) {
 		if (
@@ -7,16 +10,42 @@
 			e instanceof MouseEvent ||
 			e instanceof TouchEvent
 		) {
+			scrollPosition = window.scrollY;
 			menuOpen.set(true);
+			window.addEventListener('popstate', () => handleMenuClose(e));
 		}
 		return;
 	}
 
-	function handleMenuClose(e: KeyboardEvent | MouseEvent) {
-		if ((e instanceof KeyboardEvent && e.key == 'Enter') || e instanceof MouseEvent) {
-			menuOpen.set(false);
+	function handleMenuClose(e: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent) {
+		if (shouldCloseMenu(e)) {
+			closeMenu(e);
+			scroll();
 		}
-		return;
+	}
+
+	function shouldCloseMenu(e: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent): boolean {
+		return (
+			(e instanceof KeyboardEvent && e.key == 'Enter') ||
+			e instanceof PointerEvent ||
+			e instanceof TouchEvent ||
+			e instanceof PopStateEvent
+		);
+	}
+
+	function closeMenu(e: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent) {
+		menuOpen.set(false);
+		if (e.target instanceof HTMLAnchorElement) {
+			return;
+		}
+		if (e instanceof PopStateEvent) {
+			window.removeEventListener('popstate', () => handleMenuClose(e));
+		}
+	}
+
+	async function scroll() {
+		await tick();
+		window.scrollTo(0, scrollPosition);
 	}
 </script>
 
@@ -39,7 +68,7 @@
 	<div
 		class="fixed right-8 top-8 z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--midDark)]"
 		on:keydown={handleMenuClose}
-		on:pointerdown={handleMenuClose}
+		on:click={handleMenuClose}
 		role="button"
 		tabindex="0"
 	>
