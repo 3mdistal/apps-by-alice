@@ -62,19 +62,13 @@
 
 <svelte:head>
 	<title>Anthropotpourri</title>
-	<meta
-		name="description"
-		content="A film production house run by Shorouk Elkobrsi and Alice Moore."
-	/>
-	<meta name="keywords" content="film, production, house, shorouk, elkobrsi, alice, moore" />
+	<meta name="description" content="The cinematography portfolio of Shorouk Elkobrsi." />
+	<meta name="keywords" content="film, cinematography, production, house, shorouk, elkobrsi" />
 	<meta name="author" content="Anthropotpourri" />
 
 	<!-- Facebook -->
 	<meta property="og:title" content="Anthropotpourri" />
-	<meta
-		property="og:description"
-		content="A film production house run by Shorouk Elkobrsi and Alice Moore."
-	/>
+	<meta property="og:description" content="The cinematography portfolio of Shorouk Elkobrsi." />
 	<meta property="og:image" content="https://unsplash.it/1600/900" />
 	<meta property="og:url" content="https://anthropotpourri.com" />
 
@@ -83,10 +77,7 @@
 	<meta name="twitter:site" content="@tempoimmaterial" />
 	<meta name="twitter:creator" content="@tempoimmaterial" />
 	<meta name="twitter:title" content="Anthropotpourri" />
-	<meta
-		name="twitter:description"
-		content="A film production house run by Shorouk Elkobrsi and Alice Moore."
-	/>
+	<meta name="twitter:description" content="The cinematography portfolio of Shorouk Elkobrsi." />
 	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
 </svelte:head>
 
