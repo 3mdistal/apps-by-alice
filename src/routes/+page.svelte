@@ -1,12 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { dark, mid_dark, mid, mid_light, light, menuOpen } from '$lib/stores';
+	import NotionPageParser from '$lib/notion-page-parser.svelte';
 
 	// Import Notion Data
 	export let data;
 
 	let {
-		reels: { results }
+		reels: { results },
+		aboutContent: { results: aboutContent }
 	} = data;
 
 	// State Variables
@@ -60,19 +62,13 @@
 
 <svelte:head>
 	<title>Anthropotpourri</title>
-	<meta
-		name="description"
-		content="A film production house run by Shorouk Elkobrsi and Alice Moore."
-	/>
-	<meta name="keywords" content="film, production, house, shorouk, elkobrsi, alice, moore" />
+	<meta name="description" content="The cinematography portfolio of Shorouk Elkobrsi." />
+	<meta name="keywords" content="film, cinematography, production, house, shorouk, elkobrsi" />
 	<meta name="author" content="Anthropotpourri" />
 
 	<!-- Facebook -->
 	<meta property="og:title" content="Anthropotpourri" />
-	<meta
-		property="og:description"
-		content="A film production house run by Shorouk Elkobrsi and Alice Moore."
-	/>
+	<meta property="og:description" content="The cinematography portfolio of Shorouk Elkobrsi." />
 	<meta property="og:image" content="https://unsplash.it/1600/900" />
 	<meta property="og:url" content="https://anthropotpourri.com" />
 
@@ -81,20 +77,18 @@
 	<meta name="twitter:site" content="@tempoimmaterial" />
 	<meta name="twitter:creator" content="@tempoimmaterial" />
 	<meta name="twitter:title" content="Anthropotpourri" />
-	<meta
-		name="twitter:description"
-		content="A film production house run by Shorouk Elkobrsi and Alice Moore."
-	/>
+	<meta name="twitter:description" content="The cinematography portfolio of Shorouk Elkobrsi." />
 	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
 </svelte:head>
 
 {#if !$menuOpen}
-	<div id="home">
+	<div id="home" class="[&_h1]:select-none [&_h2]:select-none [&_p]:select-none">
 		<!-- Fullscreen Reel -->
-		<div class="sticky top-0 min-h-screen w-screen">
+		<div class="sticky top-0 -z-10 min-h-screen w-screen">
 			<video
 				autoplay
 				muted
+				playsinline
 				class="min-h-screen w-screen object-cover"
 				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[currentVideo].properties.Name.title[0].plain_text}`}
 				on:ended={handleVideoEnded}
@@ -104,29 +98,30 @@
 		</div>
 
 		<!-- Overlay -->
-		<div class="relative min-h-screen w-screen">
+		<div class="relative z-10 min-h-screen w-screen">
 			<div class="absolute h-full w-full bg-[var(--dark)] opacity-70" />
 			<div class="relative flex min-h-screen w-full items-center justify-center">
-				<div class="w-3/4">
-					<h1 class="mb-2 font-serif text-3xl text-[var(--midLight)] md:text-6xl">
-						<span class="italic">anthropotpourri</span> (n)
+				<div class="w-3/4 md:w-screen lg:w-1/2 [&_p]:max-w-[50ch]">
+					<h1 class="mb-2 font-serif text-6xl italic text-[var(--midLight)] md:hidden md:text-8xl">
+						anthro-<br />potpourri
 					</h1>
-					<p class="mb-4 text-xl text-[var(--light)]">
-						The cintematographic works of Shorouk Elkobrsi.
-					</p>
-					<p class="text-xl text-[var(--light)]">
-						The building of this studio is currently in-progress. To see current work, please visit
-						the <a
-							class="font-bold text-[var(--midLight)] hover:text-[var(--mid)]"
-							href="https://www.instagram.com/anthropotpourri/">Anthropotpourri Instagram</a
-						>.
+					<h1
+						class="mb-2 hidden text-center font-serif italic text-[var(--midLight)] md:block md:text-8xl"
+					>
+						anthropotpourri
+					</h1>
+					<p class="mb-4 text-center italic text-[var(--light)] md:text-right md:text-2xl">
+						the cinema of Shorouk Elkobrsi
 					</p>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<div id="studio" class="flex min-h-screen w-screen items-center justify-center bg-[var(--dark)]">
+	<div
+		id="studio"
+		class="flex min-h-screen w-screen items-center justify-center bg-[var(--dark)] [&_h2]:select-none [&_p]:select-none"
+	>
 		<p class="font-serif text-3xl text-[var(--midLight)] md:text-6xl">studio coming soon...</p>
 	</div>
 
@@ -134,11 +129,13 @@
 		id="about"
 		class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)]"
 	>
-		<div class="h-[50vh] w-1/2">
-			<p class="font-serif text-3xl text-[var(--midLight)] md:text-6xl">about</p>
-			<p class="text-[var(--light)]">
-				Anthropotpourri is the portfolio work of Shorouk Elkobrsi...
-			</p>
+		<div class="h-[50vh] w-3/4 md:w-1/2 [&_h2]:select-none [&_p]:select-none">
+			<h2 class="mb-2 font-serif text-6xl text-[var(--midLight)] md:text-8xl">about</h2>
+			<div
+				class="max-w-50ch md:text-2xl [&_a]:font-bold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
+			>
+				<NotionPageParser results={aboutContent} />
+			</div>
 		</div>
 	</div>
 {/if}
