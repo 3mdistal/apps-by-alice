@@ -1,32 +1,29 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
+
+	// Import Notion Data
 	export let data;
 
 	let {
 		reels: { results }
 	} = data;
 
+	// State Variables
 	let currentVideo = 0;
 
-	function breakApartColors() {
-		const colors = results[currentVideo].properties.Colors.rich_text[0].plain_text.split(',');
-		const dark = colors[0].trim();
-		const midDark = colors[1].trim();
-		const mid = colors[2].trim();
-		const midLight = colors[3].trim();
-		const light = colors[4].trim();
-		return { dark, midDark, mid, midLight, light };
-	}
-
+	// Color handling
 	function changeColors() {
-		dark.set(breakApartColors().dark);
-		mid_dark.set(breakApartColors().midDark);
-		mid.set(breakApartColors().mid);
-		mid_light.set(breakApartColors().midLight);
-		light.set(breakApartColors().light);
+		const colors = results[currentVideo].properties.Colors.rich_text[0].plain_text.split(',');
+		dark.set(colors[0].trim());
+		mid_dark.set(colors[1].trim());
+		mid.set(colors[2].trim());
+		mid_light.set(colors[3].trim());
+		light.set(colors[4].trim());
+		document.body.style.backgroundColor = `#${$dark}`;
 	}
 
+	// Video Player
 	function handleVideoEnded() {
 		if (currentVideo < results.length - 1) {
 			currentVideo++;
@@ -49,8 +46,8 @@
 		}
 	}
 
+	// Lifecycle
 	onMount(() => {
-		document.body.style.backgroundColor = `#${$dark}`;
 		changeColors();
 		fetch('/', {
 			headers: {
