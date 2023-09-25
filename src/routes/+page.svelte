@@ -29,7 +29,7 @@
 	}
 
 	// Video Player
-	const suffix = highQuality ? '?tr=q-30' : '?tr=q-10';
+	const suffix = highQuality ? '?tr=ac-none,q-30' : '?tr=ac-none,q-10';
 
 	function handleVideoEnded() {
 		if (currentVideo < results.length - 1) {
@@ -42,13 +42,12 @@
 	}
 
 	function preloadNextVideo() {
+		const nextVideo = document.createElement('video');
 		if (currentVideo < results.length - 1) {
-			const nextVideo = document.createElement('video');
 			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${
 				results[currentVideo + 1].properties.Name.title[0].plain_text
 			}${suffix}`;
 		} else {
-			const nextVideo = document.createElement('video');
 			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[0].properties.Name.title[0].plain_text}${suffix}`;
 		}
 	}
@@ -89,13 +88,13 @@
 {#if !$menuOpen}
 	<div id="home" class="[&_h1]:select-none [&_h2]:select-none [&_p]:select-none">
 		<!-- Fullscreen Reel -->
-		<div class="sticky top-0 -z-10 min-h-screen w-screen">
+		<div class="sticky top-0 min-h-screen w-screen">
 			<video
 				bind:this={video}
 				autoplay
 				muted
 				playsinline
-				class="min-h-screen w-screen object-cover"
+				class="-z-10 min-h-screen w-screen object-cover"
 				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[currentVideo].properties.Name.title[0].plain_text}${suffix}`}
 				on:ended={handleVideoEnded}
 				on:canplaythrough={preloadNextVideo}
@@ -104,7 +103,7 @@
 		</div>
 
 		<!-- Overlay -->
-		<div class="relative z-10 min-h-screen w-screen">
+		<div class="z-100 relative min-h-screen w-screen">
 			<div class="absolute h-full w-full bg-[var(--dark)] opacity-70" />
 			<div class="relative flex min-h-screen w-full items-center justify-center">
 				<div class="w-3/4 md:w-screen lg:w-1/2 [&_p]:max-w-[50ch]">
