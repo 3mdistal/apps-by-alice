@@ -1,7 +1,9 @@
 <script lang="ts">
-	import { onMount, tick } from 'svelte';
+	import { onMount } from 'svelte';
 	import { dark, mid_dark, mid, mid_light, light, menuOpen } from '$lib/stores';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
+	import StudioEntry from './studio-entry.svelte';
+	import { replaceSpaces } from '$lib/helpers';
 
 	// Import Notion Data
 	export let data;
@@ -10,6 +12,7 @@
 
 	let {
 		reels: { results },
+		studioGalleryContent: { results: studioGalleryContent },
 		aboutContent: { results: aboutContent },
 		highQuality
 	} = data;
@@ -26,10 +29,12 @@
 		mid_light.set(colors[3].trim());
 		light.set(colors[4].trim());
 		document.body.style.backgroundColor = `#${$dark}`;
+		document.querySelector('#studio').style.backgroundColor = `#${$dark}`;
+		document.querySelector('#about').style.backgroundColor = `#${$mid_dark}`;
 	}
 
 	// Video Player
-	const suffix = highQuality ? '?tr=ac-none,q-30' : '?tr=ac-none,q-10';
+	const suffix = highQuality ? '?tr=ac-none,q-40' : '?tr=ac-none,q-10';
 
 	function handleVideoEnded() {
 		if (currentVideo < results.length - 1) {
@@ -44,11 +49,13 @@
 	function preloadNextVideo() {
 		const nextVideo = document.createElement('video');
 		if (currentVideo < results.length - 1) {
-			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${
+			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
 				results[currentVideo + 1].properties.Name.title[0].plain_text
-			}${suffix}`;
+			)}${suffix}`;
 		} else {
-			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[0].properties.Name.title[0].plain_text}${suffix}`;
+			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
+				results[0].properties.Name.title[0].plain_text
+			)}${suffix}`;
 		}
 	}
 
@@ -95,7 +102,9 @@
 				muted
 				playsinline
 				class="-z-10 min-h-screen w-screen object-cover"
-				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[currentVideo].properties.Name.title[0].plain_text}${suffix}`}
+				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
+					results[currentVideo].properties.Name.title[0].plain_text
+				)}${suffix}`}
 				on:ended={handleVideoEnded}
 				on:canplaythrough={preloadNextVideo}
 			>
@@ -124,23 +133,27 @@
 	</div>
 
 	<div
-		id="studio"
-		class="flex min-h-screen w-screen items-center justify-center bg-[var(--dark)] [&_h2]:select-none [&_p]:select-none"
-	>
-		<p class="font-serif text-3xl text-[var(--midLight)] md:text-6xl">studio coming soon...</p>
-	</div>
-
-	<div
 		id="about"
-		class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)]"
+		class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
 	>
-		<div class="h-[50vh] w-3/4 md:w-1/2 [&_h2]:select-none [&_p]:select-none">
-			<h2 class="mb-2 font-serif text-6xl text-[var(--midLight)] md:text-8xl">about</h2>
+		<div class="w-3/4 md:w-1/2 [&_h2]:select-none [&_p]:select-none">
+			<h2 class="mb-12 font-serif text-6xl text-[var(--midLight)] md:text-8xl">
+				a tiny mountain village where it...
+			</h2>
 			<div
-				class="max-w-50ch md:text-2xl [&_a]:font-bold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
+				class="max-w-[50ch] md:text-2xl [&_a]:font-semibold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
 			>
 				<NotionPageParser results={aboutContent} />
 			</div>
 		</div>
+	</div>
+
+	<div
+		id="studio"
+		class="min-w-screen flex min-h-screen flex-wrap items-start justify-center gap-x-32 gap-y-24 bg-[var(--dark)] px-4 py-[25vh] transition-all duration-700 ease-in-out sm:px-16 md:px-32 [&_h2]:select-none [&_p]:select-none"
+	>
+		{#each studioGalleryContent as studioGalleryResult}
+			<StudioEntry {studioGalleryResult} on:changeColor={changeColors} />
+		{/each}
 	</div>
 {/if}
