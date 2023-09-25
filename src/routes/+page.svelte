@@ -8,7 +8,8 @@
 
 	let {
 		reels: { results },
-		aboutContent: { results: aboutContent }
+		aboutContent: { results: aboutContent },
+		highQuality
 	} = data;
 
 	// State Variables
@@ -26,6 +27,8 @@
 	}
 
 	// Video Player
+	const suffix = highQuality ? '' : '?tr=q-10';
+
 	function handleVideoEnded() {
 		if (currentVideo < results.length - 1) {
 			currentVideo++;
@@ -41,10 +44,10 @@
 			const nextVideo = document.createElement('video');
 			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${
 				results[currentVideo + 1].properties.Name.title[0].plain_text
-			}`;
+			}${suffix}`;
 		} else {
 			const nextVideo = document.createElement('video');
-			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[0].properties.Name.title[0].plain_text}`;
+			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[0].properties.Name.title[0].plain_text}${suffix}`;
 		}
 	}
 
@@ -90,7 +93,7 @@
 				muted
 				playsinline
 				class="min-h-screen w-screen object-cover"
-				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[currentVideo].properties.Name.title[0].plain_text}`}
+				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[currentVideo].properties.Name.title[0].plain_text}${suffix}`}
 				on:ended={handleVideoEnded}
 				on:canplaythrough={preloadNextVideo}
 			>
