@@ -34,7 +34,7 @@
 	}
 
 	// Video Player
-	const suffix = highQuality ? '?tr=ac-none,q-30' : '?tr=ac-none,q-10';
+	const suffix = highQuality ? '?tr=ac-none,q-40' : '?tr=ac-none,q-10';
 
 	function handleVideoEnded() {
 		if (currentVideo < results.length - 1) {
