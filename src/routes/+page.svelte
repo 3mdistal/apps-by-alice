@@ -29,6 +29,8 @@
 		mid_light.set(colors[3].trim());
 		light.set(colors[4].trim());
 		document.body.style.backgroundColor = `#${$dark}`;
+		document.querySelector('#studio').style.backgroundColor = `#${$dark}`;
+		document.querySelector('#about').style.backgroundColor = `#${$mid_dark}`;
 	}
 
 	// Video Player
@@ -132,9 +134,9 @@
 
 	<div
 		id="about"
-		class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)]"
+		class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
 	>
-		<div class="h-[50vh] w-3/4 md:w-1/2 [&_h2]:select-none [&_p]:select-none">
+		<div class="w-3/4 md:w-1/2 [&_h2]:select-none [&_p]:select-none">
 			<h2 class="mb-12 font-serif text-6xl text-[var(--midLight)] md:text-8xl">
 				a tiny mountain village where it...
 			</h2>
@@ -148,10 +150,10 @@
 
 	<div
 		id="studio"
-		class="min-w-screen flex min-h-screen flex-wrap items-start justify-center gap-x-32 gap-y-24 bg-[var(--dark)] px-4 py-[25vh] sm:px-16 md:px-32 [&_h2]:select-none [&_p]:select-none"
+		class="min-w-screen flex min-h-screen flex-wrap items-start justify-center gap-x-32 gap-y-24 bg-[var(--dark)] px-4 py-[25vh] transition-all duration-700 ease-in-out sm:px-16 md:px-32 [&_h2]:select-none [&_p]:select-none"
 	>
 		{#each studioGalleryContent as studioGalleryResult}
-			<StudioEntry {studioGalleryResult} />
+			<StudioEntry {studioGalleryResult} on:changeColor={changeColors} />
 		{/each}
 	</div>
 {/if}

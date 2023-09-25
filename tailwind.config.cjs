@@ -6,7 +6,7 @@ const config = {
 		extend: {
 			fontFamily: {
 				serif: ['Bitter', 'serif'],
-				sans_serif: ['Avenir Next', 'sans-serif']
+				sans_serif: ['Nunito Sans', 'sans-serif']
 			}
 		}
 	},

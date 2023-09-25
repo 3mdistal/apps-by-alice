@@ -70,7 +70,7 @@
 	</div>
 
 	<div
-		class="fixed right-8 top-8 z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--midDark)] bg-[var(--mid)]"
+		class="fixed right-8 top-8 z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--midDark)] bg-[var(--light)]"
 		on:keydown={handleMenuClose}
 		on:click={handleMenuClose}
 		role="button"
