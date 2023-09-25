@@ -132,7 +132,7 @@
 
 	<div
 		id="studio"
-		class="min-w-screen flex min-h-screen flex-wrap items-start justify-center gap-x-40 gap-y-40 bg-[var(--dark)] px-4 py-[25vh] sm:px-20 md:px-40 [&_h2]:select-none [&_p]:select-none"
+		class="min-w-screen flex min-h-screen flex-wrap items-start justify-center gap-x-32 gap-y-24 bg-[var(--dark)] px-4 py-[25vh] sm:px-16 md:px-32 [&_h2]:select-none [&_p]:select-none"
 	>
 		{#each studioGalleryContent as studioGalleryResult}
 			<StudioEntry {studioGalleryResult} />
