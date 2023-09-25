@@ -1,10 +1,12 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
+	import { onMount, tick } from 'svelte';
 	import { dark, mid_dark, mid, mid_light, light, menuOpen } from '$lib/stores';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
 
 	// Import Notion Data
 	export let data;
+
+	let video: HTMLVideoElement;
 
 	let {
 		reels: { results },
@@ -27,7 +29,7 @@
 	}
 
 	// Video Player
-	const suffix = highQuality ? '' : '?tr=q-10';
+	const suffix = highQuality ? '?tr=q-30' : '?tr=q-10';
 
 	function handleVideoEnded() {
 		if (currentVideo < results.length - 1) {
@@ -89,6 +91,7 @@
 		<!-- Fullscreen Reel -->
 		<div class="sticky top-0 -z-10 min-h-screen w-screen">
 			<video
+				bind:this={video}
 				autoplay
 				muted
 				playsinline
