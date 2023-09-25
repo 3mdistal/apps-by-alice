@@ -1,7 +1,9 @@
 <script lang="ts">
-	import { onMount, tick } from 'svelte';
+	import { onMount } from 'svelte';
 	import { dark, mid_dark, mid, mid_light, light, menuOpen } from '$lib/stores';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
+	import StudioEntry from './studio-entry.svelte';
+	import { replaceSpaces } from '$lib/helpers';
 
 	// Import Notion Data
 	export let data;
@@ -10,6 +12,7 @@
 
 	let {
 		reels: { results },
+		studioGalleryContent: { results: studioGalleryContent },
 		aboutContent: { results: aboutContent },
 		highQuality
 	} = data;
@@ -44,11 +47,13 @@
 	function preloadNextVideo() {
 		const nextVideo = document.createElement('video');
 		if (currentVideo < results.length - 1) {
-			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${
+			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
 				results[currentVideo + 1].properties.Name.title[0].plain_text
-			}${suffix}`;
+			)}${suffix}`;
 		} else {
-			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[0].properties.Name.title[0].plain_text}${suffix}`;
+			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
+				results[0].properties.Name.title[0].plain_text
+			)}${suffix}`;
 		}
 	}
 
@@ -95,7 +100,9 @@
 				muted
 				playsinline
 				class="-z-10 min-h-screen w-screen object-cover"
-				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${results[currentVideo].properties.Name.title[0].plain_text}${suffix}`}
+				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
+					results[currentVideo].properties.Name.title[0].plain_text
+				)}${suffix}`}
 				on:ended={handleVideoEnded}
 				on:canplaythrough={preloadNextVideo}
 			>
@@ -125,9 +132,11 @@
 
 	<div
 		id="studio"
-		class="flex min-h-screen w-screen items-center justify-center bg-[var(--dark)] [&_h2]:select-none [&_p]:select-none"
+		class="min-w-screen flex min-h-screen flex-wrap items-start justify-center gap-x-40 gap-y-40 bg-[var(--dark)] px-4 py-[25vh] sm:px-20 md:px-40 [&_h2]:select-none [&_p]:select-none"
 	>
-		<p class="font-serif text-3xl text-[var(--midLight)] md:text-6xl">studio coming soon...</p>
+		{#each studioGalleryContent as studioGalleryResult}
+			<StudioEntry {studioGalleryResult} />
+		{/each}
 	</div>
 
 	<div
