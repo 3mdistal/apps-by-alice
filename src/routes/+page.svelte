@@ -4,6 +4,7 @@
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
 	import StudioEntry from './studio-entry.svelte';
 	import { replaceSpaces, createIntersectionObserver } from '$lib/helpers';
+	import TextMacro from '$lib/text-macro.svelte';
 
 	// Import Notion Data
 	export let data;
@@ -13,9 +14,12 @@
 	let {
 		reels: { results },
 		studioGalleryContent: { results: studioGalleryContent },
+		aboutHeading: { toggle: aboutHeading },
 		aboutContent: { results: aboutContent },
 		highQuality
 	} = data;
+
+	console.log(aboutHeading);
 
 	// State Variables
 	let currentVideo = 0;
@@ -138,7 +142,7 @@
 		class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
 	>
 		<div class="w-3/4 lg:w-1/2">
-			<h2 class="mb-12">a tiny mountain village where it...</h2>
+			<h2 class="mb-12"><TextMacro type={aboutHeading} /></h2>
 			<div
 				class="max-w-[50ch] md:text-2xl [&_a]:font-semibold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
 			>

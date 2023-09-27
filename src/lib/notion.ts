@@ -40,6 +40,15 @@ export async function queryDatabase(id: string, filter, sorts) {
 	return response;
 }
 
+// For retrieving a single block's content.
+export async function retrieveBlock(id: string) {
+	throwIfMissing();
+	const response = await notion.blocks.retrieve({
+		block_id: id
+	});
+	return response;
+}
+
 // For listing all the children of a block. Generally, this is then passed to the renderer.
 export async function listChildren(id: string, cursor?: string) {
 	throwIfMissing();
