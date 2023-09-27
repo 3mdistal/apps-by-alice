@@ -63,12 +63,12 @@
 		<img src={imageSrc} class="h-full w-full object-cover saturate-0" alt="" />
 	</div>
 	<div class="mt-12 sm:w-3/4 md:mt-0 md:max-w-[35%] [&_*]:peer-hover:opacity-100">
-		<h2 class="font-serif text-2xl text-[var(--midLight)] opacity-0 md:mb-4 md:text-8xl">
+		<h2 class="opacity-0 md:mb-4">
 			{name}
 		</h2>
-		<p class="text-lg font-thin italic text-[var(--light)] opacity-0 md:mb-2 md:text-xl">
+		<p class="text-lg font-light italic opacity-0 md:mb-2 lg:text-xl">
 			{date}
 		</p>
-		<p class="text-xl font-light text-[var(--light)] opacity-0 md:text-2xl">{logline}</p>
+		<p class="opacity-0">{logline}</p>
 	</div>
 </div>

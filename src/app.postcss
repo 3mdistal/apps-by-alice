@@ -5,7 +5,7 @@
 
 @layer base {
 	p {
-		@apply font-sans_serif;
+		@apply select-none font-sans_serif text-xl text-[var(--light)] lg:text-2xl;
 	}
 
 	strong {
@@ -14,5 +14,13 @@
 
 	* {
 		@apply transition-all duration-700 ease-in-out;
+	}
+
+	h1 {
+		@apply select-none;
+	}
+
+	h2 {
+		@apply select-none font-serif text-2xl text-[var(--midLight)] sm:text-4xl md:text-6xl xl:text-8xl;
 	}
 }
