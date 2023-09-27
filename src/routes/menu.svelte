@@ -1,10 +1,13 @@
 <script lang="ts">
-	import { menuOpen } from '$lib/stores';
+	import { homepageOpen, menuOpen } from '$lib/stores';
 	import { tick } from 'svelte';
+	import gsap from 'gsap';
 
 	let scrollPosition = 0;
 
-	function handleMenuOpen(e: KeyboardEvent | MouseEvent | TouchEvent) {
+	let openMenu: HTMLDivElement;
+
+	async function handleMenuOpen(e: KeyboardEvent | MouseEvent | TouchEvent) {
 		if (
 			(e instanceof KeyboardEvent && e.key == 'Enter') ||
 			e instanceof MouseEvent ||
@@ -12,6 +15,12 @@
 		) {
 			scrollPosition = window.scrollY;
 			menuOpen.set(true);
+			await tick();
+			menuOpenAnimation()
+				.play()
+				.eventCallback('onComplete', () => {
+					homepageOpen.set(false);
+				});
 			window.addEventListener('popstate', () => handleMenuClose(e));
 		}
 		return;
@@ -33,12 +42,14 @@
 		);
 	}
 
-	async function closeMenu(e: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent) {
-		menuOpen.set(false);
-
+	function closeMenu(e: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent) {
 		if (e instanceof PopStateEvent) {
 			window.removeEventListener('popstate', () => handleMenuClose(e));
 		}
+		homepageOpen.set(true);
+		menuCloseAnimation()
+			.play()
+			.eventCallback('onComplete', () => menuOpen.set(false));
 	}
 
 	async function scroll(e: Event) {
@@ -50,12 +61,27 @@
 		}
 		window.scrollTo(0, scrollPosition);
 	}
+
+	function menuOpenAnimation() {
+		const tl = gsap.timeline();
+		tl.fromTo(openMenu, { y: '-100vh' }, { y: '0vh', duration: 0.3, ease: 'power1.out' });
+
+		return tl.paused(true);
+	}
+
+	function menuCloseAnimation() {
+		const tl = gsap.timeline();
+		tl.to(openMenu, { y: '-100vh', duration: 0.3, ease: 'power1.in' });
+
+		return tl.paused(true);
+	}
 </script>
 
 {#if $menuOpen}
 	<div
 		id="menu-open"
-		class="fixed top-0 z-10 flex h-screen w-screen flex-col items-center justify-center gap-y-[8%] bg-[var(--midLight)] [&_*]:duration-100 [&_a]:cursor-pointer [&_p]:select-none [&_p]:font-serif [&_p]:text-6xl [&_p]:italic [&_p]:text-[var(--midDark)] hover:[&_p]:text-[var(--mid)]"
+		class="fixed top-0 z-10 flex h-screen w-screen flex-col items-center justify-center gap-y-[8%] bg-[var(--midLight)] [&_a]:cursor-pointer [&_p]:select-none [&_p]:font-serif [&_p]:text-6xl [&_p]:italic [&_p]:text-[var(--midDark)] [&_p]:transition-all [&_p]:duration-200 hover:[&_p]:text-[var(--mid)]"
+		bind:this={openMenu}
 	>
 		<a href="/#home" on:click={handleMenuClose}>
 			<p>home</p>
@@ -88,3 +114,9 @@
 		<p class="select-none text-center font-serif text-3xl italic text-[var(--light)]">a</p>
 	</div>
 {/if}
+
+<style>
+	* {
+		transition: none;
+	}
+</style>

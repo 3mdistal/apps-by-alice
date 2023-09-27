@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { dark, mid_dark, mid, mid_light, light, menuOpen } from '$lib/stores';
+	import { dark, mid_dark, mid, mid_light, light, homepageOpen } from '$lib/stores';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
 	import StudioEntry from './studio-entry.svelte';
 	import { replaceSpaces, createIntersectionObserver } from '$lib/helpers';
@@ -97,7 +97,7 @@
 	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
 </svelte:head>
 
-{#if !$menuOpen}
+{#if $homepageOpen}
 	<div id="home">
 		<!-- Fullscreen Reel -->
 		<div class="sticky top-0 -z-10 min-h-screen w-screen">
