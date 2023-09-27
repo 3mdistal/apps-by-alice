@@ -7,3 +7,4 @@ export const mid_light = writable('C6B9CD');
 export const light = writable('D6D3F0');
 
 export const menuOpen = writable(false);
+export const homepageOpen = writable(true);
