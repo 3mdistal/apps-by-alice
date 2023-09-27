@@ -3,7 +3,7 @@
 	import { dark, mid_dark, mid, mid_light, light, menuOpen } from '$lib/stores';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
 	import StudioEntry from './studio-entry.svelte';
-	import { replaceSpaces } from '$lib/helpers';
+	import { replaceSpaces, createIntersectionObserver } from '$lib/helpers';
 
 	// Import Notion Data
 	export let data;
@@ -61,6 +61,7 @@
 
 	// Lifecycle
 	onMount(() => {
+		createIntersectionObserver(video);
 		changeColors();
 		fetch('/', {
 			headers: {
@@ -95,13 +96,13 @@
 {#if !$menuOpen}
 	<div id="home" class="[&_h1]:select-none [&_h2]:select-none [&_p]:select-none">
 		<!-- Fullscreen Reel -->
-		<div class="sticky top-0 min-h-screen w-screen">
+		<div class="sticky top-0 -z-10 min-h-screen w-screen">
 			<video
 				bind:this={video}
 				autoplay
 				muted
 				playsinline
-				class="-z-10 min-h-screen w-screen object-cover"
+				class="min-h-screen w-screen object-cover"
 				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
 					results[currentVideo].properties.Name.title[0].plain_text
 				)}${suffix}`}
@@ -112,7 +113,7 @@
 		</div>
 
 		<!-- Overlay -->
-		<div class="z-100 relative min-h-screen w-screen">
+		<div class="relative z-10 min-h-screen w-screen">
 			<div class="absolute h-full w-full bg-[var(--dark)] opacity-70" />
 			<div class="relative flex min-h-screen w-full items-center justify-center">
 				<div class="w-3/4 md:w-screen lg:w-1/2 [&_p]:max-w-[50ch]">
