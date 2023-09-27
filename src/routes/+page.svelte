@@ -19,8 +19,6 @@
 		highQuality
 	} = data;
 
-	console.log(aboutHeading);
-
 	// State Variables
 	let currentVideo = 0;
 
@@ -100,12 +98,12 @@
 {#if $homepageOpen}
 	<div id="home">
 		<!-- Fullscreen Reel -->
-		<div class="sticky top-0 -z-10 min-h-screen w-screen">
+		<div class="min-h-screen w-screen">
 			<video
 				bind:this={video}
-				autoplay
 				muted
 				playsinline
+				autoplay
 				class="min-h-screen w-screen object-cover"
 				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
 					results[currentVideo].properties.Name.title[0].plain_text
@@ -115,10 +113,12 @@
 			>
 			</video>
 		</div>
-
 		<!-- Overlay -->
-		<div class="relative z-10 min-h-screen w-screen">
-			<div class="absolute h-full w-full bg-[var(--dark)] opacity-70" />
+
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
+		<div class="absolute top-0 min-h-screen w-screen" on:click={() => video.play()}>
+			<div class="absolute h-full w-full bg-[var(--dark)] opacity-40" />
 			<div class="relative flex min-h-screen w-full items-center justify-center">
 				<div class="w-3/4 sm:w-1/2 md:w-screen lg:w-1/2 [&_p]:max-w-[50ch]">
 					<h1 class="mb-2 font-serif text-6xl italic text-[var(--midLight)] md:hidden md:text-8xl">
@@ -130,33 +130,35 @@
 						anthropotpourri
 					</h1>
 					<p class="mb-4 text-center italic md:text-right md:text-2xl">
-						the cinema of Shorouk Elkobrsi
+						the cinematography of Shorouk Elkobrsi
 					</p>
 				</div>
 			</div>
 		</div>
-	</div>
-
-	<div
-		id="about"
-		class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
-	>
-		<div class="w-3/4 lg:w-1/2">
-			<h2 class="mb-12"><TextMacro type={aboutHeading} /></h2>
-			<div
-				class="max-w-[50ch] md:text-2xl [&_a]:font-semibold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
-			>
-				<NotionPageParser results={aboutContent} />
+		<div
+			id="about"
+			class="relative z-10 flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
+		>
+			<div class="w-3/4 lg:w-1/2">
+				<h2 class="mb-12"><TextMacro type={aboutHeading} /></h2>
+				<div
+					class="max-w-[50ch] md:text-2xl [&_a]:font-semibold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
+				>
+					<NotionPageParser results={aboutContent} />
+				</div>
 			</div>
 		</div>
-	</div>
-
-	<div
-		id="studio"
-		class="min-w-screen flex min-h-screen flex-wrap items-start justify-center gap-x-32 gap-y-24 bg-[var(--dark)] px-4 py-[25vh] sm:px-16 lg:px-32"
-	>
-		{#each studioGalleryContent as studioGalleryResult}
-			<StudioEntry {studioGalleryResult} on:changeColor={changeColors} />
-		{/each}
+		<div
+			id="studio"
+			class="min-w-screen relative z-10 flex min-h-screen items-center justify-center bg-[var(--dark)] px-8 sm:px-28 md:px-32 lg:px-40"
+		>
+			<div
+				class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
+			>
+				{#each studioGalleryContent as studioGalleryResult}
+					<StudioEntry {studioGalleryResult} on:changeColor={changeColors} />
+				{/each}
+			</div>
+		</div>
 	</div>
 {/if}

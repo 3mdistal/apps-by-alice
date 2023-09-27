@@ -54,15 +54,15 @@
 	}
 </script>
 
-<div class="w-full items-center justify-around rounded-2xl md:flex">
+<div class="rounded-2xl">
 	<div
-		class="peer aspect-square overflow-hidden rounded-2xl border-2 border-[#aaaaaa] hover:border-[var(--midLight)] md:max-w-[60%] [&_img]:hover:scale-[105%] [&_img]:hover:saturate-[125%]"
+		class="peer aspect-square overflow-hidden rounded-2xl hover:scale-105 hover:drop-shadow-lg [&_img]:hover:scale-[100%] [&_img]:hover:saturate-[125%]"
 		on:mouseenter={changeColors}
 		on:mouseleave={sayChangeColor}
 	>
-		<img src={imageSrc} class="h-full w-full object-cover saturate-0" alt="" />
+		<img src={imageSrc} class="h-full w-full scale-[110%] object-cover saturate-0" alt="" />
 	</div>
-	<div class="mt-12 sm:w-3/4 md:mt-0 md:max-w-[35%] [&_*]:peer-hover:opacity-100">
+	<!-- <div class="mt-12 sm:w-3/4 md:mt-0 md:max-w-[35%] [&_*]:peer-hover:opacity-100">
 		<h2 class="opacity-0 md:mb-4">
 			{name}
 		</h2>
@@ -70,5 +70,5 @@
 			{date}
 		</p>
 		<p class="opacity-0">{logline}</p>
-	</div>
+	</div> -->
 </div>
