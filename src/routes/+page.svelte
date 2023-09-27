@@ -94,7 +94,7 @@
 </svelte:head>
 
 {#if !$menuOpen}
-	<div id="home" class="[&_h1]:select-none [&_h2]:select-none [&_p]:select-none">
+	<div id="home">
 		<!-- Fullscreen Reel -->
 		<div class="sticky top-0 -z-10 min-h-screen w-screen">
 			<video
@@ -116,7 +116,7 @@
 		<div class="relative z-10 min-h-screen w-screen">
 			<div class="absolute h-full w-full bg-[var(--dark)] opacity-70" />
 			<div class="relative flex min-h-screen w-full items-center justify-center">
-				<div class="w-3/4 md:w-screen lg:w-1/2 [&_p]:max-w-[50ch]">
+				<div class="w-3/4 sm:w-1/2 md:w-screen lg:w-1/2 [&_p]:max-w-[50ch]">
 					<h1 class="mb-2 font-serif text-6xl italic text-[var(--midLight)] md:hidden md:text-8xl">
 						anthro-<br />potpourri
 					</h1>
@@ -125,7 +125,7 @@
 					>
 						anthropotpourri
 					</h1>
-					<p class="mb-4 text-center italic text-[var(--light)] md:text-right md:text-2xl">
+					<p class="mb-4 text-center italic md:text-right md:text-2xl">
 						the cinema of Shorouk Elkobrsi
 					</p>
 				</div>
@@ -137,10 +137,8 @@
 		id="about"
 		class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
 	>
-		<div class="w-3/4 md:w-1/2 [&_h2]:select-none [&_p]:select-none">
-			<h2 class="mb-12 font-serif text-6xl text-[var(--midLight)] md:text-8xl">
-				a tiny mountain village where it...
-			</h2>
+		<div class="w-3/4 lg:w-1/2">
+			<h2 class="mb-12">a tiny mountain village where it...</h2>
 			<div
 				class="max-w-[50ch] md:text-2xl [&_a]:font-semibold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
 			>
@@ -151,7 +149,7 @@
 
 	<div
 		id="studio"
-		class="min-w-screen flex min-h-screen flex-wrap items-start justify-center gap-x-32 gap-y-24 bg-[var(--dark)] px-4 py-[25vh] transition-all duration-700 ease-in-out sm:px-16 md:px-32 [&_h2]:select-none [&_p]:select-none"
+		class="min-w-screen flex min-h-screen flex-wrap items-start justify-center gap-x-32 gap-y-24 bg-[var(--dark)] px-4 py-[25vh] sm:px-16 lg:px-32"
 	>
 		{#each studioGalleryContent as studioGalleryResult}
 			<StudioEntry {studioGalleryResult} on:changeColor={changeColors} />

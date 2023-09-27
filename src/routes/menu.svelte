@@ -55,7 +55,7 @@
 {#if $menuOpen}
 	<div
 		id="menu-open"
-		class="fixed top-0 z-10 flex h-screen w-screen flex-col items-center justify-center gap-y-[8%] bg-[var(--midLight)] [&_a]:cursor-pointer [&_p]:select-none [&_p]:font-serif [&_p]:text-6xl [&_p]:italic [&_p]:text-[var(--midDark)] hover:[&_p]:text-[var(--mid)]"
+		class="fixed top-0 z-10 flex h-screen w-screen flex-col items-center justify-center gap-y-[8%] bg-[var(--midLight)] [&_*]:duration-100 [&_a]:cursor-pointer [&_p]:select-none [&_p]:font-serif [&_p]:text-6xl [&_p]:italic [&_p]:text-[var(--midDark)] hover:[&_p]:text-[var(--mid)]"
 	>
 		<a href="/#home" on:click={handleMenuClose}>
 			<p>home</p>
