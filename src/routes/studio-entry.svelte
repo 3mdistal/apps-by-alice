@@ -35,8 +35,6 @@
 		replaceSpaces(cover) +
 		'?tr=w-1000';
 
-	console.log(imageSrc);
-
 	function changeColors() {
 		const colors = colorList.split(',');
 		dark.set(colors[0].trim());

@@ -46,7 +46,6 @@
 		if (e.currentTarget instanceof HTMLAnchorElement) {
 			e.preventDefault();
 			document.querySelector(e.currentTarget.hash).scrollIntoView({ behavior: 'auto' });
-			console.log(e.currentTarget.hash);
 			return;
 		}
 		window.scrollTo(0, scrollPosition);
