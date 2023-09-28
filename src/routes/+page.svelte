@@ -31,7 +31,7 @@
 		mid_light.set(colors[3].trim());
 		light.set(colors[4].trim());
 		document.body.style.backgroundColor = `#${$dark}`;
-		document.querySelector('#studio').style.backgroundColor = `#${$dark}`;
+		document.querySelector('#portfolio').style.backgroundColor = `#${$dark}`;
 		document.querySelector('#about').style.backgroundColor = `#${$mid_dark}`;
 	}
 
