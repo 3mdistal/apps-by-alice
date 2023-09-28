@@ -14,6 +14,7 @@
 	let {
 		reels: { results },
 		videos: { results: videos },
+		projects: { results: projects },
 		aboutHeading: { toggle: aboutHeading },
 		aboutContent: { results: aboutContent },
 		highQuality
@@ -156,7 +157,7 @@
 				class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
 			>
 				{#each videos as video}
-					<GalleryVideo {video} {highQuality} on:changeColor={changeColors} />
+					<GalleryVideo {video} {projects} {highQuality} on:changeColor={changeColors} />
 				{/each}
 			</div>
 		</div>

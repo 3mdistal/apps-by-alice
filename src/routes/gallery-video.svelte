@@ -4,9 +4,10 @@
 	import { createEventDispatcher } from 'svelte';
 
 	export let video;
+	export let projects;
 	export let highQuality;
 
-	let {
+	const {
 		properties: {
 			Colors: {
 				rich_text: [{ plain_text: colorList }]
@@ -16,35 +17,36 @@
 			},
 			Alt: {
 				rich_text: [{ plain_text: alt }]
+			},
+			Project: {
+				relation: [{ id: parentProjectID }]
 			}
 		}
 	} = video;
 
-	const root = 'Fish on Shore';
-	let vid: HTMLVideoElement;
+	// Parent Project Properties
+	function filterProjects(projectList) {
+		return projectList.filter((project) => project.id === parentProjectID);
+	}
 
+	const parentProjectTitle = filterProjects(projects)[0].properties.Name.title[0].plain_text;
+	const parentProjectRoot = filterProjects(projects)[0].properties.Root.select.name;
+
+	// Link to Parent Project
+	const href = `/${replaceSpaces(parentProjectTitle, false)}`;
+
+	// Video Source
 	const suffix = highQuality ? '?tr=ac-none,q-50' : '?tr=ac-none,q-10';
 
 	const videoSrc =
 		'https://ik.imagekit.io/tempoimmaterial/anthropotpourri/studio/' +
-		replaceSpaces(root, true) +
+		replaceSpaces(parentProjectRoot, true) +
 		'/' +
 		replaceSpaces(name, true) +
 		suffix;
 
-	const href = `/${replaceSpaces(root, false)}`;
-
-	function changeColors() {
-		const colors = colorList.split(',');
-		dark.set(colors[0].trim());
-		mid_dark.set(colors[1].trim());
-		mid.set(colors[2].trim());
-		mid_light.set(colors[3].trim());
-		light.set(colors[4].trim());
-		document.body.style.backgroundColor = `#${$dark}`;
-		document.querySelector('#portfolio').style.backgroundColor = `#${$mid_dark}`;
-		document.querySelector('#about').style.backgroundColor = `#${$dark}`;
-	}
+	// Video Player
+	let vid: HTMLVideoElement;
 
 	function playBackwards(video: HTMLVideoElement) {
 		const playback = setInterval(function () {
@@ -61,6 +63,20 @@
 		}, 500);
 	}
 
+	// Local Color Changes
+	function changeColors() {
+		const colors = colorList.split(',');
+		dark.set(colors[0].trim());
+		mid_dark.set(colors[1].trim());
+		mid.set(colors[2].trim());
+		mid_light.set(colors[3].trim());
+		light.set(colors[4].trim());
+		document.body.style.backgroundColor = `#${$dark}`;
+		document.querySelector('#portfolio').style.backgroundColor = `#${$mid_dark}`;
+		document.querySelector('#about').style.backgroundColor = `#${$dark}`;
+	}
+
+	// Handlers
 	function handleMouseEnter() {
 		changeColors();
 		vid.play();
@@ -71,6 +87,7 @@
 		sayChangeColor();
 	}
 
+	// Dispatchers
 	const dispatch = createEventDispatcher();
 
 	function sayChangeColor() {
