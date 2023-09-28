@@ -14,6 +14,7 @@
 	let {
 		reels: { results },
 		videos: { results: videos },
+		projects: { results: projects },
 		aboutHeading: { toggle: aboutHeading },
 		aboutContent: { results: aboutContent },
 		highQuality
@@ -31,7 +32,7 @@
 		mid_light.set(colors[3].trim());
 		light.set(colors[4].trim());
 		document.body.style.backgroundColor = `#${$dark}`;
-		document.querySelector('#studio').style.backgroundColor = `#${$dark}`;
+		document.querySelector('#portfolio').style.backgroundColor = `#${$dark}`;
 		document.querySelector('#about').style.backgroundColor = `#${$mid_dark}`;
 	}
 
@@ -149,14 +150,14 @@
 			</div>
 		</div>
 		<div
-			id="studio"
+			id="portfolio"
 			class="min-w-screen relative z-10 flex min-h-screen items-center justify-center bg-[var(--dark)] px-8 py-16 sm:px-28 md:px-32 lg:px-40"
 		>
 			<div
 				class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
 			>
 				{#each videos as video}
-					<GalleryVideo {video} {highQuality} on:changeColor={changeColors} />
+					<GalleryVideo {video} {projects} {highQuality} on:changeColor={changeColors} />
 				{/each}
 			</div>
 		</div>

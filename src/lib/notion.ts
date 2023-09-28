@@ -30,7 +30,7 @@ export const orderSort = [
 ];
 
 // For listing all the children of a database. It can also be used to filter and sort.
-export async function queryDatabase(id: string, filter, sorts) {
+export async function queryDatabase(id: string, filter, sorts?) {
 	throwIfMissing();
 	const response = await notion.databases.query({
 		database_id: id,

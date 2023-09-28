@@ -7,6 +7,8 @@
 
 	let openMenu: HTMLDivElement;
 
+	const handlePopState = (e: PopStateEvent) => handleMenuClose(e);
+
 	async function handleMenuOpen(e: KeyboardEvent | MouseEvent | TouchEvent) {
 		if (
 			(e instanceof KeyboardEvent && e.key == 'Enter') ||
@@ -21,7 +23,8 @@
 				.eventCallback('onComplete', () => {
 					homepageOpen.set(false);
 				});
-			window.addEventListener('popstate', () => handleMenuClose(e));
+			window.addEventListener('popstate', handlePopState);
+			history.pushState(null, '');
 		}
 		return;
 	}
@@ -42,10 +45,13 @@
 		);
 	}
 
-	function closeMenu(e: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent) {
+	function closeMenu(e?: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent) {
 		if (e instanceof PopStateEvent) {
-			window.removeEventListener('popstate', () => handleMenuClose(e));
+			e.preventDefault();
 		}
+
+		window.removeEventListener('popstate', handlePopState);
+
 		homepageOpen.set(true);
 		menuCloseAnimation()
 			.play()
@@ -54,11 +60,6 @@
 
 	async function scroll(e: Event) {
 		await tick();
-		if (e.currentTarget instanceof HTMLAnchorElement) {
-			e.preventDefault();
-			document.querySelector(e.currentTarget.hash).scrollIntoView({ behavior: 'auto' });
-			return;
-		}
 		window.scrollTo(0, scrollPosition);
 	}
 
@@ -89,7 +90,7 @@
 		<a href="/#about" on:click={handleMenuClose}>
 			<p>about</p>
 		</a>
-		<a href="/#studio" on:click={handleMenuClose}>
+		<a href="/#portfolio" on:click={handleMenuClose}>
 			<p>portfolio</p>
 		</a>
 	</div>

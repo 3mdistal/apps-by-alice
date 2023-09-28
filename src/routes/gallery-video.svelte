@@ -4,9 +4,10 @@
 	import { createEventDispatcher } from 'svelte';
 
 	export let video;
+	export let projects;
 	export let highQuality;
 
-	let {
+	const {
 		properties: {
 			Colors: {
 				rich_text: [{ plain_text: colorList }]
@@ -16,33 +17,36 @@
 			},
 			Alt: {
 				rich_text: [{ plain_text: alt }]
+			},
+			Project: {
+				relation: [{ id: parentProjectID }]
 			}
 		}
 	} = video;
 
-	const root = 'Fish on Shore';
-	let vid: HTMLVideoElement;
+	// Parent Project Properties
+	function filterProjects(projectList) {
+		return projectList.filter((project) => project.id === parentProjectID);
+	}
 
+	const parentProjectTitle = filterProjects(projects)[0].properties.Name.title[0].plain_text;
+	const parentProjectRoot = filterProjects(projects)[0].properties.Root.select.name;
+
+	// Link to Parent Project
+	const href = `/${replaceSpaces(parentProjectTitle, false)}`;
+
+	// Video Source
 	const suffix = highQuality ? '?tr=ac-none,q-50' : '?tr=ac-none,q-10';
 
-	let videoSrc =
+	const videoSrc =
 		'https://ik.imagekit.io/tempoimmaterial/anthropotpourri/studio/' +
-		replaceSpaces(root) +
+		replaceSpaces(parentProjectRoot, true) +
 		'/' +
-		replaceSpaces(name) +
+		replaceSpaces(name, true) +
 		suffix;
 
-	function changeColors() {
-		const colors = colorList.split(',');
-		dark.set(colors[0].trim());
-		mid_dark.set(colors[1].trim());
-		mid.set(colors[2].trim());
-		mid_light.set(colors[3].trim());
-		light.set(colors[4].trim());
-		document.body.style.backgroundColor = `#${$dark}`;
-		document.querySelector('#studio').style.backgroundColor = `#${$mid_dark}`;
-		document.querySelector('#about').style.backgroundColor = `#${$dark}`;
-	}
+	// Video Player
+	let vid: HTMLVideoElement;
 
 	function playBackwards(video: HTMLVideoElement) {
 		const playback = setInterval(function () {
@@ -56,9 +60,23 @@
 		setTimeout(() => {
 			clearInterval(playback);
 			video.pause();
-		}, 700);
+		}, 500);
 	}
 
+	// Local Color Changes
+	function changeColors() {
+		const colors = colorList.split(',');
+		dark.set(colors[0].trim());
+		mid_dark.set(colors[1].trim());
+		mid.set(colors[2].trim());
+		mid_light.set(colors[3].trim());
+		light.set(colors[4].trim());
+		document.body.style.backgroundColor = `#${$dark}`;
+		document.querySelector('#portfolio').style.backgroundColor = `#${$mid_dark}`;
+		document.querySelector('#about').style.backgroundColor = `#${$dark}`;
+	}
+
+	// Handlers
 	function handleMouseEnter() {
 		changeColors();
 		vid.play();
@@ -69,6 +87,7 @@
 		sayChangeColor();
 	}
 
+	// Dispatchers
 	const dispatch = createEventDispatcher();
 
 	function sayChangeColor() {
@@ -76,23 +95,26 @@
 	}
 </script>
 
-<div class="rounded-2xl">
-	<div
-		class="peer relative aspect-square overflow-hidden rounded-2xl hover:scale-105 hover:drop-shadow-lg focus:scale-105 focus:drop-shadow-lg [&_video]:hover:scale-[100%] [&_video]:hover:saturate-[125%] [&_video]:focus:scale-[100%] [&_video]:focus:saturate-[125%]"
-		on:mouseenter={handleMouseEnter}
-		on:mouseleave={handleMouseLeave}
-		on:focus={handleMouseEnter}
-		on:blur={handleMouseLeave}
-		role="button"
-		tabindex="0"
-	>
-		<video
-			bind:this={vid}
-			muted
-			src={videoSrc}
-			class="h-full w-full scale-[110%] object-cover saturate-0"
-			alt={alt ? alt : name}
-		/>
-		<div class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-20 hover:opacity-0"></div>
-	</div>
-</div>
+<a
+	class="peer relative aspect-square overflow-hidden rounded-2xl hover:scale-105 hover:drop-shadow-lg focus:scale-105 focus:drop-shadow-lg [&_video]:hover:scale-[100%] [&_video]:hover:saturate-[125%] [&_video]:focus:scale-[100%] [&_video]:focus:saturate-[125%]"
+	{href}
+	on:mouseenter={handleMouseEnter}
+	on:mouseleave={handleMouseLeave}
+	on:focus={handleMouseEnter}
+	on:blur={handleMouseLeave}
+>
+	<video
+		bind:this={vid}
+		muted
+		src={videoSrc}
+		class="h-full w-full scale-[110%] object-cover saturate-0"
+		alt={alt ? alt : name}
+	/>
+	<div class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-20 hover:opacity-0"></div>
+</a>
+
+<style>
+	* {
+		transition: all 0.5s ease-in-out;
+	}
+</style>
