@@ -23,7 +23,7 @@
 	const root = 'Fish on Shore';
 	let vid: HTMLVideoElement;
 
-	const suffix = highQuality ? '?tr=ac-none,q-40' : '?tr=ac-none,q-10';
+	const suffix = highQuality ? '?tr=ac-none,q-50' : '?tr=ac-none,q-10';
 
 	let videoSrc =
 		'https://ik.imagekit.io/tempoimmaterial/anthropotpourri/studio/' +
