@@ -58,7 +58,7 @@
 		setTimeout(() => {
 			clearInterval(playback);
 			video.pause();
-		}, 700);
+		}, 500);
 	}
 
 	function handleMouseEnter() {
