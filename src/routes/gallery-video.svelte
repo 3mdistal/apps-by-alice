@@ -106,11 +106,14 @@
 	<video
 		bind:this={vid}
 		muted
+		playsinline
 		src={videoSrc}
-		class="h-full w-full scale-[110%] object-cover saturate-0"
+		class="h-full w-full scale-[110%] object-cover sm:saturate-0"
 		alt={alt ? alt : name}
 	/>
-	<div class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-20 hover:opacity-0"></div>
+	<div
+		class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-0 hover:opacity-0 sm:opacity-20"
+	></div>
 </a>
 
 <style>
