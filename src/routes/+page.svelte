@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { dark, mid_dark, mid, mid_light, light, homepageOpen } from '$lib/stores';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
-	import StudioEntry from './studio-entry.svelte';
+	import GalleryVideo from './gallery-video.svelte';
 	import { replaceSpaces, createIntersectionObserver } from '$lib/helpers';
 	import TextMacro from '$lib/text-macro.svelte';
 
@@ -150,13 +150,13 @@
 		</div>
 		<div
 			id="studio"
-			class="min-w-screen relative z-10 flex min-h-screen items-center justify-center bg-[var(--dark)] px-8 sm:px-28 md:px-32 lg:px-40"
+			class="min-w-screen relative z-10 flex min-h-screen items-center justify-center bg-[var(--dark)] px-8 py-16 sm:px-28 md:px-32 lg:px-40"
 		>
 			<div
 				class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
 			>
 				{#each videos as video}
-					<StudioEntry {video} {highQuality} on:changeColor={changeColors} />
+					<GalleryVideo {video} {highQuality} on:changeColor={changeColors} />
 				{/each}
 			</div>
 		</div>

@@ -13,6 +13,9 @@
 			},
 			Name: {
 				title: [{ plain_text: name }]
+			},
+			Alt: {
+				rich_text: [{ plain_text: alt }]
 			}
 		}
 	} = video;
@@ -75,15 +78,20 @@
 
 <div class="rounded-2xl">
 	<div
-		class="peer relative aspect-square overflow-hidden rounded-2xl hover:scale-105 hover:drop-shadow-lg [&_video]:hover:scale-[100%] [&_video]:hover:saturate-[125%]"
+		class="peer relative aspect-square overflow-hidden rounded-2xl hover:scale-105 hover:drop-shadow-lg focus:scale-105 focus:drop-shadow-lg [&_video]:hover:scale-[100%] [&_video]:hover:saturate-[125%] [&_video]:focus:scale-[100%] [&_video]:focus:saturate-[125%]"
 		on:mouseenter={handleMouseEnter}
 		on:mouseleave={handleMouseLeave}
+		on:focus={handleMouseEnter}
+		on:blur={handleMouseLeave}
+		role="button"
+		tabindex="0"
 	>
 		<video
 			bind:this={vid}
+			muted
 			src={videoSrc}
 			class="h-full w-full scale-[110%] object-cover saturate-0"
-			alt=""
+			alt={alt ? alt : name}
 		/>
 		<div class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-20 hover:opacity-0"></div>
 	</div>
