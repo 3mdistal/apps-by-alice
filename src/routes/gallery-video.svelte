@@ -96,7 +96,7 @@
 </script>
 
 <a
-	class="peer relative aspect-square overflow-hidden rounded-2xl hover:scale-105 hover:drop-shadow-lg focus:scale-105 focus:drop-shadow-lg [&_video]:hover:scale-[100%] [&_video]:hover:saturate-[125%] [&_video]:focus:scale-[100%] [&_video]:focus:saturate-[125%]"
+	class="sm:ocus:scale-105 peer relative aspect-square overflow-hidden rounded-2xl sm:hover:scale-105 sm:hover:drop-shadow-lg sm:focus:drop-shadow-lg sm:[&_video]:hover:scale-[100%] sm:[&_video]:hover:saturate-[125%] sm:[&_video]:focus:scale-[100%] sm:[&_video]:focus:saturate-[125%]"
 	{href}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
@@ -108,11 +108,11 @@
 		muted
 		playsinline
 		src={videoSrc}
-		class="h-full w-full scale-[110%] object-cover sm:saturate-0"
+		class="h-full w-full object-cover sm:scale-[110%] sm:saturate-0"
 		alt={alt ? alt : name}
 	/>
 	<div
-		class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-0 hover:opacity-0 sm:opacity-20"
+		class="absolute top-0 hidden h-full w-full bg-[var(--midDark)] hover:opacity-0 sm:block sm:opacity-20"
 	></div>
 </a>
 
