@@ -86,11 +86,11 @@
 		<a href="/#home" on:click={handleMenuClose}>
 			<p>home</p>
 		</a>
-		<a href="/#studio" on:click={handleMenuClose}>
-			<p>studio</p>
-		</a>
 		<a href="/#about" on:click={handleMenuClose}>
 			<p>about</p>
+		</a>
+		<a href="/#studio" on:click={handleMenuClose}>
+			<p>portfolio</p>
 		</a>
 	</div>
 
@@ -111,12 +111,15 @@
 		role="button"
 		tabindex="0"
 	>
-		<p class="select-none text-center font-serif text-3xl italic text-[var(--light)]">a</p>
+		<p class="trans select-none text-center font-serif text-3xl italic text-[var(--light)]">a</p>
 	</div>
 {/if}
 
 <style>
 	* {
 		transition: none;
+		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+		transition-duration: 700ms;
+		transition-timing-function: ease-in-out;
 	}
 </style>
