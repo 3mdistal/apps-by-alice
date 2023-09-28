@@ -2,7 +2,6 @@
 	import { homepageOpen, menuOpen } from '$lib/stores';
 	import { tick } from 'svelte';
 	import gsap from 'gsap';
-	import Page from './+page.svelte';
 
 	let scrollPosition = 0;
 
@@ -51,7 +50,6 @@
 			e.preventDefault();
 		}
 
-		// TODO: There seems to be a memory leak here.
 		window.removeEventListener('popstate', handlePopState);
 
 		homepageOpen.set(true);
@@ -62,11 +60,6 @@
 
 	async function scroll(e: Event) {
 		await tick();
-		// if (e.currentTarget instanceof HTMLAnchorElement) {
-		// 	e.preventDefault();
-		// 	document.querySelector(e.currentTarget.hash).scrollIntoView({ behavior: 'auto' });
-		// 	return;
-		// }
 		window.scrollTo(0, scrollPosition);
 	}
 
