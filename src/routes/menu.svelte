@@ -2,6 +2,7 @@
 	import { homepageOpen, menuOpen } from '$lib/stores';
 	import { tick } from 'svelte';
 	import gsap from 'gsap';
+	import Page from './+page.svelte';
 
 	let scrollPosition = 0;
 
@@ -21,10 +22,13 @@
 				.eventCallback('onComplete', () => {
 					homepageOpen.set(false);
 				});
-			window.addEventListener('popstate', () => handleMenuClose(e));
+			window.addEventListener('popstate', forceCloseMenu);
+			history.pushState(null, '');
 		}
 		return;
 	}
+
+	const forceCloseMenu = () => closeMenu();
 
 	function handleMenuClose(e: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent) {
 		if (shouldCloseMenu(e)) {
@@ -42,10 +46,14 @@
 		);
 	}
 
-	function closeMenu(e: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent) {
+	function closeMenu(e?: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent) {
 		if (e instanceof PopStateEvent) {
-			window.removeEventListener('popstate', () => handleMenuClose(e));
+			e.preventDefault();
 		}
+
+		// TODO: There seems to be a memory leak here.
+		window.removeEventListener('popstate', forceCloseMenu);
+
 		homepageOpen.set(true);
 		menuCloseAnimation()
 			.play()
