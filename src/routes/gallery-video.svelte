@@ -25,12 +25,14 @@
 
 	const suffix = highQuality ? '?tr=ac-none,q-50' : '?tr=ac-none,q-10';
 
-	let videoSrc =
+	const videoSrc =
 		'https://ik.imagekit.io/tempoimmaterial/anthropotpourri/studio/' +
-		replaceSpaces(root) +
+		replaceSpaces(root, true) +
 		'/' +
-		replaceSpaces(name) +
+		replaceSpaces(name, true) +
 		suffix;
+
+	const href = `/${replaceSpaces(root, false)}`;
 
 	function changeColors() {
 		const colors = colorList.split(',');
@@ -40,7 +42,7 @@
 		mid_light.set(colors[3].trim());
 		light.set(colors[4].trim());
 		document.body.style.backgroundColor = `#${$dark}`;
-		document.querySelector('#studio').style.backgroundColor = `#${$mid_dark}`;
+		document.querySelector('#portfolio').style.backgroundColor = `#${$mid_dark}`;
 		document.querySelector('#about').style.backgroundColor = `#${$dark}`;
 	}
 
@@ -76,23 +78,20 @@
 	}
 </script>
 
-<div class="rounded-2xl">
-	<div
-		class="peer relative aspect-square overflow-hidden rounded-2xl hover:scale-105 hover:drop-shadow-lg focus:scale-105 focus:drop-shadow-lg [&_video]:hover:scale-[100%] [&_video]:hover:saturate-[125%] [&_video]:focus:scale-[100%] [&_video]:focus:saturate-[125%]"
-		on:mouseenter={handleMouseEnter}
-		on:mouseleave={handleMouseLeave}
-		on:focus={handleMouseEnter}
-		on:blur={handleMouseLeave}
-		role="button"
-		tabindex="0"
-	>
-		<video
-			bind:this={vid}
-			muted
-			src={videoSrc}
-			class="h-full w-full scale-[110%] object-cover saturate-0"
-			alt={alt ? alt : name}
-		/>
-		<div class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-20 hover:opacity-0"></div>
-	</div>
-</div>
+<a
+	class="peer relative aspect-square overflow-hidden rounded-2xl hover:scale-105 hover:drop-shadow-lg focus:scale-105 focus:drop-shadow-lg [&_video]:hover:scale-[100%] [&_video]:hover:saturate-[125%] [&_video]:focus:scale-[100%] [&_video]:focus:saturate-[125%]"
+	{href}
+	on:mouseenter={handleMouseEnter}
+	on:mouseleave={handleMouseLeave}
+	on:focus={handleMouseEnter}
+	on:blur={handleMouseLeave}
+>
+	<video
+		bind:this={vid}
+		muted
+		src={videoSrc}
+		class="h-full w-full scale-[110%] object-cover saturate-0"
+		alt={alt ? alt : name}
+	/>
+	<div class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-20 hover:opacity-0"></div>
+</a>

@@ -149,7 +149,7 @@
 			</div>
 		</div>
 		<div
-			id="studio"
+			id="portfolio"
 			class="min-w-screen relative z-10 flex min-h-screen items-center justify-center bg-[var(--dark)] px-8 py-16 sm:px-28 md:px-32 lg:px-40"
 		>
 			<div

@@ -1,5 +1,9 @@
-export function replaceSpaces(str: string) {
-    return str.replace(/\s/g, '%20');
+export function replaceSpaces(str: string, imageKit: boolean = true) {
+    if (imageKit)
+    {
+        return str.replace(/\s/g, '%20');
+    }
+    return str.replace(/\s/g, '_');
 }
 
 export function createIntersectionObserver(element: HTMLVideoElement) {
