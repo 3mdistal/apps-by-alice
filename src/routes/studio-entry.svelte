@@ -3,37 +3,31 @@
 	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
 	import { createEventDispatcher } from 'svelte';
 
-	export let studioGalleryResult;
+	export let video;
+	export let highQuality;
 
 	let {
 		properties: {
 			Colors: {
 				rich_text: [{ plain_text: colorList }]
 			},
-			Cover: {
-				rich_text: [{ plain_text: cover }]
-			},
-			Date: {
-				rich_text: [{ plain_text: date }]
-			},
-			Logline: {
-				rich_text: [{ plain_text: logline }]
-			},
 			Name: {
 				title: [{ plain_text: name }]
-			},
-			Root: {
-				rich_text: [{ plain_text: root }]
 			}
 		}
-	} = studioGalleryResult;
+	} = video;
 
-	let imageSrc =
+	const root = 'Fish on Shore';
+	let vid: HTMLVideoElement;
+
+	const suffix = highQuality ? '?tr=ac-none,q-40' : '?tr=ac-none,q-10';
+
+	let videoSrc =
 		'https://ik.imagekit.io/tempoimmaterial/anthropotpourri/studio/' +
 		replaceSpaces(root) +
 		'/' +
-		replaceSpaces(cover) +
-		'?tr=w-1000';
+		replaceSpaces(name) +
+		suffix;
 
 	function changeColors() {
 		const colors = colorList.split(',');
@@ -47,6 +41,31 @@
 		document.querySelector('#about').style.backgroundColor = `#${$dark}`;
 	}
 
+	function playBackwards(video: HTMLVideoElement) {
+		const playback = setInterval(function () {
+			if (video.currentTime <= 0) {
+				video.pause();
+			} else {
+				video.currentTime -= 0.2;
+			}
+		}, 42);
+
+		setTimeout(() => {
+			clearInterval(playback);
+			video.pause();
+		}, 700);
+	}
+
+	function handleMouseEnter() {
+		changeColors();
+		vid.play();
+	}
+
+	function handleMouseLeave() {
+		playBackwards(vid);
+		sayChangeColor();
+	}
+
 	const dispatch = createEventDispatcher();
 
 	function sayChangeColor() {
@@ -56,19 +75,16 @@
 
 <div class="rounded-2xl">
 	<div
-		class="peer aspect-square overflow-hidden rounded-2xl hover:scale-105 hover:drop-shadow-lg [&_img]:hover:scale-[100%] [&_img]:hover:saturate-[125%]"
-		on:mouseenter={changeColors}
-		on:mouseleave={sayChangeColor}
+		class="peer relative aspect-square overflow-hidden rounded-2xl hover:scale-105 hover:drop-shadow-lg [&_video]:hover:scale-[100%] [&_video]:hover:saturate-[125%]"
+		on:mouseenter={handleMouseEnter}
+		on:mouseleave={handleMouseLeave}
 	>
-		<img src={imageSrc} class="h-full w-full scale-[110%] object-cover saturate-0" alt="" />
+		<video
+			bind:this={vid}
+			src={videoSrc}
+			class="h-full w-full scale-[110%] object-cover saturate-0"
+			alt=""
+		/>
+		<div class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-20 hover:opacity-0"></div>
 	</div>
-	<!-- <div class="mt-12 sm:w-3/4 md:mt-0 md:max-w-[35%] [&_*]:peer-hover:opacity-100">
-		<h2 class="opacity-0 md:mb-4">
-			{name}
-		</h2>
-		<p class="text-lg font-light italic opacity-0 md:mb-2 lg:text-xl">
-			{date}
-		</p>
-		<p class="opacity-0">{logline}</p>
-	</div> -->
 </div>

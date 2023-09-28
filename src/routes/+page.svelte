@@ -13,7 +13,7 @@
 
 	let {
 		reels: { results },
-		studioGalleryContent: { results: studioGalleryContent },
+		videos: { results: videos },
 		aboutHeading: { toggle: aboutHeading },
 		aboutContent: { results: aboutContent },
 		highQuality
@@ -155,8 +155,8 @@
 			<div
 				class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
 			>
-				{#each studioGalleryContent as studioGalleryResult}
-					<StudioEntry {studioGalleryResult} on:changeColor={changeColors} />
+				{#each videos as video}
+					<StudioEntry {video} {highQuality} on:changeColor={changeColors} />
 				{/each}
 			</div>
 		</div>
