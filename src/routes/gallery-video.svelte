@@ -96,7 +96,7 @@
 </script>
 
 <a
-	class="sm:ocus:scale-105 peer relative aspect-square overflow-hidden rounded-2xl sm:hover:scale-105 sm:hover:drop-shadow-lg sm:focus:drop-shadow-lg sm:[&_video]:hover:scale-[100%] sm:[&_video]:hover:saturate-[125%] sm:[&_video]:focus:scale-[100%] sm:[&_video]:focus:saturate-[125%]"
+	class="peer relative aspect-square overflow-hidden rounded-2xl sm:hover:scale-105 sm:hover:drop-shadow-lg sm:focus:scale-105 sm:focus:drop-shadow-lg sm:[&_video]:hover:scale-[100%] sm:[&_video]:hover:saturate-[125%] sm:[&_video]:focus:scale-[100%] sm:[&_video]:focus:saturate-[125%]"
 	{href}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
