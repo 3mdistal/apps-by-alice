@@ -8,6 +8,8 @@
 
 	let openMenu: HTMLDivElement;
 
+	const handlePopState = (e: PopStateEvent) => handleMenuClose(e);
+
 	async function handleMenuOpen(e: KeyboardEvent | MouseEvent | TouchEvent) {
 		if (
 			(e instanceof KeyboardEvent && e.key == 'Enter') ||
@@ -22,13 +24,11 @@
 				.eventCallback('onComplete', () => {
 					homepageOpen.set(false);
 				});
-			window.addEventListener('popstate', forceCloseMenu);
+			window.addEventListener('popstate', handlePopState);
 			history.pushState(null, '');
 		}
 		return;
 	}
-
-	const forceCloseMenu = () => closeMenu();
 
 	function handleMenuClose(e: KeyboardEvent | MouseEvent | TouchEvent | PopStateEvent) {
 		if (shouldCloseMenu(e)) {
@@ -52,7 +52,7 @@
 		}
 
 		// TODO: There seems to be a memory leak here.
-		window.removeEventListener('popstate', forceCloseMenu);
+		window.removeEventListener('popstate', handlePopState);
 
 		homepageOpen.set(true);
 		menuCloseAnimation()
