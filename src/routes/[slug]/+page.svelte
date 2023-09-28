@@ -18,7 +18,7 @@
 </script>
 
 {#each projects as { properties: { Root, Name } }}
-	{#if replaceSpaces(Root.select.name, false) === pagePath}
+	{#if replaceSpaces(Name.title[0].plain_text, false) === pagePath}
 		<p>{Name.title[0].plain_text}!</p>
 	{/if}
 {/each}
