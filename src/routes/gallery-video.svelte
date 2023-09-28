@@ -112,3 +112,9 @@
 	/>
 	<div class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-20 hover:opacity-0"></div>
 </a>
+
+<style>
+	* {
+		transition: all 0.5s ease-in-out;
+	}
+</style>
