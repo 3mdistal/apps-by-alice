@@ -5,7 +5,7 @@ const config = {
 	theme: {
 		extend: {
 			fontFamily: {
-				serif: ['Bitter', 'serif'],
+				serif: ['Bitter', 'Georgia', 'serif'],
 				sans_serif: ['Nunito Sans', 'sans-serif']
 			}
 		}
