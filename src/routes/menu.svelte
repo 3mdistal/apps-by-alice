@@ -87,16 +87,16 @@
 		<a href="/#home" on:click={handleMenuClose}>
 			<p>home</p>
 		</a>
-		<a href="/#about" on:click={handleMenuClose}>
-			<p>about</p>
+		<a href="/films" on:click={handleMenuClose}>
+			<p>films</p>
 		</a>
-		<a href="/#portfolio" on:click={handleMenuClose}>
-			<p>portfolio</p>
+		<a href="/about" on:click={handleMenuClose}>
+			<p>about</p>
 		</a>
 	</div>
 
 	<div
-		class="fixed right-8 top-8 z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--midDark)] bg-[var(--light)]"
+		class="fixed right-2 top-2 z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--midDark)] bg-[var(--light)] sm:right-4 sm:top-4 lg:right-8 lg:top-8"
 		on:keydown={handleMenuClose}
 		on:click={handleMenuClose}
 		role="button"
@@ -106,7 +106,7 @@
 	</div>
 {:else}
 	<div
-		class="fixed right-8 top-8 z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--light)] bg-[var(--mid)]"
+		class="fixed right-2 top-2 z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--light)] bg-[var(--mid)] sm:right-4 sm:top-4 lg:right-8 lg:top-8"
 		on:click={handleMenuOpen}
 		on:keydown={handleMenuOpen}
 		role="button"

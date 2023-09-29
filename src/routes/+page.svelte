@@ -97,15 +97,15 @@
 </svelte:head>
 
 {#if $homepageOpen}
-	<div id="home">
+	<div id="home" class="flex h-screen w-screen items-center justify-center">
 		<!-- Fullscreen Reel -->
-		<div class="min-h-screen w-screen">
+		<div class="h-[85%] max-w-[85%] overflow-hidden rounded-2xl">
 			<video
 				bind:this={video}
 				muted
 				playsinline
 				autoplay
-				class="min-h-screen w-screen object-cover"
+				class="h-full w-full object-cover"
 				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
 					results[currentVideo].properties.Name.title[0].plain_text
 				)}${suffix}`}
@@ -121,12 +121,12 @@
 		<div class="absolute top-0 min-h-screen w-screen" on:click={() => video.play()}>
 			<div class="absolute h-full w-full bg-[var(--dark)] opacity-40" />
 			<div class="relative flex min-h-screen w-full items-center justify-center">
-				<div class="w-3/4 sm:w-1/2 md:w-screen lg:w-1/2 [&_p]:max-w-[50ch]">
-					<h1 class="mb-2 font-serif text-6xl italic text-[var(--midLight)] md:hidden md:text-8xl">
+				<div class="w-3/4 sm:w-1/2 lg:w-3/4 xl:w-1/2 [&_p]:max-w-[50ch]">
+					<h1 class="mb-2 font-serif text-6xl italic text-[var(--midLight)] md:text-8xl lg:hidden">
 						anthro-<br />potpourri
 					</h1>
 					<h1
-						class="mb-2 hidden text-center font-serif italic text-[var(--midLight)] md:block md:text-8xl"
+						class="mb-2 hidden text-center font-serif italic text-[var(--midLight)] md:text-8xl lg:block"
 					>
 						anthropotpourri
 					</h1>
@@ -136,30 +136,30 @@
 				</div>
 			</div>
 		</div>
-		<div
-			id="about"
-			class="relative z-10 flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
-		>
-			<div class="w-3/4 lg:w-1/2">
-				<h2 class="mb-12"><TextMacro type={aboutHeading} /></h2>
-				<div
-					class="max-w-[50ch] md:text-2xl [&_a]:font-semibold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
-				>
-					<NotionPageParser results={aboutContent} />
-				</div>
+	</div>
+	<div
+		id="about"
+		class="relative z-10 flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
+	>
+		<div class="w-3/4 lg:w-1/2">
+			<h2 class="mb-12"><TextMacro type={aboutHeading} /></h2>
+			<div
+				class="max-w-[50ch] md:text-2xl [&_a]:font-semibold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
+			>
+				<NotionPageParser results={aboutContent} />
 			</div>
 		</div>
+	</div>
+	<div
+		id="portfolio"
+		class="min-w-screen relative z-10 flex min-h-screen items-center justify-center bg-[var(--dark)] px-8 py-16 sm:px-28 md:px-32 lg:px-40"
+	>
 		<div
-			id="portfolio"
-			class="min-w-screen relative z-10 flex min-h-screen items-center justify-center bg-[var(--dark)] px-8 py-16 sm:px-28 md:px-32 lg:px-40"
+			class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
 		>
-			<div
-				class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
-			>
-				{#each videos as video}
-					<GalleryVideo {video} {projects} {highQuality} on:changeColor={changeColors} />
-				{/each}
-			</div>
+			{#each videos as video}
+				<GalleryVideo {video} {projects} {highQuality} on:changeColor={changeColors} />
+			{/each}
 		</div>
 	</div>
 {/if}
