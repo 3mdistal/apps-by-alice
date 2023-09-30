@@ -2,6 +2,7 @@
 	import { homepageOpen, menuOpen } from '$lib/stores';
 	import { tick } from 'svelte';
 	import gsap from 'gsap';
+	import CameraLogo from '$lib/svg/camera-logo.svelte';
 
 	let scrollPosition = 0;
 
@@ -84,7 +85,7 @@
 		class="fixed top-0 z-10 flex h-screen w-screen flex-col items-center justify-center gap-y-[8%] bg-[var(--midLight)] lg:gap-y-[16%] [&_a]:cursor-pointer [&_p]:select-none [&_p]:font-serif [&_p]:text-6xl [&_p]:italic [&_p]:text-[var(--midDark)] [&_p]:transition-all [&_p]:duration-200 hover:[&_p]:text-[var(--mid)] lg:[&_p]:text-[5rem]"
 		bind:this={openMenu}
 	>
-		<a href="/#home" on:click={handleMenuClose}>
+		<a href="/" on:click={handleMenuClose}>
 			<p>home</p>
 		</a>
 		<a href="/films" on:click={handleMenuClose}>
@@ -96,30 +97,30 @@
 	</div>
 
 	<div
-		class="fixed right-2 top-2 z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--midDark)] bg-[var(--light)] sm:right-4 sm:top-4 lg:right-8 lg:top-8"
+		class="fixed right-0 top-0 z-10 flex h-20 w-20 items-center justify-center rounded-full hover:scale-105 sm:h-32 sm:w-32"
 		on:keydown={handleMenuClose}
 		on:click={handleMenuClose}
 		role="button"
 		tabindex="0"
 	>
-		<p class="select-none text-center font-serif text-3xl italic text-[var(--midDark)]">a</p>
+		<CameraLogo fill="var(--midDark)" hoverFill="var(--dark)" />
 	</div>
 {:else}
 	<div
-		class="fixed right-2 top-2 z-10 flex h-14 w-14 items-center justify-center rounded-full border-2 border-[var(--light)] bg-[var(--mid)] sm:right-4 sm:top-4 lg:right-8 lg:top-8"
+		class="fixed right-0 top-0 z-10 flex h-20 w-20 items-center justify-center rounded-full sm:h-32 sm:w-32"
 		on:click={handleMenuOpen}
 		on:keydown={handleMenuOpen}
 		role="button"
 		tabindex="0"
 	>
-		<p class="trans select-none text-center font-serif text-3xl italic text-[var(--light)]">a</p>
+		<CameraLogo fill="var(--midLight)" hoverFill="var(--light)" />
 	</div>
 {/if}
 
 <style>
 	* {
 		transition: none;
-		transition-property: color, background-color, border-color, text-decoration-color, fill, stroke;
+		transition-property: color, background-color, border-color, text-decoration-color;
 		transition-duration: 700ms;
 		transition-timing-function: ease-in-out;
 	}

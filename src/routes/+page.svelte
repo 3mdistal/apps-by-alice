@@ -5,6 +5,7 @@
 	import GalleryVideo from './gallery-video.svelte';
 	import { replaceSpaces, createIntersectionObserver } from '$lib/helpers';
 	import TextMacro from '$lib/text-macro.svelte';
+	import TextLogo from '$lib/svg/text-logo.svelte';
 
 	// Import Notion Data
 	export let data;
@@ -99,7 +100,7 @@
 {#if $homepageOpen}
 	<div id="home" class="flex h-screen w-screen items-center justify-center">
 		<!-- Fullscreen Reel -->
-		<div class="h-[85%] max-w-[85%] overflow-hidden rounded-2xl">
+		<div class="h-[75%] max-w-[85%] overflow-hidden rounded-2xl lg:h-[85%]">
 			<video
 				bind:this={video}
 				muted
@@ -118,20 +119,19 @@
 
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<div class="absolute top-0 min-h-screen w-screen" on:click={() => video.play()}>
+		<div class="absolute top-0 h-screen w-screen" on:click={() => video.play()}>
 			<div class="absolute h-full w-full bg-[var(--dark)] opacity-40" />
-			<div class="relative flex min-h-screen w-full items-center justify-center">
-				<div class="w-3/4 sm:w-1/2 lg:w-3/4 xl:w-1/2 [&_p]:max-w-[50ch]">
-					<h1 class="mb-2 font-serif text-6xl italic text-[var(--midLight)] md:text-8xl lg:hidden">
-						anthro-<br />potpourri
-					</h1>
-					<h1
-						class="mb-2 hidden text-center font-serif italic text-[var(--midLight)] md:text-8xl lg:block"
+			<div class="relative flex h-screen w-full items-center justify-center">
+				<div class="flex w-3/4 flex-col items-center justify-center xl:w-[60%] 2xl:w-1/2">
+					<TextLogo />
+
+					<p
+						class="hidden text-center text-sm tracking-[.5rem] sm:text-xl md:mt-2 md:block lg:text-2xl"
 					>
-						anthropotpourri
-					</h1>
-					<p class="mb-4 text-center italic md:text-right md:text-2xl">
-						the cinematography of Shorouk Elkobrsi
+						The Cinematography of Shorouk Elkobrsi
+					</p>
+					<p class="text-center text-sm tracking-[.5rem] sm:text-xl md:hidden">
+						The Cinematography<br />of Shorouk Elkobrsi
 					</p>
 				</div>
 			</div>
