@@ -11,8 +11,14 @@
 		display: block;
 	}
 
+	h1,
+	h2,
 	p {
-		@apply select-none font-sans_serif text-xl text-[var(--light)] lg:text-2xl;
+		@apply cursor-default select-none;
+	}
+
+	p {
+		@apply font-sans_serif text-xl text-[var(--light)] lg:text-2xl;
 	}
 
 	strong {
@@ -25,7 +31,7 @@
 
 	h1,
 	h2 {
-		@apply select-none font-['Allison_Script'];
+		@apply font-['Allison_Script'];
 	}
 
 	h2 {

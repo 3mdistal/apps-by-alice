@@ -100,13 +100,13 @@
 	<div class="snap-y snap-proximity">
 		<div class="flex h-screen w-screen snap-center items-center justify-center">
 			<!-- Fullscreen Reel -->
-			<div class="relative max-w-[85%] overflow-hidden rounded-2xl lg:h-[85%]">
+			<div class="max-w-[85%] overflow-hidden rounded-2xl lg:h-[85%]">
 				<video
 					bind:this={video}
 					muted
 					playsinline
 					autoplay
-					class="aspect-[3/4.5] h-full w-full object-cover sm:aspect-[3/4] md:aspect-square lg:aspect-[4/3]"
+					class="relative -z-10 aspect-[3/4.5] h-full w-full object-cover sm:aspect-[3/4] md:aspect-square lg:aspect-[4/3]"
 					src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
 						results[currentVideo].properties.Name.title[0].plain_text
 					)}${suffix}`}
@@ -114,18 +114,19 @@
 					on:canplaythrough={preloadNextVideo}
 				>
 				</video>
+				<!-- Overlay -->
 				<div class="absolute left-0 top-0 h-full w-full" on:click={() => video.play()}>
 					<div class="absolute left-0 top-0 h-full w-full bg-[var(--dark)] opacity-40"></div>
 					<div class="relative flex h-full w-full items-center justify-center">
 						<div class="flex flex-col items-center justify-center">
 							<!-- <TextLogo /> -->
 							<h1
-								class="mt-[-.3em] text-[14vw] leading-[1.1em] text-[var(--midLight)] xl:text-[12vw]"
+								class="text-[14vw] leading-[1em] text-[var(--midLight)] lg:leading-[.9em] xl:text-[12vw]"
 							>
 								Anthropotpourri
 							</h1>
 							<p
-								class="hidden text-center text-sm tracking-[.5rem] sm:text-xl md:mt-2 md:block lg:text-2xl"
+								class="hidden text-center text-sm tracking-[.5rem] sm:text-xl md:block lg:text-2xl"
 							>
 								The Cinematography of Shorouk Elkobrsi
 							</p>
@@ -155,7 +156,7 @@
 		</div>
 		<div
 			id="portfolio"
-			class="min-w-screen relative z-10 flex h-screen snap-center items-center justify-center bg-[var(--dark)] px-8 sm:px-28 md:px-32 lg:px-40"
+			class="min-w-screen relative z-10 flex min-h-screen snap-center items-center justify-center bg-[var(--dark)] px-8 py-[10vh] sm:px-28 md:px-32 lg:h-screen lg:px-40 lg:py-0"
 		>
 			<div
 				class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
