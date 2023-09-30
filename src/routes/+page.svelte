@@ -5,7 +5,6 @@
 	import GalleryVideo from './gallery-video.svelte';
 	import { replaceSpaces, createIntersectionObserver } from '$lib/helpers';
 	import TextMacro from '$lib/text-macro.svelte';
-	import TextLogo from '$lib/svg/text-logo.svelte';
 
 	// Import Notion Data
 	export let data;
@@ -101,7 +100,7 @@
 	<div class="snap-y snap-proximity">
 		<div class="flex h-screen w-screen snap-center items-center justify-center">
 			<!-- Fullscreen Reel -->
-			<div class="max-w-[85%] overflow-hidden rounded-2xl lg:h-[85%]">
+			<div class="relative max-w-[85%] overflow-hidden rounded-2xl lg:h-[85%]">
 				<video
 					bind:this={video}
 					muted
@@ -115,33 +114,34 @@
 					on:canplaythrough={preloadNextVideo}
 				>
 				</video>
+				<div class="absolute left-0 top-0 h-full w-full" on:click={() => video.play()}>
+					<div class="absolute left-0 top-0 h-full w-full bg-[var(--dark)] opacity-40"></div>
+					<div class="relative flex h-full w-full items-center justify-center">
+						<div class="flex flex-col items-center justify-center">
+							<!-- <TextLogo /> -->
+							<h1
+								class="mt-[-.3em] text-[14vw] leading-[1.1em] text-[var(--midLight)] xl:text-[12vw]"
+							>
+								Anthropotpourri
+							</h1>
+							<p
+								class="hidden text-center text-sm tracking-[.5rem] sm:text-xl md:mt-2 md:block lg:text-2xl"
+							>
+								The Cinematography of Shorouk Elkobrsi
+							</p>
+							<p class="text-center text-sm tracking-[.5rem] sm:text-xl md:hidden">
+								The Cinematography<br />of Shorouk Elkobrsi
+							</p>
+						</div>
+					</div>
+				</div>
 			</div>
 			<!-- Overlay -->
 			<!-- svelte-ignore a11y-click-events-have-key-events -->
 			<!-- svelte-ignore a11y-no-static-element-interactions -->
-			<div class="absolute top-0 h-screen w-screen" on:click={() => video.play()}>
-				<div class="absolute h-full w-full bg-[var(--dark)] opacity-40" />
-				<div class="relative flex h-screen w-full items-center justify-center">
-					<div class="flex w-3/4 flex-col items-center justify-center xl:w-[60%] 2xl:w-1/2">
-						<!-- <TextLogo /> -->
-						<h1
-							class="mt-[-.3em] text-[14vw] leading-[1.1em] text-[var(--midLight)] xl:text-[12vw]"
-						>
-							Anthropotpourri
-						</h1>
-						<p
-							class="hidden text-center text-sm tracking-[.5rem] sm:text-xl md:mt-2 md:block lg:text-2xl"
-						>
-							The Cinematography of Shorouk Elkobrsi
-						</p>
-						<p class="text-center text-sm tracking-[.5rem] sm:text-xl md:hidden">
-							The Cinematography<br />of Shorouk Elkobrsi
-						</p>
-					</div>
-				</div>
-			</div>
 		</div>
 		<div
+			id="about"
 			class="flex min-h-screen w-screen snap-center items-center justify-center bg-[var(--midDark)] py-[25vh]"
 		>
 			<div class="w-3/4 max-w-[50ch] md:text-2xl lg:w-1/2">
@@ -154,6 +154,7 @@
 			</div>
 		</div>
 		<div
+			id="portfolio"
 			class="min-w-screen relative z-10 flex h-screen snap-center items-center justify-center bg-[var(--dark)] px-8 sm:px-28 md:px-32 lg:px-40"
 		>
 			<div
