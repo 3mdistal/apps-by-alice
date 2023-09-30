@@ -17,8 +17,14 @@
 	});
 </script>
 
+<svelte:head>
+	<title>{pagePath}</title>
+</svelte:head>
+
 {#each projects as { properties: { Root, Name } }}
 	{#if replaceSpaces(Name.title[0].plain_text, false) === pagePath}
-		<p>{Name.title[0].plain_text}!</p>
+		<div class="m-auto max-w-[50ch] py-[25vh]">
+			<h2>{Name.title[0].plain_text}!</h2>
+		</div>
 	{/if}
 {/each}
