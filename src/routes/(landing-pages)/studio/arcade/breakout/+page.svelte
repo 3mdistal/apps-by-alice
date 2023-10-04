@@ -7,7 +7,7 @@
 		isCollidingWithPaddle,
 		initializeBricks,
 		handleBrickCollision
-	} from '$lib/arcade/breakout/breakout';
+	} from './breakout';
 
 	let canvas: HTMLCanvasElement;
 	let paddle: Paddle;
