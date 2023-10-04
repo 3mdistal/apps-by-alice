@@ -1,19 +1,6 @@
 <script lang="ts">
 	import '../app.scss';
 	import Logo from '../cms/images/logo/logo.png';
-	import { webVitals } from '$lib/partials/vitals';
-	import { browser } from '$app/environment';
-	import { page } from '$app/stores';
-
-	let analyticsId = import.meta.env.VERCEL_ANALYTICS_ID;
-
-	$: if (browser && analyticsId) {
-		webVitals({
-			path: $page.url.pathname,
-			params: $page.params,
-			analyticsId
-		});
-	}
 
 	// Vercel Analytics
 	import { dev } from '$app/environment';
