@@ -29,9 +29,12 @@
 				to share.
 			</p>
 		</div>
-		<div class="flex flex-col md:w-1/2 md:items-center [&_p]:text-blue-500 hover:[&_p]:underline">
-			<a href="arcade/breakout"><p>Project 1: Breakout</p></a>
-			<a href="arcade/constellations"><p>Project 2: Constellations</p></a>
+		<div class="flex flex-col gap-y-10 md:w-1/2 md:px-20 [&_p]:text-blue-500 hover:[&_p]:underline">
+			<a href="arcade/breakout"><p>Project 1: A Crazy Shitty Version of Breakout</p></a>
+			<a href="arcade/constellations"
+				><p>Project 2: Sometimes the Colors Look Good But Often They Look Like LSD Puke</p></a
+			>
+			<a href="arcade/project-3"><p>Project 3: ???</p></a>
 		</div>
 	</div>
 </div>
