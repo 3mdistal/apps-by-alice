@@ -1,71 +1,34 @@
-<script lang="ts">
-	import { onMount } from 'svelte';
-	import {
-		Paddle,
-		Ball,
-		Brick,
-		isCollidingWithPaddle,
-		initializeBricks,
-		handleBrickCollision
-	} from '$lib/arcade/breakout/breakout';
+<div
+	class="m-auto flex min-h-screen w-screen max-w-[50ch] flex-col place-items-center gap-y-10 bg-blue-200 py-10 text-2xl"
+>
+	<h1 class="text-4xl">100 Projects 'til I get good.</h1>
 
-	let canvas: HTMLCanvasElement;
-	let paddle: Paddle;
-	let ball: Ball;
-	let bricks: Brick[] = [];
+	<div class="[&_p]:mb-10">
+		<p>So, I'm doing something a bit unhinged.</p>
+		<p>
+			I've been obsessed with making games for years. In that time, I've taught myself so much about
+			game design, music creation, art, story—essentially everything except for coding the actual
+			game.
+		</p>
+		<p>
+			I've tries a few game engines and I've found them tough to use, largely because they require a
+			lot of memorization, and I work best when I understand the whole system.
+		</p>
+		<p>
+			The past few years I've been very into web development, and while I knew in the back of my
+			head that making games inside of JavaScript is possible, it never really clicked with me that
+			this would be the most fun way to do it, since it requires making all your own physics,
+			organization, etc.
+		</p>
+		<p>
+			So, I'm going to be just . . . making shit here, and I'll start sharing this page out once
+			they're any good, but for now it's just a new project every day or so until I understand
+			what's going on. I'll chart my progress here.
+		</p>
+	</div>
 
-	onMount(() => {
-		const ctx = canvas.getContext('2d')!;
-		paddle = new Paddle(canvas);
-		ball = new Ball(canvas.width / 2, canvas.height - 100 - paddle.height / 2);
-		initializeBricks(bricks);
-
-		function animate() {
-			ctx?.clearRect(0, 0, canvas.width, canvas.height);
-			// Begin animation loop
-
-			for (let brick of bricks) {
-				brick.draw(ctx);
-				if (handleBrickCollision(ball, brick)) {
-					ball.dy *= -1;
-					break;
-				}
-			}
-
-			paddle.draw(ctx);
-
-			ball.draw(ctx);
-			ball.move();
-			ball.collideWithWall(canvas);
-
-			if (isCollidingWithPaddle(ball, paddle)) {
-				ball.dy *= -1;
-				let delta = ball.x - (paddle.x + paddle.width / 2);
-				ball.dx = delta * 0.1;
-			}
-
-			// End animation loop
-			requestAnimationFrame(animate);
-		}
-
-		animate();
-	});
-</script>
-
-<div class="flex h-screen w-screen items-center justify-center">
-	<canvas
-		width="1080"
-		height="720"
-		class="aspect-video w-[1080px] border-2 border-black"
-		on:click={() => {
-			ball.isMoving = true;
-		}}
-		on:mousemove={(e) => {
-			let relativeX = e.clientX - canvas.offsetLeft;
-			if (relativeX - paddle.width / 2 >= 0 && relativeX + paddle.width / 2 <= canvas.width) {
-				paddle.x = relativeX - paddle.width / 2;
-			}
-		}}
-		bind:this={canvas}
-	></canvas>
+	<a href="arcade/breakout"><p class="text-blue-400 hover:underline">Project 1: Breakout</p></a>
+	<a href="arcade/constellations"
+		><p class="text-blue-400 hover:underline">Project 2: Constellations</p></a
+	>
 </div>
