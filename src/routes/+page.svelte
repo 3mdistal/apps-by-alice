@@ -4,21 +4,10 @@
 	import Svgs from '$lib/icons/svgs.svelte';
 	import { state } from '../lib/stores';
 	import { onMount } from 'svelte';
-	import Flowers from '$images/about/flowers-in-hand.webp';
-	import Rabbit from '$images/commissions/rabbit-in-hat.webp';
-	import Bird from '$images/blog/bird.webp';
-
-	function preloadImages(...imageUrls: string[]) {
-		imageUrls.forEach((url) => {
-			const img = new Image();
-			img.src = url;
-		});
-	}
 
 	onMount(() => {
 		state.set('home');
 		document.body.style.backgroundColor = '#fafafa';
-		preloadImages(Flowers, Rabbit, Bird);
 	});
 </script>
 
