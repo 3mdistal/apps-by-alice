@@ -28,8 +28,6 @@
 		<p class="col-span-2 md:col-span-2">
 			<a
 				on:click={() => (title = 'Loading . . .')}
-				data-sveltekit-preload-code="viewport"
-				data-sveltekit-preload-data="hover"
 				class="font-medium text-white hover:underline active:text-gray-400"
 				href="blog/{url}">{title}</a
 			>

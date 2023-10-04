@@ -58,8 +58,6 @@
 </script>
 
 <a
-	data-sveltekit-preload-code="hover"
-	data-sveltekit-preload-data="hover"
 	href={name}
 	title={name}
 	class="homepage-section absolute bottom-0 h-[100%] w-[100%] {name} hover:brightness-95 hover:hue-rotate-[5deg] hover:saturate-150 focus:brightness-[85%] focus:hue-rotate-[10deg] focus:saturate-[175%]"

@@ -25,4 +25,6 @@
 	/>
 </svelte:head>
 
-<slot />
+<body data-sveltekit-preload-data="hover" data-sveltekit-preload-code="eager">
+	<slot />
+</body>
