@@ -34,7 +34,9 @@
 			<a href="arcade/constellations"
 				><p>Project 2: Sometimes the Colors Look Good But Often They Look Like LSD Puke</p></a
 			>
-			<a href="arcade/project-3"><p>Project 3: ???</p></a>
+			<a href="arcade/shapes"
+				><p>Project 3: Coding Toys for Three-Year-Olds Is Harder Than It Looks</p></a
+			>
 		</div>
 	</div>
 </div>
