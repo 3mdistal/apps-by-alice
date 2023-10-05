@@ -85,9 +85,7 @@
 				currentCanvas.width / 2,
 				currentCanvas.height / 2,
 				checkWindowWidth() === 'mobile' ? 50 : 100,
-				currentShape !== shapesString[5]
-					? `hsl(${Math.random() * 360}, 50%, 50%)`
-					: `hsl(0, 50%, 50%)`
+				currentShape !== shapesString[5] ? `hsl(0, 0%, 80%)` : `hsl(0, 50%, 50%)`
 			);
 			shapeInstance.draw(context);
 
@@ -119,7 +117,7 @@
 				currentCanvas.width / 2,
 				currentCanvas.height / 2,
 				checkWindowWidth() === 'mobile' ? 50 : 100,
-				currentCanvas !== canvases[5] ? `hsl(${Math.random() * 360}, 50%, 50%)` : `hsl(0, 50%, 50%)`
+				currentCanvas !== canvases[5] ? `hsl(0, 0%, 80%)` : `hsl(0, 50%, 50%)`
 			);
 			shapeInstance.draw(context);
 		});
