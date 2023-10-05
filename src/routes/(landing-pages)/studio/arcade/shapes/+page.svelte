@@ -47,7 +47,12 @@
 
 			if (!shapeClass) return;
 
-			const shapeInstance = new shapeClass(e.offsetX, e.offsetY, size);
+			const shapeInstance = new shapeClass(
+				e.offsetX,
+				e.offsetY,
+				size,
+				`hsl(${Math.random() * 360}, 50%, 50%)`
+			);
 			shapeInstance.draw(ctxBackground);
 		});
 	}
@@ -79,7 +84,10 @@
 			const shapeInstance = new shapeClass(
 				currentCanvas.width / 2,
 				currentCanvas.height / 2,
-				checkWindowWidth() === 'mobile' ? 50 : 100
+				checkWindowWidth() === 'mobile' ? 50 : 100,
+				currentShape !== shapesString[5]
+					? `hsl(${Math.random() * 360}, 50%, 50%)`
+					: `hsl(0, 50%, 50%)`
 			);
 			shapeInstance.draw(context);
 
@@ -110,7 +118,8 @@
 			const shapeInstance = new shape(
 				currentCanvas.width / 2,
 				currentCanvas.height / 2,
-				checkWindowWidth() === 'mobile' ? 50 : 100
+				checkWindowWidth() === 'mobile' ? 50 : 100,
+				currentCanvas !== canvases[5] ? `hsl(${Math.random() * 360}, 50%, 50%)` : `hsl(0, 50%, 50%)`
 			);
 			shapeInstance.draw(context);
 		});
@@ -157,7 +166,7 @@
 	{#each canvases as canvas}
 		<canvas
 			bind:this={canvas}
-			class="last:mt-20"
+			class="cursor-pointer last:mt-20"
 			on:mousedown={(e) => handleMouseDown(e, shapesString[canvases.indexOf(canvas)])}
 			on:mouseup={handleMouseUp}
 			on:mouseenter={handleMouseEnter}

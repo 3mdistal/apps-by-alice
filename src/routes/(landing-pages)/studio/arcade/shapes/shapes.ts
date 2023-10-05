@@ -4,18 +4,18 @@ export class Shape {
     size: number;
     color: string;
 
-    constructor(x: number, y: number, size: number) {
+    constructor(x: number, y: number, size: number, color: string) {
         this.x = x;
         this.y = y;
         this.size = size;
-        this.color = `hsl(${Math.random() * 360}, 50%, 50%)`;
+        this.color = color;
     }
 }
 
 export class Triangle extends Shape {
 
-    constructor(x: number, y: number, size: number) {
-        super(x, y, size);
+    constructor(x: number, y: number, size: number, color: string) {
+        super(x, y, size, color);
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -32,8 +32,8 @@ export class Triangle extends Shape {
 
 export class Circle extends Shape {
 
-    constructor(x: number, y: number, size: number) {
-        super(x, y, size);
+    constructor(x: number, y: number, size: number, color: string) {
+        super(x, y, size, color);
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -46,8 +46,8 @@ export class Circle extends Shape {
 
 export class Square extends Shape {
 
-    constructor(x: number, y: number, size: number) {
-        super(x, y, size);
+    constructor(x: number, y: number, size: number, color: string) {
+        super(x, y, size, color);
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -58,13 +58,14 @@ export class Square extends Shape {
     }
 }
 
-export class SVGToImage {
+export class SVGToImage extends Shape {
     svg: SVGElement;
     paths: Array<SVGPathElement>;
     image: HTMLImageElement;
     isLoaded: boolean;
 
-    constructor(viewBox: string, paths: Array<string>) {
+    constructor(x: number, y: number, size: number, color: string, viewBox: string, paths: Array<string>) {
+        super(x, y, size, color)
         this.isLoaded = false;
 
         this.svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
@@ -80,7 +81,16 @@ export class SVGToImage {
         this.paths = Array.from(this.svg.querySelectorAll('path'));
 
         this.image = new Image();
+
+        this.paths.forEach((path) => {
+            path.setAttribute('fill', this.color);
+        });
+    
+        this.serialize();
     }
+
+
+
 
     serialize() {
         let serializer = new XMLSerializer();
@@ -103,25 +113,11 @@ export class SVGToImage {
 }
 
 export class Heart extends SVGToImage {
-    x: number;
-    y: number;
-    size: number;
-    color: string;
 
-    constructor(x: number, y: number, size: number) {
-        super('0 0 30 30', [
+    constructor(x: number, y: number, size: number, color: string) {
+        super(x, y, size, color, '0 0 30 30', [
             'M15 6.152C18.158.284 24.474.284 27.632 3.218s3.158 8.801 0 14.668c-2.211 4.4-7.895 8.801-12.632 11.734-4.737-2.933-10.421-7.334-12.632-11.734-3.157-5.867-3.157-11.734 0-14.668S11.842.284 15 6.152z'
         ]);
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.color = `hsl(${Math.random() * 360}, 50%, 50%)`;
-
-        this.paths.forEach((path) => {
-            path.setAttribute('fill', this.color);
-        });
-
-        this.serialize();
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -138,25 +134,11 @@ export class Heart extends SVGToImage {
 }
 
 export class Star extends SVGToImage {
-    x: number;
-    y: number;
-    size: number;
-    color: string;
 
-    constructor(x: number, y: number, size: number) {
-        super('0, 0, 30, 30', [
+    constructor(x: number, y: number, size: number, color: string) {
+        super(x, y, size, color, '0, 0, 30, 30', [
             'M14.993 0l3.538 11.438h11.452l-9.264 7.068 3.538 11.438-9.264-7.069-9.265 7.069 3.539-11.438-9.265-7.068h11.452L14.993 0z'
         ]);
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.color = `hsl(${Math.random() * 360}, 50%, 50%)`;
-
-        this.paths.forEach((path) => {
-            path.setAttribute('fill', this.color);
-        });
-
-        this.serialize();
     }
 
     draw(ctx: CanvasRenderingContext2D) {
@@ -173,26 +155,11 @@ export class Star extends SVGToImage {
 }
 
 export class Clear extends SVGToImage {
-    x: number;
-    y: number;
-    size: number;
-    color: string;
 
-    constructor(x: number, y: number, size: number) {
-        super('0, 0, 30, 30', [
+    constructor(x: number, y: number, size: number, color: string) {
+        super(x, y, size, color, '0, 0, 30, 30', [
             'M11.578,13.974l-9.359,-11.461l7.166,-0l5.802,7.282l5.909,-7.282l7.38,-0l-9.626,11.461l11.15,13.513l-7.166,0l-7.647,-9.333l-7.834,9.333l-7.353,0l11.578,-13.513Z'
         ]);
-
-        this.x = x;
-        this.y = y;
-        this.size = size;
-        this.color = `hsl(${Math.random() * 360}, 50%, 50%)`;
-
-        this.paths.forEach((path) => {
-            path.setAttribute('fill', 'hsl(0, 50%, 50%)');
-        });
-
-        this.serialize();
     }
 
     draw(ctx: CanvasRenderingContext2D) {
