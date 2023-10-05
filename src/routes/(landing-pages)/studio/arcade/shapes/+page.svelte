@@ -1,6 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Triangle, Circle, Square, Heart, Star, Clear } from './shapes';
+	import { Triangle, Circle, Square, Heart, Star, Clear, ADSR } from './shapes';
 
 	let canvasBackground: HTMLCanvasElement;
 	let canvasTriangle: HTMLCanvasElement;
@@ -59,12 +59,41 @@
 
 	let currentShape = shapesString[0];
 
+	const audioContext = new AudioContext();
+
+	function getFrequency(referenceFreq: number, stepsFromReference: number) {
+		const a = Math.pow(2, 1 / 12); // twelfth root of 2
+		return referenceFreq * Math.pow(a, stepsFromReference);
+	}
+
+	function playNote(keyMultiplier: number) {
+		const frequencies = [
+			440,
+			getFrequency(440, 2),
+			getFrequency(440, 4),
+			getFrequency(440, 5),
+			getFrequency(440, 7),
+			getFrequency(440, -12)
+		];
+
+		shapesString.forEach((shape, index) => {
+			const frequency = frequencies[index];
+
+			if (currentShape !== shape || !frequency) return;
+
+			const soundEffect = new ADSR(audioContext, 'sine', frequency * keyMultiplier, 0, 0.5, 0.005);
+			soundEffect.play();
+		});
+	}
+
 	function handleMouseDown(e: MouseEvent, shape: string) {
 		const canvas = e.target as HTMLCanvasElement;
 		canvas.style.transform = 'scale(1)';
 
 		// Set State
 		currentShape = shape;
+
+		playNote(0.63);
 	}
 
 	function handleMouseUp(e: MouseEvent) {
