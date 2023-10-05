@@ -152,7 +152,7 @@
 <canvas class="bg-black" on:click={handleClick} bind:this={canvasBackground}></canvas>
 
 <div
-	class="absolute left-0 top-0 flex h-screen flex-col justify-center gap-y-10 bg-black pl-20 pr-4"
+	class="absolute left-0 top-0 flex h-screen flex-col justify-center gap-y-10 bg-[#222222] px-4 md:px-8"
 >
 	{#each canvases as canvas}
 		<canvas
