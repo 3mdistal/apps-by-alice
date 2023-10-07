@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { Triangle, Circle, Square, Heart, Star, Clear, ADSR } from './shapes';
+	import { Triangle, Circle, Square, Heart, Star, Clear } from '$lib/arcade/shapes';
+	import { ADSR } from '$lib/arcade/notes';
 
 	let canvasBackground: HTMLCanvasElement;
 	let canvasTriangle: HTMLCanvasElement;
