@@ -9,10 +9,13 @@
 
 	const circle = new MovingCircle(100, 100, 50, 'white', 0, 0);
 
+	let inputHandler: InputHandler;
+
 	function animate() {
 		ctxBackground.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
 
 		circle.draw(ctxBackground);
+		circle.move(inputHandler);
 
 		requestAnimationFrame(animate);
 	}
@@ -23,10 +26,9 @@
 		backgroundCanvas.width = window.innerWidth;
 		backgroundCanvas.height = window.innerHeight;
 
-		animate();
+		inputHandler = new InputHandler(backgroundCanvas);
 
-		const inputHandler = new InputHandler(backgroundCanvas, circle);
-		inputHandler.listen();
+		animate();
 	});
 </script>
 
