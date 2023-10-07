@@ -84,14 +84,14 @@ export class MovingShape extends Shape {
 		this.currentSpeed = 0;
 	}
 
-	move(inputHandler: InputHandler, initialSpeed: number = 3) {
+	move(inputHandler: InputHandler, deltaTime: number, initialSpeed: number = 25) {
 		const inputs = inputHandler.handleInputs();
 
 		this.#checkMovementDirection(inputs);
 		this.currentSpeed = initialSpeed;
 
-		this.x += this.dx * this.currentSpeed;
-		this.y += this.dy * this.currentSpeed;
+		this.x += this.dx * this.currentSpeed * deltaTime * 0.01;
+		this.y += this.dy * this.currentSpeed * deltaTime * 0.01;
 
 		this.#checkBoundaries(inputHandler.canvas);
 	}

@@ -11,11 +11,16 @@
 
 	let inputHandler: InputHandler;
 
-	function animate() {
+	let lastTimeStamp = 0;
+
+	function animate(timeStamp: number) {
+		const deltaTime = timeStamp - lastTimeStamp;
+		lastTimeStamp = timeStamp;
+
 		ctxBackground.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
 
 		circle.draw(ctxBackground);
-		circle.move(inputHandler);
+		circle.move(inputHandler, deltaTime, 50);
 
 		requestAnimationFrame(animate);
 	}
@@ -28,7 +33,7 @@
 
 		inputHandler = new InputHandler(backgroundCanvas);
 
-		animate();
+		animate(0);
 	});
 </script>
 
