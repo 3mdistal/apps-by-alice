@@ -72,52 +72,47 @@ class SVGToImage extends Shape {
 	}
 }
 
+const GRAVITY = 70;
+const JUMP_FORCE = 200;
+const FRICTION = 0.6;
+const ACCELERATION = 100;
+const MAX_SPEED = 100;
+
 export class MovingShape extends Shape {
 	dx: number;
 	dy: number;
-	currentSpeed: number;
+	grounded: boolean;
+	velocityY: number;
+	velocityX: number;
 
 	constructor(x: number, y: number, size: number, color: string) {
 		super(x, y, size, color);
 		this.dx = 0;
 		this.dy = 0;
-		this.currentSpeed = 0;
+		this.grounded = true;
+		this.velocityY = 0;
+		this.velocityX = 0;
 	}
 
-	move(inputHandler: InputHandler, deltaTime: number, initialSpeed: number = 25) {
+	move(inputHandler: InputHandler, deltaTime: number) {
 		const inputs = inputHandler.handleInputs();
+		const adjustedDeltaTime = deltaTime * 0.01;
 
 		this.#checkMovementDirection(inputs);
-		this.currentSpeed = initialSpeed;
+		this.#handleMove(adjustedDeltaTime);
 
-		this.x += this.dx * this.currentSpeed * deltaTime * 0.01;
-		this.y += this.dy * this.currentSpeed * deltaTime * 0.01;
-
+		this.#handleGravity(adjustedDeltaTime);
 		this.#checkBoundaries(inputHandler.canvas);
+		this.#handleJump(inputs);
 	}
 
 	#checkMovementDirection(inputs: Set<string>) {
-		if (inputs.has('ArrowLeft')) {
+		if (inputs.has('Left')) {
 			this.dx = -1;
-		} else if (inputs.has('ArrowRight')) {
+		} else if (inputs.has('Right')) {
 			this.dx = 1;
 		} else {
 			this.dx = 0;
-		}
-
-		if (inputs.has('ArrowUp')) {
-			this.dy = -1;
-		} else if (inputs.has('ArrowDown')) {
-			this.dy = 1;
-		} else {
-			this.dy = 0;
-		}
-
-		// Handle Diagonal Movement
-		if (Math.abs(this.dx) === 1 && Math.abs(this.dy) === 1) {
-			this.currentSpeed = this.initialSpeed * 0.71; // Divide by Square Root of Two
-		} else {
-			this.currentSpeed = this.initialSpeed;
 		}
 	}
 
@@ -136,13 +131,46 @@ export class MovingShape extends Shape {
 
 		if (this.y + this.size / 2 > canvas.height) {
 			this.y = canvas.height - this.size / 2;
+			this.velocityY = 0;
+			this.grounded = true;
+		} else {
+			this.grounded = false;
 		}
+	}
+
+	#handleGravity(adjustedDeltaTime: number) {
+		this.velocityY += GRAVITY * adjustedDeltaTime;
+		this.y += this.velocityY * adjustedDeltaTime;
+	}
+
+	#handleJump(inputs: Set<string>) {
+		if (this.grounded && inputs.has('Jump')) {
+			this.velocityY -= JUMP_FORCE;
+			this.grounded = false; // Make the shape airborne
+		}
+	}
+
+	#handleMove(adjustedDeltaTime: number) {
+		if (this.dx !== 0) {
+			// Apply acceleration when moving left or right
+			this.velocityX += this.dx * ACCELERATION * adjustedDeltaTime;
+
+			// Limit velocityX to not exceed currentSpeed
+			if (Math.abs(this.velocityX) > MAX_SPEED) {
+				this.velocityX = this.dx * MAX_SPEED; // Use dx to keep the direction (left or right)
+			}
+		} else if (this.grounded) {
+			// Apply friction only when on the ground
+			this.velocityX *= FRICTION;
+		}
+
+		this.x += this.velocityX * adjustedDeltaTime;
 	}
 }
 
 export class MovingCircle extends MovingShape {
-	constructor(x: number, y: number, size: number, color: string, dx: number, dy: number) {
-		super(x, y, size, color, dx, dy);
+	constructor(x: number, y: number, size: number, color: string) {
+		super(x, y, size, color);
 	}
 
 	draw(ctx: CanvasRenderingContext2D) {

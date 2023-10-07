@@ -7,7 +7,7 @@
 
 	let ctxBackground: CanvasRenderingContext2D;
 
-	const circle = new MovingCircle(100, 100, 50, 'white', 0, 0);
+	const circle = new MovingCircle(100, 100, 50, 'white');
 
 	let inputHandler: InputHandler;
 
@@ -20,7 +20,7 @@
 		ctxBackground.clearRect(0, 0, backgroundCanvas.width, backgroundCanvas.height);
 
 		circle.draw(ctxBackground);
-		circle.move(inputHandler, deltaTime, 50);
+		circle.move(inputHandler, deltaTime);
 
 		requestAnimationFrame(animate);
 	}
