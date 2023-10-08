@@ -15,8 +15,8 @@
 		reels: { results },
 		videos: { results: videos },
 		projects: { results: projects },
-		aboutHeading: { toggle: aboutHeading },
-		aboutContent: { results: aboutContent },
+		blurbHeading: { toggle: aboutHeading },
+		blurbContent: { results: aboutContent },
 		highQuality
 	} = data;
 
