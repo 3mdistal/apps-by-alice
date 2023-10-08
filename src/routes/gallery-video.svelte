@@ -30,7 +30,6 @@
 	}
 
 	const parentProjectTitle = filterProjects(projects)[0].properties.Name.title[0].plain_text;
-	const parentProjectRoot = filterProjects(projects)[0].properties.Root.select.name;
 
 	// Link to Parent Project
 	const href = `/${replaceSpaces(parentProjectTitle, false)}`;
@@ -40,7 +39,7 @@
 
 	const videoSrc =
 		'https://ik.imagekit.io/tempoimmaterial/anthropotpourri/studio/' +
-		replaceSpaces(parentProjectRoot, true) +
+		replaceSpaces(parentProjectTitle, true) +
 		'/' +
 		replaceSpaces(name, true) +
 		suffix;
