@@ -96,9 +96,9 @@
 	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
 </svelte:head>
 
-{#if $homepageOpen}
-	<div class="snap-y snap-proximity">
-		<div class="flex h-screen w-screen snap-center items-center justify-center">
+<main class="h-[100svh] snap-y snap-mandatory overflow-y-scroll [&>*]:snap-start">
+	{#if $homepageOpen}
+		<div class="relative flex h-[100svh] w-screen items-center justify-center">
 			<!-- Fullscreen Reel -->
 			<div class="max-w-[85%] overflow-hidden rounded-2xl lg:h-[85%]">
 				<video
@@ -137,13 +137,13 @@
 					</div>
 				</div>
 			</div>
-			<!-- Overlay -->
-			<!-- svelte-ignore a11y-click-events-have-key-events -->
-			<!-- svelte-ignore a11y-no-static-element-interactions -->
 		</div>
+		<!-- Overlay -->
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
+		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
 			id="about"
-			class="flex min-h-screen w-screen snap-center items-center justify-center bg-[var(--midDark)] py-[25vh]"
+			class="flex min-h-[100svh] w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
 		>
 			<div class="w-3/4 max-w-[50ch] md:text-2xl lg:w-1/2">
 				<h2 class="mb-12"><TextMacro type={aboutHeading} /></h2>
@@ -156,7 +156,7 @@
 		</div>
 		<div
 			id="portfolio"
-			class="min-w-screen relative z-10 flex min-h-screen snap-center items-center justify-center bg-[var(--dark)] px-8 py-[10vh] sm:px-28 md:px-32 lg:h-screen lg:px-40 lg:py-0"
+			class="min-w-screen relative z-10 flex min-h-[100svh] items-center justify-center bg-[var(--dark)] px-8 py-[10vh] sm:px-28 md:px-32 lg:h-screen lg:px-40 lg:py-0"
 		>
 			<div
 				class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
@@ -166,5 +166,5 @@
 				{/each}
 			</div>
 		</div>
-	</div>
-{/if}
+	{/if}
+</main>
