@@ -14,9 +14,11 @@
 	/>
 </svelte:head>
 
-<div
-	style="--dark: #{$dark}; --midDark: #{$mid_dark}; --mid: #{$mid}; --midLight: #{$mid_light}; --light: #{$light};"
->
-	<slot />
-	<Menu />
-</div>
+<body>
+	<div
+		style="--dark: #{$dark}; --midDark: #{$mid_dark}; --mid: #{$mid}; --midLight: #{$mid_light}; --light: #{$light};"
+	>
+		<slot />
+		<Menu />
+	</div>
+</body>
