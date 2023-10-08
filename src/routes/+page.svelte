@@ -52,11 +52,11 @@
 	function preloadNextVideo() {
 		const nextVideo = document.createElement('video');
 		if (currentVideo < results.length - 1) {
-			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
+			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/homepage/reel/${replaceSpaces(
 				results[currentVideo + 1].properties.Name.title[0].plain_text
 			)}${suffix}`;
 		} else {
-			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
+			nextVideo.src = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/homepage/reel/${replaceSpaces(
 				results[0].properties.Name.title[0].plain_text
 			)}${suffix}`;
 		}
@@ -107,7 +107,7 @@
 					playsinline
 					autoplay
 					class="relative -z-10 aspect-[3/4.5] h-full w-full object-cover sm:aspect-[3/4] md:aspect-square lg:aspect-[4/3]"
-					src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/Reel/${replaceSpaces(
+					src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/homepage/reel/${replaceSpaces(
 						results[currentVideo].properties.Name.title[0].plain_text
 					)}${suffix}`}
 					on:ended={handleVideoEnded}
