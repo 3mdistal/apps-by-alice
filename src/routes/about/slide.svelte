@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { gsap } from 'gsap';
+	import { animate } from 'motion';
 
 	export let src = 'https://unsplash.it/1000/1000';
 	export let alt = 'A picture of me';
@@ -12,20 +12,11 @@
 	const inDuration = 0.25;
 	const blinkHalfDuration = 0.1;
 
-	function textIn(target: HTMLParagraphElement) {
-		const tl = gsap.timeline();
-		tl.fromTo(
+	function headingIn(target: HTMLHeadingElement) {
+		animate(
 			target,
-			{
-				opacity: 0,
-				y: 100
-			},
-			{
-				opacity: 1,
-				y: 0,
-				duration: inDuration,
-				delay: outDuration
-			}
+			{ x: [-100, 0], opacity: [0, 1] },
+			{ duration: inDuration, delay: outDuration }
 		);
 
 		return {
@@ -33,20 +24,24 @@
 		};
 	}
 
+	function headingOut(target: HTMLElement) {
+		animate(target, { x: [-100], opacity: [0] }, { duration: outDuration });
+
+		return {
+			duration: outDuration * 1000
+		};
+	}
+
+	function textIn(target: HTMLParagraphElement) {
+		animate(target, { y: [100, 0], opacity: [0, 1] }, { duration: inDuration, delay: outDuration });
+
+		return {
+			duration: (inDuration + outDuration) * 1000
+		};
+	}
+
 	function textOut(target: HTMLElement) {
-		const tl = gsap.timeline();
-		tl.fromTo(
-			target,
-			{
-				opacity: 1,
-				y: 0
-			},
-			{
-				duration: outDuration,
-				opacity: 0,
-				y: 100
-			}
-		);
+		animate(target, { y: [100], opacity: [0] }, { duration: outDuration });
 
 		return {
 			duration: outDuration * 1000
@@ -54,17 +49,10 @@
 	}
 
 	function curtainTopOut(target: HTMLDivElement) {
-		const tl = gsap.timeline();
-		tl.fromTo(
+		animate(
 			target,
-			{
-				y: '-100%'
-			},
-			{
-				delay: outDuration - blinkHalfDuration,
-				duration: blinkHalfDuration,
-				y: '0%'
-			}
+			{ y: ['-100%', '0%'] },
+			{ duration: blinkHalfDuration, delay: outDuration - blinkHalfDuration }
 		);
 
 		return {
@@ -73,17 +61,10 @@
 	}
 
 	function curtainBottomOut(target: HTMLDivElement) {
-		const tl = gsap.timeline();
-		tl.fromTo(
+		animate(
 			target,
-			{
-				y: '100%'
-			},
-			{
-				delay: outDuration - blinkHalfDuration,
-				duration: blinkHalfDuration,
-				y: '0%'
-			}
+			{ y: ['100%', '0%'] },
+			{ duration: blinkHalfDuration, delay: outDuration - blinkHalfDuration }
 		);
 
 		return {
@@ -92,18 +73,7 @@
 	}
 
 	function curtainTopIn(target: HTMLDivElement) {
-		const tl = gsap.timeline();
-		tl.fromTo(
-			target,
-			{
-				y: '0%'
-			},
-			{
-				delay: outDuration,
-				duration: blinkHalfDuration,
-				y: '-100%'
-			}
-		);
+		animate(target, { y: ['0%', '-100%'] }, { duration: blinkHalfDuration, delay: outDuration });
 
 		return {
 			duration: blinkHalfDuration * 1000
@@ -111,18 +81,7 @@
 	}
 
 	function curtainBottomIn(target: HTMLDivElement) {
-		const tl = gsap.timeline();
-		tl.fromTo(
-			target,
-			{
-				y: '0%'
-			},
-			{
-				delay: outDuration,
-				duration: blinkHalfDuration,
-				y: '100%'
-			}
-		);
+		animate(target, { y: ['0%', '100%'] }, { duration: blinkHalfDuration, delay: outDuration });
 
 		return {
 			duration: blinkHalfDuration * 1000
@@ -130,22 +89,24 @@
 	}
 </script>
 
-<div class="flex h-[100svh] max-w-[90%] flex-col items-center justify-center">
-	<div class="relative mb-10 h-[40%] overflow-hidden rounded-2xl">
-		<img class="h-full w-full" {src} {alt} />
-		<div
-			class="absolute top-0 h-[50%] w-full translate-y-[-100%] bg-black"
-			out:curtainTopOut
-			in:curtainTopIn
-		></div>
-		<div
-			class="absolute bottom-0 h-[50%] w-full translate-y-[100%] bg-black"
-			out:curtainBottomOut
-			in:curtainBottomIn
-		></div>
+<div class="flex h-[100svh] flex-col items-center justify-center gap-y-10 px-40">
+	<h2 class="text-center" in:headingIn out:headingOut>{heading}</h2>
+	<div class="flex items-center justify-center gap-x-20">
+		<div class="relative max-w-[40%] overflow-hidden rounded-2xl">
+			<img class="h-full w-full" {src} {alt} />
+			<div
+				class="absolute top-0 h-[50%] w-full translate-y-[-100%] bg-black"
+				out:curtainTopOut
+				in:curtainTopIn
+			></div>
+			<div
+				class="absolute bottom-0 h-[50%] w-full translate-y-[100%] bg-black"
+				out:curtainBottomOut
+				in:curtainBottomIn
+			></div>
+		</div>
+		<p class="max-w-[30ch] text-3xl" in:textIn out:textOut>
+			{text}
+		</p>
 	</div>
-	<h2 class="text-center" in:textIn out:textOut>{heading}</h2>
-	<p class="max-w-[30ch] text-[1rem]" in:textIn out:textOut>
-		{text}
-	</p>
 </div>

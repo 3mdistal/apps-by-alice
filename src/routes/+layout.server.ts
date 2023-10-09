@@ -10,6 +10,7 @@ import {
 	VIDS_AND_STILLS_DB,
 	PROJECTS_DB,
 	ABOUT_ID,
+	ABOUT_DB,
 	LOGOS_DB,
 	BYPASS_TOKEN,
 	HIGH_QUALITY
@@ -57,6 +58,7 @@ export async function load() {
 		projects: await queryDatabase(PROJECTS_DB, publishedFilter),
 		blurbHeading: await retrieveBlock(ABOUT_ID),
 		blurbContent: await listChildren(ABOUT_ID),
+		aboutContent: await queryDatabase(ABOUT_DB, publishedFilter, orderSort),
 		logos: await queryDatabase(LOGOS_DB, publishedFilter, orderSort),
 		highQuality: HIGH_QUALITY === 'true' ? true : false
 	};

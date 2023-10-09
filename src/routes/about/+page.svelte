@@ -1,41 +1,19 @@
 <script lang="ts">
 	import Slide from './slide.svelte';
 	import { light, mid_light, mid, mid_dark, dark } from '$lib/stores';
+	import { animate } from 'motion';
 
 	export let data;
 
-	const { results: logos } = data.logos;
-
-	const entries = [
-		{
-			heading: 'My name is Shorouk',
-			imgSrc: 'https://unsplash.it/1200/1200',
-			imgAlt: 'A picture of me',
-			text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptatum, sapiente laboriosam, minus sint, eos quos a porro optio iure neque in repudiandae distinctio voluptatibus obcaecati molestiae. Quas, voluptatibus accusantium?'
-		},
-		{
-			heading: 'This is my about page',
-			imgSrc: 'https://unsplash.it/1500/1500',
-			imgAlt: 'A picture of me',
-			text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptatum, sapiente laboriosam, minus sint, eos quos a porro optio iure neque in repudiandae distinctio voluptatibus obcaecati molestiae. Quas, voluptatibus accusantium?'
-		},
-		{
-			heading: 'You learned about me',
-			imgSrc: 'https://unsplash.it/1100/1100',
-			imgAlt: 'A picture of me',
-			text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptatum, sapiente laboriosam, minus sint, eos quos a porro optio iure neque in repudiandae distinctio voluptatibus obcaecati molestiae. Quas, voluptatibus accusantium?'
-		},
-		{
-			heading: 'Because I am the best',
-			imgSrc: 'https://unsplash.it/1300/1300',
-			imgAlt: 'A picture of me',
-			text: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptatum, sapiente laboriosam, minus sint, eos quos a porro optio iure neque in repudiandae distinctio voluptatibus obcaecati molestiae. Quas, voluptatibus accusantium?'
-		}
-	];
+	const {
+		aboutContent: { results: slideContent },
+		logos: { results: logos }
+	} = data;
 
 	let currentSlide = 0;
 
 	function handleScroll(entries: Array<IntersectionObserverEntry>) {
+		console.log('handling');
 		for (const entry of entries) {
 			if (entry.isIntersecting) {
 				const newSlide = parseInt(entry.target.id);
@@ -47,8 +25,12 @@
 	}
 
 	function createIntersectionObserver(target: HTMLDivElement) {
-		const observer = new IntersectionObserver(handleScroll, { threshold: 0.2 });
+		const observer = new IntersectionObserver(handleScroll, { threshold: 0.5 });
 		observer.observe(target);
+	}
+
+	function titleIn(target: HTMLHeadingElement) {
+		animate(target, { x: [500, 300, 200, 200, 50, 25] }, { duration: 0.5 });
 	}
 
 	// Color handling
@@ -61,6 +43,9 @@
 		light.set(colors[4].trim());
 		document.body.style.backgroundColor = `#${$dark}`;
 	}
+
+	const prefix = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/slideshow/`;
+	const suffix = `?tr=w-1000,h-1000,fo-auto`;
 </script>
 
 <svelte:head>
@@ -71,10 +56,10 @@
 	class="h-[100svh] snap-y snap-mandatory overflow-y-scroll bg-[var(--dark)] text-[var(--midLight)] [&>*]:snap-start [&>*]:snap-always"
 >
 	<!-- Intro -->
-	<div class="flex h-[100svh] max-w-[90%] flex-col items-center justify-center gap-y-4">
-		<h1 class="text-8xl">Shorouk <br /> Elkobrsi</h1>
+	<div class="m-auto flex h-[100svh] max-w-[80%] flex-col items-center justify-center gap-y-4">
+		<h1 use:titleIn class="text-[8rem]">Shorouk <br /> Elkobrsi</h1>
 		<!-- todo: Make dynamic ethos text. -->
-		<p class="max-w-[40ch]">
+		<p use:titleIn class="max-w-[40ch] text-3xl">
 			Ethos: Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptatum, sapiente
 			laboriosam, minus sint, eos quos a porro optio iure neque in repudiandae distinctio
 			voluptatibus obcaecati molestiae. Quas, voluptatibus accusantium?
@@ -82,14 +67,16 @@
 	</div>
 
 	<!-- Slideshow -->
-	<div class="relative min-h-[100svh] pb-20">
+	<div class="relative min-h-[100svh]">
 		<div class="sticky top-0 h-[100svh]">
 			{#key currentSlide}
 				<Slide
-					heading={entries[currentSlide].heading}
-					src={entries[currentSlide].imgSrc}
-					alt={entries[currentSlide].imgAlt}
-					text={entries[currentSlide].text}
+					heading={slideContent[currentSlide].properties.Heading.title[0].plain_text}
+					src={prefix +
+						slideContent[currentSlide].properties.Image.rich_text[0].plain_text +
+						suffix}
+					alt={slideContent[currentSlide].properties.Alt.rich_text[0].plain_text}
+					text={slideContent[currentSlide].properties.Text.rich_text[0].plain_text}
 				/>
 			{/key}
 		</div>
@@ -99,9 +86,15 @@
 			use:createIntersectionObserver
 			class="absolute top-0 h-[50svh] w-full sm:h-[100svh]"
 		></div>
-		<div id="1" use:createIntersectionObserver class="h-[50svh] w-full sm:h-[100svh]"></div>
-		<div id="2" use:createIntersectionObserver class="h-[50svh] w-full sm:h-[100svh]"></div>
-		<div id="3" use:createIntersectionObserver class="h-[50svh] w-full sm:h-[100svh]"></div>
+		{#each slideContent as entry, i}
+			{#if i !== 0}
+				<div
+					id={i.toString()}
+					use:createIntersectionObserver
+					class="h-[50svh] w-full sm:h-[100svh]"
+				></div>
+			{/if}
+		{/each}
 	</div>
 
 	<!-- Logo Wall -->
@@ -129,7 +122,7 @@
 </main>
 
 <div class="hidden">
-	{#each entries as entry}
+	{#each slideContent as entry}
 		<img src={entry.imgSrc} alt="" />
 	{/each}
 </div>
