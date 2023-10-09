@@ -68,7 +68,7 @@
 </svelte:head>
 
 <main
-	class="h-[100svh] overflow-y-scroll bg-[var(--dark)] text-[var(--midLight)] sm:snap-y sm:snap-mandatory sm:[&>*]:snap-start sm:[&>*]:snap-always"
+	class="h-[100svh] snap-y snap-mandatory overflow-y-scroll bg-[var(--dark)] text-[var(--midLight)] [&>*]:snap-start [&>*]:snap-always"
 >
 	<!-- Intro -->
 	<div class="flex h-[100svh] max-w-[90%] flex-col items-center justify-center gap-y-4">
@@ -82,7 +82,7 @@
 	</div>
 
 	<!-- Slideshow -->
-	<div class="relative min-h-[100svh]">
+	<div class="relative min-h-[100svh] pb-20">
 		<div class="sticky top-0 h-[100svh]">
 			{#key currentSlide}
 				<Slide
