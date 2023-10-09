@@ -94,10 +94,14 @@
 			{/key}
 		</div>
 
-		<div id="0" use:createIntersectionObserver class="absolute top-0 h-[100svh] w-full"></div>
-		<div id="1" use:createIntersectionObserver class="h-[100svh] w-full"></div>
-		<div id="2" use:createIntersectionObserver class="h-[100svh] w-full"></div>
-		<div id="3" use:createIntersectionObserver class="h-[100svh] w-full"></div>
+		<div
+			id="0"
+			use:createIntersectionObserver
+			class="absolute top-0 h-[50svh] w-full sm:h-[100svh]"
+		></div>
+		<div id="1" use:createIntersectionObserver class="h-[50svh] w-full sm:h-[100svh]"></div>
+		<div id="2" use:createIntersectionObserver class="h-[50svh] w-full sm:h-[100svh]"></div>
+		<div id="3" use:createIntersectionObserver class="h-[50svh] w-full sm:h-[100svh]"></div>
 	</div>
 
 	<!-- Logo Wall -->
