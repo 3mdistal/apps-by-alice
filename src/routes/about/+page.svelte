@@ -36,13 +36,34 @@
 
 	let currentSlide = 0;
 	let showSlide = 0; // intermediate state
-	let scrollLock = 0;
-
-	onMount(() => {
-		console.log(logos);
-	});
+	let scrollLock = 1;
+	let wheelFiring = false;
+	let lastWheelValue = 0;
 
 	const changeSlide = (e: WheelEvent) => {
+		// Handle Non-Smooth Scrolling
+		if (e.deltaY === lastWheelValue) {
+			wheelFiring = false;
+			return;
+		}
+
+		lastWheelValue = e.deltaY;
+
+		// Handle Smooth Scrolling
+		if (wheelFiring) {
+			if (Math.abs(e.deltaY) < 4) {
+				console.log(wheelFiring, 'if e.deltaY < 4');
+				wheelFiring = false;
+				return;
+			}
+			return;
+		}
+
+		if (!wheelFiring) {
+			wheelFiring = true;
+		}
+
+		// Handle Slide Change1
 		const direction = e.deltaY > 0 ? 1 : -1;
 
 		currentSlide += direction;
@@ -51,10 +72,6 @@
 		if (currentSlide > entries.length - 1) currentSlide = entries.length - 1;
 
 		showSlide = currentSlide;
-
-		setTimeout(() => {
-			scrollLock = currentSlide;
-		}, 2000);
 	};
 
 	function throttle(func: Function, delay: number) {
@@ -75,12 +92,44 @@
 		}
 
 		const direction = e.deltaY > 0 ? 1 : -1;
+
 		if ((direction > 0 && scrollLock < entries.length - 1) || (direction < 0 && scrollLock > 0)) {
 			e.preventDefault();
 		}
 	}
 
-	const throttledChangeSlide = throttle(changeSlide, 1250);
+	const throttledChangeSlide = throttle(changeSlide, 200);
+
+	// Mobile handling
+	let touchStartY: number;
+	let touchEndY: number;
+
+	function handleTouchStart(e: TouchEvent) {
+		touchStartY = e.touches[0].clientY;
+	}
+
+	function handleTouchMove(e: TouchEvent) {
+		touchEndY = e.touches[0].clientY;
+	}
+
+	function handleTouchEnd(e: TouchEvent) {
+		if (touchEndY - touchStartY > 50) {
+			// swiped up
+			changeSlideDirection(-1); // -1 to move to previous slide
+		} else if (touchStartY - touchEndY > 50) {
+			// swiped down
+			changeSlideDirection(1); // 1 to move to next slide
+		}
+	}
+
+	function changeSlideDirection(direction: number) {
+		currentSlide += direction;
+
+		if (currentSlide < 0) currentSlide = 0;
+		if (currentSlide > entries.length - 1) currentSlide = entries.length - 1;
+
+		showSlide = currentSlide;
+	}
 
 	// Color handling
 	function changeColors(logo) {
@@ -113,7 +162,14 @@
 	</div>
 
 	<!-- Slideshow -->
-	<div class="h-[100svh] overflow-hidden" on:wheel={throttledChangeSlide} on:wheel={handleScroll}>
+	<div
+		class="h-[100svh] overflow-hidden"
+		on:wheel={throttledChangeSlide}
+		on:wheel={handleScroll}
+		on:touchstart={handleTouchStart}
+		on:touchmove={handleTouchMove}
+		on:touchend={handleTouchEnd}
+	>
 		{#key showSlide}
 			<Slide
 				heading={entries[showSlide].heading}
