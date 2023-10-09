@@ -68,7 +68,7 @@
 </svelte:head>
 
 <main
-	class="h-[100svh] snap-y snap-mandatory overflow-y-scroll bg-[var(--dark)] text-[var(--midLight)] [&>*]:snap-start [&>*]:snap-always"
+	class="h-[100svh] overflow-y-scroll bg-[var(--dark)] text-[var(--midLight)] sm:snap-y sm:snap-mandatory sm:[&>*]:snap-start sm:[&>*]:snap-always"
 >
 	<!-- Intro -->
 	<div class="flex h-[100svh] max-w-[90%] flex-col items-center justify-center gap-y-4">
