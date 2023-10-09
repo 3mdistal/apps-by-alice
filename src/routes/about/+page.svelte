@@ -97,10 +97,10 @@
 			{/key}
 		</div>
 
-		<div id="0" class="absolute top-0 h-[50svh] w-full sm:h-[100svh]"></div>
+		<div id="0" class="absolute top-0 h-[100svh] w-full"></div>
 		{#each slideContent as entry, i}
 			{#if i !== 0}
-				<div id={i.toString()} class="h-[50svh] w-full sm:h-[100svh]"></div>
+				<div id={i.toString()} class="h-[100svh] w-full"></div>
 			{/if}
 		{/each}
 	</div>
