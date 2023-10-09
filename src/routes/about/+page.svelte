@@ -14,7 +14,6 @@
 	let currentSlide = 0;
 
 	function handleScroll(entries: Array<IntersectionObserverEntry>) {
-		console.log('handling');
 		for (const entry of entries) {
 			if (entry.isIntersecting) {
 				const newSlide = parseInt(entry.target.id);
