@@ -82,7 +82,7 @@
 	</div>
 
 	<!-- Slideshow -->
-	<div class="relative h-[100svh] overflow-scroll">
+	<div class="relative min-h-[100svh]">
 		<div class="sticky top-0 h-[100svh]">
 			{#key currentSlide}
 				<Slide
