@@ -12,20 +12,45 @@
 	} = data;
 
 	let currentSlide = 0;
+	let slideTransition = true;
 
 	const updateSlide = (info: ScrollInfo) => {
-		if (info.y.velocity < -30) return;
-		if (info.y.velocity > 100000) return;
+		// if (info.y.velocity < -30) return;
+		// if (info.y.velocity > 100000) return;
 
 		const progress = info.y.progress;
 		const newSlide = parseInt((progress * (slideContent.length - 1)).toFixed(0));
 
-		if (info.y.velocity > 0 && currentSlide !== newSlide) {
+		if (currentSlide !== newSlide && slideTransition) {
 			currentSlide = newSlide;
-		} else if (info.y.velocity < 0 && currentSlide !== newSlide) {
-			currentSlide = newSlide;
+			debouncedManageSlideTransition();
 		}
 	};
+
+	function manageSlideTransition() {
+		slideTransition = !slideTransition;
+		setTimeout(() => {
+			slideTransition = !slideTransition;
+		}, 1000);
+	}
+
+	const debouncedManageSlideTransition = debounce(manageSlideTransition, 1000, true);
+
+	function debounce(func, wait: number, immediate: boolean) {
+		let timeout;
+		return function () {
+			let context = this,
+				args = arguments;
+			let later = function () {
+				timeout = null;
+				if (!immediate) func.apply(context, args);
+			};
+			let callNow = immediate && !timeout;
+			clearTimeout(timeout);
+			timeout = setTimeout(later, wait);
+			if (callNow) func.apply(context, args);
+		};
+	}
 
 	function scrollSlideShow(target: HTMLDivElement) {
 		scroll((info) => updateSlide(info), {
