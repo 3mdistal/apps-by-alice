@@ -1,8 +1,8 @@
 <script lang="ts">
 	import { homepageOpen, menuOpen } from '$lib/stores';
 	import { tick } from 'svelte';
-	import gsap from 'gsap';
 	import CameraLogo from '$lib/svg/camera-logo.svelte';
+	import { animate } from 'motion';
 
 	let scrollPosition = 0;
 
@@ -19,11 +19,7 @@
 			scrollPosition = window.scrollY;
 			menuOpen.set(true);
 			await tick();
-			menuOpenAnimation()
-				.play()
-				.eventCallback('onComplete', () => {
-					homepageOpen.set(false);
-				});
+			menuOpenAnimation();
 			window.addEventListener('popstate', handlePopState);
 			history.pushState(null, '');
 		}
@@ -54,9 +50,7 @@
 		window.removeEventListener('popstate', handlePopState);
 
 		homepageOpen.set(true);
-		menuCloseAnimation()
-			.play()
-			.eventCallback('onComplete', () => menuOpen.set(false));
+		menuCloseAnimation();
 	}
 
 	async function scroll(e: Event) {
@@ -65,17 +59,13 @@
 	}
 
 	function menuOpenAnimation() {
-		const tl = gsap.timeline();
-		tl.fromTo(openMenu, { y: '-100vh' }, { y: '0vh', duration: 0.3, ease: 'power1.out' });
-
-		return tl.paused(true);
+		animate(openMenu, { y: ['-100vh', '-40vh', 0] }, { duration: 0.3, easing: 'ease-out' });
+		setTimeout(() => homepageOpen.set(false), 300);
 	}
 
 	function menuCloseAnimation() {
-		const tl = gsap.timeline();
-		tl.to(openMenu, { y: '-100vh', duration: 0.3, ease: 'power1.in' });
-
-		return tl.paused(true);
+		animate(openMenu, { y: [0, '-40vh', '-100vh'] }, { duration: 0.3, easing: 'ease-in' });
+		setTimeout(() => menuOpen.set(false), 300);
 	}
 </script>
 
