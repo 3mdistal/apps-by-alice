@@ -1,7 +1,7 @@
 <script lang="ts">
 	import Slide from './slide.svelte';
 	import { light, mid_light, mid, mid_dark, dark, currentScrollContainer } from '$lib/stores';
-	import { animate } from 'motion';
+	import { animate, scroll, type ScrollInfo } from 'motion';
 	import { onMount } from 'svelte';
 
 	export let data;
@@ -13,20 +13,24 @@
 
 	let currentSlide = 0;
 
-	function handleScroll(entries: Array<IntersectionObserverEntry>) {
-		for (const entry of entries) {
-			if (entry.isIntersecting) {
-				const newSlide = parseInt(entry.target.id);
-				if (newSlide !== currentSlide) {
-					currentSlide = newSlide;
-				}
-			}
-		}
-	}
+	const updateSlide = (info: ScrollInfo) => {
+		if (info.y.velocity < -30) return;
+		if (info.y.velocity > 100000) return;
 
-	function createIntersectionObserver(target: HTMLDivElement) {
-		const observer = new IntersectionObserver(handleScroll, { threshold: 0.5 });
-		observer.observe(target);
+		const progress = info.y.progress;
+		const newSlide = parseInt((progress * (slideContent.length - 1)).toFixed(0));
+
+		if (info.y.velocity > 0 && currentSlide !== newSlide) {
+			currentSlide = newSlide;
+		} else if (info.y.velocity < 0 && currentSlide !== newSlide) {
+			currentSlide = newSlide;
+		}
+	};
+
+	function scrollSlideShow(target: HTMLDivElement) {
+		scroll((info) => updateSlide(info), {
+			container: target
+		});
 	}
 
 	function titleIn(target: HTMLHeadingElement) {
@@ -48,6 +52,8 @@
 	const suffix = `?tr=w-1000,h-1000,fo-auto`;
 
 	let main: HTMLElement;
+
+	let progressP: HTMLParagraphElement;
 
 	onMount(() => {
 		currentScrollContainer.set(main);
@@ -74,8 +80,11 @@
 	</div>
 
 	<!-- Slideshow -->
-	<div class="relative min-h-[100svh]">
-		<div class="sticky top-0 h-[100svh]">
+	<div
+		use:scrollSlideShow
+		class="relative h-[100svh] snap-y snap-mandatory overflow-scroll [&>*]:snap-start [&>*]:snap-always"
+	>
+		<div class="sticky top-0 h-full">
 			{#key currentSlide}
 				<Slide
 					heading={slideContent[currentSlide].properties.Heading.title[0].plain_text}
@@ -88,18 +97,10 @@
 			{/key}
 		</div>
 
-		<div
-			id="0"
-			use:createIntersectionObserver
-			class="absolute top-0 h-[50svh] w-full sm:h-[100svh]"
-		></div>
+		<div id="0" class="absolute top-0 h-[50svh] w-full sm:h-[100svh]"></div>
 		{#each slideContent as entry, i}
 			{#if i !== 0}
-				<div
-					id={i.toString()}
-					use:createIntersectionObserver
-					class="h-[50svh] w-full sm:h-[100svh]"
-				></div>
+				<div id={i.toString()} class="h-[50svh] w-full sm:h-[100svh]"></div>
 			{/if}
 		{/each}
 	</div>
