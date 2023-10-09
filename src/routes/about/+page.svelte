@@ -75,8 +75,6 @@
 
 	let main: HTMLElement;
 
-	let progressP: HTMLParagraphElement;
-
 	onMount(() => {
 		currentScrollContainer.set(main);
 	});
