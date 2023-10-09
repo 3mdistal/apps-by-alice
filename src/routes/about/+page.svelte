@@ -1,5 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import Slide from './slide.svelte';
 	import { light, mid_light, mid, mid_dark, dark } from '$lib/stores';
 
@@ -35,100 +34,21 @@
 	];
 
 	let currentSlide = 0;
-	let showSlide = 0; // intermediate state
-	let scrollLock = 1;
-	let wheelFiring = false;
-	let lastWheelValue = 0;
 
-	const changeSlide = (e: WheelEvent) => {
-		// Handle Non-Smooth Scrolling
-		if (e.deltaY === lastWheelValue) {
-			wheelFiring = false;
-			return;
-		}
-
-		lastWheelValue = e.deltaY;
-
-		// Handle Smooth Scrolling
-		if (wheelFiring) {
-			if (Math.abs(e.deltaY) < 4) {
-				console.log(wheelFiring, 'if e.deltaY < 4');
-				wheelFiring = false;
-				return;
+	function handleScroll(entries: Array<IntersectionObserverEntry>) {
+		for (const entry of entries) {
+			if (entry.isIntersecting) {
+				const newSlide = parseInt(entry.target.id);
+				if (newSlide !== currentSlide) {
+					currentSlide = newSlide;
+				}
 			}
-			return;
-		}
-
-		if (!wheelFiring) {
-			wheelFiring = true;
-		}
-
-		// Handle Slide Change1
-		const direction = e.deltaY > 0 ? 1 : -1;
-
-		currentSlide += direction;
-
-		if (currentSlide < 0) currentSlide = 0;
-		if (currentSlide > entries.length - 1) currentSlide = entries.length - 1;
-
-		showSlide = currentSlide;
-	};
-
-	function throttle(func: Function, delay: number) {
-		let lastCall = 0;
-		return (...args: any[]) => {
-			const now = new Date().getTime();
-			if (now - lastCall < delay) {
-				return;
-			}
-			lastCall = now;
-			return func(...args);
-		};
-	}
-
-	function handleScroll(e: WheelEvent) {
-		if (Math.abs(e.deltaY) < 10) {
-			e.preventDefault();
-		}
-
-		const direction = e.deltaY > 0 ? 1 : -1;
-
-		if ((direction > 0 && scrollLock < entries.length - 1) || (direction < 0 && scrollLock > 0)) {
-			e.preventDefault();
 		}
 	}
 
-	const throttledChangeSlide = throttle(changeSlide, 200);
-
-	// Mobile handling
-	let touchStartY: number;
-	let touchEndY: number;
-
-	function handleTouchStart(e: TouchEvent) {
-		touchStartY = e.touches[0].clientY;
-	}
-
-	function handleTouchMove(e: TouchEvent) {
-		touchEndY = e.touches[0].clientY;
-	}
-
-	function handleTouchEnd(e: TouchEvent) {
-		if (touchEndY - touchStartY > 50) {
-			// swiped up
-			changeSlideDirection(-1); // -1 to move to previous slide
-		} else if (touchStartY - touchEndY > 50) {
-			// swiped down
-			changeSlideDirection(1); // 1 to move to next slide
-		}
-	}
-
-	function changeSlideDirection(direction: number) {
-		currentSlide += direction;
-
-		if (currentSlide < 0) currentSlide = 0;
-		if (currentSlide > entries.length - 1) currentSlide = entries.length - 1;
-
-		showSlide = currentSlide;
+	function createIntersectionObserver(target: HTMLDivElement) {
+		const observer = new IntersectionObserver(handleScroll, { threshold: 0.2 });
+		observer.observe(target);
 	}
 
 	// Color handling
@@ -162,28 +82,26 @@
 	</div>
 
 	<!-- Slideshow -->
-	<div
-		class="h-[100svh] overflow-hidden"
-		on:wheel={throttledChangeSlide}
-		on:wheel={handleScroll}
-		on:touchstart={handleTouchStart}
-		on:touchmove={handleTouchMove}
-		on:touchend={handleTouchEnd}
-	>
-		{#key showSlide}
-			<Slide
-				heading={entries[showSlide].heading}
-				src={entries[showSlide].imgSrc}
-				alt={entries[showSlide].imgAlt}
-				text={entries[showSlide].text}
-			/>
-		{/key}
+	<div class="relative h-[100svh] overflow-scroll">
+		<div class="sticky top-0 h-[100svh]">
+			{#key currentSlide}
+				<Slide
+					heading={entries[currentSlide].heading}
+					src={entries[currentSlide].imgSrc}
+					alt={entries[currentSlide].imgAlt}
+					text={entries[currentSlide].text}
+				/>
+			{/key}
+		</div>
+
+		<div id="0" use:createIntersectionObserver class="absolute top-0 h-[100svh] w-full"></div>
+		<div id="1" use:createIntersectionObserver class="h-[100svh] w-full"></div>
+		<div id="2" use:createIntersectionObserver class="h-[100svh] w-full"></div>
+		<div id="3" use:createIntersectionObserver class="h-[100svh] w-full"></div>
 	</div>
 
 	<!-- Logo Wall -->
-	<div
-		class="bg- flex min-h-[100svh] flex-col items-center justify-center gap-y-10 bg-slate-600 py-10"
-	>
+	<div class="flex min-h-[100svh] flex-col items-center justify-center gap-y-10 bg-slate-600 py-10">
 		<h2 class="mb-10 text-[var(--light)]">People who gave me their trust:</h2>
 		<!-- todo: put wall here -->
 		<div class="grid max-w-[75%] grid-cols-4 gap-6">
