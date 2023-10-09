@@ -1,7 +1,8 @@
 <script lang="ts">
 	import Slide from './slide.svelte';
-	import { light, mid_light, mid, mid_dark, dark } from '$lib/stores';
+	import { light, mid_light, mid, mid_dark, dark, currentScrollContainer } from '$lib/stores';
 	import { animate } from 'motion';
+	import { onMount } from 'svelte';
 
 	export let data;
 
@@ -46,6 +47,12 @@
 
 	const prefix = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/slideshow/`;
 	const suffix = `?tr=w-1000,h-1000,fo-auto`;
+
+	let main: HTMLElement;
+
+	onMount(() => {
+		currentScrollContainer.set(main);
+	});
 </script>
 
 <svelte:head>
@@ -53,6 +60,7 @@
 </svelte:head>
 
 <main
+	bind:this={main}
 	class="h-[100svh] snap-y snap-mandatory overflow-y-scroll bg-[var(--dark)] text-[var(--midLight)] [&>*]:snap-start [&>*]:snap-always"
 >
 	<!-- Intro -->

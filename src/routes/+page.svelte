@@ -1,6 +1,14 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import { dark, mid_dark, mid, mid_light, light, homepageOpen } from '$lib/stores';
+	import {
+		dark,
+		mid_dark,
+		mid,
+		mid_light,
+		light,
+		homepageOpen,
+		currentScrollContainer
+	} from '$lib/stores';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
 	import GalleryVideo from './gallery-video.svelte';
 	import { replaceSpaces, createIntersectionObserver } from '$lib/helpers';
@@ -62,6 +70,8 @@
 		}
 	}
 
+	let main: HTMLElement;
+
 	// Lifecycle
 	onMount(() => {
 		createIntersectionObserver(video);
@@ -72,6 +82,8 @@
 				'x-prerender-revalidate': 'LYm7iK3gwhoFu$aRE3XKtQZFqM@up5rW'
 			}
 		});
+
+		currentScrollContainer.set(main);
 	});
 </script>
 
@@ -96,7 +108,7 @@
 	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
 </svelte:head>
 
-<main class="h-[100svh] snap-y snap-mandatory overflow-y-scroll [&>*]:snap-start">
+<main bind:this={main} class="h-[100svh] snap-y snap-mandatory overflow-y-scroll [&>*]:snap-start">
 	{#if $homepageOpen}
 		<div class="relative flex h-[100svh] w-screen items-center justify-center">
 			<!-- Fullscreen Reel -->

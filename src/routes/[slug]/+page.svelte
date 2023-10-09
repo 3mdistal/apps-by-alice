@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { replaceSpaces } from '$lib/helpers';
 	import { onMount } from 'svelte';
-	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
+	import { dark, mid_dark, mid, mid_light, light, currentScrollContainer } from '$lib/stores';
 
 	export let data;
 

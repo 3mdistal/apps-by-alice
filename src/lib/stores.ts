@@ -1,4 +1,4 @@
-import { writable } from 'svelte/store';
+import { writable, type Writable } from 'svelte/store';
 
 export const dark = writable('0B3142');
 export const mid_dark = writable('0F5257');
@@ -8,3 +8,5 @@ export const light = writable('D6D3F0');
 
 export const menuOpen = writable(false);
 export const homepageOpen = writable(true);
+
+export const currentScrollContainer: Writable<HTMLElement | Window | null> = writable(null);

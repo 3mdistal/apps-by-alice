@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { homepageOpen, menuOpen } from '$lib/stores';
+	import { currentScrollContainer, homepageOpen, menuOpen } from '$lib/stores';
 	import { tick } from 'svelte';
 	import CameraLogo from '$lib/svg/camera-logo.svelte';
 	import { animate } from 'motion';
@@ -16,7 +16,10 @@
 			e instanceof MouseEvent ||
 			e instanceof TouchEvent
 		) {
-			scrollPosition = window.scrollY;
+			$currentScrollContainer instanceof HTMLElement && $currentScrollContainer.isConnected
+				? (scrollPosition = $currentScrollContainer.scrollTop)
+				: (scrollPosition = window.scrollY);
+
 			menuOpen.set(true);
 			await tick();
 			menuOpenAnimation();
@@ -55,7 +58,12 @@
 
 	async function scroll(e: Event) {
 		await tick();
-		window.scrollTo(0, scrollPosition);
+
+		if ($currentScrollContainer instanceof HTMLElement && $currentScrollContainer.isConnected) {
+			$currentScrollContainer.scrollTo(0, scrollPosition);
+		} else {
+			window.scrollTo(0, scrollPosition);
+		}
 	}
 
 	function menuOpenAnimation() {
