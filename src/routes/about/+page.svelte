@@ -15,9 +15,6 @@
 	let slideTransition = true;
 
 	const updateSlide = (info: ScrollInfo) => {
-		// if (info.y.velocity < -30) return;
-		// if (info.y.velocity > 100000) return;
-
 		const progress = info.y.progress;
 		const newSlide = parseInt((progress * (slideContent.length - 1)).toFixed(0));
 
