@@ -63,10 +63,6 @@
 		});
 	}
 
-	function titleIn(target: HTMLHeadingElement) {
-		animate(target, { x: [500, 300, 200, 200, 50, 25] }, { duration: 0.5 });
-	}
-
 	const prefix = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/slideshow/`;
 	const suffix = highQuality ? `?tr=w-1000,h-1000,fo-auto` : `?tr=w-1000,h-1000,fo-auto,q-10`;
 
@@ -96,10 +92,16 @@
 
 		<!-- Intro -->
 		<div
-			class="relative m-auto flex h-[100svh] max-w-[80%] flex-col items-center justify-center gap-y-4 [&_p]:max-w-[40ch]"
+			class="relative m-auto flex h-[100svh] max-w-[90%] flex-col items-center justify-center gap-y-8 pt-8 md:max-w-[80%] md:gap-y-4"
 		>
-			<h1 use:titleIn class="max-w-[20ch] text-center text-[8rem]">{aboutHeading}</h1>
-			<NotionPageParser results={aboutIntro} />
+			<h1 class="max-w-[20ch] text-center text-6xl md:text-[8rem]">
+				{aboutHeading}
+			</h1>
+			<div
+				class="max-w-[90%] opacity-90 [&_p]:mb-4 [&_p]:max-w-[40ch] [&_p]:text-[1rem] [&_p]:leading-snug [&_p]:tracking-widest md:[&_p]:text-2xl md:[&_p]:leading-normal"
+			>
+				<NotionPageParser results={aboutIntro} />
+			</div>
 		</div>
 	</div>
 
@@ -132,13 +134,13 @@
 
 	<!-- Logo Wall -->
 	<div
-		class="relative flex min-h-[100svh] flex-col items-center justify-center gap-y-10 bg-[var(--midDark)] py-10"
+		class="relative flex min-h-[100svh] flex-col items-center justify-center bg-[var(--midDark)] px-4 py-16 md:gap-y-10 md:py-10"
 	>
-		<h2 class="mb-10 text-[var(--light)]">People who gave me their trust:</h2>
-		<div class="grid max-w-[75%] grid-cols-4 gap-6">
+		<h2 class="mb-10 text-center text-[var(--light)]">People who gave me their trust:</h2>
+		<div class="grid grid-cols-2 gap-2 md:max-w-[75%] md:grid-cols-4 md:gap-6">
 			{#each logos as logo}
 				<div
-					class="relative rounded-2xl border-4 border-[var(--lightx)] bg-[var(--light)] px-10 py-4 transition-all duration-300 hover:border-4 hover:border-[var(--mid)] hover:brightness-[96%] [&_*]:transition-all [&_*]:duration-300 [&_div]:hover:opacity-0 [&_img]:hover:saturate-100"
+					class="relative rounded-lg border-2 border-[var(--lightx)] bg-[var(--light)] px-10 py-4 transition-all duration-300 hover:border-4 hover:border-[var(--mid)] hover:brightness-[96%] md:rounded-2xl md:border-4 [&_*]:transition-all [&_*]:duration-300 [&_div]:hover:opacity-0 [&_img]:hover:saturate-100"
 				>
 					<img
 						src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/logos/${logo.properties.Name.title[0].plain_text}`}

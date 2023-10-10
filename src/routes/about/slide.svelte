@@ -108,7 +108,8 @@
 	}
 </script>
 
-<div class="flex h-[100svh] flex-col items-center justify-center gap-y-10 px-40">
+<!-- Medium Viewport -->
+<div class="hidden h-[100svh] flex-col items-center justify-center gap-y-10 px-40 md:flex">
 	<h2 class="text-center" in:headingIn out:headingOut>{heading}</h2>
 	<div class="flex items-center justify-center gap-x-20">
 		<div class="relative max-w-[40%] overflow-hidden rounded-2xl">
@@ -125,6 +126,33 @@
 			></div>
 		</div>
 		<p class="max-w-[30ch] italic tracking-widest" in:textIn out:textOut>
+			{text}
+		</p>
+	</div>
+</div>
+
+<!-- Mobile Viewport -->
+<div class="flex h-[100svh] flex-col items-center justify-center gap-y-8 p-6 md:hidden">
+	<div class="relative overflow-hidden rounded-2xl">
+		<img class="h-full w-full" {src} {alt} />
+		<div
+			class="absolute top-0 h-[50%] w-full translate-y-[-100%] bg-black"
+			out:curtainTopOut
+			in:curtainTopIn
+		></div>
+		<div
+			class="absolute bottom-0 h-[50%] w-full translate-y-[100%] bg-black"
+			out:curtainBottomOut
+			in:curtainBottomIn
+		></div>
+	</div>
+	<div>
+		<h2 class="mb-2 text-center" in:headingIn out:headingOut>{heading}</h2>
+		<p
+			class="max-w-[30ch] text-[1rem] italic leading-snug tracking-widest opacity-90"
+			in:textIn
+			out:textOut
+		>
 			{text}
 		</p>
 	</div>
