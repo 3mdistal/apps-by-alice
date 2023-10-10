@@ -76,12 +76,6 @@
 	onMount(() => {
 		createIntersectionObserver(video);
 		changeColors();
-		fetch('/', {
-			headers: {
-				Accept: 'application/json',
-				'x-prerender-revalidate': 'LYm7iK3gwhoFu$aRE3XKtQZFqM@up5rW'
-			}
-		});
 
 		currentScrollContainer.set(main);
 	});

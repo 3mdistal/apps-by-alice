@@ -1,7 +1,17 @@
 <script>
 	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
+	import { onMount } from 'svelte';
 	import '../app.postcss';
 	import Menu from './menu.svelte';
+
+	onMount(() => {
+		fetch('/', {
+			headers: {
+				Accept: 'application/json',
+				'x-prerender-revalidate': 'LYm7iK3gwhoFu$aRE3XKtQZFqM@up5rW'
+			}
+		});
+	});
 </script>
 
 <svelte:head>
