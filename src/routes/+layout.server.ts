@@ -18,6 +18,7 @@ import {
 	BYPASS_TOKEN,
 	HIGH_QUALITY
 } from '$env/static/private';
+import type { ToggleBlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 const videosFilter = {
 	and: [
@@ -53,21 +54,51 @@ const stillsFilter = {
 	]
 };
 
-export async function load() {
-	return {
-		reels: await queryDatabase(REELS_DB, publishedFilter, orderSort),
-		videos: await queryDatabase(VIDS_AND_STILLS_DB, videosFilter, orderSort),
-		stills: await queryDatabase(VIDS_AND_STILLS_DB, stillsFilter, orderSort),
-		projects: await queryDatabase(PROJECTS_DB, publishedFilter),
-		blurbHeading: await retrieveBlock(BLURB_ID),
-		blurbContent: await listChildren(BLURB_ID),
-		aboutHeading: await retrieveBlock(ABOUT_ID),
-		aboutIntro: await listChildren(ABOUT_ID),
-		aboutContent: await queryDatabase(ABOUT_DB, publishedFilter, orderSort),
-		logos: await queryDatabase(LOGOS_DB, publishedFilter, orderSort),
-		posters: await queryDatabase(POSTERS_DB, publishedFilter, orderSort),
-		categories: await queryDatabase(CATEGORIES_DB, publishedFilter, orderSort),
+export async function load({ route }) {
+	const returnObject = {
 		highQuality: HIGH_QUALITY === 'true' ? true : false
+	};
+
+	if (route.id === '/about') {
+		return {
+			aboutHeading: await retrieveBlock(ABOUT_ID).then((block) => {
+				const { toggle } = block as ToggleBlockObjectResponse;
+				return toggle.rich_text[0].plain_text;
+			}),
+			aboutIntro: await listChildren(ABOUT_ID),
+			streamed: {
+				aboutContent: await queryDatabase(ABOUT_DB, publishedFilter, orderSort),
+				logos: await queryDatabase(LOGOS_DB, publishedFilter, orderSort)
+			},
+			...returnObject
+		};
+	}
+
+	if (route.id === '/films') {
+		return {
+			posters: await queryDatabase(POSTERS_DB, publishedFilter, orderSort),
+			categories: await queryDatabase(CATEGORIES_DB, publishedFilter, orderSort),
+			...returnObject
+		};
+	}
+
+	if (route.id === '/') {
+		return {
+			reels: await queryDatabase(REELS_DB, publishedFilter, orderSort),
+			streamed: {
+				blurbHeading: await retrieveBlock(BLURB_ID),
+				blurbContent: await listChildren(BLURB_ID),
+				videos: await queryDatabase(VIDS_AND_STILLS_DB, videosFilter, orderSort),
+				projects: await queryDatabase(PROJECTS_DB, publishedFilter)
+			},
+			...returnObject
+		};
+	}
+
+	return {
+		projects: await queryDatabase(PROJECTS_DB, publishedFilter),
+		stills: await queryDatabase(VIDS_AND_STILLS_DB, stillsFilter, orderSort),
+		...returnObject
 	};
 }
 

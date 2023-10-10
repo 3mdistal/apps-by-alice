@@ -1,23 +1,33 @@
 <script lang="ts">
 	import Slide from './slide.svelte';
-	import { light, mid_light, mid, mid_dark, dark, currentScrollContainer } from '$lib/stores';
-	import { animate, scroll, type ScrollInfo } from 'motion';
+	import { currentScrollContainer } from '$lib/stores';
+	import { scroll, type ScrollInfo } from 'motion';
 	import { onMount } from 'svelte';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
+	import type {
+		BlockObjectResponse,
+		PageObjectResponse
+	} from '@notionhq/client/build/src/api-endpoints';
 
 	export let data;
 
 	const {
-		aboutHeading: {
-			toggle: {
-				rich_text: [{ plain_text: aboutHeading }]
-			}
-		},
+		aboutHeading,
 		aboutIntro: { results: aboutIntro },
-		aboutContent: { results: aboutContent },
-		logos: { results: logos },
+		streamed: {
+			aboutContent: { results: aboutContent },
+			logos: { results: logos }
+		},
 		highQuality
-	} = data;
+	} = data as {
+		aboutHeading: string;
+		aboutIntro: { results: BlockObjectResponse[] };
+		streamed: {
+			aboutContent: { results: PageObjectResponse[] };
+			logos: { results: PageObjectResponse[] };
+		};
+		highQuality: boolean;
+	};
 
 	let currentSlide = 0;
 	let slideTransition = true;
@@ -41,18 +51,17 @@
 
 	const debouncedManageSlideTransition = debounce(manageSlideTransition, 1000, true);
 
-	function debounce(func, wait: number, immediate: boolean) {
-		let timeout;
-		return function () {
-			let context = this,
-				args = arguments;
+	function debounce(func: Function, wait: number, immediate: boolean) {
+		let timeout: number | undefined;
+		return function (this: any, ...args: any[]) {
+			let context = this;
 			let later = function () {
-				timeout = null;
+				timeout = undefined;
 				if (!immediate) func.apply(context, args);
 			};
 			let callNow = immediate && !timeout;
 			clearTimeout(timeout);
-			timeout = setTimeout(later, wait);
+			timeout = window.setTimeout(later, wait);
 			if (callNow) func.apply(context, args);
 		};
 	}

@@ -1,7 +1,9 @@
-import { NOTION_KEY } from '$env/static/private'
+import { NOTION_KEY } from '$env/static/private';
 import { Client } from '@notionhq/client';
-import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-
+import type {
+	BlockObjectResponse,
+	PageObjectResponse
+} from '@notionhq/client/build/src/api-endpoints';
 
 const notion = new Client({ auth: NOTION_KEY });
 
@@ -12,21 +14,21 @@ function throwIfMissing() {
 }
 
 export const publishedFilter = {
-    and: [
-        {
-            property: "Published",
-            checkbox: {
-                equals: true,
-            },
-        },
-    ],
+	and: [
+		{
+			property: 'Published',
+			checkbox: {
+				equals: true
+			}
+		}
+	]
 };
 
 export const orderSort = [
-    {
-        direction: "ascending",
-        property: "Order"
-    }
+	{
+		direction: 'ascending',
+		property: 'Order'
+	}
 ];
 
 // For listing all the children of a database. It can also be used to filter and sort.

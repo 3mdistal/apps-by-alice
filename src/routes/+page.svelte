@@ -13,6 +13,10 @@
 	import GalleryVideo from './gallery-video.svelte';
 	import { replaceSpaces, createIntersectionObserver } from '$lib/helpers';
 	import TextMacro from '$lib/text-macro.svelte';
+	import type {
+		BlockObjectResponse,
+		PageObjectResponse
+	} from '@notionhq/client/build/src/api-endpoints';
 
 	// Import Notion Data
 	export let data;
@@ -21,12 +25,24 @@
 
 	let {
 		reels: { results },
-		videos: { results: videos },
-		projects: { results: projects },
-		blurbHeading: { toggle: blurbHeading },
-		blurbContent: { results: blurbContent },
+		streamed: {
+			videos: { results: videos },
+			projects: { results: projects },
+			blurbHeading: { toggle: blurbHeading },
+			blurbContent: { results: blurbContent }
+		},
 		highQuality
-	} = data;
+	} = data as {
+		reels: { results: PageObjectResponse[] };
+		streamed: {
+			videos: { results: PageObjectResponse[] };
+			projects: { results: PageObjectResponse[] };
+			blurbContent: { results: BlockObjectResponse[] };
+		};
+		highQuality: boolean;
+	};
+
+	console.log(blurbHeading);
 
 	// State Variables
 	let currentVideo = 0;
