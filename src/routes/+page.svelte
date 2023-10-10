@@ -57,7 +57,7 @@
 		light.set(colors[4].trim());
 		document.body.style.backgroundColor = `#${$dark}`;
 		document.querySelector('#portfolio').style.backgroundColor = `#${$dark}`;
-		document.querySelector('#about').style.backgroundColor = `#${$mid_dark}`;
+		document.querySelector('#blurb').style.backgroundColor = `#${$mid_dark}`;
 	}
 
 	// Video Player
@@ -167,7 +167,7 @@
 		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<!-- svelte-ignore a11y-no-static-element-interactions -->
 		<div
-			id="about"
+			id="blurb"
 			class="flex min-h-[100svh] w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
 		>
 			<div class="w-3/4 max-w-[50ch] md:text-2xl lg:w-1/2">

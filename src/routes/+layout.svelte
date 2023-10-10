@@ -27,7 +27,7 @@
 
 <body>
 	<div
-		class="h-[100svh] snap-y snap-mandatory overflow-y-auto [&>*]:snap-end"
+		class="h-[100svh] snap-y snap-mandatory overflow-y-auto"
 		style="--dark: #{$dark}; --midDark: #{$mid_dark}; --mid: #{$mid}; --midLight: #{$mid_light}; --light: #{$light};"
 	>
 		<slot />
