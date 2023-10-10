@@ -12,6 +12,8 @@ import {
 	ABOUT_ID,
 	ABOUT_DB,
 	LOGOS_DB,
+	POSTERS_DB,
+	CATEGORIES_DB,
 	BYPASS_TOKEN,
 	HIGH_QUALITY
 } from '$env/static/private';
@@ -60,6 +62,8 @@ export async function load() {
 		blurbContent: await listChildren(ABOUT_ID),
 		aboutContent: await queryDatabase(ABOUT_DB, publishedFilter, orderSort),
 		logos: await queryDatabase(LOGOS_DB, publishedFilter, orderSort),
+		posters: await queryDatabase(POSTERS_DB, publishedFilter, orderSort),
+		categories: await queryDatabase(CATEGORIES_DB, publishedFilter, orderSort),
 		highQuality: HIGH_QUALITY === 'true' ? true : false
 	};
 }
