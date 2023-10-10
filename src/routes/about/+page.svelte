@@ -151,6 +151,11 @@
 
 <div class="hidden">
 	{#each slideContent as entry}
-		<img src={entry.imgSrc} alt="" />
+		<Slide
+			heading={slideContent[currentSlide].properties.Heading.title[0].plain_text}
+			src={prefix + slideContent[currentSlide].properties.Image.rich_text[0].plain_text + suffix}
+			alt={slideContent[currentSlide].properties.Alt.rich_text[0].plain_text}
+			text={slideContent[currentSlide].properties.Text.rich_text[0].plain_text}
+		/>
 	{/each}
 </div>
