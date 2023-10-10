@@ -116,7 +116,7 @@
 	<!-- Slideshow -->
 	<div
 		use:scrollSlideShow
-		class="relative h-[100svh] snap-y snap-mandatory overflow-scroll bg-[var(--dark)] [&>*]:snap-start [&>*]:snap-always"
+		class="relative h-[100svh] snap-y snap-mandatory overflow-auto bg-[var(--dark)] [&>*]:snap-start [&>*]:snap-always"
 	>
 		<div class="sticky top-0 h-full">
 			{#key currentSlide}
@@ -143,7 +143,6 @@
 		class="relative flex min-h-[100svh] flex-col items-center justify-center gap-y-10 bg-slate-600 py-10"
 	>
 		<h2 class="mb-10 text-[var(--light)]">People who gave me their trust:</h2>
-		<!-- todo: put wall here -->
 		<div class="grid max-w-[75%] grid-cols-4 gap-6">
 			{#each logos as logo}
 				<div
