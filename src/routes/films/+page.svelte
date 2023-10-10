@@ -34,12 +34,12 @@
 </svelte:head>
 
 <main
-	class="flex min-h-screen w-screen flex-col items-center justify-center bg-[var(--dark)] px-40 py-40"
+	class="flex min-h-screen w-screen flex-col items-center justify-center bg-[var(--dark)] px-10 py-20 md:px-40 md:py-40"
 >
 	<div class="flex flex-col items-center justify-center">
 		{#each categories as category}
-			<h2 class="mb-20">{category.properties.Name.title[0].plain_text}</h2>
-			<div class="grid grid-flow-col grid-rows-2 gap-10">
+			<h2 class="mb-10 md:mb-20">{category.properties.Name.title[0].plain_text}</h2>
+			<div class="grid grid-flow-row gap-10 md:grid-flow-col md:grid-rows-2">
 				{#each posters as poster}
 					{#if poster.properties.Category.relation[0].id === category.id}
 						<div
