@@ -1,13 +1,22 @@
 <script>
 	import { onMount } from 'svelte';
 	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
+	import { replaceSpaces } from '$lib/helpers';
 
 	export let data;
 
 	const {
 		categories: { results: categories },
-		posters: { results: posters }
+		posters: { results: posters },
+		projects: { results: projects }
 	} = data;
+
+	function findParentProject(poster) {
+		const project = projects.find(
+			(project) => project.id === poster.properties.Project.relation[0].id
+		);
+		return project;
+	}
 
 	const imagekitPrefix = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/films/`;
 	const imagekitSuffix = `?tr=q-50`;
@@ -42,7 +51,10 @@
 			<div class="grid grid-flow-row gap-10 md:grid-flow-col md:grid-rows-2">
 				{#each posters as poster}
 					{#if poster.properties.Category.relation[0].id === category.id}
-						<div
+						<a
+							href={poster.properties.Link.url
+								? poster.properties.Link.url
+								: `/films/${replaceSpaces(poster.properties.Name.title[0].plain_text, false)}`}
 							class="relative aspect-[1/1.41] w-full overflow-hidden rounded-2xl [&>div.background]:hover:opacity-60 [&>div.text]:hover:opacity-100"
 						>
 							<img
@@ -60,7 +72,7 @@
 									{poster.properties.Role.rich_text[0].plain_text}
 								</p>
 							</div>
-						</div>
+						</a>
 					{/if}
 				{/each}
 			</div>

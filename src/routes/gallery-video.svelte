@@ -32,7 +32,7 @@
 	const parentProjectTitle = filterProjects(projects)[0].properties.Name.title[0].plain_text;
 
 	// Link to Parent Project
-	const href = `/${replaceSpaces(parentProjectTitle, false)}`;
+	const href = `/films/${replaceSpaces(parentProjectTitle, false)}`;
 
 	// Video Source
 	const suffix = highQuality ? '?tr=ac-none,q-50' : '?tr=ac-none,q-10';
