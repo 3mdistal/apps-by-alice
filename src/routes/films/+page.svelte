@@ -11,13 +11,6 @@
 		projects: { results: projects }
 	} = data;
 
-	function findParentProject(poster) {
-		const project = projects.find(
-			(project) => project.id === poster.properties.Project.relation[0].id
-		);
-		return project;
-	}
-
 	const imagekitPrefix = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/films/`;
 	const imagekitSuffix = `?tr=q-50`;
 
