@@ -23,8 +23,8 @@
 		reels: { results },
 		videos: { results: videos },
 		projects: { results: projects },
-		blurbHeading: { toggle: aboutHeading },
-		blurbContent: { results: aboutContent },
+		blurbHeading: { toggle: blurbHeading },
+		blurbContent: { results: blurbContent },
 		highQuality
 	} = data;
 
@@ -152,11 +152,11 @@
 			class="flex min-h-[100svh] w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
 		>
 			<div class="w-3/4 max-w-[50ch] md:text-2xl lg:w-1/2">
-				<h2 class="mb-12"><TextMacro type={aboutHeading} /></h2>
+				<h2 class="mb-12"><TextMacro type={blurbHeading} /></h2>
 				<div
 					class="md:text-2xl [&_a]:font-semibold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
 				>
-					<NotionPageParser results={aboutContent} />
+					<NotionPageParser results={blurbContent} />
 				</div>
 			</div>
 		</div>

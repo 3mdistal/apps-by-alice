@@ -3,10 +3,17 @@
 	import { light, mid_light, mid, mid_dark, dark, currentScrollContainer } from '$lib/stores';
 	import { animate, scroll, type ScrollInfo } from 'motion';
 	import { onMount } from 'svelte';
+	import NotionPageParser from '$lib/notion-page-parser.svelte';
 
 	export let data;
 
 	const {
+		aboutHeading: {
+			toggle: {
+				rich_text: [{ plain_text: aboutHeading }]
+			}
+		},
+		aboutIntro: { results: aboutIntro },
 		aboutContent: { results: slideContent },
 		logos: { results: logos }
 	} = data;
@@ -86,23 +93,30 @@
 
 <main
 	bind:this={main}
-	class="h-[100svh] snap-y snap-mandatory overflow-y-scroll bg-[var(--dark)] text-[var(--midLight)] [&>*]:snap-start [&>*]:snap-always"
+	class="relative h-[100svh] snap-y snap-mandatory overflow-y-scroll bg-[var(--dark)] text-[var(--midLight)] [&>*]:snap-start [&>*]:snap-always"
 >
-	<!-- Intro -->
-	<div class="m-auto flex h-[100svh] max-w-[80%] flex-col items-center justify-center gap-y-4">
-		<h1 use:titleIn class="text-[8rem]">Shorouk <br /> Elkobrsi</h1>
-		<!-- todo: Make dynamic ethos text. -->
-		<p use:titleIn class="max-w-[40ch] text-3xl">
-			Ethos: Lorem ipsum dolor sit amet consectetur adipisicing elit. Error voluptatum, sapiente
-			laboriosam, minus sint, eos quos a porro optio iure neque in repudiandae distinctio
-			voluptatibus obcaecati molestiae. Quas, voluptatibus accusantium?
-		</p>
+	<!-- Hero -->
+	<div class="sticky left-0 top-0">
+		<img
+			src="https://unsplash.it/2100/3000"
+			alt=""
+			class="absolute left-0 top-0 h-[100svh] w-screen object-cover"
+		/>
+		<div class="absolute left-0 top-0 h-[100svh] w-screen bg-black opacity-80"></div>
+
+		<!-- Intro -->
+		<div
+			class="relative m-auto flex h-[100svh] max-w-[80%] flex-col items-center justify-center gap-y-4 [&_p]:max-w-[40ch]"
+		>
+			<h1 use:titleIn class="max-w-[20ch] text-center text-[8rem]">{aboutHeading}</h1>
+			<NotionPageParser results={aboutIntro} />
+		</div>
 	</div>
 
 	<!-- Slideshow -->
 	<div
 		use:scrollSlideShow
-		class="relative h-[100svh] snap-y snap-mandatory overflow-scroll [&>*]:snap-start [&>*]:snap-always"
+		class="relative h-[100svh] snap-y snap-mandatory overflow-scroll bg-[var(--dark)] [&>*]:snap-start [&>*]:snap-always"
 	>
 		<div class="sticky top-0 h-full">
 			{#key currentSlide}
@@ -116,7 +130,6 @@
 				/>
 			{/key}
 		</div>
-
 		<div id="0" class="absolute top-0 h-[100svh] w-full"></div>
 		{#each slideContent as entry, i}
 			{#if i !== 0}
@@ -126,7 +139,9 @@
 	</div>
 
 	<!-- Logo Wall -->
-	<div class="flex min-h-[100svh] flex-col items-center justify-center gap-y-10 bg-slate-600 py-10">
+	<div
+		class="relative flex min-h-[100svh] flex-col items-center justify-center gap-y-10 bg-slate-600 py-10"
+	>
 		<h2 class="mb-10 text-[var(--light)]">People who gave me their trust:</h2>
 		<!-- todo: put wall here -->
 		<div class="grid max-w-[75%] grid-cols-4 gap-6">
