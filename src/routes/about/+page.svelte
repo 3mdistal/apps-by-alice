@@ -14,8 +14,9 @@
 			}
 		},
 		aboutIntro: { results: aboutIntro },
-		aboutContent: { results: slideContent },
-		logos: { results: logos }
+		aboutContent: { results: aboutContent },
+		logos: { results: logos },
+		highQuality
 	} = data;
 
 	let currentSlide = 0;
@@ -23,7 +24,7 @@
 
 	const updateSlide = (info: ScrollInfo) => {
 		const progress = info.y.progress;
-		const newSlide = parseInt((progress * (slideContent.length - 1)).toFixed(0));
+		const newSlide = parseInt((progress * (aboutContent.length - 1)).toFixed(0));
 
 		if (currentSlide !== newSlide && slideTransition) {
 			currentSlide = newSlide;
@@ -66,19 +67,8 @@
 		animate(target, { x: [500, 300, 200, 200, 50, 25] }, { duration: 0.5 });
 	}
 
-	// Color handling
-	function changeColors(logo) {
-		const colors = logo.properties.Colors.rich_text[0].plain_text.split(',');
-		dark.set(colors[0].trim());
-		mid_dark.set(colors[1].trim());
-		mid.set(colors[2].trim());
-		mid_light.set(colors[3].trim());
-		light.set(colors[4].trim());
-		document.body.style.backgroundColor = `#${$dark}`;
-	}
-
 	const prefix = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/slideshow/`;
-	const suffix = `?tr=w-1000,h-1000,fo-auto`;
+	const suffix = highQuality ? `?tr=w-1000,h-1000,fo-auto` : `?tr=w-1000,h-1000,fo-auto,q-10`;
 
 	let main: HTMLElement;
 
@@ -98,7 +88,7 @@
 	<!-- Hero -->
 	<div>
 		<img
-			src="https://unsplash.it/2100/3000"
+			src="https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/hero?tr=q-20"
 			alt=""
 			class="absolute left-0 top-0 h-[100svh] w-screen object-cover"
 		/>
@@ -121,17 +111,19 @@
 		<div class="sticky top-0 h-full">
 			{#key currentSlide}
 				<Slide
-					heading={slideContent[currentSlide].properties.Heading.title[0].plain_text}
+					heading={aboutContent[currentSlide].properties.Heading.title[0].plain_text}
 					src={prefix +
-						slideContent[currentSlide].properties.Image.rich_text[0].plain_text +
+						aboutContent[currentSlide].properties.Image.rich_text[0].plain_text +
 						suffix}
-					alt={slideContent[currentSlide].properties.Alt.rich_text[0].plain_text}
-					text={slideContent[currentSlide].properties.Text.rich_text[0].plain_text}
+					alt={aboutContent[currentSlide].properties.Alt.rich_text[0].plain_text}
+					text={aboutContent[currentSlide].properties.Text.rich_text[0].plain_text}
+					colorTheme={aboutContent[currentSlide].properties.Colors.rich_text[0].plain_text}
 				/>
 			{/key}
 		</div>
+		<!-- Spacers -->
 		<div id="0" class="absolute top-0 h-[100svh] w-full"></div>
-		{#each slideContent as entry, i}
+		{#each aboutContent as entry, i}
 			{#if i !== 0}
 				<div id={i.toString()} class="h-[100svh] w-full"></div>
 			{/if}
@@ -140,14 +132,13 @@
 
 	<!-- Logo Wall -->
 	<div
-		class="relative flex min-h-[100svh] flex-col items-center justify-center gap-y-10 bg-slate-600 py-10"
+		class="relative flex min-h-[100svh] flex-col items-center justify-center gap-y-10 bg-[var(--midDark)] py-10"
 	>
 		<h2 class="mb-10 text-[var(--light)]">People who gave me their trust:</h2>
 		<div class="grid max-w-[75%] grid-cols-4 gap-6">
 			{#each logos as logo}
 				<div
-					on:mouseenter={() => changeColors(logo)}
-					class="relative rounded-2xl border-4 border-slate-300 bg-slate-300 px-10 py-4 hover:border-4 hover:border-[var(--mid)] hover:brightness-[96%] [&_*]:transition-all [&_*]:duration-200 [&_div]:hover:opacity-0 [&_img]:hover:saturate-100"
+					class="relative rounded-2xl border-4 border-[var(--lightx)] bg-[var(--light)] px-10 py-4 transition-all duration-300 hover:border-4 hover:border-[var(--mid)] hover:brightness-[96%] [&_*]:transition-all [&_*]:duration-300 [&_div]:hover:opacity-0 [&_img]:hover:saturate-100"
 				>
 					<img
 						src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/logos/${logo.properties.Name.title[0].plain_text}`}
@@ -155,7 +146,7 @@
 						class="aspect-video h-full w-full object-contain saturate-0"
 					/>
 					<div
-						class="absolute left-0 top-0 h-full w-full rounded-2xl bg-slate-500 opacity-50 mix-blend-lighten"
+						class="absolute left-0 top-0 h-full w-full rounded-2xl bg-[var(--mid)] opacity-50 mix-blend-lighten"
 					></div>
 				</div>
 			{/each}
@@ -164,12 +155,12 @@
 </main>
 
 <div class="hidden">
-	{#each slideContent as entry}
+	{#each aboutContent as entry}
 		<Slide
-			heading={slideContent[currentSlide].properties.Heading.title[0].plain_text}
-			src={prefix + slideContent[currentSlide].properties.Image.rich_text[0].plain_text + suffix}
-			alt={slideContent[currentSlide].properties.Alt.rich_text[0].plain_text}
-			text={slideContent[currentSlide].properties.Text.rich_text[0].plain_text}
+			heading={aboutContent[currentSlide].properties.Heading.title[0].plain_text}
+			src={prefix + aboutContent[currentSlide].properties.Image.rich_text[0].plain_text + suffix}
+			alt={aboutContent[currentSlide].properties.Alt.rich_text[0].plain_text}
+			text={aboutContent[currentSlide].properties.Text.rich_text[0].plain_text}
 		/>
 	{/each}
 </div>

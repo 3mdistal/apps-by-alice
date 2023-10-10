@@ -13,7 +13,7 @@
 	const logline = parent.properties.Logline.rich_text[0].plain_text;
 	const date = parent.properties.Date.rich_text[0].plain_text;
 
-	const imageKit = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/studio/`;
+	const imageKit = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/films/`;
 	const suffix = `?tr=w-1000`;
 
 	function changeColors() {

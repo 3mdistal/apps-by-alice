@@ -38,7 +38,7 @@
 	const suffix = highQuality ? '?tr=ac-none,q-50' : '?tr=ac-none,q-10';
 
 	const videoSrc =
-		'https://ik.imagekit.io/tempoimmaterial/anthropotpourri/studio/' +
+		'https://ik.imagekit.io/tempoimmaterial/anthropotpourri/films/' +
 		replaceSpaces(parentProjectTitle, true) +
 		'/' +
 		replaceSpaces(name, true) +

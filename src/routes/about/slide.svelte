@@ -1,5 +1,7 @@
 <script lang="ts">
 	import { animate } from 'motion';
+	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
+	import { onMount } from 'svelte';
 
 	export let src = 'https://unsplash.it/1000/1000';
 	export let alt = 'A picture of me';
@@ -7,11 +9,28 @@
 	export let text = `Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum magnam quidem est dolorem
 		tempora? Sequi, quasi dolor. Harum animi ab similique, magnam aliquid sint, in quaerat, hic
 		veritatis provident assumenda?`;
+	export let colorTheme = '1E110B, 37596D, B6663E, 94B6C9, E6FFFB';
 
 	const outDuration = 0.5;
 	const inDuration = 0.25;
 	const blinkHalfDuration = 0.1;
 
+	// Color handling
+	function changeColors() {
+		const colors = colorTheme.split(',');
+		dark.set(colors[0].trim());
+		mid_dark.set(colors[1].trim());
+		mid.set(colors[2].trim());
+		mid_light.set(colors[3].trim());
+		light.set(colors[4].trim());
+		document.body.style.backgroundColor = `#${$dark}`;
+	}
+
+	onMount(() => {
+		changeColors();
+	});
+
+	//Animations
 	function headingIn(target: HTMLHeadingElement) {
 		animate(
 			target,
@@ -105,7 +124,7 @@
 				in:curtainBottomIn
 			></div>
 		</div>
-		<p class="max-w-[30ch] text-3xl" in:textIn out:textOut>
+		<p class="max-w-[30ch] italic tracking-widest" in:textIn out:textOut>
 			{text}
 		</p>
 	</div>
