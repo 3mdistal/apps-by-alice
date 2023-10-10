@@ -3,6 +3,7 @@
 	import { onMount } from 'svelte';
 	import '../app.postcss';
 	import Menu from './menu.svelte';
+	import Footer from './footer.svelte';
 
 	onMount(() => {
 		fetch('/', {
@@ -26,9 +27,11 @@
 
 <body>
 	<div
+		class="h-[100svh] snap-y snap-mandatory overflow-y-auto [&>*]:snap-end"
 		style="--dark: #{$dark}; --midDark: #{$mid_dark}; --mid: #{$mid}; --midLight: #{$mid_light}; --light: #{$light};"
 	>
 		<slot />
 		<Menu />
+		<Footer />
 	</div>
 </body>

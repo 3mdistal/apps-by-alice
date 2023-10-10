@@ -102,7 +102,10 @@
 	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
 </svelte:head>
 
-<main bind:this={main} class="h-[100svh] snap-y snap-mandatory overflow-y-scroll [&>*]:snap-start">
+<main
+	bind:this={main}
+	class="h-[100svh] snap-y snap-mandatory overflow-y-auto [&>*]:snap-start [&>*]:snap-always"
+>
 	{#if $homepageOpen}
 		<div class="relative flex h-[100svh] w-screen items-center justify-center">
 			<!-- Fullscreen Reel -->

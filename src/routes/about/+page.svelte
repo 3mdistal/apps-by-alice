@@ -79,7 +79,7 @@
 
 <main
 	bind:this={main}
-	class="relative h-[100svh] snap-y snap-mandatory overflow-y-scroll bg-[var(--dark)] text-[var(--midLight)] [&>*]:snap-start [&>*]:snap-always"
+	class="relative h-[100svh] snap-y snap-mandatory overflow-y-auto bg-[var(--dark)] text-[var(--midLight)] [&>*]:snap-start [&>*]:snap-always"
 >
 	<!-- Hero -->
 	<div>
@@ -108,7 +108,7 @@
 	<!-- Slideshow -->
 	<div
 		use:scrollSlideShow
-		class="relative h-[100svh] snap-y snap-mandatory overflow-auto bg-[var(--dark)] [&>*]:snap-start [&>*]:snap-always"
+		class="relative h-[100svh] snap-y snap-mandatory overflow-y-auto bg-[var(--dark)] [&>*]:snap-start [&>*]:snap-always"
 	>
 		<div class="sticky top-0 h-full">
 			{#key currentSlide}
