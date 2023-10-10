@@ -96,7 +96,7 @@
 	class="relative h-[100svh] snap-y snap-mandatory overflow-y-scroll bg-[var(--dark)] text-[var(--midLight)] [&>*]:snap-start [&>*]:snap-always"
 >
 	<!-- Hero -->
-	<div class="sticky left-0 top-0">
+	<div>
 		<img
 			src="https://unsplash.it/2100/3000"
 			alt=""
