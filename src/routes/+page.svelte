@@ -42,22 +42,22 @@
 		highQuality: boolean;
 	};
 
-	console.log(blurbHeading);
-
 	// State Variables
 	let currentVideo = 0;
 
 	// Color handling
 	function changeColors() {
-		const colors = results[currentVideo].properties.Colors.rich_text[0].plain_text.split(',');
-		dark.set(colors[0].trim());
-		mid_dark.set(colors[1].trim());
-		mid.set(colors[2].trim());
-		mid_light.set(colors[3].trim());
-		light.set(colors[4].trim());
-		document.body.style.backgroundColor = `#${$dark}`;
-		document.querySelector('#portfolio').style.backgroundColor = `#${$dark}`;
-		document.querySelector('#blurb').style.backgroundColor = `#${$mid_dark}`;
+		if (window.location.pathname === '/') {
+			const colors = results[currentVideo].properties.Colors.rich_text[0].plain_text.split(',');
+			dark.set(colors[0].trim());
+			mid_dark.set(colors[1].trim());
+			mid.set(colors[2].trim());
+			mid_light.set(colors[3].trim());
+			light.set(colors[4].trim());
+			document.body.style.backgroundColor = `#${$dark}`;
+			document.querySelector('#portfolio').style.backgroundColor = `#${$dark}`;
+			document.querySelector('#blurb').style.backgroundColor = `#${$mid_dark}`;
+		}
 	}
 
 	// Video Player
@@ -86,14 +86,10 @@
 		}
 	}
 
-	let main: HTMLElement;
-
 	// Lifecycle
 	onMount(() => {
 		createIntersectionObserver(video);
 		changeColors();
-
-		currentScrollContainer.set(main);
 	});
 </script>
 
@@ -118,78 +114,71 @@
 	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
 </svelte:head>
 
-<main
-	bind:this={main}
-	class="h-[100svh] snap-y snap-mandatory overflow-y-auto [&>*]:snap-start [&>*]:snap-always"
->
-	{#if $homepageOpen}
-		<div class="relative flex h-[100svh] w-screen items-center justify-center">
-			<!-- Fullscreen Reel -->
-			<div class="max-w-[85%] overflow-hidden rounded-2xl lg:h-[85%]">
-				<video
-					bind:this={video}
-					muted
-					playsinline
-					autoplay
-					class="relative -z-10 aspect-[3/4.5] h-full w-full object-cover sm:aspect-[3/4] md:aspect-square lg:aspect-[4/3]"
-					src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/homepage/reel/${replaceSpaces(
-						results[currentVideo].properties.Name.title[0].plain_text
-					)}${suffix}`}
-					on:ended={handleVideoEnded}
-					on:canplaythrough={preloadNextVideo}
-				>
-				</video>
-				<!-- Overlay -->
-				<div class="absolute left-0 top-0 h-full w-full" on:click={() => video.play()}>
-					<div class="absolute left-0 top-0 h-full w-full bg-[var(--dark)] opacity-40"></div>
-					<div class="relative flex h-full w-full items-center justify-center">
-						<div class="flex flex-col items-center justify-center">
-							<!-- <TextLogo /> -->
-							<h1
-								class="text-[14vw] leading-[1em] text-[var(--midLight)] lg:leading-[.9em] xl:text-[12vw]"
-							>
-								Anthropotpourri
-							</h1>
-							<p
-								class="hidden text-center text-sm tracking-[.5rem] sm:text-xl md:block lg:text-2xl"
-							>
-								The Cinematography of Shorouk Elkobrsi
-							</p>
-							<p class="text-center text-sm tracking-[.5rem] sm:text-xl md:hidden">
-								The Cinematography<br />of Shorouk Elkobrsi
-							</p>
-						</div>
+{#if $homepageOpen}
+	<div class="relative flex h-[100svh] w-screen items-center justify-center">
+		<!-- Fullscreen Reel -->
+		<div class="max-w-[85%] overflow-hidden rounded-2xl lg:h-[85%]">
+			<video
+				bind:this={video}
+				muted
+				playsinline
+				autoplay
+				class="relative -z-10 aspect-[3/4.5] h-full w-full object-cover sm:aspect-[3/4] md:aspect-square lg:aspect-[4/3]"
+				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/homepage/reel/${replaceSpaces(
+					results[currentVideo].properties.Name.title[0].plain_text
+				)}${suffix}`}
+				on:ended={handleVideoEnded}
+				on:canplaythrough={preloadNextVideo}
+			>
+			</video>
+			<!-- Overlay -->
+			<div class="absolute left-0 top-0 h-full w-full" on:click={() => video.play()}>
+				<div class="absolute left-0 top-0 h-full w-full bg-[var(--dark)] opacity-40"></div>
+				<div class="relative flex h-full w-full items-center justify-center">
+					<div class="flex flex-col items-center justify-center">
+						<!-- <TextLogo /> -->
+						<h1
+							class="text-[14vw] leading-[1em] text-[var(--midLight)] lg:leading-[.9em] xl:text-[12vw]"
+						>
+							Anthropotpourri
+						</h1>
+						<p class="hidden text-center text-sm tracking-[.5rem] sm:text-xl md:block lg:text-2xl">
+							The Cinematography of Shorouk Elkobrsi
+						</p>
+						<p class="text-center text-sm tracking-[.5rem] sm:text-xl md:hidden">
+							The Cinematography<br />of Shorouk Elkobrsi
+						</p>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!-- Overlay -->
-		<!-- svelte-ignore a11y-click-events-have-key-events -->
-		<!-- svelte-ignore a11y-no-static-element-interactions -->
-		<div
-			id="blurb"
-			class="flex min-h-[100svh] w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
-		>
-			<div class="w-3/4 max-w-[50ch] md:text-2xl lg:w-1/2">
-				<h2 class="mb-12"><TextMacro type={blurbHeading} /></h2>
-				<div
-					class="md:text-2xl [&_a]:font-semibold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
-				>
-					<NotionPageParser results={blurbContent} />
-				</div>
-			</div>
-		</div>
-		<div
-			id="portfolio"
-			class="min-w-screen relative z-10 flex min-h-[100svh] items-center justify-center bg-[var(--dark)] px-8 py-[10vh] sm:px-28 md:px-32 lg:h-screen lg:px-40 lg:py-0"
-		>
+	</div>
+	<!-- Overlay -->
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
+	<!-- svelte-ignore a11y-no-static-element-interactions -->
+	<div
+		id="blurb"
+		class="flex min-h-[100svh] w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
+	>
+		<div class="w-3/4 max-w-[50ch] md:text-2xl lg:w-1/2">
+			<h2 class="mb-12"><TextMacro type={blurbHeading} /></h2>
 			<div
-				class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
+				class="md:text-2xl [&_a]:font-semibold [&_a]:text-[var(--midLight)] hover:[&_a]:text-[var(--mid)] [&_p]:mb-4 [&_p]:text-[var(--light)]"
 			>
-				{#each videos as video}
-					<GalleryVideo {video} {projects} {highQuality} on:changeColor={changeColors} />
-				{/each}
+				<NotionPageParser results={blurbContent} />
 			</div>
 		</div>
-	{/if}
-</main>
+	</div>
+	<div
+		id="portfolio"
+		class="min-w-screen relative z-10 flex min-h-[100svh] items-center justify-center bg-[var(--dark)] px-8 py-[10vh] sm:px-28 md:px-32 lg:h-screen lg:px-40 lg:py-0"
+	>
+		<div
+			class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
+		>
+			{#each videos as video}
+				<GalleryVideo {video} {projects} {highQuality} on:changeColor={changeColors} />
+			{/each}
+		</div>
+	</div>
+{/if}

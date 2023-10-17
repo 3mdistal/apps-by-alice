@@ -1,11 +1,21 @@
-<script>
+<script lang="ts">
 	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
 	import { onMount } from 'svelte';
 	import '../app.postcss';
 	import Menu from './menu.svelte';
 	import Footer from './footer.svelte';
+	import { currentScrollContainer } from '$lib/stores';
+	import { onNavigate } from '$app/navigation';
+
+	let main: HTMLElement;
+
+	onNavigate(() => {
+		main.scrollTo(0, 0);
+	});
 
 	onMount(() => {
+		currentScrollContainer.set(main);
+
 		fetch('/', {
 			headers: {
 				Accept: 'application/json',
@@ -25,13 +35,12 @@
 	/>
 </svelte:head>
 
-<body>
-	<div
-		class="h-[100svh] snap-y snap-mandatory overflow-y-auto"
-		style="--dark: #{$dark}; --midDark: #{$mid_dark}; --mid: #{$mid}; --midLight: #{$mid_light}; --light: #{$light};"
-	>
-		<slot />
-		<Menu />
-		<Footer />
-	</div>
-</body>
+<main
+	bind:this={main}
+	class="h-[100svh] snap-y snap-mandatory overflow-y-auto [&>*]:snap-start [&>*]:snap-always"
+	style="--dark: #{$dark}; --midDark: #{$mid_dark}; --mid: #{$mid}; --midLight: #{$mid_light}; --light: #{$light};"
+>
+	<slot />
+	<Menu />
+	<Footer />
+</main>
