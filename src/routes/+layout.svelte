@@ -37,7 +37,7 @@
 
 <main
 	bind:this={main}
-	class="h-[100svh] snap-y snap-mandatory overflow-y-auto [&>*]:snap-start [&>*]:snap-always"
+	class="h-screen snap-y snap-mandatory overflow-y-auto [&>*]:snap-start [&>*]:snap-always"
 	style="--dark: #{$dark}; --midDark: #{$mid_dark}; --mid: #{$mid}; --midLight: #{$mid_light}; --light: #{$light};"
 >
 	<slot />

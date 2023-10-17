@@ -30,7 +30,7 @@
 </script>
 
 <!-- Medium Viewport -->
-<div class="hidden h-[100svh] flex-col items-center justify-center gap-y-10 px-40 md:flex">
+<div class="hidden h-screen flex-col items-center justify-center gap-y-10 px-40 md:flex">
 	<h2
 		class="text-center"
 		in:motionTransition={{
@@ -95,7 +95,7 @@
 </div>
 
 <!-- Mobile Viewport -->
-<div class="flex h-[100svh] flex-col items-center justify-center gap-y-8 p-6 md:hidden">
+<div class="flex h-screen flex-col items-center justify-center gap-y-8 p-6 md:hidden">
 	<div class="relative overflow-hidden rounded-2xl">
 		<img class="h-full w-full" {src} {alt} />
 		<div
