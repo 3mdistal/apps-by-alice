@@ -47,15 +47,17 @@
 
 	// Color handling
 	function changeColors() {
-		const colors = results[currentVideo].properties.Colors.rich_text[0].plain_text.split(',');
-		dark.set(colors[0].trim());
-		mid_dark.set(colors[1].trim());
-		mid.set(colors[2].trim());
-		mid_light.set(colors[3].trim());
-		light.set(colors[4].trim());
-		document.body.style.backgroundColor = `#${$dark}`;
-		document.querySelector('#portfolio').style.backgroundColor = `#${$dark}`;
-		document.querySelector('#blurb').style.backgroundColor = `#${$mid_dark}`;
+		if (window.location.pathname === '/') {
+			const colors = results[currentVideo].properties.Colors.rich_text[0].plain_text.split(',');
+			dark.set(colors[0].trim());
+			mid_dark.set(colors[1].trim());
+			mid.set(colors[2].trim());
+			mid_light.set(colors[3].trim());
+			light.set(colors[4].trim());
+			document.body.style.backgroundColor = `#${$dark}`;
+			document.querySelector('#portfolio').style.backgroundColor = `#${$dark}`;
+			document.querySelector('#blurb').style.backgroundColor = `#${$mid_dark}`;
+		}
 	}
 
 	// Video Player
