@@ -147,9 +147,6 @@
 			</div>
 		</div>
 	</div>
-	<!-- Overlay -->
-	<!-- svelte-ignore a11y-click-events-have-key-events -->
-	<!-- svelte-ignore a11y-no-static-element-interactions -->
 	<div
 		id="blurb"
 		class="flex min-h-[100svh] w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
