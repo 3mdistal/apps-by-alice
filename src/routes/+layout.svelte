@@ -4,8 +4,9 @@
 	import '../app.postcss';
 	import Menu from './menu.svelte';
 	import Footer from './footer.svelte';
+	import { currentScrollContainer } from '$lib/stores';
 
-	let main: HTMLDivElement;
+	let main: HTMLElement;
 
 	onMount(() => {
 		currentScrollContainer.set(main);

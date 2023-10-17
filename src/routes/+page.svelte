@@ -42,8 +42,6 @@
 		highQuality: boolean;
 	};
 
-	console.log(blurbHeading);
-
 	// State Variables
 	let currentVideo = 0;
 

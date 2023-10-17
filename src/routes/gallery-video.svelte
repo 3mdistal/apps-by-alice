@@ -72,7 +72,7 @@
 		light.set(colors[4].trim());
 		document.body.style.backgroundColor = `#${$dark}`;
 		document.querySelector('#portfolio').style.backgroundColor = `#${$mid_dark}`;
-		document.querySelector('#about').style.backgroundColor = `#${$dark}`;
+		document.querySelector('#blurb').style.backgroundColor = `#${$dark}`;
 	}
 
 	// Handlers
