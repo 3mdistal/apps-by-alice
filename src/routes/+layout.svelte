@@ -5,8 +5,13 @@
 	import Menu from './menu.svelte';
 	import Footer from './footer.svelte';
 	import { currentScrollContainer } from '$lib/stores';
+	import { onNavigate } from '$app/navigation';
 
 	let main: HTMLElement;
+
+	onNavigate(() => {
+		main.scrollTo(0, 0);
+	});
 
 	onMount(() => {
 		currentScrollContainer.set(main);
