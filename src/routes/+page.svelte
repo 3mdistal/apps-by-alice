@@ -1,14 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import {
-		dark,
-		mid_dark,
-		mid,
-		mid_light,
-		light,
-		homepageOpen,
-		currentScrollContainer
-	} from '$lib/stores';
+	import { dark, mid_dark, mid, mid_light, light, homepageOpen } from '$lib/stores';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
 	import GalleryVideo from './gallery-video.svelte';
 	import { replaceSpaces, createIntersectionObserver } from '$lib/helpers';
@@ -116,14 +108,16 @@
 
 {#if $homepageOpen}
 	<div class="relative flex h-[100svh] w-screen items-center justify-center">
-		<!-- Fullscreen Reel -->
-		<div class="max-w-[85%] overflow-hidden rounded-2xl lg:h-[85%]">
+		<!-- Box Reel -->
+		<div
+			class="aspect-[3/4.5] max-w-[85%] overflow-hidden rounded-2xl sm:aspect-[3/4] md:aspect-square lg:aspect-[4/3] lg:h-[85%]"
+		>
 			<video
 				bind:this={video}
 				muted
 				playsinline
 				autoplay
-				class="relative -z-10 aspect-[3/4.5] h-full w-full object-cover sm:aspect-[3/4] md:aspect-square lg:aspect-[4/3]"
+				class="h-full w-full object-cover"
 				src={`https://ik.imagekit.io/tempoimmaterial/anthropotpourri/homepage/reel/${replaceSpaces(
 					results[currentVideo].properties.Name.title[0].plain_text
 				)}${suffix}`}
