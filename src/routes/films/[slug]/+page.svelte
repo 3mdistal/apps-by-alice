@@ -35,14 +35,15 @@
 	<title>{name}</title>
 </svelte:head>
 
+<!-- Hero Trailer -->
 <div
-	class="flex min-h-screen w-screen flex-col items-center justify-center gap-y-8 bg-[var(--dark)] px-32 py-32"
+	class="grid h-screen w-screen grid-rows-4 place-content-center place-items-center bg-black px-10 pb-10"
 >
 	<div>
 		<h1 class="text-8xl text-[var(--midLight)]">{name}</h1>
 		<p class="text-center text-[1.1rem] italic">{date}</p>
 	</div>
-	<div class="aspect-video w-full overflow-hidden rounded-2xl">
+	<div class="row-span-3 aspect-video h-full w-full overflow-hidden rounded-2xl">
 		<iframe
 			src={`https://player.vimeo.com/video/${parent.properties.Trailer.rich_text[0].plain_text}`}
 			title="vimeo-player"
@@ -52,18 +53,26 @@
 			allowfullscreen
 		></iframe>
 	</div>
+</div>
+
+<!-- Stills -->
+<div
+	class="grid min-h-screen w-screen grid-cols-3 place-content-center place-items-center gap-4 bg-[var(--dark)] px-[10%] py-[10%]"
+>
+	{#each stills as still}
+		<img
+			src={imageKit +
+				replaceSpaces(name) +
+				'/' +
+				still.properties.Name.title[0].plain_text +
+				suffix}
+			alt=""
+			class="rounded-2xl object-cover"
+		/>
+	{/each}
+</div>
+
+<!-- Film Details -->
+<div class="grid min-h-screen w-screen place-content-center place-items-center bg-[var(--midDark)]">
 	<p>{logline}</p>
-	<div class="grid grid-cols-3 grid-rows-2 gap-4">
-		{#each stills as still}
-			<img
-				src={imageKit +
-					replaceSpaces(name) +
-					'/' +
-					still.properties.Name.title[0].plain_text +
-					suffix}
-				alt=""
-				class="rounded-2xl object-cover"
-			/>
-		{/each}
-	</div>
 </div>
