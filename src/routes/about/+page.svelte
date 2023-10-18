@@ -85,7 +85,7 @@
 	<img
 		src="https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/hero?tr=q-20"
 		alt=""
-		class="absolute left-0 top-0 h-screen w-screen object-cover"
+		class="fixed left-0 top-0 -z-10 h-screen w-screen object-cover"
 	/>
 	<div class="absolute left-0 top-0 h-screen w-screen bg-black opacity-80"></div>
 
