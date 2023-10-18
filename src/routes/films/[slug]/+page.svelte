@@ -37,42 +37,49 @@
 
 <!-- Hero Trailer -->
 <div
-	class="grid h-screen w-screen grid-rows-4 place-content-center place-items-center bg-black px-10 pb-10"
+	class="grid h-screen w-screen grid-rows-5 place-content-stretch place-items-stretch bg-black px-2 sm:grid-rows-4 sm:px-10"
 >
-	<div>
-		<h1 class="text-8xl text-[var(--midLight)]">{name}</h1>
-		<p class="text-center text-[1.1rem] italic">{date}</p>
+	<div
+		class="row-span-1 row-start-2 grid h-full place-content-center place-items-center sm:row-start-1"
+	>
+		<h1 class="text-6xl text-[var(--midLight)] sm:text-8xl">{name}</h1>
+		<p class="text-center text-[.9rem] italic sm:text-[1.1rem]">{date}</p>
 	</div>
-	<div class="row-span-3 aspect-video h-full w-full overflow-hidden rounded-2xl">
-		<iframe
-			src={`https://player.vimeo.com/video/${parent.properties.Trailer.rich_text[0].plain_text}`}
-			title="vimeo-player"
-			height="100%"
-			width="100%"
-			frameborder="0"
-			allowfullscreen
-		></iframe>
-	</div>
+
+	<iframe
+		src={`https://player.vimeo.com/video/${parent.properties.Trailer.rich_text[0].plain_text}`}
+		title="vimeo-player"
+		frameborder="0"
+		allowfullscreen
+		class="row-span-2 row-start-3 w-full sm:row-span-3 sm:row-start-2 sm:pb-10"
+	></iframe>
 </div>
 
 <!-- Stills -->
 <div
-	class="grid min-h-screen w-screen grid-cols-3 place-content-center place-items-center gap-4 bg-[var(--dark)] px-[10%] py-[10%]"
+	class="grid min-h-screen w-screen place-content-center place-items-center bg-[var(--dark)] px-[10%] py-20 sm:py-10"
 >
-	{#each stills as still}
-		<img
-			src={imageKit +
-				replaceSpaces(name) +
-				'/' +
-				still.properties.Name.title[0].plain_text +
-				suffix}
-			alt=""
-			class="rounded-2xl object-cover"
-		/>
-	{/each}
-</div>
-
-<!-- Film Details -->
-<div class="grid min-h-screen w-screen place-content-center place-items-center bg-[var(--midDark)]">
-	<p>{logline}</p>
+	<div class="grid grid-rows-3 place-items-center">
+		<div
+			class="row-span-2 grid grid-cols-1 place-content-center place-items-center gap-4 sm:grid-cols-3"
+		>
+			{#each stills as still}
+				<img
+					src={imageKit +
+						replaceSpaces(name) +
+						'/' +
+						still.properties.Name.title[0].plain_text +
+						suffix}
+					alt=""
+					class="rounded-xl object-cover sm:rounded-2xl"
+				/>
+			{/each}
+		</div>
+		<div>
+			<p class="mb-8 italic">{logline}</p>
+			<p>Director: Shorouk Elkobrsi</p>
+			<p>DOP: Shorouk Elkobrsi</p>
+			<p>Shot on: Arri Alexa Mini LF</p>
+		</div>
+	</div>
 </div>

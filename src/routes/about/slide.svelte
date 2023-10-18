@@ -77,7 +77,7 @@
 			></div>
 		</div>
 		<p
-			class="max-w-[30ch] italic tracking-widest"
+			class="max-w-[30ch] italic"
 			in:motionTransition={{
 				animation: { y: [100, 0], opacity: [0, 1] },
 				duration: inDuration,
@@ -142,7 +142,7 @@
 			{heading}
 		</h2>
 		<p
-			class="max-w-[30ch] text-[1rem] italic leading-snug tracking-widest opacity-90"
+			class="max-w-[30ch] text-[1rem] italic leading-snug opacity-90"
 			in:motionTransition={{
 				animation: { y: [100, 0], opacity: [0, 1] },
 				duration: inDuration,

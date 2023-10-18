@@ -97,7 +97,7 @@
 			{aboutHeading}
 		</h1>
 		<div
-			class="max-w-[90%] opacity-90 [&_p]:mb-4 [&_p]:max-w-[40ch] [&_p]:text-[1rem] [&_p]:leading-snug [&_p]:tracking-widest md:[&_p]:text-2xl md:[&_p]:leading-normal"
+			class="max-w-[90%] opacity-90 [&_p]:mb-4 [&_p]:max-w-[40ch] [&_p]:text-[1rem] [&_p]:leading-snug md:[&_p]:text-2xl md:[&_p]:leading-normal"
 		>
 			<NotionPageParser results={aboutIntro} />
 		</div>
