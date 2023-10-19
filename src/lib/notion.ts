@@ -49,7 +49,7 @@ export async function retrieveBlock(id: string) {
 }
 
 // This function fetches children of a block with optional pagination
-async function fetchChildren(id: string, cursor?: string) {
+async function fetchChildren(id: string, cursor: string | null = null) {
 	const response = await notion.blocks.children.list({
 		block_id: id,
 		...(cursor && { start_cursor: cursor })
@@ -71,13 +71,13 @@ async function replaceSyncedBlocks(results: BlockObjectResponse[]) {
 
 // The main function
 export async function listChildren(id: string) {
-	let cursor: string | undefined;
+	let cursor: string | null = null;
 	let allResults: BlockObjectResponse[] = [];
 
 	do {
 		const response = await fetchChildren(id, cursor);
-		allResults = [...allResults, ...response.results];
-		cursor = response.has_more ? response.next_cursor : undefined;
+		allResults = [...allResults, ...(response.results as BlockObjectResponse[])];
+		cursor = response.has_more ? response.next_cursor : null;
 	} while (cursor);
 
 	const finalResults = await replaceSyncedBlocks(allResults);
