@@ -1,9 +1,6 @@
 import { NOTION_KEY } from '$env/static/private';
 import { Client } from '@notionhq/client';
-import type {
-	BlockObjectResponse,
-	PageObjectResponse
-} from '@notionhq/client/build/src/api-endpoints';
+import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 const notion = new Client({ auth: NOTION_KEY });
 
@@ -51,31 +48,38 @@ export async function retrieveBlock(id: string) {
 	return response;
 }
 
-// For listing all the children of a block. Generally, this is then passed to the renderer.
-export async function listChildren(id: string, cursor?: string) {
-	throwIfMissing();
-
+// This function fetches children of a block with optional pagination
+async function fetchChildren(id: string, cursor?: string) {
 	const response = await notion.blocks.children.list({
 		block_id: id,
 		...(cursor && { start_cursor: cursor })
 	});
+	return response;
+}
 
-	// If there are more children, recursively call this function again.
-	if (response?.has_more) {
-		const moreResponse = await listChildren(id, response.next_cursor as string);
-		response.results.push(...(moreResponse?.results || []));
-	}
-
-	// Replace synced blocks with static content.
-	if (response.results) {
-		for (let i = 0; i < response.results.length; i++) {
-			const block = response.results[i] as BlockObjectResponse;
-
-			if (block && block.type === 'synced_block' && block.synced_block.synced_from !== null) {
-				const originalBlockContent = await listChildren(block.synced_block.synced_from.block_id);
-				response.results.splice(i, 1, ...originalBlockContent.results);
-			}
+// This function replaces synced blocks with their original content
+async function replaceSyncedBlocks(results: BlockObjectResponse[]) {
+	for (let i = 0; i < results.length; i++) {
+		const block = results[i];
+		if (block && block.type === 'synced_block' && block.synced_block.synced_from !== null) {
+			const originalBlockContent = await fetchChildren(block.synced_block.synced_from.block_id);
+			results.splice(i, 1, ...(originalBlockContent.results as BlockObjectResponse[]));
 		}
 	}
-	return response;
+	return results;
+}
+
+// The main function
+export async function listChildren(id: string) {
+	let cursor: string | undefined;
+	let allResults: BlockObjectResponse[] = [];
+
+	do {
+		const response = await fetchChildren(id, cursor);
+		allResults = [...allResults, ...response.results];
+		cursor = response.has_more ? response.next_cursor : undefined;
+	} while (cursor);
+
+	const finalResults = await replaceSyncedBlocks(allResults);
+	return { results: finalResults };
 }
