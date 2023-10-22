@@ -39,7 +39,30 @@
 </script>
 
 <svelte:head>
-	<title>{name}</title>
+	<title>{name} - Anthropotpourri</title>
+	<meta name="title" content="{name} - Anthropotpourri" />
+	<meta name="description" content="A film by Shorouk Elkobrsi." />
+	<meta name="keywords" content="{name}, film, cinematography, production, shorouk, elkobrsi" />
+	<meta name="author" content="Shorouk Elkobrsi" />
+
+	<!-- Facebook -->
+	<meta property="og:title" content="{name} - Anthropotpourri" />
+	<meta property="og:site_name" content="Anthropotpourri" />
+	<meta property="og:description" content="A film by Shorouk Elkobrsi." />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://unsplash.it/1600/900" />
+	<meta
+		property="og:url"
+		content="https://anthropotpourri.com/films/{replaceSpaces(name, false)}"
+	/>
+	<meta property="og:locale" content="en_US" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="{name} - Anthropotpourri" />
+	<meta name="twitter:description" content="A film by Shorouk Elkobrsi." />
+	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
+	<meta name="twitter:site" content="@shoroukelkobrsi" />
 </svelte:head>
 
 <!-- Hero Trailer -->
