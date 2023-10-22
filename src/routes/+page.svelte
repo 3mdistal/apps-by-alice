@@ -110,7 +110,7 @@
 </svelte:head>
 
 {#if $homepageOpen}
-	<div class="relative flex h-screen w-screen items-center justify-center">
+	<div class="relative flex h-[100svh] w-screen items-center justify-center">
 		<!-- Box Reel -->
 		<div
 			class="aspect-[3/4.5] max-w-[85%] overflow-hidden rounded-2xl sm:aspect-[3/4] md:aspect-square lg:aspect-[4/3] lg:h-[85%]"
@@ -152,7 +152,7 @@
 	</div>
 	<div
 		id="blurb"
-		class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] py-[25vh]"
+		class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)]"
 	>
 		<div class="w-3/4 max-w-[50ch] md:text-2xl lg:w-1/2">
 			<h2 class="mb-12"><TextMacro type={blurbHeading} /></h2>
@@ -165,7 +165,7 @@
 	</div>
 	<div
 		id="portfolio"
-		class="min-w-screen relative z-10 flex min-h-screen items-center justify-center bg-[var(--dark)] px-8 py-[10vh] sm:px-28 md:px-32 lg:h-screen lg:px-40 lg:py-0"
+		class="flex min-h-screen w-screen items-center justify-center bg-[var(--dark)] px-8 py-[10vh] sm:px-28 md:px-32 lg:h-screen lg:px-40 lg:py-0"
 	>
 		<div
 			class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"

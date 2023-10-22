@@ -111,7 +111,7 @@
 		alt={alt ? alt : name}
 	/>
 	<div
-		class="absolute top-0 hidden h-full w-full bg-[var(--midDark)] hover:opacity-0 sm:block sm:opacity-20"
+		class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-20 hover:opacity-0 sm:block"
 	></div>
 </a>
 
