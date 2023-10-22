@@ -29,7 +29,18 @@ export const load: Load = ({ params, parent }) => {
 
 		const info = await listChildren(parentProject.id);
 
-		return { parentProject, stills, info };
+		let poster;
+
+		possibleParentProjects.posters.results.forEach((result) => {
+			if (result.properties.Project.relation.length === 0) return;
+			if (result.properties.Project.relation[0].id === parentProject.id) {
+				poster = result.properties.Name.title[0].plain_text;
+			}
+		});
+
+		console.log(poster);
+
+		return { parentProject, stills, info, poster };
 	};
 
 	return {

@@ -82,6 +82,15 @@ export async function load({ route }) {
 		};
 	}
 
+	if (route.id === '/films/[slug]') {
+		return {
+			projects: await queryDatabase(PROJECTS_DB, publishedFilter),
+			stills: await queryDatabase(VIDS_AND_STILLS_DB, stillsFilter, orderSort),
+			posters: await queryDatabase(POSTERS_DB, publishedFilter, orderSort),
+			...returnObject
+		};
+	}
+
 	if (route.id === '/') {
 		return {
 			reels: await queryDatabase(REELS_DB, publishedFilter, orderSort),

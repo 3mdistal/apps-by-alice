@@ -10,7 +10,8 @@
 		parent: {
 			parentProject: parent,
 			stills,
-			info: { results: info }
+			info: { results: info },
+			poster
 		}
 	} = data;
 
@@ -33,6 +34,7 @@
 
 	onMount(() => {
 		changeColors();
+		console.log(parent.properties.Trailer);
 	});
 </script>
 
@@ -41,32 +43,50 @@
 </svelte:head>
 
 <!-- Hero Trailer -->
-<div
-	class="grid h-screen w-screen grid-rows-5 place-content-stretch place-items-stretch bg-black px-2 sm:grid-rows-4 sm:px-10"
->
-	<div
-		class="row-span-1 row-start-2 grid h-full place-content-center place-items-center sm:row-start-1"
-	>
-		<h1 class="text-6xl text-[var(--midLight)] sm:text-8xl">{name}</h1>
-		<p class="text-center text-[.9rem] italic sm:text-[1.1rem]">{date}</p>
-	</div>
 
-	<iframe
-		src={`https://player.vimeo.com/video/${parent.properties.Trailer.rich_text[0].plain_text}`}
-		title="vimeo-player"
-		frameborder="0"
-		allowfullscreen
-		class="row-span-2 row-start-3 w-full sm:row-span-3 sm:row-start-2 sm:pb-10"
-	></iframe>
-</div>
+{#if parent.properties.Trailer.rich_text.length > 0}
+	<div
+		class="grid h-screen w-screen grid-rows-5 place-content-stretch place-items-stretch bg-black px-2 sm:grid-rows-4 sm:px-10"
+	>
+		<div
+			class="row-span-1 row-start-2 grid h-full place-content-center place-items-center sm:row-start-1"
+		>
+			<h1 class="text-6xl text-[var(--midLight)] sm:text-8xl">{name}</h1>
+			<p class="text-center text-[.9rem] italic sm:text-[1.1rem]">{date}</p>
+		</div>
+		<iframe
+			src={`https://player.vimeo.com/video/${parent.properties.Trailer.rich_text[0].plain_text}`}
+			title="vimeo-player"
+			frameborder="0"
+			allowfullscreen
+			class="row-span-2 row-start-3 w-full sm:row-span-3 sm:row-start-2 sm:pb-10"
+		></iframe>
+	</div>
+{:else}
+	<div
+		class="grid h-screen w-screen grid-rows-[repeat(7,1fr)] place-content-stretch place-items-stretch gap-y-4 bg-black px-2 pb-10 sm:grid-rows-4 sm:px-10 sm:pb-0"
+	>
+		<div
+			class="row-span-1 row-start-2 grid h-full place-content-center place-items-center sm:row-start-1"
+		>
+			<h1 class="text-6xl text-[var(--midLight)] sm:text-8xl">{name}</h1>
+			<p class="text-center text-[.9rem] italic sm:text-[1.1rem]">{date}</p>
+		</div>
+		<img
+			src="https://ik.imagekit.io/tempoimmaterial/anthropotpourri/films/{poster}"
+			alt="Movie poster."
+			class="row-span-5 row-start-3 w-full object-contain sm:row-span-3 sm:row-start-2 sm:pb-10"
+		/>
+	</div>
+{/if}
 
 <!-- Stills -->
-<div
-	class="grid min-h-screen w-screen place-content-center place-items-center bg-[var(--dark)] px-[10%] py-20 sm:py-10"
->
-	<div class="grid grid-rows-3 place-items-center">
+<div class="flex min-h-screen items-center justify-center bg-[var(--dark)] px-[10%] py-20 sm:py-10">
+	<div
+		class="flex grid-rows-3 flex-col place-content-center place-items-center gap-y-10 md:grid md:gap-y-0"
+	>
 		<div
-			class="row-span-2 grid grid-cols-1 place-content-center place-items-center gap-4 sm:grid-cols-3"
+			class="col-span-4 row-span-2 grid grid-cols-1 place-content-center place-items-center gap-4 md:grid-cols-2 lg:grid-cols-3"
 		>
 			{#each stills as still}
 				<img
@@ -80,8 +100,8 @@
 				/>
 			{/each}
 		</div>
-		<div>
-			<p class="mb-8 italic">{logline}</p>
+		<div class="col-span-2 row-span-1">
+			<p class=" mb-8 italic">{logline}</p>
 			<NotionPageParser results={info} />
 		</div>
 	</div>
