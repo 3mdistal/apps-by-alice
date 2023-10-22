@@ -9,9 +9,11 @@
 	}
 </script>
 
-<div class="grid min-h-screen w-screen place-items-center bg-[var(--midDark)] px-4 sm:px-80">
+<div
+	class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] px-4 md:px-80"
+>
 	<div
-		class="sm:max-h- grid h-full max-h-[60%] w-full place-content-center place-items-center gap-y-28 rounded-2xl bg-[var(--midLight)] pt-10 sm:max-h-[75%] sm:gap-y-40 sm:pt-20"
+		class="grid min-h-[500px] w-full place-content-center place-items-center gap-y-28 rounded-2xl bg-[var(--midLight)] pt-10 sm:h-[75%] sm:min-h-[700px] sm:min-w-[600px] sm:gap-y-40 sm:pt-20"
 	>
 		<div class="grid place-items-center gap-y-4 sm:gap-y-10">
 			<h2 class="text-[var(--midDark)]">Get in touch.</h2>
@@ -31,24 +33,24 @@
 		</div>
 
 		<!-- Desktop Version -->
-		<p class="hidden text-center text-xl text-[var(--midDark)] sm:block">
+		<p class="hidden text-center text-[1rem] text-[var(--midDark)] sm:block">
 			© Shorouk Elkobrsi {getCurrentYear()}. All Rights Reserved. <span class="mx-4">|</span> Site
 			by
 			<a
-				class="relative bottom-[.2em] font-['Allison_Script'] text-2xl text-[var(--midDark)]"
+				class="relative bottom-[.2em] font-['Allison_Script'] text-[1.5rem] text-[var(--midDark)]"
 				href="https://alicealexandra.com">Alice Alexandra Moore</a
 			>
 		</p>
 
 		<!-- Mobile Version -->
 		<div class="sm:hidden">
-			<p class="mb-2 text-center text-sm text-[var(--midDark)]">
+			<p class="mb-2 text-center text-[.75rem] text-[var(--midDark)]">
 				© Shorouk Elkobrsi {getCurrentYear()}. All Rights Reserved.
 			</p>
-			<p class="text-center text-sm text-[var(--midDark)]">
+			<p class="text-center text-[.75rem] text-[var(--midDark)]">
 				Site by
 				<a
-					class="relative bottom-[.2em] font-['Allison_Script'] text-2xl text-[var(--midDark)]"
+					class="relative bottom-[.2em] font-['Allison_Script'] text-[1.25rem] text-[var(--midDark)]"
 					href="https://alicealexandra.com">Alice Alexandra Moore</a
 				>
 			</p>

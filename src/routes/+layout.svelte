@@ -44,3 +44,9 @@
 	<Menu />
 	<Footer />
 </main>
+
+<style>
+	::-webkit-scrollbar {
+		display: none;
+	}
+</style>
