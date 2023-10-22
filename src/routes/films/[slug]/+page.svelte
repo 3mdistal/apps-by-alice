@@ -2,11 +2,16 @@
 	import { replaceSpaces } from '$lib/helpers';
 	import { onMount } from 'svelte';
 	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
+	import NotionPageParser from '$lib/notion-page-parser.svelte';
 
 	export let data;
 
 	let {
-		parent: { parentProject: parent, stills }
+		parent: {
+			parentProject: parent,
+			stills,
+			info: { results: info }
+		}
 	} = data;
 
 	const name = parent.properties.Name.title[0].plain_text;
@@ -77,9 +82,7 @@
 		</div>
 		<div>
 			<p class="mb-8 italic">{logline}</p>
-			<p>Director: Shorouk Elkobrsi</p>
-			<p>DOP: Shorouk Elkobrsi</p>
-			<p>Shot on: Arri Alexa Mini LF</p>
+			<NotionPageParser results={info} />
 		</div>
 	</div>
 </div>

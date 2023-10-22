@@ -1,6 +1,10 @@
 import type { Load } from '@sveltejs/kit';
 import { replaceSpaces } from '$lib/helpers';
-import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import type {
+	BlockObjectResponse,
+	PageObjectResponse
+} from '@notionhq/client/build/src/api-endpoints';
+import { listChildren } from '$lib/notion';
 
 export const load: Load = ({ params, parent }) => {
 	const matchParent = async () => {
@@ -23,7 +27,9 @@ export const load: Load = ({ params, parent }) => {
 			}
 		});
 
-		return { parentProject, stills };
+		const info = await listChildren(parentProject.id);
+
+		return { parentProject, stills, info };
 	};
 
 	return {
