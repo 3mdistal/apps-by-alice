@@ -77,7 +77,33 @@
 </script>
 
 <svelte:head>
-	<title>About</title>
+	<title>About - Anthropotpourri</title>
+	<meta name="title" content="About - Anthropotpourri" />
+	<meta
+		name="description"
+		content="Learn more about Shorouk Elkobrsi's journey into cinematography."
+	/>
+	<meta
+		name="keywords"
+		content="film, cinematography, production, shorouk, elkobrsi, about, journey"
+	/>
+	<meta name="author" content="Shorouk Elkobrsi" />
+
+	<!-- Facebook -->
+	<meta property="og:title" content="About - Anthropotpourri" />
+	<meta property="og:site_name" content="Anthropotpourri" />
+	<meta property="og:description" content="Learn more about my journey into cinematography." />
+	<meta property="og:type" content="website" />
+	<meta property="og:image" content="https://unsplash.it/1600/900" />
+	<meta property="og:url" content="https://anthropotpourri.com/about" />
+	<meta property="og:locale" content="en_US" />
+
+	<!-- Twitter -->
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="About - Anthropotpourri" />
+	<meta name="twitter:description" content="Learn more about my journey into cinematography." />
+	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
+	<meta name="twitter:site" content="@shoroukelkobrsi" />
 </svelte:head>
 
 <!-- Hero -->

@@ -87,23 +87,26 @@
 
 <svelte:head>
 	<title>Anthropotpourri</title>
+	<meta name="title" content="Anthropotpourri" />
 	<meta name="description" content="The cinematography portfolio of Shorouk Elkobrsi." />
-	<meta name="keywords" content="film, cinematography, production, house, shorouk, elkobrsi" />
-	<meta name="author" content="Anthropotpourri" />
+	<meta name="keywords" content="film, cinematography, production, shorouk, elkobrsi" />
+	<meta name="author" content="Shorouk Elkobrsi" />
 
 	<!-- Facebook -->
 	<meta property="og:title" content="Anthropotpourri" />
+	<meta property="og:site_name" content="Anthropotpourri" />
 	<meta property="og:description" content="The cinematography portfolio of Shorouk Elkobrsi." />
+	<meta property="og:type" content="website" />
 	<meta property="og:image" content="https://unsplash.it/1600/900" />
 	<meta property="og:url" content="https://anthropotpourri.com" />
+	<meta property="og:locale" content="en_US" />
 
 	<!-- Twitter -->
 	<meta name="twitter:card" content="summary_large_image" />
-	<meta name="twitter:site" content="@tempoimmaterial" />
-	<meta name="twitter:creator" content="@tempoimmaterial" />
 	<meta name="twitter:title" content="Anthropotpourri" />
 	<meta name="twitter:description" content="The cinematography portfolio of Shorouk Elkobrsi." />
 	<meta name="twitter:image" content="https://unsplash.it/1600/900" />
+	<meta name="twitter:site" content="@shoroukelkobrsi" />
 </svelte:head>
 
 {#if $homepageOpen}
