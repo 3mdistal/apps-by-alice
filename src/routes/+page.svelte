@@ -9,6 +9,7 @@
 		BlockObjectResponse,
 		PageObjectResponse
 	} from '@notionhq/client/build/src/api-endpoints';
+	import GalleryVideoMobile from './gallery-video-mobile.svelte';
 
 	// Import Notion Data
 	export let data;
@@ -168,10 +169,15 @@
 		class="flex min-h-screen w-screen items-center justify-center bg-[var(--dark)] px-8 py-[10vh] sm:px-28 md:px-32 lg:h-screen lg:px-40 lg:py-0"
 	>
 		<div
-			class="grid grid-cols-1 grid-rows-6 gap-4 md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
+			class="hidden grid-cols-1 grid-rows-6 gap-4 sm:grid md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"
 		>
 			{#each videos as video}
 				<GalleryVideo {video} {projects} {highQuality} on:changeColor={changeColors} />
+			{/each}
+		</div>
+		<div class="grid grid-cols-1 grid-rows-6 gap-4 sm:hidden">
+			{#each videos as video}
+				<GalleryVideoMobile {video} {projects} {highQuality} on:changeColor={changeColors} />
 			{/each}
 		</div>
 	</div>
