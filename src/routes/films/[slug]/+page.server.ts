@@ -38,8 +38,6 @@ export const load: Load = ({ params, parent }) => {
 			}
 		});
 
-		console.log(poster);
-
 		return { parentProject, stills, info, poster };
 	};
 

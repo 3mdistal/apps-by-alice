@@ -34,7 +34,6 @@
 
 	onMount(() => {
 		changeColors();
-		console.log(parent.properties.Trailer);
 	});
 </script>
 
