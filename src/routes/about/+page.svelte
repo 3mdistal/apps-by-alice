@@ -43,6 +43,17 @@
 		);
 	}
 
+	let heroImage: HTMLImageElement;
+
+	function showHideHeroImage(div: HTMLDivElement) {
+		inView(div, () => {
+			heroImage.style.opacity = '1';
+			return () => {
+				heroImage.style.opacity = '0';
+			};
+		});
+	}
+
 	// Image Handling
 	const prefix = `https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/slideshow/`;
 	const suffix = highQuality ? `?tr=w-1000,h-1000,fo-auto` : `?tr=w-1000,h-1000,fo-auto,q-10`;
@@ -79,8 +90,9 @@
 </svelte:head>
 
 <!-- Hero -->
-<div class="relative h-[100dvh]">
+<div use:showHideHeroImage class="relative h-[100dvh]">
 	<img
+		bind:this={heroImage}
 		src="https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/hero?tr=q-20"
 		alt=""
 		class="fixed left-0 top-0 -z-10 h-full w-screen object-cover"
