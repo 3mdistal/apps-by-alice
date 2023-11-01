@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Slide from './slide.svelte';
-	import { scroll, inView, type ScrollInfo } from 'motion';
+	import { inView } from 'motion';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
 	import type {
 		BlockObjectResponse,
@@ -29,47 +29,7 @@
 
 	// Slideshow Handling
 	let currentSlide = 0;
-	let slideTransition = true;
-
-	const updateSlide = (info: ScrollInfo) => {
-		const progress = info.y.progress;
-		const newSlide = parseInt((progress * (aboutContent.length - 1)).toFixed(0));
-
-		if (currentSlide !== newSlide && slideTransition) {
-			currentSlide = newSlide;
-			debouncedManageSlideTransition();
-		}
-	};
-
-	function manageSlideTransition() {
-		slideTransition = !slideTransition;
-		setTimeout(() => {
-			slideTransition = !slideTransition;
-		}, 1000);
-	}
-
-	const debouncedManageSlideTransition = debounce(manageSlideTransition, 1000, true);
-
-	function debounce(func: Function, wait: number, immediate: boolean) {
-		let timeout: number | undefined;
-		return function (this: any, ...args: any[]) {
-			let context = this;
-			let later = function () {
-				timeout = undefined;
-				if (!immediate) func.apply(context, args);
-			};
-			let callNow = immediate && !timeout;
-			clearTimeout(timeout);
-			timeout = window.setTimeout(later, wait);
-			if (callNow) func.apply(context, args);
-		};
-	}
-
-	function scrollSlideShow(target: HTMLDivElement) {
-		scroll((info) => updateSlide(info), {
-			container: target
-		});
-	}
+	let slideShowContainerHeight = aboutContent.length * 100 + 'dvh';
 
 	function changeSlide(div: HTMLDivElement) {
 		inView(
@@ -143,20 +103,26 @@
 </div>
 
 <!-- Slideshow -->
-<div class="sticky top-0 -z-10 h-[100dvh] w-full bg-[var(--dark)]">
-	{#key currentSlide}
-		<Slide
-			heading={aboutContent[currentSlide].properties.Heading.title[0].plain_text}
-			src={prefix + aboutContent[currentSlide].properties.Image.rich_text[0].plain_text + suffix}
-			alt={aboutContent[currentSlide].properties.Alt.rich_text[0].plain_text}
-			text={aboutContent[currentSlide].properties.Text.rich_text[0].plain_text}
-			colorTheme={aboutContent[currentSlide].properties.Colors.rich_text[0].plain_text}
-		/>
-	{/key}
+<div class="relative max-h-[{slideShowContainerHeight}] snap-align-none snap-normal">
+	<div class="sticky top-0 -z-10 h-[100dvh] w-full bg-[var(--dark)]">
+		{#key currentSlide}
+			<Slide
+				heading={aboutContent[currentSlide].properties.Heading.title[0].plain_text}
+				src={prefix + aboutContent[currentSlide].properties.Image.rich_text[0].plain_text + suffix}
+				alt={aboutContent[currentSlide].properties.Alt.rich_text[0].plain_text}
+				text={aboutContent[currentSlide].properties.Text.rich_text[0].plain_text}
+				colorTheme={aboutContent[currentSlide].properties.Colors.rich_text[0].plain_text}
+			/>
+		{/key}
+	</div>
+	{#each aboutContent as entry, i}
+		<div
+			use:changeSlide
+			id={i.toString()}
+			class="relative top-[-100dvh] h-[100dvh] w-full snap-start snap-always"
+		></div>
+	{/each}
 </div>
-{#each aboutContent as entry, i}
-	<div use:changeSlide id={i.toString()} class="relative top-[-100dvh] h-[100dvh] w-full"></div>
-{/each}
 
 <!-- Logo Wall -->
 <div

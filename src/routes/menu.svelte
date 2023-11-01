@@ -66,12 +66,12 @@
 	}
 
 	function menuOpenAnimation() {
-		animate(openMenu, { y: ['-100vh', '-40vh', 0] }, { duration: 0.3, easing: 'ease-out' });
+		animate(openMenu, { y: ['-100dvh', '-40dvh', 0] }, { duration: 0.3, easing: 'ease-out' });
 		setTimeout(() => homepageOpen.set(false), 300);
 	}
 
 	function menuCloseAnimation() {
-		animate(openMenu, { y: [0, '-40vh', '-100vh'] }, { duration: 0.3, easing: 'ease-in' });
+		animate(openMenu, { y: [0, '-40dvh', '-100dvh'] }, { duration: 0.3, easing: 'ease-in' });
 		setTimeout(() => menuOpen.set(false), 300);
 	}
 </script>
