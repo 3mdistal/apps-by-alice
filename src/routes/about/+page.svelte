@@ -1,6 +1,6 @@
 <script lang="ts">
 	import Slide from './slide.svelte';
-	import { scroll, type ScrollInfo } from 'motion';
+	import { inView } from 'motion';
 	import NotionPageParser from '$lib/notion-page-parser.svelte';
 	import type {
 		BlockObjectResponse,
@@ -29,45 +29,28 @@
 
 	// Slideshow Handling
 	let currentSlide = 0;
-	let slideTransition = true;
+	let slideShowContainerHeight = aboutContent.length * 100 + 'dvh';
 
-	const updateSlide = (info: ScrollInfo) => {
-		const progress = info.y.progress;
-		const newSlide = parseInt((progress * (aboutContent.length - 1)).toFixed(0));
+	function changeSlide(div: HTMLDivElement) {
+		inView(
+			div,
+			() => {
+				currentSlide = parseInt(div.id);
 
-		if (currentSlide !== newSlide && slideTransition) {
-			currentSlide = newSlide;
-			debouncedManageSlideTransition();
-		}
-	};
-
-	function manageSlideTransition() {
-		slideTransition = !slideTransition;
-		setTimeout(() => {
-			slideTransition = !slideTransition;
-		}, 1000);
+				return () => {};
+			},
+			{ margin: '-1%' }
+		);
 	}
 
-	const debouncedManageSlideTransition = debounce(manageSlideTransition, 1000, true);
+	let heroImage: HTMLImageElement;
 
-	function debounce(func: Function, wait: number, immediate: boolean) {
-		let timeout: number | undefined;
-		return function (this: any, ...args: any[]) {
-			let context = this;
-			let later = function () {
-				timeout = undefined;
-				if (!immediate) func.apply(context, args);
+	function showHideHeroImage(div: HTMLDivElement) {
+		inView(div, () => {
+			heroImage.style.opacity = '1';
+			return () => {
+				heroImage.style.opacity = '0';
 			};
-			let callNow = immediate && !timeout;
-			clearTimeout(timeout);
-			timeout = window.setTimeout(later, wait);
-			if (callNow) func.apply(context, args);
-		};
-	}
-
-	function scrollSlideShow(target: HTMLDivElement) {
-		scroll((info) => updateSlide(info), {
-			container: target
 		});
 	}
 
@@ -107,17 +90,18 @@
 </svelte:head>
 
 <!-- Hero -->
-<div>
+<div use:showHideHeroImage class="relative h-[100dvh]">
 	<img
+		bind:this={heroImage}
 		src="https://ik.imagekit.io/tempoimmaterial/anthropotpourri/about/hero?tr=q-20"
 		alt=""
-		class="fixed left-0 top-0 -z-10 h-screen w-screen object-cover"
+		class="fixed left-0 top-0 -z-10 h-full w-screen object-cover"
 	/>
-	<div class="absolute left-0 top-0 h-screen w-screen bg-black opacity-80"></div>
+	<div class="absolute left-0 top-0 h-full w-screen bg-black opacity-80"></div>
 
 	<!-- Intro -->
 	<div
-		class="relative m-auto flex h-[100dvh] max-w-[90%] flex-col items-center justify-center gap-y-8 pt-8 md:max-w-[80%] md:gap-y-4"
+		class="relative m-auto flex h-full max-w-[90%] flex-col items-center justify-center gap-y-8 pt-8 md:max-w-[80%] md:gap-y-4"
 	>
 		<h1 class="max-w-[20ch] text-center text-6xl text-[var(--midLight)] md:text-[8rem]">
 			{aboutHeading}
@@ -131,33 +115,26 @@
 </div>
 
 <!-- Slideshow -->
-<div
-	use:scrollSlideShow
-	class="relative h-[100svh] snap-y snap-mandatory overflow-y-auto bg-[var(--dark)] [&>*]:snap-start [&>*]:snap-always"
->
-	<div class="sticky top-0 h-full">
-		{#key currentSlide}
-			<Slide
-				heading={aboutContent[currentSlide].properties.Heading.title[0].plain_text}
-				src={prefix + aboutContent[currentSlide].properties.Image.rich_text[0].plain_text + suffix}
-				alt={aboutContent[currentSlide].properties.Alt.rich_text[0].plain_text}
-				text={aboutContent[currentSlide].properties.Text.rich_text[0].plain_text}
-				colorTheme={aboutContent[currentSlide].properties.Colors.rich_text[0].plain_text}
-			/>
-		{/key}
-	</div>
-	<!-- Spacers -->
-	<div id="0" class="absolute top-0 h-screen w-full"></div>
-	{#each aboutContent as entry, i}
-		{#if i !== 0}
-			<div id={i.toString()} class="h-screen w-full"></div>
-		{/if}
-	{/each}
+
+<div class="sticky top-0 -z-10 h-[100dvh] w-full bg-[var(--dark)]">
+	{#key currentSlide}
+		<Slide
+			heading={aboutContent[currentSlide].properties.Heading.title[0].plain_text}
+			src={prefix + aboutContent[currentSlide].properties.Image.rich_text[0].plain_text + suffix}
+			alt={aboutContent[currentSlide].properties.Alt.rich_text[0].plain_text}
+			text={aboutContent[currentSlide].properties.Text.rich_text[0].plain_text}
+			colorTheme={aboutContent[currentSlide].properties.Colors.rich_text[0].plain_text}
+		/>
+	{/key}
 </div>
+
+{#each aboutContent as entry, i}
+	<div use:changeSlide id={i.toString()} class="relative top-[-100dvh] h-[100dvh] w-screen"></div>
+{/each}
 
 <!-- Logo Wall -->
 <div
-	class="relative flex min-h-screen flex-col items-center justify-center bg-[var(--midDark)] px-4 py-16 md:gap-y-10 md:py-10"
+	class="relative flex min-h-[100dvh] flex-col items-center justify-center bg-[var(--midDark)] px-4 py-16 md:gap-y-10 md:py-10"
 >
 	<h2 class="mb-10 text-center text-[var(--light)]">People who gave me their trust:</h2>
 	<div class="grid grid-cols-2 gap-2 md:max-w-[75%] md:grid-cols-4 md:gap-6">

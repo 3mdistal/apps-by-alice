@@ -66,12 +66,12 @@
 	}
 
 	function menuOpenAnimation() {
-		animate(openMenu, { y: ['-100vh', '-40vh', 0] }, { duration: 0.3, easing: 'ease-out' });
+		animate(openMenu, { y: ['-100dvh', '-40dvh', 0] }, { duration: 0.3, easing: 'ease-out' });
 		setTimeout(() => homepageOpen.set(false), 300);
 	}
 
 	function menuCloseAnimation() {
-		animate(openMenu, { y: [0, '-40vh', '-100vh'] }, { duration: 0.3, easing: 'ease-in' });
+		animate(openMenu, { y: [0, '-40dvh', '-100dvh'] }, { duration: 0.3, easing: 'ease-in' });
 		setTimeout(() => menuOpen.set(false), 300);
 	}
 </script>
@@ -79,7 +79,7 @@
 {#if $menuOpen}
 	<div
 		id="menu-open"
-		class="fixed top-0 z-10 flex h-screen w-screen flex-col items-center justify-center gap-y-[8%] bg-[var(--midLight)] lg:gap-y-[16%] [&_a]:cursor-pointer [&_p]:cursor-pointer [&_p]:select-none [&_p]:font-['Allison_Script'] [&_p]:text-6xl [&_p]:italic [&_p]:text-[var(--midDark)] [&_p]:transition-all [&_p]:duration-200 hover:[&_p]:text-[var(--mid)] lg:[&_p]:text-[5rem]"
+		class="fixed top-0 z-10 flex h-[100dvh] w-screen flex-col items-center justify-center gap-y-[8%] bg-[var(--midLight)] lg:gap-y-[16%] [&_a]:cursor-pointer [&_p]:cursor-pointer [&_p]:select-none [&_p]:font-['Allison_Script'] [&_p]:text-6xl [&_p]:italic [&_p]:text-[var(--midDark)] [&_p]:transition-all [&_p]:duration-200 hover:[&_p]:text-[var(--mid)] lg:[&_p]:text-[5rem]"
 		bind:this={openMenu}
 	>
 		<a href="/" on:click={handleMenuClose}>

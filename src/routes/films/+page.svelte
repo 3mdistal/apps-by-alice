@@ -74,7 +74,7 @@
 </svelte:head>
 
 <section
-	class="flex min-h-screen w-screen flex-col items-center justify-center bg-[var(--dark)] px-10 py-20 md:px-40 md:py-32"
+	class="flex min-h-[100dvh] w-screen flex-col items-center justify-center bg-[var(--dark)] px-10 py-20 md:px-40 md:py-32"
 >
 	<div class="flex flex-col items-center justify-center">
 		{#each categories as category}
