@@ -166,7 +166,7 @@
 	</div>
 	<div
 		id="portfolio"
-		class="flex min-h-screen w-screen items-center justify-center bg-[var(--dark)] px-8 py-[10dvh] sm:px-28 md:px-32 lg:px-40 lg:py-4"
+		class="flex min-h-[100dvh] w-screen items-center justify-center bg-[var(--dark)] px-8 py-[10dvh] sm:px-28 md:px-32 lg:px-40 lg:py-4"
 	>
 		<div
 			class="hidden grid-cols-1 grid-rows-6 gap-4 sm:grid md:grid-cols-2 md:grid-rows-3 lg:grid-cols-3 lg:grid-rows-2"

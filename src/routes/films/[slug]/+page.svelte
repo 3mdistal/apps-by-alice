@@ -68,7 +68,7 @@
 
 {#if parent.properties.Trailer.rich_text.length > 0}
 	<div
-		class="grid h-screen w-screen grid-rows-5 place-content-stretch place-items-stretch bg-black px-2 sm:grid-rows-4 sm:px-10"
+		class="grid h-[100dvh] w-screen grid-rows-5 place-content-stretch place-items-stretch bg-black px-2 sm:grid-rows-4 sm:px-10"
 	>
 		<div
 			class="row-span-1 row-start-2 grid h-full place-content-center place-items-center sm:row-start-1"
@@ -86,7 +86,7 @@
 	</div>
 {:else}
 	<div
-		class="grid h-screen w-screen grid-rows-[repeat(7,1fr)] place-content-stretch place-items-stretch gap-y-4 bg-black px-2 pb-10 sm:grid-rows-4 sm:px-10 sm:pb-0"
+		class="grid h-[100dvh] w-screen grid-rows-[repeat(7,1fr)] place-content-stretch place-items-stretch gap-y-4 bg-black px-2 pb-10 sm:grid-rows-4 sm:px-10 sm:pb-0"
 	>
 		<div
 			class="row-span-1 row-start-2 grid h-full place-content-center place-items-center sm:row-start-1"
@@ -103,7 +103,9 @@
 {/if}
 
 <!-- Stills -->
-<div class="flex min-h-screen items-center justify-center bg-[var(--dark)] px-[10%] py-20 sm:py-10">
+<div
+	class="flex min-h-[100dvh] items-center justify-center bg-[var(--dark)] px-[10%] py-20 sm:py-10"
+>
 	<div
 		class="flex grid-rows-3 flex-col place-content-center place-items-center gap-y-10 md:grid md:gap-y-0"
 	>
