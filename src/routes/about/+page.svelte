@@ -103,26 +103,22 @@
 </div>
 
 <!-- Slideshow -->
-<div class="relative max-h-[{slideShowContainerHeight}] snap-align-none snap-normal">
-	<div class="sticky top-0 -z-10 h-[100dvh] w-full bg-[var(--dark)]">
-		{#key currentSlide}
-			<Slide
-				heading={aboutContent[currentSlide].properties.Heading.title[0].plain_text}
-				src={prefix + aboutContent[currentSlide].properties.Image.rich_text[0].plain_text + suffix}
-				alt={aboutContent[currentSlide].properties.Alt.rich_text[0].plain_text}
-				text={aboutContent[currentSlide].properties.Text.rich_text[0].plain_text}
-				colorTheme={aboutContent[currentSlide].properties.Colors.rich_text[0].plain_text}
-			/>
-		{/key}
-	</div>
-	{#each aboutContent as entry, i}
-		<div
-			use:changeSlide
-			id={i.toString()}
-			class="relative top-[-100dvh] h-[100dvh] w-full snap-start snap-always"
-		></div>
-	{/each}
+
+<div class="sticky top-0 -z-10 h-[100dvh] w-full bg-[var(--dark)]">
+	{#key currentSlide}
+		<Slide
+			heading={aboutContent[currentSlide].properties.Heading.title[0].plain_text}
+			src={prefix + aboutContent[currentSlide].properties.Image.rich_text[0].plain_text + suffix}
+			alt={aboutContent[currentSlide].properties.Alt.rich_text[0].plain_text}
+			text={aboutContent[currentSlide].properties.Text.rich_text[0].plain_text}
+			colorTheme={aboutContent[currentSlide].properties.Colors.rich_text[0].plain_text}
+		/>
+	{/key}
 </div>
+
+{#each aboutContent as entry, i}
+	<div use:changeSlide id={i.toString()} class="relative top-[-100dvh] h-[100dvh] w-screen"></div>
+{/each}
 
 <!-- Logo Wall -->
 <div
