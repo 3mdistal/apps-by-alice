@@ -1,7 +1,8 @@
-<script>
+<script lang="ts">
 	import { onMount } from 'svelte';
 	import { dark, mid_dark, mid, mid_light, light } from '$lib/stores';
 	import { replaceSpaces } from '$lib/helpers';
+	import { animate, stagger } from 'motion';
 
 	export let data;
 
@@ -23,8 +24,25 @@
 		document.body.style.backgroundColor = `#${$dark}`;
 	}
 
+	let posterContainerDiv: HTMLDivElement;
+
+	function animateInPosters() {
+		const posters = posterContainerDiv.querySelectorAll('a');
+		if (!posters) return;
+
+		animate(
+			posters,
+			{
+				opacity: [0, 1],
+				y: [100, 0]
+			},
+			{ delay: stagger() }
+		);
+	}
+
 	onMount(() => {
 		changeColors();
+		animateInPosters();
 	});
 </script>
 
@@ -56,12 +74,15 @@
 </svelte:head>
 
 <section
-	class="flex min-h-screen w-screen flex-col items-center justify-center bg-[var(--dark)] px-10 py-20 md:px-40 md:py-40"
+	class="flex min-h-screen w-screen flex-col items-center justify-center bg-[var(--dark)] px-10 py-20 md:px-40 md:py-32"
 >
 	<div class="flex flex-col items-center justify-center">
 		{#each categories as category}
 			<h2 class="mb-10 md:mb-20">{category.properties.Name.title[0].plain_text}</h2>
-			<div class="grid grid-flow-row gap-10 md:grid-flow-col md:grid-rows-2">
+			<div
+				bind:this={posterContainerDiv}
+				class="grid grid-flow-row gap-10 md:grid-flow-col md:grid-rows-2"
+			>
 				{#each posters as poster}
 					{#if poster.properties.Category.relation[0].id === category.id}
 						<a
