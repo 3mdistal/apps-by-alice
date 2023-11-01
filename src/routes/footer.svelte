@@ -9,9 +9,7 @@
 	}
 </script>
 
-<div
-	class="flex min-h-screen w-screen items-center justify-center bg-[var(--midDark)] px-4 md:px-80"
->
+<div class="flex h-[100dvh] w-screen items-center justify-center bg-[var(--midDark)] px-4 md:px-80">
 	<div
 		class="grid min-h-[500px] w-full place-content-center place-items-center gap-y-28 rounded-2xl bg-[var(--midLight)] pt-10 sm:h-[75%] sm:min-h-[700px] sm:min-w-[600px] sm:gap-y-40 sm:pt-20"
 	>

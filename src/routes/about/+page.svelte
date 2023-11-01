@@ -117,7 +117,7 @@
 
 	<!-- Intro -->
 	<div
-		class="relative m-auto flex h-screen max-w-[90%] flex-col items-center justify-center gap-y-8 pt-8 md:max-w-[80%] md:gap-y-4"
+		class="relative m-auto flex h-[100dvh] max-w-[90%] flex-col items-center justify-center gap-y-8 pt-8 md:max-w-[80%] md:gap-y-4"
 	>
 		<h1 class="max-w-[20ch] text-center text-6xl text-[var(--midLight)] md:text-[8rem]">
 			{aboutHeading}
@@ -133,7 +133,7 @@
 <!-- Slideshow -->
 <div
 	use:scrollSlideShow
-	class="relative h-screen snap-y snap-mandatory overflow-y-auto bg-[var(--dark)] [&>*]:snap-start [&>*]:snap-always"
+	class="relative h-[100svh] snap-y snap-mandatory overflow-y-auto bg-[var(--dark)] [&>*]:snap-start [&>*]:snap-always"
 >
 	<div class="sticky top-0 h-full">
 		{#key currentSlide}
