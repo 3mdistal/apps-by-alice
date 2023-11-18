@@ -85,7 +85,7 @@
 	onMount(() => {
 		createIntersectionObserver(video);
 		changeColors();
-		animate(titleTextDiv, { opacity: [0, 1] }, { duration: 2 });
+		animate(titleTextDiv, { opacity: [0, 1] }, { duration: 2, delay: 1 });
 	});
 </script>
 
