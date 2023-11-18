@@ -58,8 +58,6 @@
 	let vid: HTMLVideoElement;
 	let cover: HTMLDivElement;
 
-	console.log(posterSrc);
-
 	function playBackwards(video: HTMLVideoElement) {
 		const playback = setInterval(function () {
 			if (video.currentTime <= 0) {
