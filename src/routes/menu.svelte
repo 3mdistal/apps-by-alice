@@ -85,11 +85,11 @@
 		<a href="/" on:click={handleMenuClose}>
 			<p>home</p>
 		</a>
-		<a href="/films" on:click={handleMenuClose}>
-			<p>films</p>
-		</a>
 		<a href="/about" on:click={handleMenuClose}>
 			<p>about</p>
+		</a>
+		<a href="/films" on:click={handleMenuClose}>
+			<p>films</p>
 		</a>
 	</div>
 
