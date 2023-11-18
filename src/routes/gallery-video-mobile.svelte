@@ -21,6 +21,9 @@
 			},
 			Project: {
 				relation: [{ id: parentProjectID }]
+			},
+			Fallback: {
+				rich_text: [{ plain_text: fallbackPoster }]
 			}
 		}
 	} = video;
@@ -44,6 +47,12 @@
 		'/' +
 		replaceSpaces(name, true) +
 		suffix;
+
+	const posterSrc =
+		'https://ik.imagekit.io/tempoimmaterial/anthropotpourri/films/' +
+		replaceSpaces(parentProjectTitle, true) +
+		'/' +
+		replaceSpaces(fallbackPoster, true);
 
 	// Video Player
 	let vid: HTMLVideoElement;
@@ -112,9 +121,9 @@
 		muted
 		playsinline
 		src={videoSrc}
-		class="saturation-0 h-full w-full object-cover"
+		class="h-full w-full object-cover saturate-0"
 		alt={alt ? alt : name}
-		poster="https://unsplash.it/500/500"
+		poster={posterSrc}
 	/>
 	<div bind:this={cover} class="absolute top-0 h-full w-full bg-[var(--midDark)] opacity-20"></div>
 </a>
