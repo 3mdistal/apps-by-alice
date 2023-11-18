@@ -136,7 +136,7 @@
 			<div class="absolute left-0 top-0 h-full w-full" on:click={() => video.play()}>
 				<div class="absolute left-0 top-0 h-full w-full bg-[var(--dark)] opacity-40"></div>
 				<div class="relative flex h-full w-full items-center justify-center">
-					<div bind:this={titleTextDiv} class="flex flex-col items-center justify-center">
+					<div bind:this={titleTextDiv} class="flex flex-col items-center justify-center opacity-0">
 						<!-- <TextLogo /> -->
 						<h1
 							class="text-[14vw] leading-[1em] text-[var(--midLight)] lg:leading-[.9em] xl:text-[12vw]"
