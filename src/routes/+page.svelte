@@ -10,11 +10,13 @@
 		PageObjectResponse
 	} from '@notionhq/client/build/src/api-endpoints';
 	import GalleryVideoMobile from './gallery-video-mobile.svelte';
+	import { animate } from 'motion';
 
 	// Import Notion Data
 	export let data;
 
 	let video: HTMLVideoElement;
+	let titleTextDiv: HTMLDivElement;
 
 	let {
 		reels: { results },
@@ -83,6 +85,7 @@
 	onMount(() => {
 		createIntersectionObserver(video);
 		changeColors();
+		animate(titleTextDiv, { opacity: [0, 1] }, { duration: 2 });
 	});
 </script>
 
@@ -111,7 +114,7 @@
 </svelte:head>
 
 {#if $homepageOpen}
-	<div class="relative flex h-[100dvh] w-screen items-center justify-center">
+	<div class="relative flex h-[100dvh] w-screen items-center justify-center bg-[var(--dark)]">
 		<!-- Box Reel -->
 		<div
 			class="aspect-[3/4.5] max-w-[85%] overflow-hidden rounded-2xl sm:aspect-[3/4] md:aspect-square lg:aspect-[4/3] lg:h-[85%]"
@@ -133,7 +136,7 @@
 			<div class="absolute left-0 top-0 h-full w-full" on:click={() => video.play()}>
 				<div class="absolute left-0 top-0 h-full w-full bg-[var(--dark)] opacity-40"></div>
 				<div class="relative flex h-full w-full items-center justify-center">
-					<div class="flex flex-col items-center justify-center">
+					<div bind:this={titleTextDiv} class="flex flex-col items-center justify-center">
 						<!-- <TextLogo /> -->
 						<h1
 							class="text-[14vw] leading-[1em] text-[var(--midLight)] lg:leading-[.9em] xl:text-[12vw]"
