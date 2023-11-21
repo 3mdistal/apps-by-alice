@@ -117,6 +117,7 @@
 		}
 	}
 
+	// eslint-disable-next-line
 	function scroll(id: string, behavior: ScrollBehavior) {
 		const element = document.getElementById(id);
 		if (!element) return;

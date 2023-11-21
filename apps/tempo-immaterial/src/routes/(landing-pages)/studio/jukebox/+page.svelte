@@ -1,6 +1,6 @@
 <script>
 	import ComingSoon from '$lib/subpages/studio/coming-soon.svelte';
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import ComingSoonJukebox from '$text/studio/jukebox/coming-soon-jukebox.md';
 </script>
 

@@ -39,7 +39,9 @@
 			Title: {
 				title: [{ plain_text: string }];
 			};
+			// eslint-disable-next-line
 			Subtitle: any;
+			// eslint-disable-next-line
 			'Shortened Logo Text': any;
 			Image: { url: string };
 			ImageAlt: {
@@ -49,6 +51,7 @@
 					}
 				];
 			};
+			// eslint-disable-next-line
 			Description: any;
 			ButtonText: {
 				rich_text: [
@@ -207,11 +210,11 @@
 >
 	<!-- Front of Card -->
 	<div
-		class="absolute flex h-full w-full flex-col items-center justify-center gap-y-16 overflow-hidden rounded-3xl bg-studio"
+		class="bg-studio absolute flex h-full w-full flex-col items-center justify-center gap-y-16 overflow-hidden rounded-3xl"
 		bind:this={front}
 	>
 		<div
-			class="relative z-10 flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[50%] border-2 border-white bg-studio"
+			class="bg-studio relative z-10 flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[50%] border-2 border-white"
 		>
 			<p class="font-logo text-[2.75rem] font-medium text-white"><TextMacro type={logo} /></p>
 		</div>
@@ -221,13 +224,13 @@
 		</div>
 		<img {src} {alt} class="absolute h-full w-full opacity-80" />
 		<div
-			class="absolute h-full w-full bg-gradient-to-t from-studio to-transparent opacity-80"
+			class="from-studio absolute h-full w-full bg-gradient-to-t to-transparent opacity-80"
 		></div>
 	</div>
 
 	<!-- Back of Card -->
 	<div
-		class="absolute flex h-full w-full flex-col items-center justify-around rounded-3xl bg-studio px-4 py-24 opacity-0 sm:py-10"
+		class="bg-studio absolute flex h-full w-full flex-col items-center justify-around rounded-3xl px-4 py-24 opacity-0 sm:py-10"
 		bind:this={back}
 		aria-labelledby="popover"
 		aria-expanded="true"
@@ -256,7 +259,7 @@
 
 	<!-- Spin Poles -->
 	<div bind:this={spinPoles} class="relative -z-20 flex h-full">
-		<div class="h-[5%] w-1 self-end bg-studio"></div>
-		<div class="h-[5%] w-1 self-start bg-studio"></div>
+		<div class="bg-studio h-[5%] w-1 self-end"></div>
+		<div class="bg-studio h-[5%] w-1 self-start"></div>
 	</div>
 </div>

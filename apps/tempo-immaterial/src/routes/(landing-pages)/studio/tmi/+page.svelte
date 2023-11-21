@@ -1,6 +1,6 @@
 <script lang="ts">
 	import ComingSoon from '$lib/subpages/studio/coming-soon.svelte';
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import ComingSoonTMI from '$text/studio/tmi/coming-soon-tmi.svelte.md';
 </script>
 
