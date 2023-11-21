@@ -103,14 +103,10 @@
 {/if}
 
 <!-- Stills -->
-<div
-	class="flex min-h-[100dvh] items-center justify-center bg-[var(--dark)] px-[10%] py-20 sm:py-10"
->
-	<div
-		class="flex grid-rows-3 flex-col place-content-center place-items-center gap-y-10 md:grid md:gap-y-0"
-	>
+<div class="flex min-h-[100dvh] items-center justify-center bg-[var(--dark)] px-[10%] py-20">
+	<div class="flex flex-col gap-y-24 md:grid">
 		<div
-			class="col-span-4 row-span-2 grid grid-cols-1 place-content-center place-items-center gap-4 md:grid-cols-2 lg:grid-cols-3"
+			class="col-span-4 grid grid-cols-1 place-content-center place-items-center gap-4 md:grid-cols-2 lg:grid-cols-3"
 		>
 			{#each stills as still}
 				<img
@@ -124,9 +120,13 @@
 				/>
 			{/each}
 		</div>
-		<div class="col-span-2 row-span-1">
-			<p class="mb-8 italic">{logline}</p>
-			<NotionPageParser results={info} />
+		<div class="col-span-2">
+			<p class="italic">{logline}</p>
+			<hr class="my-6 border-t-[.5px] border-[var(--mid)]" />
+			<div class="[&_p]:mb-6">
+				<NotionPageParser results={info} />
+			</div>
+			<hr class="my-6 border-t-[.5px] border-[var(--mid)]" />
 		</div>
 	</div>
 </div>
