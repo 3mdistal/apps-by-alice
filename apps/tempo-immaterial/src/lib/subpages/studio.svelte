@@ -4,17 +4,17 @@
 	import gsap from 'gsap';
 	import { loadScrollTrigger } from '$lib/partials/load-scroll-trigger';
 
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import BirdTMI from '$images/studio/bird-tmi.jpg?webp';
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import FlowerP from '$images/studio/flower-p.jpg?webp';
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import MirrorB from '$images/studio/mirror-b.jpg?webp';
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import PianoHFC from '$images/studio/piano-hfc.jpg?webp';
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import CityJ from '$images/studio/city-j.jpg?webp';
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import SnakesI from '$images/studio/snakes-i.jpg?webp';
 
 	export let accent: string;

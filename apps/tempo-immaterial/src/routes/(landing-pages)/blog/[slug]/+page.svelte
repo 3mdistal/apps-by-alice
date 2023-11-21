@@ -113,8 +113,10 @@
 	/>
 
 	{#if darkMode}
+		<!-- eslint-disable-next-line -->
 		{@html DarkCodeTheme}
 	{:else}
+		<!-- eslint-disable-next-line -->
 		{@html LightCodeTheme}
 	{/if}
 </svelte:head>

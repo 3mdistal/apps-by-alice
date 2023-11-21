@@ -3,11 +3,11 @@
 	import About1 from '$text/about/about1.svelte';
 	import About2 from '$text/about/about2.svelte';
 	import About3 from '$text/about/about3.svelte';
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import AuthorPhoto from '$images/about/author-photo.jpg?webp';
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import Mirror from '$images/about/mirror.jpeg?webp';
-	// @ts-ignore
+	// @ts-expect-error vite-imagetools not working properly
 	import Owl from '$images/about/owl.png?webp';
 
 	export let accent = '';
@@ -61,7 +61,7 @@
 <div class="spacer" />
 
 <div class="flex flex-col items-center">
-	<h2 class="max-w-[80%] text-about" style="color: {accent}">have thoughts to share?</h2>
+	<h2 class="text-about max-w-[80%]" style="color: {accent}">have thoughts to share?</h2>
 	<div class="flex max-w-none flex-wrap items-start justify-center md:max-w-[80%] md:flex-nowrap">
 		<div class="max-w-[80%] md:basis-1/2">
 			<p>

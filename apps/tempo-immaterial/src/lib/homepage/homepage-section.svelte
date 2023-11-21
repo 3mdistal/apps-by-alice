@@ -5,7 +5,7 @@
 
 	export let background: string;
 	export let name: string;
-	export let transitionOutWrapper: Function;
+	export let transitionOutWrapper: () => void;
 
 	let section: HTMLAnchorElement;
 	let hover = true;

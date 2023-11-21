@@ -113,8 +113,8 @@ const COLUMNS = 10;
 export function initializeBricks(bricks: Brick[]) {
     for (let i = 0; i < ROWS; i++) {
         for (let j = 0; j < COLUMNS; j++) {
-            let x = j * (BRICK_WIDTH + PADDING) + OFFSET_LEFT;
-            let y = i * (BRICK_HEIGHT + PADDING) + OFFSET_TOP;
+            const x = j * (BRICK_WIDTH + PADDING) + OFFSET_LEFT;
+            const y = i * (BRICK_HEIGHT + PADDING) + OFFSET_TOP;
             bricks.push(new Brick(x, y, BRICK_WIDTH, BRICK_HEIGHT, 'blue'));
         }
     }
