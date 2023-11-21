@@ -1,0 +1,45 @@
+/* Write your global styles here, in PostCSS syntax */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+	@font-face {
+		font-family: 'Allison Script';
+		src: url('/fonts/allison_script.woff2');
+		font-weight: normal;
+		font-display: block;
+	}
+
+	h1,
+	h2,
+	p,
+	img {
+		@apply cursor-default select-none;
+	}
+
+	p {
+		@apply font-sans_serif text-xl tracking-widest text-[var(--light)] lg:text-2xl;
+	}
+
+	a {
+		@apply text-[var(--midLight)] duration-100 hover:text-[var(--mid)];
+	}
+
+	strong {
+		@apply font-semibold;
+	}
+
+	* {
+		@apply transition-colors duration-700 ease-in-out;
+	}
+
+	h1,
+	h2 {
+		@apply font-['Allison_Script'];
+	}
+
+	h2 {
+		@apply text-6xl text-[var(--midLight)] md:text-8xl xl:text-[7rem];
+	}
+}
