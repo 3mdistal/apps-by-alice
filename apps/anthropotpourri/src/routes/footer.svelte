@@ -31,7 +31,7 @@
 		</div>
 
 		<!-- Desktop Version -->
-		<p class="hidden text-center text-[1rem] text-[var(--midDark)] sm:block">
+		<p class="hidden text-center text-[1rem] text-[var(--midDark)] xl:block">
 			© Shorouk Elkobrsi {getCurrentYear()}. All Rights Reserved. <span class="mx-4">|</span> Site
 			by
 			<a
@@ -41,14 +41,14 @@
 		</p>
 
 		<!-- Mobile Version -->
-		<div class="sm:hidden">
-			<p class="mb-2 text-center text-[.75rem] text-[var(--midDark)]">
+		<div class="xl:hidden">
+			<p class="mb-2 text-center text-[.75rem] text-[var(--midDark)] sm:text-[1rem]">
 				© Shorouk Elkobrsi {getCurrentYear()}. All Rights Reserved.
 			</p>
-			<p class="text-center text-[.75rem] text-[var(--midDark)]">
+			<p class="text-center text-[.75rem] text-[var(--midDark)] sm:text-[1rem]">
 				Site by
 				<a
-					class="relative bottom-[.2em] font-['Allison_Script'] text-[1.25rem] text-[var(--midDark)]"
+					class="relative bottom-[.2em] font-['Allison_Script'] text-[1.25rem] text-[var(--midDark)] sm:text-[1.5rem]"
 					href="https://alicealexandra.com">Alice Alexandra Moore</a
 				>
 			</p>
