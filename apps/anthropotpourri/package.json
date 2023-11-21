@@ -8,18 +8,16 @@
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
-		"lint": "prettier --plugin-search-dir . --check . && eslint .",
+		"lint": "pnpm eslint . --cache --cache-location 'node_modules/.cache/.eslintcache' --max-warnings 0",
+		"lint:fix": "pnpm eslint . --fix --cache --cache-location 'node_modules/.cache/.eslintcache' --max-warnings 0",
 		"format": "prettier --plugin-search-dir . --write ."
 	},
 	"devDependencies": {
+		"@apps-by-alice/lint": "workspace:*",
 		"@sveltejs/adapter-auto": "^2.1.0",
 		"@sveltejs/kit": "^1.25.0",
-		"@typescript-eslint/eslint-plugin": "^6.7.2",
-		"@typescript-eslint/parser": "^6.7.2",
 		"autoprefixer": "^10.4.16",
-		"eslint": "^8.50.0",
-		"eslint-config-prettier": "^9.0.0",
-		"eslint-plugin-svelte": "^2.33.2",
+		"eslint": "^8.54.0",
 		"postcss": "^8.4.30",
 		"postcss-load-config": "^4.0.1",
 		"prettier": "^3.0.3",
@@ -33,9 +31,9 @@
 	"type": "module",
 	"dependencies": {
 		"@notionhq/client": "^2.2.13",
+		"@vercel/analytics": "^1.1.1",
 		"motion": "^10.16.4",
 		"svelte": "^4.2.1",
-		"tslib": "^2.6.2",
-		"@vercel/analytics": "^1.1.1"
+		"tslib": "^2.6.2"
 	}
 }

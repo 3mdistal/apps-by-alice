@@ -1,4 +1,5 @@
 packages:
   # include packages in subfolders (e.g. apps/ and packages/)
-  - 'apps/**'
-  - 'packages/**'
+  - "apps/**"
+  - "packages/**"
+  - "tooling/**"

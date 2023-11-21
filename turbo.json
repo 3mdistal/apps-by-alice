@@ -5,10 +5,30 @@
       "dependsOn": ["^build"],
       "outputs": [".svelte-kit/**", ".vercel/**"]
     },
-    "lint": {},
+    "topo": {
+      "dependsOn": ["^topo"]
+    },
+    "//#lint": {
+      "outputs": ["node_modules/.cache/.eslintcache"]
+    },
+    "lint": {
+      "dependsOn": ["^topo"],
+      "outputs": ["node_modules/.cache/.eslintcache"]
+    },
+    "//#lint:fix": {
+      "dependsOn": ["^topo"],
+      "outputs": ["node_modules/.cache/.eslintcache"],
+      "cache": false
+    },
+    "lint:fix": {
+      "dependsOn": ["^topo"],
+      "outputs": ["node_modules/.cache/.eslintcache"],
+      "cache": false
+    },
     "dev": {
       "cache": false,
       "persistent": true
     }
   }
 }
+

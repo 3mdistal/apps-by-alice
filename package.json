@@ -1,13 +1,16 @@
-
 {
-    "name": "apps_by_alicealexandra",
-    "private": true,
-    "scripts": {
-      "tempo-immaterial": "turbo dev --filter='tempo-immaterial'",
-      "anthropotpourri": "turbo dev --filter='anthropotpourri'"
-    },
-    "devDependencies": {
-      "turbo": "latest"
-    },
-    "packageManager": "pnpm@8.7.4"
-  }
+  "name": "apps_by_alicealexandra",
+  "private": true,
+  "scripts": {
+    "tempo-immaterial": "turbo dev --filter='tempo-immaterial'",
+    "anthropotpourri": "turbo dev --filter='anthropotpourri'",
+    "lint": "pnpm eslint . \"!apps/** !packages/** !tooling/**\" --cache --cache-location 'node_modules/.cache/.eslintcache' --max-warnings 0",
+    "lint:fix": "pnpm eslint . \"!apps/** !packages/** !tooling/**\" --fix --cache --cache-location 'node_modules/.cache/.eslintcache' --max-warnings 0"
+  },
+  "devDependencies": {
+    "@apps-by-alice/lint": "workspace:*",
+    "eslint": "^8.54.0",
+    "turbo": "latest"
+  },
+  "packageManager": "pnpm@8.7.4"
+}
