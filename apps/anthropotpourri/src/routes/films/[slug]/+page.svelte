@@ -125,7 +125,7 @@
 			{/each}
 		</div>
 		<div class="col-span-2 row-span-1">
-			<p class=" mb-8 italic">{logline}</p>
+			<p class="mb-8 italic">{logline}</p>
 			<NotionPageParser results={info} />
 		</div>
 	</div>
