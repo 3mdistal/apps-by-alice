@@ -1,3 +1,50 @@
+## 0.4.0
+
+_21 Nov 2023_
+
+**Honestly, this release is just a lot of random shit I've been working on.**
+
+**Features**
+- New studio homepage! (/studio)
+  - Lots of projects coming here, lots of new links. Highly recommend checking it out to see what's coming, creatively speaking.
+- New poems page! (/studio/hfc)
+- New illustrations page! (/studio/illustrations)
+- New arcade page! (/studio/arcade) (But let's be real, this is just a weird place where _I'm_ playing and learning HTML canvas.)
+- Vercel Analytics added for shallow info (Basically number of requests coming in for which pages. Nothing too user-tracky.)
+- Blog now has categories and auto-generated read times.
+
+**Enhancements**
+- Pong loading spinner for blog images bc why the fuck not.
+- Lots of pages that didn't have metadata/OG images now have that.
+- HR added to Notion parser.
+- Notion synced blocks get fetched on the server rather than client now, which allows for caching the result with ISR.
+- Mastodon verification.
+
+**Refactors**
+- Continuing to eliminate Typescript squigglies across the application. (Mostly now down to the way I fetch data from Notion—which needs some sort of schema implemented. Actively searching for a way to generate types from Notion so I don't have to write them myself.)
+- Big cleanup in my notion.ts server fetching. Functions are fewer, shorter and more reusable at this point, with params to customize behavior moved over to the individual API layers.
+- Tailwind more or less app-wide at this point. I keep switching as I see it, but it's pretty well integrated.
+
+**Bugfixes**
+- Homepage transition to other pages was rocky at slow loading speeds. Smoothed this out. (Going to implement View Transitions API in a future update.)
+- Various instances of Notion CMS erroring out that have been smoothed over time.
+- Various background image behavior fixed on mobile.
+
+**Goals from Last Changelog**
+
+- Typescript app-wide. (Check, just working on passing for data schema.)
+- Tailwind app-wide, design system solidified, class variance authority used for dynamic design cases. (Tailwind is app wide, but I've used Svelte native functionality for dynamic cases.)
+- Light mode / dark mode. (Nothing here yet, besides the blog.)
+- CMS further implemented with Incremental Static Regeneration. (Check, esp. with moving more dynamic behavior to the server.)
+- More blog content. (Check.)
+- More studio content. (Check.)
+- Newsletter begun. (Honestly backlogged in favor of other things.)
+
+**Upcoming Goals**
+
+- Incremental migration to Next.js + Turborepo. I don't take the decision of abandoning SvelteKit lightly, but I also can't ignore Next's feature set at the moment, primarily around React Server Components, which would drastically help me organize my data across the app. There's a whole lot of other longterm goals I have that really need a more solid foundation than what I have currently. So, all that said: the 0.5.0 milestone will (likely) be when I have all current functionality over on Next.js. Wish me luck!
+
+
 ## 0.3.0
 
 _10 March 2023_
