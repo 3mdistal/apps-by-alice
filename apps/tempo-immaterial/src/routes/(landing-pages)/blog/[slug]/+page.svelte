@@ -87,16 +87,16 @@
 </script>
 
 <svelte:head>
-	<title>{articleTitle}</title>
-	<meta name="og:title" content={articleTitle} />
-	<meta name="description" content={ogDescription.rich_text[0].plain_text} />
+	<title>{articleTitle ?? 'Blog'}</title>
+	<meta name="og:title" content={articleTitle ?? 'Blog'} />
+	<meta name="description" content={ogDescription.rich_text[0].plain_text ?? ''} />
 
 	<!-- Facebook Meta Tags -->
 	<meta property="og:url" content="https://www.alicealexandra.com/blog/{url}" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Blog - {articleTitle}" />
-	<meta property="og:description" content={ogDescription.rich_text[0].plain_text} />
-	<meta property="og:image" content={coverURL} />
+	<meta property="og:title" content="Blog - {articleTitle ?? 'Blog'}" />
+	<meta property="og:description" content={ogDescription.rich_text[0].plain_text ?? ''} />
+	<meta property="og:image" content={coverURL ?? 'https://unsplash.it/1200/600'} />
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image" />
@@ -104,12 +104,12 @@
 	<meta name="twitter:creator" content="@tempoimmaterial" />
 	<meta name="twitter:domain" content="alicealexandra.com" />
 	<meta name="twitter:url" content="https://www.alicealexandra.com/blog" />
-	<meta name="twitter:title" content="Blog - {articleTitle}" />
-	<meta name="twitter:description" content={ogDescription.rich_text[0].plain_text} />
-	<meta name="twitter:image" content={coverURL} />
+	<meta name="twitter:title" content="Blog - {articleTitle ?? 'Blog'}" />
+	<meta name="twitter:description" content={ogDescription.rich_text[0].plain_text ?? ''} />
+	<meta name="twitter:image" content={coverURL ?? 'https://unsplash.it/1200/600'} />
 	<meta
 		name="twitter:image:alt"
-		content="Open graph representation of this blog article, {articleTitle}."
+		content="Open graph representation of this blog article, {articleTitle ?? 'Blog'}."
 	/>
 
 	{#if darkMode}
