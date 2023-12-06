@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     title: title,
     description: description,
     siteName: siteName,
-    //todo: add open graph image
+    //todo: Add open graph image
     images: [],
     locale: "en_US",
     type: "website",
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     siteId: "951191181073027073",
     creator: "@tempoimmaterial",
     creatorId: "951191181073027073",
-    //todo: add twitter image
+    //todo: Add twitter image
     images: [],
   },
 };
