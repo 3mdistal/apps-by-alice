@@ -37,6 +37,7 @@
 			<a href="arcade/shapes"
 				><p>Project 3: Coding Toys for Three-Year-Olds Is Harder Than It Looks</p></a
 			>
+			<a href="arcade/jump"><p>Project 4: Moving, Sliding, Jumping</p></a>
 		</div>
 	</div>
 </div>
