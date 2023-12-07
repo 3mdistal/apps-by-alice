@@ -1,3 +1,5 @@
+import type { InputHandler } from './input-handling';
+
 class Shape {
 	x: number;
 	y: number;
@@ -67,6 +69,115 @@ class SVGToImage extends Shape {
 				callback();
 			};
 		}
+	}
+}
+
+const GRAVITY = 70;
+const JUMP_FORCE = 200;
+const FRICTION = 0.6;
+const ACCELERATION = 100;
+const MAX_SPEED = 100;
+
+export class MovingShape extends Shape {
+	dx: number;
+	dy: number;
+	grounded: boolean;
+	velocityY: number;
+	velocityX: number;
+
+	constructor(x: number, y: number, size: number, color: string) {
+		super(x, y, size, color);
+		this.dx = 0;
+		this.dy = 0;
+		this.grounded = true;
+		this.velocityY = 0;
+		this.velocityX = 0;
+	}
+
+	move(inputHandler: InputHandler, deltaTime: number) {
+		const inputs = inputHandler.handleInputs();
+		const adjustedDeltaTime = deltaTime * 0.01;
+
+		this.#checkMovementDirection(inputs);
+		this.#handleMove(adjustedDeltaTime);
+
+		this.#handleGravity(adjustedDeltaTime);
+		this.#checkBoundaries(inputHandler.canvas);
+		this.#handleJump(inputs);
+	}
+
+	#checkMovementDirection(inputs: Set<string>) {
+		if (inputs.has('Left')) {
+			this.dx = -1;
+		} else if (inputs.has('Right')) {
+			this.dx = 1;
+		} else {
+			this.dx = 0;
+		}
+	}
+
+	#checkBoundaries(canvas: HTMLCanvasElement) {
+		if (this.x - this.size / 2 < 0) {
+			this.x = this.size / 2;
+		}
+
+		if (this.x + this.size / 2 > canvas.width) {
+			this.x = canvas.width - this.size / 2;
+		}
+
+		if (this.y - this.size / 2 < 0) {
+			this.y = this.size / 2;
+		}
+
+		if (this.y + this.size / 2 > canvas.height) {
+			this.y = canvas.height - this.size / 2;
+			this.velocityY = 0;
+			this.grounded = true;
+		} else {
+			this.grounded = false;
+		}
+	}
+
+	#handleGravity(adjustedDeltaTime: number) {
+		this.velocityY += GRAVITY * adjustedDeltaTime;
+		this.y += this.velocityY * adjustedDeltaTime;
+	}
+
+	#handleJump(inputs: Set<string>) {
+		if (this.grounded && inputs.has('Jump')) {
+			this.velocityY -= JUMP_FORCE;
+			this.grounded = false; // Make the shape airborne
+		}
+	}
+
+	#handleMove(adjustedDeltaTime: number) {
+		if (this.dx !== 0) {
+			// Apply acceleration when moving left or right
+			this.velocityX += this.dx * ACCELERATION * adjustedDeltaTime;
+
+			// Limit velocityX to not exceed currentSpeed
+			if (Math.abs(this.velocityX) > MAX_SPEED) {
+				this.velocityX = this.dx * MAX_SPEED; // Use dx to keep the direction (left or right)
+			}
+		} else if (this.grounded) {
+			// Apply friction only when on the ground
+			this.velocityX *= FRICTION;
+		}
+
+		this.x += this.velocityX * adjustedDeltaTime;
+	}
+}
+
+export class MovingCircle extends MovingShape {
+	constructor(x: number, y: number, size: number, color: string) {
+		super(x, y, size, color);
+	}
+
+	draw(ctx: CanvasRenderingContext2D) {
+		ctx.fillStyle = this.color;
+		ctx.beginPath();
+		ctx.arc(this.x, this.y, this.size / 2, 0, Math.PI * 2);
+		ctx.fill();
 	}
 }
 
@@ -170,99 +281,5 @@ export class Clear extends SVGToImage {
 				this.size
 			);
 		});
-	}
-}
-
-export class Note {
-	frequency: number;
-	duration: number;
-	gain: number;
-
-	context: AudioContext;
-	gainNode: GainNode;
-	oscillator: OscillatorNode;
-
-	constructor(
-		context: AudioContext,
-		oscType: OscillatorType = 'sine',
-		frequency = 440,
-		duration = 0.1,
-		gain = 1
-	) {
-		this.frequency = frequency;
-		this.duration = duration;
-
-		this.context = context;
-
-		this.gainNode = this.context.createGain();
-		this.gainNode.connect(this.context.destination);
-		this.gain = gain;
-		this.gainNode.gain.value = gain;
-
-		this.oscillator = this.context.createOscillator();
-		this.oscillator.connect(this.gainNode);
-		this.oscillator.type = oscType;
-		this.oscillator.frequency.value = frequency;
-	}
-
-	play() {
-		const now = this.context.currentTime;
-
-		this.oscillator.start(now);
-		this.oscillator.stop(now + this.duration);
-	}
-}
-
-export class ADSR extends Note {
-	attackTime: number;
-	decayTime: number;
-	sustainLevel: number;
-	releaseTime: number;
-
-	constructor(
-		context: AudioContext,
-		oscType: OscillatorType,
-		frequency: number,
-		duration = 0,
-		gain = 1,
-		attackTime = 0.01,
-		decayTime = 0.09,
-		sustainLevel = 0,
-		releaseTime = 0
-	) {
-		super(context, oscType, frequency, duration, gain);
-
-		this.attackTime = attackTime;
-		this.decayTime = decayTime;
-		this.sustainLevel = sustainLevel;
-		this.releaseTime = releaseTime;
-	}
-
-	override play() {
-		const now = this.context.currentTime;
-
-		this.gainNode.gain.setValueAtTime(0, now);
-
-		// Schedule Attack
-		this.gainNode.gain.linearRampToValueAtTime(this.gain, now + this.attackTime);
-
-		// Schedule Decay
-		this.gainNode.gain.linearRampToValueAtTime(
-			this.sustainLevel * this.gain,
-			now + this.attackTime + this.decayTime
-		);
-
-		// Begin Playback
-		this.oscillator.start(now);
-
-		// Schedule Release
-		this.gainNode.gain.setValueAtTime(this.sustainLevel * this.gain, now + this.duration); // Ensure the gain is set to the sustain level at the end of the note's duration
-		this.gainNode.gain.linearRampToValueAtTime(
-			0,
-			now + this.attackTime + this.decayTime + this.duration + this.releaseTime
-		);
-
-		// Schedule Stop
-		this.oscillator.stop(now + this.attackTime + this.decayTime + this.duration + this.releaseTime);
 	}
 }
