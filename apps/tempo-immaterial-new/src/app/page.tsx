@@ -1,5 +1,4 @@
 import { Metadata } from "next";
-import { redirect } from "next/navigation";
 
 const title = "Tempo Immaterial";
 const description = "The creative portfolio of Alice Alexandra Moore.";
@@ -31,5 +30,29 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  redirect("https://www.alicealexandra.com");
+  return (
+    <main className="flex justify-center items-center h-[100dvh]">
+      <Header />
+      <Mastodon />
+    </main>
+  );
+}
+
+function Header() {
+  return (
+    <header className="flex flex-col justify-center items-center">
+      <h1>tempo immaterial</h1>
+      <p>work by alice alexandra moore</p>
+    </header>
+  );
+}
+
+function Mastodon() {
+  return (
+    <div className="hidden">
+      <a rel="me" href="https://hachyderm.io/@tempoimmaterial">
+        Mastodon
+      </a>
+    </div>
+  );
 }
