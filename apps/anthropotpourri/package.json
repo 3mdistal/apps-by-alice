@@ -14,26 +14,26 @@
 	},
 	"devDependencies": {
 		"@apps-by-alice/lint": "workspace:*",
-		"@sveltejs/adapter-auto": "^2.1.0",
-		"@sveltejs/kit": "^1.25.0",
-		"autoprefixer": "^10.4.16",
-		"eslint": "^8.54.0",
-		"postcss": "^8.4.30",
-		"postcss-load-config": "^4.0.1",
-		"prettier": "^3.0.3",
-		"prettier-plugin-svelte": "^3.0.3",
-		"prettier-plugin-tailwindcss": "^0.5.4",
-		"svelte-check": "^3.5.2",
-		"tailwindcss": "^3.3.3",
-		"typescript": "^5.2.2",
-		"vite": "^4.4.9"
+		"@sveltejs/adapter-auto": "^2.1.1",
+		"@sveltejs/kit": "^1.30.4",
+		"autoprefixer": "^10.4.17",
+		"eslint": "^8.57.0",
+		"postcss": "^8.4.35",
+		"postcss-load-config": "^4.0.2",
+		"prettier": "^3.2.5",
+		"prettier-plugin-svelte": "^3.2.1",
+		"prettier-plugin-tailwindcss": "^0.5.11",
+		"svelte-check": "^3.6.4",
+		"tailwindcss": "^3.4.1",
+		"typescript": "^5.3.3",
+		"vite": "^4.5.2"
 	},
 	"type": "module",
 	"dependencies": {
-		"@notionhq/client": "^2.2.13",
-		"@vercel/analytics": "^1.1.1",
-		"motion": "^10.16.4",
-		"svelte": "^4.2.1",
+		"@notionhq/client": "^2.2.14",
+		"@vercel/analytics": "^1.2.2",
+		"motion": "^10.17.0",
+		"svelte": "^4.2.12",
 		"tslib": "^2.6.2"
 	}
 }
