@@ -2,7 +2,6 @@
   "name": "apps_by_alicealexandra",
   "private": true,
   "scripts": {
-    "dev": "turbo dev",
     "tempo-immaterial": "turbo dev --filter='tempo-immaterial'",
     "anthropotpourri": "turbo dev --filter='anthropotpourri'",
     "lint": "pnpm eslint . \"!apps/** !packages/** !tooling/**\" --cache --cache-location 'node_modules/.cache/.eslintcache' --max-warnings 0",
