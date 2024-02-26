@@ -1,28 +1,30 @@
 import { queryDatabase } from '$lib/notion/notion';
 import { BYPASS_TOKEN, STUDIO_DB } from '$env/static/private';
-import type { Sort, Filter } from '$lib/notion/notion';
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
 
-const studioFilter: Filter = {
-	and: [
-		{
-			property: 'Published',
-			checkbox: {
-				equals: true
+const queryParameters: QueryDatabaseParameters = {
+	database_id: STUDIO_DB,
+	filter: {
+		and: [
+			{
+				property: 'Published',
+				checkbox: {
+					equals: true
+				}
 			}
+		]
+	},
+	sorts: [
+		{
+			direction: 'ascending',
+			property: 'Order'
 		}
 	]
 };
 
-const studioSorts: Sort = [
-	{
-		direction: 'ascending',
-		property: 'Order'
-	}
-];
-
 export async function load() {
 	return {
-		cards: await queryDatabase(STUDIO_DB, studioFilter, studioSorts)
+		cards: await queryDatabase(queryParameters)
 	};
 }
 

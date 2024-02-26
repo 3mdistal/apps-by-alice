@@ -1,28 +1,30 @@
 import { queryDatabase } from '$lib/notion/notion';
 import { BYPASS_TOKEN, ILLUSTRATIONS_DB } from '$env/static/private';
-import type { Sort, Filter } from '$lib/notion/notion';
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
 
-const illustrationFilter: Filter = {
-	and: [
-		{
-			property: 'Published',
-			checkbox: {
-				equals: true
+const queryParams: QueryDatabaseParameters = {
+	database_id: ILLUSTRATIONS_DB,
+	filter: {
+		and: [
+			{
+				property: 'Published',
+				checkbox: {
+					equals: true
+				}
 			}
+		]
+	},
+	sorts: [
+		{
+			direction: 'ascending',
+			property: 'Order'
 		}
 	]
 };
 
-const illustrationSorts: Sort = [
-	{
-		direction: 'ascending',
-		property: 'Order'
-	}
-];
-
 export async function load() {
 	return {
-		illustrations: await queryDatabase(ILLUSTRATIONS_DB, illustrationFilter, illustrationSorts)
+		illustrations: await queryDatabase(queryParams)
 	};
 }
 

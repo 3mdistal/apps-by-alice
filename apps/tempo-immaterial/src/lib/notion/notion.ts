@@ -1,37 +1,25 @@
 import { Client } from '@notionhq/client';
 import { NOTION_KEY, COMMISSIONS_DB, USER_ID_ALICE, SUBSCRIBERS_DB } from '$env/static/private';
-import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
+import type {
+	BlockObjectResponse,
+	QueryDatabaseParameters,
+	QueryDatabaseResponse
+} from '@notionhq/client/build/src/api-endpoints';
 
 const notion = new Client({ auth: NOTION_KEY });
 
-function throwIfMissing() {
+function throwIfMissing(): Error | void {
 	if (!NOTION_KEY) {
 		throw Error('Missing API key from Notion.');
 	}
 }
 
-export type Sort = Array<{
-	property: string;
-	direction: 'ascending' | 'descending';
-}>;
-
-export type Filter = {
-	and: Array<{
-		property: string;
-		checkbox: {
-			equals: boolean;
-		};
-	}>;
-};
-
 // For listing all the children of a database. It can also be used to filter and sort.
-export async function queryDatabase(id: string, filter: Filter, sorts: Sort) {
+export async function queryDatabase(
+	params: QueryDatabaseParameters
+): Promise<QueryDatabaseResponse> {
 	throwIfMissing();
-	const response = await notion.databases.query({
-		database_id: id,
-		filter: filter,
-		sorts: sorts
-	});
+	const response = await notion.databases.query(params);
 	return response;
 }
 
