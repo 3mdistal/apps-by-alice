@@ -42,6 +42,7 @@
 	"type": "module",
 	"dependencies": {
 		"@notionhq/client": "^2.2.13",
+		"@vercel/speed-insights": "^1.0.10",
 		"gsap": "^3.12.2",
 		"highlight.js": "^11.8.0",
 		"mermaid": "^10.4.0",
