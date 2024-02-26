@@ -1,48 +1,52 @@
 import { queryDatabase } from '$lib/notion/notion';
 import { BYPASS_TOKEN, POEMS_SECTIONS_DB, ALL_SCRAPS_DB } from '$env/static/private';
-import type { Sort, Filter } from '$lib/notion/notion';
+import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
 
-const sectionsFilter: Filter = {
-	and: [
-		{
-			property: 'Published',
-			checkbox: {
-				equals: true
+const sectionsQueryParams: QueryDatabaseParameters = {
+	database_id: POEMS_SECTIONS_DB,
+	filter: {
+		and: [
+			{
+				property: 'Published',
+				checkbox: {
+					equals: true
+				}
 			}
+		]
+	},
+	sorts: [
+		{
+			direction: 'ascending',
+			property: 'Sequence'
 		}
 	]
 };
 
-const sectionsSorts: Sort = [
-	{
-		direction: 'ascending',
-		property: 'Sequence'
-	}
-];
-
-const scrapsFilter: Filter = {
-	and: [
-		{
-			property: 'Published',
-			checkbox: {
-				equals: true
+const scrapsQueryParams: QueryDatabaseParameters = {
+	database_id: ALL_SCRAPS_DB,
+	filter: {
+		and: [
+			{
+				property: 'Published',
+				checkbox: {
+					equals: true
+				}
 			}
+		]
+	},
+	sorts: [
+		{
+			direction: 'ascending',
+			property: 'Sequence'
 		}
 	]
 };
-
-const scrapsSorts: Sort = [
-	{
-		direction: 'ascending',
-		property: 'Sequence'
-	}
-];
 
 export async function load() {
 	return {
 		props: {
-			sections: await queryDatabase(POEMS_SECTIONS_DB, sectionsFilter, sectionsSorts),
-			poems: await queryDatabase(ALL_SCRAPS_DB, scrapsFilter, scrapsSorts)
+			sections: await queryDatabase(sectionsQueryParams),
+			poems: await queryDatabase(scrapsQueryParams)
 		}
 	};
 }

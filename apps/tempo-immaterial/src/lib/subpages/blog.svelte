@@ -29,7 +29,7 @@
 			<a
 				on:click={() => (title = 'Loading . . .')}
 				class="font-medium text-white hover:underline active:text-gray-400"
-				href="blog/{url}">{title}</a
+				href="/blog/{url}">{title}</a
 			>
 		</p>
 		<p class="col-span-2 row-start-2 italic text-gray-100"><TextMacro type={Subtitle} /></p>
