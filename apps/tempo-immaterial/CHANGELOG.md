@@ -1,3 +1,27 @@
+## 0.4.1
+
+_27 Feb 2024_
+
+**Refactors**
+- Moved application into a monorepo alongside some other projects.
+- Internal Notion fetching wasn't super typed, but now it is.
+
+**Bugfixes**
+- There was an edge case where you could hit a 404 by trying to visit a blog, which happened if you hard refreshed the homepage and then navigated to the blog + an article. This is fixed.
+
+**Goals from Last Changelog**
+- SvelteKit -> Next.js (cancelled). After playing with React and Next.js quite a bit, I decided I like the semantics and native performance of SvelteKit more than I like some of the conveniences of Next.js, like component-level data/caching and font optimization. I'll continue to be on the lookout for how to optimize my own workflow within SvelteKit, especially with 5.0 launching soon.
+
+**Adjusted Upcoming Goals**
+- Upgrade to SvelteKit 2.0 and prepare for Svelte 5.0
+- Monorepo foundations improved
+- Design system foundations improved
+- Increased type safety across the application
+- Test suite begun
+- Fix CLS on homepage and subpages for better Core Web Vitals.
+- Use SvelteKit 2 image optimization.
+
+
 ## 0.4.0
 
 _21 Nov 2023_

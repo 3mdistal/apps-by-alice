@@ -9,8 +9,7 @@
   },
   "devDependencies": {
     "@apps-by-alice/lint": "workspace:*",
-    "eslint": "^8.57.0",
-    "turbo": "latest"
+    "eslint": "^8.57.0"
   },
   "packageManager": "pnpm@8.7.4"
 }

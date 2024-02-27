@@ -80,10 +80,6 @@
 			{:else if result.code.language === 'html'}
 				<!-- eslint-disable-next-line -->
 				{@html result.code.rich_text[0]?.plain_text}
-			{:else if result.code.language === 'mermaid'}
-				<pre class="mermaid">
-						{result.code.rich_text[0]?.plain_text}
-					</pre>
 			{:else if result.code.language === 'plain text'}
 				{#if result.code.rich_text[0]?.plain_text.includes('Socials')}
 					{#if result.code.rich_text[0]?.plain_text.includes('small')}

@@ -1,10 +1,9 @@
 import { queryDatabase, listChildren } from '$lib/notion/notion';
-import type { Load } from '@sveltejs/kit';
 import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
 import { BYPASS_TOKEN, BLOGS_DB } from '$env/static/private';
 
-export const load: Load = ({ params }) => {
-	const fetchContent = async (slug: string) => {
+export async function load({ params }) {
+	async function fetchContent(slug: string) {
 		const queryParams: QueryDatabaseParameters = {
 			database_id: BLOGS_DB,
 			filter: {
@@ -29,12 +28,12 @@ export const load: Load = ({ params }) => {
 		res.push(content);
 
 		return res;
-	};
+	}
 
 	return {
-		post: fetchContent(params['slug'] as string)
+		post: await fetchContent(params['slug'] as string)
 	};
-};
+}
 
 export const config = {
 	isr: {

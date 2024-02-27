@@ -10,7 +10,6 @@
 	} from '@notionhq/client/build/src/api-endpoints';
 	import { onMount, tick } from 'svelte';
 	import { subAndSuper, wrapLists, createTOC } from '$lib/notion/blog-helpers';
-	import mermaid from 'mermaid';
 	let config = { startOnLoad: true };
 
 	let darkMode: boolean;
@@ -25,8 +24,6 @@
 		wrapLists(context);
 		createTOC();
 		setDarkMode();
-		mermaid.initialize(config);
-		mermaid.contentLoaded();
 	};
 
 	export let data: {
