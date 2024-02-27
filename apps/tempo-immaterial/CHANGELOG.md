@@ -18,6 +18,7 @@ _27 Feb 2024_
 - Design system foundations improved
 - Increased type safety across the application
 - Test suite begun
+- Fix CLS on homepage and subpages for better Core Web Vitals.
 
 
 ## 0.4.0
