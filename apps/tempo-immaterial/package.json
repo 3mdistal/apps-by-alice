@@ -1,6 +1,6 @@
 {
 	"name": "tempo-immaterial",
-	"version": "0.4.0",
+	"version": "0.4.1",
 	"private": true,
 	"scripts": {
 		"preinstall": "npx only-allow pnpm",
@@ -45,7 +45,6 @@
 		"@vercel/speed-insights": "^1.0.10",
 		"gsap": "^3.12.5",
 		"highlight.js": "^11.9.0",
-		"mermaid": "^10.8.0",
 		"motion": "^10.17.0",
 		"svelte": "^4.2.12",
 		"svelte-highlight": "^7.6.0",
