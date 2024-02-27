@@ -19,14 +19,6 @@
 		"noUnusedLocals": true,
 		"noUnusedParameters": true,
 		"resolveJsonModule": true,
-		"paths": {
-			"$lib": ["./src/lib"],
-			"$lib/*": ["./src/lib/*"],
-			"$text": ["./src/cms/text"],
-			"$text/*": ["./src/cms/text/*"],
-			"$images": ["./src/cms/images"],
-			"$images/*": ["./src/cms/images/*"]
-		},
 		"skipLibCheck": true,
 		"sourceMap": true,
 		"strict": true,
