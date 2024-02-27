@@ -19,6 +19,7 @@ _27 Feb 2024_
 - Increased type safety across the application
 - Test suite begun
 - Fix CLS on homepage and subpages for better Core Web Vitals.
+- Use SvelteKit 2 image optimization.
 
 
 ## 0.4.0
