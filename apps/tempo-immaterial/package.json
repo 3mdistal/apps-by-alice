@@ -43,10 +43,12 @@
 	"type": "module",
 	"dependencies": {
 		"@notionhq/client": "^2.2.14",
+		"@sveltejs/enhanced-img": "^0.1.8",
 		"@vercel/speed-insights": "^1.0.10",
 		"gsap": "^3.12.5",
 		"highlight.js": "^11.9.0",
 		"motion": "^10.17.0",
+		"sharp": "^0.33.2",
 		"svelte": "^4.2.12",
 		"svelte-highlight": "^7.6.0",
 		"tslib": "^2.6.2",
