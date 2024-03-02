@@ -1,5 +1,4 @@
 <script lang="ts">
-	import Bird from '$images/blog/bird.webp';
 	import Blog from '$lib/subpages/blog.svelte';
 	import type { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
 	import { onMount, onDestroy } from 'svelte';
@@ -44,9 +43,10 @@
 	</div>
 	<div class="fixed h-full w-full">
 		<div>
-			<img
-				src={Bird}
+			<enhanced:img
+				src="$images/blog/bird.webp"
 				alt="A painting of a colorful bird in flight."
+				sizes="min(1280px, 100vw)"
 				class="absolute z-10 object-right opacity-10 md:object-[50%_35%]"
 			/>
 		</div>

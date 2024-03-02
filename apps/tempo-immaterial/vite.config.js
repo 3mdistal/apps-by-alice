@@ -1,8 +1,8 @@
 import { sveltekit } from '@sveltejs/kit/vite';
-import { imagetools } from 'vite-imagetools';
+import { enhancedImages } from '@sveltejs/enhanced-img';
 
 const config = {
-	plugins: [imagetools(), sveltekit()],
+	plugins: [enhancedImages(), sveltekit()],
 	test: {
 		include: ['src/**/*.{test,spec}.{js,ts}']
 	},
