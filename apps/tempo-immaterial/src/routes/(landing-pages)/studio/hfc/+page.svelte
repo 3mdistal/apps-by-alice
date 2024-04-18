@@ -139,7 +139,7 @@
 	<meta name="description" content="Collected poems by Alice Alexandra Moore." />
 </svelte:head>
 
-<div class="h-[100vh] snap-y snap-mandatory snap-always overflow-y-scroll bg-black">
+<div class="h-[100vh] overflow-y-scroll bg-black">
 	<div class="snap-start">
 		<div
 			class="relative mx-auto aspect-square bg-cover bg-center md:aspect-auto md:h-[100lvh] md:bg-fixed"
