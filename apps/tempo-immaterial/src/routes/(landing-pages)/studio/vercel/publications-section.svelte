@@ -9,37 +9,23 @@
     export let type: PublicationTypes;
 </script>
 
-<section>
-    <h2>{title}</h2>
-    <p class="italic">{subtitle}</p>
+<section class="mb-16">
+    <h2 class="mb-4 text-xl sm:text-2xl md:text-3xl">{title}</h2>
+    <p class="italic mb-8 text-lg sm:text-xl lg:text-[1.25rem]">{subtitle}</p>
     <ul>
         {#each publications as publication}
             {#if publication.properties.Type.select.name === type}
                 <li>
                     <a href={publication.properties.Link.url}>
-                        <h3>
+                        <h3 class="hover:underline font-normal text-cyan-800">
                             {publication.properties.Name.title[0].plain_text}
                         </h3>
                     </a>
-                    <p>
-                        {publication.properties.Date.date.start}
-                    </p>
-                    <p>
-                        {publication.properties.Type.select.name}
-                    </p>
+                    {#if publication.properties.Description.rich_text[0]}
+                        <p class="italic text-sm sm:text-lg">{publication.properties.Description.rich_text[0].plain_text}</p>
+                    {/if}
                 </li>
             {/if}
         {/each}
     </ul>
 </section>
-
-<style>
-    h3 {
-        font-weight: 400;
-        color: rgb(34, 65, 103);
-
-        &:hover {
-            text-decoration: underline;
-        }
-    }
-</style>

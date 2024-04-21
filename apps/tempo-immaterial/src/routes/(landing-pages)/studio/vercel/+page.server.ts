@@ -1,6 +1,6 @@
 import { queryDatabase } from '$lib/notion/notion';
 import { BYPASS_TOKEN, PROFESSIONAL_DB } from '$env/static/private';
-import type { QueryDatabaseParameters } from '@notionhq/client/build/src/api-endpoints';
+import type { QueryDatabaseParameters, TextRichTextItemResponse } from '@notionhq/client/build/src/api-endpoints';
 
 const queryParams: QueryDatabaseParameters = {
 	database_id: PROFESSIONAL_DB,
@@ -52,6 +52,10 @@ export type ProfessionalPublications = {
         Link: {
             type: 'url';
             url: string;
+        },
+        Description: {
+            type: 'rich_text';
+            rich_text: TextRichTextItemResponse[];
         }
     }
 }
