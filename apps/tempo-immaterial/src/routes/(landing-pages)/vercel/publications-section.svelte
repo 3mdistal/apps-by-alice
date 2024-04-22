@@ -10,14 +10,14 @@
 </script>
 
 <section class="mb-16">
-    <h2 class="mb-4 text-xl sm:text-2xl md:text-3xl">{title}</h2>
+    <h2 class="mb-4 sm:text-2xl md:text-3xl">{title}</h2>
     <p class="italic mb-8 text-lg sm:text-xl lg:text-[1.25rem]">{subtitle}</p>
     <ul>
         {#each publications as publication}
             {#if publication.properties.Type.select.name === type}
                 <li>
                     <a href={publication.properties.Link.url}>
-                        <h3 class="hover:underline font-normal text-cyan-800">
+                        <h3 class="hover:underline font-normal text-cyan-800 text-lg sm:text-xl md:text-2xl">
                             {publication.properties.Name.title[0].plain_text}
                         </h3>
                     </a>
