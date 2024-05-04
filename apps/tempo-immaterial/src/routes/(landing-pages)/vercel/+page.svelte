@@ -1,6 +1,7 @@
 <script lang="ts">
     import PublicationsSection from "./publications-section.svelte";
     import type { ProfessionalPublications } from './+page.server'
+	import { onMount } from "svelte";
 
     export let data: Data;
 
@@ -13,6 +14,15 @@
     const {
         publicationList: { results: publications },
     } = data;
+
+    onMount(() => {
+        fetch(window.location.href, {
+			headers: {
+				Accept: 'application/json',
+				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
+			}
+		});
+    });
 </script>
 
 <svelte:head>
