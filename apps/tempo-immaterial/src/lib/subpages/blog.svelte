@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
+
 	// Component displays blog listing from Notion. Also revalidates Notion data as needed.
 
 	import TextMacro from '$lib/notion/text-macro.svelte';
@@ -27,7 +29,11 @@
 	<div class="mb-6 grid grid-cols-2 md:grid-cols-3">
 		<p class="col-span-2 md:col-span-2">
 			<a
-				on:click={() => (title = 'Loading . . .')}
+				on:mousedown={() => {
+					title = 'Loading . . .';
+					goto(`/blog/${url}`);
+				}}
+				on:click|preventDefault
 				class="font-medium text-white hover:underline active:text-gray-400"
 				href="/blog/{url}">{title}</a
 			>
