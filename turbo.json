@@ -6,6 +6,7 @@
       "outputs": [".svelte-kit/**", ".vercel/**"],
       "inputs": [
         "$TURBO_DEFAULT$",
+        "virtual:$env/static/private",
         ".env.production.local",
         ".env.local",
         ".env.production",
