@@ -65,7 +65,8 @@
 	bind:this={section}
 	on:mouseenter={handleMouseEnter}
 	on:mouseleave={handleMouseLeave}
-	on:click|preventDefault={handleClick}
+	on:mousedown={handleClick}
+	on:click|preventDefault
 >
 	<div class="homepage-section-menu-link {name} absolute">
 		<h2 class="text-lg font-light md:text-2xl lg:text-3xl">{name}</h2>
