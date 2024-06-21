@@ -19,7 +19,6 @@
         "USER_ID_ALICE",
         "$TURBO_DEFAULT$",
         ".env.production.local",
-        ".env.private",
         ".env.local",
         ".env.production",
         ".env"
