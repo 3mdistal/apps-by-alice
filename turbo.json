@@ -5,23 +5,8 @@
       "dependsOn": ["^build"],
       "outputs": [".svelte-kit/**", ".vercel/**"],
       "inputs": [
-        "ALL_SCRAPS_DB",
-        "BLOGS_DB",
-        "BYPASS_TOKEN",
-        "CAPACITIES_API_TOKEN",
-        "COMMISSIONS_DB",
-        "ILLUSTRATIONS_DB",
-        "NOTION_KEY",
-        "POEMS_SECTIONS_DB",
-        "PROFESSIONAL_DB",
-        "STUDIO_DB",
-        "SUBSCRIBERS_DB",
-        "USER_ID_ALICE",
         "$TURBO_DEFAULT$",
-        ".env.production.local",
-        ".env.local",
-        ".env.production",
-        ".env"
+        ".env*"
       ]
     },
     "topo": {
@@ -39,13 +24,6 @@
     "dev": {
       "cache": false,
       "persistent": true,
-      "inputs": [
-        "$TURBO_DEFAULT$",
-        ".env.production.local",
-        ".env.local",
-        ".env.production",
-        ".env"
-      ]
     }
   }
 }
