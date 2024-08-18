@@ -119,15 +119,15 @@
 </svelte:head>
 
 <div
-	class="blog-container h-full min-h-[100vh] bg-gray-200 px-4 py-16 tracking-wide text-gray-900 dark:bg-black dark:text-white sm:px-10 sm:py-10 md:flex md:flex-col md:items-center md:px-20 xl:px-60 2xl:px-80 [&_sub]:text-inherit [&_sup]:text-inherit"
+	class="blog-container h-full min-h-[100vh] bg-gray-200 px-4 py-16 tracking-wide text-gray-900 sm:px-10 sm:py-10 md:flex md:flex-col md:items-center md:px-20 xl:px-60 2xl:px-80 dark:bg-black dark:text-white [&_sub]:text-inherit [&_sup]:text-inherit"
 	in:fade={{ duration: 500 }}
 >
 	<div>
-		<h1 class="text-4xl dark:text-white sm:text-5xl md:mb-4 md:text-6xl lg:text-7xl">
+		<h1 class="text-4xl sm:text-5xl md:mb-4 md:text-6xl lg:text-7xl dark:text-white">
 			{articleTitle}
 		</h1>
-		<p class="max-w-[45ch] text-xl text-gray-700 dark:text-gray-100 md:text-2xl md:leading-9">
-			<em class="text-gray-300"><TextMacro type={subtitle} /></em>
+		<p class="max-w-[45ch] text-xl text-gray-700 md:text-2xl md:leading-9 dark:text-gray-100">
+			<em class="text-gray-500 dark:text-gray-300"><TextMacro type={subtitle} /></em>
 		</p>
 	</div>
 	<hr class="my-10 w-full border-black opacity-50 dark:border-white" />
