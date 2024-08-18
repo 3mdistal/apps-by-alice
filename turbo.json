@@ -4,7 +4,9 @@
     "NOTION_KEY",
     "COMMISSIONS_DB",
     "USER_ID_ALICE",
-    "SUBSCRIBERS_DB"
+    "SUBSCRIBERS_DB",
+    "BYPASS_TOKEN",
+    "BLOGS_DB"
   ],
   "tasks": {
     "build": {
