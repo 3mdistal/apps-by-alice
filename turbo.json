@@ -1,5 +1,30 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": [
+    "ALL_SCRAPS_DB",
+    "BLOGS_DB",
+    "BYPASS_TOKEN",
+    "COMMISSIONS_DB",
+    "ILLUSTRATIONS_DB",
+    "NOTION_KEY",
+    "POEMS_SECTIONS_DB",
+    "PROFESSIONAL_DB",
+    "STUDIO_DB",
+    "SUBSCRIBERS_DB",
+    "USER_ID_ALICE",
+    "ABOUT_DB",
+    "ABOUT_ID",
+    "BLURB_ID",
+    "CATEGORIES_DB",
+    "HIGH_QUALITY",
+    "LOGOS_DB",
+    "NOTION_KEY",
+    "OG_IMAGE_DATABASE",
+    "POSTERS_DB",
+    "PROJECTS_DB",
+    "REELS_DB",
+    "VIDS_AND_STILLS_DB"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],

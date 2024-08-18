@@ -9,8 +9,8 @@ import type {
 const notion = new Client({ auth: NOTION_KEY });
 
 function throwIfMissing(): Error | void {
-	if (!NOTION_KEY) {
-		throw Error('Missing API key from Notion.');
+	if (!NOTION_KEY || !COMMISSIONS_DB || !USER_ID_ALICE || !SUBSCRIBERS_DB) {
+		throw Error('Missing required environment variables');
 	}
 }
 
