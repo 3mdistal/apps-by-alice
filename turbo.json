@@ -1,5 +1,11 @@
 {
   "$schema": "https://turbo.build/schema.json",
+  "globalEnv": [
+    "NOTION_KEY",
+    "COMMISSIONS_DB",
+    "USER_ID_ALICE",
+    "SUBSCRIBERS_DB"
+  ],
   "tasks": {
     "build": {
       "dependsOn": ["^build"],
