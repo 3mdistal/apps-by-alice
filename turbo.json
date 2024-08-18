@@ -1,12 +1,17 @@
 {
   "$schema": "https://turbo.build/schema.json",
   "globalEnv": [
-    "NOTION_KEY",
-    "COMMISSIONS_DB",
-    "USER_ID_ALICE",
-    "SUBSCRIBERS_DB",
+    "ALL_SCRAPS_DB",
+    "BLOGS_DB",
     "BYPASS_TOKEN",
-    "BLOGS_DB"
+    "COMMISSIONS_DB",
+    "ILLUSTRATIONS_DB",
+    "NOTION_KEY",
+    "POEM_SECTIONS_DB",
+    "PROFESSIONAL_DB",
+    "STUDIO_DB",
+    "SUBSCRIBERS_DB",
+    "USER_ID_ALICE"
   ],
   "tasks": {
     "build": {
