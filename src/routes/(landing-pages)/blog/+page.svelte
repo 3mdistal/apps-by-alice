@@ -44,7 +44,7 @@
 	<div class="fixed h-full w-full">
 		<div>
 			<enhanced:img
-				src="$images/blog/bird.webp"
+				src="../../cms/images/blog/bird.webp"
 				alt="A painting of a colorful bird in flight."
 				sizes="min(1280px, 100vw)"
 				class="absolute z-10 object-right opacity-10 md:object-[50%_35%]"
@@ -53,6 +53,6 @@
 		<div
 			class="absolute inset-0 h-full w-full opacity-100"
 			style="background-color: {background}"
-		/>
+		></div>
 	</div>
 </div>

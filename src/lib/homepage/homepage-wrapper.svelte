@@ -35,11 +35,24 @@
 	});
 </script>
 
-<nav
-	class="relative h-[100vh] w-[100%] opacity-0 lg:absolute lg:bottom-[-35vh]"
-	bind:this={homepageWrapper}
->
+<nav bind:this={homepageWrapper}>
 	{#each $names as name}
 		<HomepageSection background={$backgroundColors[name]} {name} {transitionOutWrapper} />
 	{/each}
 </nav>
+
+<style lang="css">
+	nav {
+		position: relative;
+		height: 100vh;
+		width: 100%;
+		opacity: 0;
+	}
+
+	@media (min-width: 1024px) {
+		nav {
+			position: absolute;
+			bottom: -35vh;
+		}
+	}
+</style>

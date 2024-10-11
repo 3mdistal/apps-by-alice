@@ -1,6 +1,6 @@
 <script lang="ts">
-	import Logo from '$images/logo/logo.png?webp';
-	import PlainCircle from '$images/logo/plain-circle.svg';
+	import Logo from '../../cms/images/logo/logo.png';
+	import PlainCircle from '../../cms/images/logo/plain-circle.svg';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
 	// import AnalyticsConsent from '$lib/partials/analytics-consent.svelte';

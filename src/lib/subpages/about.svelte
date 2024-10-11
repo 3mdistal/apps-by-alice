@@ -1,19 +1,16 @@
 <script lang="ts">
 	import SubpageContent from '$lib/partials/subpage-content.svelte';
-	import About1 from '$text/about/about1.svelte';
-	import About2 from '$text/about/about2.svelte';
-	import About3 from '$text/about/about3.svelte';
-	// @ts-expect-error vite-imagetools not working properly
-	import AuthorPhoto from '$images/about/author-photo.jpg?webp';
-	// @ts-expect-error vite-imagetools not working properly
-	import Mirror from '$images/about/mirror.jpeg?webp';
-	// @ts-expect-error vite-imagetools not working properly
-	import Owl from '$images/about/owl.png?webp';
+	import About1 from '../../cms/text/about/about1.svelte';
+	import About2 from '../../cms/text/about/about2.svelte';
+	import About3 from '../../cms/text/about/about3.svelte';
+	import AuthorPhoto from '../../cms/images/about/author-photo.jpg';
+	import Mirror from '../../cms/images/about/mirror.jpeg';
+	import Owl from '../../cms/images/about/owl.png';
 
 	export let accent = '';
 </script>
 
-<div class="spacer" />
+<div class="spacer"></div>
 
 <SubpageContent
 	{accent}
@@ -29,7 +26,7 @@
 	</svelte:fragment>
 </SubpageContent>
 
-<div class="spacer" />
+<div class="spacer"></div>
 
 <SubpageContent
 	flexDirection="row"
@@ -45,7 +42,7 @@
 	</svelte:fragment>
 </SubpageContent>
 
-<div class="spacer" />
+<div class="spacer"></div>
 
 <SubpageContent
 	{accent}
@@ -58,7 +55,7 @@
 	</svelte:fragment>
 </SubpageContent>
 
-<div class="spacer" />
+<div class="spacer"></div>
 
 <div class="flex flex-col items-center">
 	<h2 class="text-about max-w-[80%]" style="color: {accent}">have thoughts to share?</h2>
@@ -77,7 +74,7 @@
 	</div>
 </div>
 
-<div class="spacer" />
+<div class="spacer"></div>
 
 <style>
 	strong {

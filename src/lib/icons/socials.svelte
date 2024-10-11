@@ -18,7 +18,7 @@
 	<div>
 		<a href="https://www.instagram.com/alice.alexandra.moore" target="_blank" rel="noreferrer">
 			<enhanced:img
-				src="$images/social-media/instagram-bear.webp"
+				src="../../cms/images/social-media/instagram-bear.webp"
 				alt="Link to Instagram in the form of an illustrated polar bear taking a selfie. Painted dby Alice Alexandra Moore."
 			/>
 		</a>
@@ -26,7 +26,7 @@
 	<div>
 		<a href="https://twitter.com/tempoimmaterial" target="_blank" rel="noreferrer">
 			<enhanced:img
-				src="$images/social-media/twitter-squirrel.webp"
+				src="../../cms/images/social-media/twitter-squirrel.webp"
 				alt="Link to Twitter in the form of a squirrel drinking its morning coffee. Painted by Alice Alexandra Moore."
 			/>
 		</a>
@@ -34,7 +34,7 @@
 	<div>
 		<a href="https://soundcloud.com/tempoimmaterial" target="_blank" rel="noreferrer">
 			<enhanced:img
-				src="$images/social-media/soundcloud-rabbit.webp"
+				src="../../cms/images/social-media/soundcloud-rabbit.webp"
 				alt="Link to Soundcloud in the form of an illustrated rabbit wearing headphones. Painted by Alice Alexandra Moore."
 			/>
 		</a>
@@ -42,7 +42,7 @@
 	<div>
 		<a href="https://github.com/3mdistal/portfolio" target="_blank" rel="noreferrer">
 			<enhanced:img
-				src="$images/social-media/github-cat.webp"
+				src="../../cms/images/social-media/github-cat.webp"
 				alt="Link to Twitter in the form of a squirrel drinking its morning coffee. Painted by Alice Alexandra Moore."
 			/>
 		</a>

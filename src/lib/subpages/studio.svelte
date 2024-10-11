@@ -4,18 +4,12 @@
 	import gsap from 'gsap';
 	import { loadScrollTrigger } from '$lib/partials/load-scroll-trigger';
 
-	// @ts-expect-error vite-imagetools not working properly
-	import BirdTMI from '$images/studio/bird-tmi.jpg?webp';
-	// @ts-expect-error vite-imagetools not working properly
-	import FlowerP from '$images/studio/flower-p.jpg?webp';
-	// @ts-expect-error vite-imagetools not working properly
-	import MirrorB from '$images/studio/mirror-b.jpg?webp';
-	// @ts-expect-error vite-imagetools not working properly
-	import PianoHFC from '$images/studio/piano-hfc.jpg?webp';
-	// @ts-expect-error vite-imagetools not working properly
-	import CityJ from '$images/studio/city-j.jpg?webp';
-	// @ts-expect-error vite-imagetools not working properly
-	import SnakesI from '$images/studio/snakes-i.jpg?webp';
+	import BirdTMI from '../../cms/images/studio/bird-tmi.jpg';
+	import FlowerP from '../../cms/images/studio/flower-p.jpg';
+	import MirrorB from '../../cms/images/studio/mirror-b.jpg';
+	import PianoHFC from '../../cms/images/studio/piano-hfc.jpg';
+	import CityJ from '../../cms/images/studio/city-j.jpg';
+	import SnakesI from '../../cms/images/studio/snakes-i.jpg';
 
 	export let accent: string;
 	export let background: string;

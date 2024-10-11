@@ -1,5 +1,5 @@
 <script>
-	import Hand from '$images/about/flowers-in-hand.webp';
+	import Hand from '../../../cms/images/about/flowers-in-hand.webp';
 	import About from '$lib/subpages/about.svelte';
 	import LandingPage from '$lib/subpages/landing-page.svelte';
 
