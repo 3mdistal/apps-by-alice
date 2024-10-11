@@ -2,35 +2,126 @@
 	import { fade } from 'svelte/transition';
 </script>
 
-<div
-	class="h-[100%] min-h-[100vh] bg-black px-4 py-10 tracking-wide text-white sm:px-10 [&_*]:text-inherit"
-	in:fade={{ duration: 500 }}
-	out:fade={{ duration: 500 }}
->
-	<h1 class="mb-2 text-5xl text-white md:text-7xl">
+<div in:fade={{ duration: 500 }} out:fade={{ duration: 500 }}>
+	<h1>
 		<slot name="title" />
 	</h1>
-	<p class="mb-[1em] max-w-[25ch] text-2xl md:text-4xl">
+	<p>
 		<em>
 			<slot name="subtitle" />
 		</em>
 	</p>
-	<hr class="mx-10 my-10 opacity-50" />
+	<hr />
 	<p>
-		<em class="mr-4 font-medium text-white">tl;dr</em>
+		<em class="tl-dr">tl;dr</em>
 		<slot name="summary" />
 	</p>
-	<hr class="mx-10 my-10 opacity-50" />
-	<div class="max-w-[60ch] text-xl lg:text-2xl [&_*]:text-inherit [&_p]:mb-[1em]">
+	<hr />
+	<div>
 		<slot name="text" />
 	</div>
-	<p class="text-right text-4xl md:text-6xl">
-		<a href="/studio#works" class="inline-block p-6 text-white">back.</a>
+	<p>
+		<a href="/studio#works">back.</a>
 	</p>
 </div>
 
-<style lang="scss">
+<style>
 	* {
 		color: #e1e1e1;
+	}
+
+	div {
+		height: 100%;
+		min-height: 100vh;
+		background-color: black;
+		padding: 2.5rem 1rem;
+		letter-spacing: 0.025em;
+		color: white;
+	}
+
+	div * {
+		color: inherit;
+	}
+
+	h1 {
+		margin-bottom: 0.5rem;
+		font-size: 3rem;
+		line-height: 1;
+		color: white;
+	}
+
+	p {
+		margin-bottom: 1em;
+		max-width: 25ch;
+		font-size: 1.5rem;
+		line-height: 2rem;
+	}
+
+	hr {
+		margin: 2.5rem 2.5rem;
+		opacity: 0.5;
+	}
+
+	em.tl-dr {
+		margin-right: 1rem;
+		font-weight: 500;
+		color: white;
+	}
+
+	div > div {
+		max-width: 60ch;
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+	}
+
+	div > div * {
+		color: inherit;
+	}
+
+	div > div p {
+		margin-bottom: 1em;
+	}
+
+	p:last-child {
+		text-align: right;
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+	}
+
+	a {
+		display: inline-block;
+		padding: 1.5rem;
+		color: white;
+	}
+
+	@media (min-width: 640px) {
+		div {
+			padding-left: 2.5rem;
+			padding-right: 2.5rem;
+		}
+	}
+
+	@media (min-width: 768px) {
+		h1 {
+			font-size: 4.5rem;
+			line-height: 1;
+		}
+
+		p {
+			font-size: 2.25rem;
+			line-height: 2.5rem;
+		}
+
+		p:last-child {
+			font-size: 3.75rem;
+			line-height: 1;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		div > div {
+			font-size: 1.5rem;
+			line-height: 2rem;
+		}
 	}
 </style>

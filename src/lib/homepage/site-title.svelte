@@ -73,7 +73,7 @@
 	</header>
 {/if}
 
-<style lang="scss">
+<style>
 	.site-title {
 		font-size: clamp(1.5rem, 4vw, 3rem);
 	}

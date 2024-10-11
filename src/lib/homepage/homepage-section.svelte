@@ -73,7 +73,7 @@
 	</div>
 </a>
 
-<style lang="scss">
+<style>
 	.homepage-section {
 		&.about {
 			clip-path: url(#about-path);

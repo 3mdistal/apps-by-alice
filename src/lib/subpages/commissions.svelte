@@ -227,7 +227,7 @@
 			</div>
 		</div>
 	</div>
-	<div class="spacer" />
+	<div class="spacer"></div>
 	<div class="villain">
 		<div id="form">
 			<Form {accent} />
@@ -235,7 +235,7 @@
 	</div>
 </div>
 
-<style lang="scss">
+<style>
 	.hero {
 		@media (hover: hover) {
 			background-attachment: fixed;

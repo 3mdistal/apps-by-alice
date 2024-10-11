@@ -79,7 +79,7 @@
 
 <div class="spacer" />
 
-<style lang="scss">
+<style>
 	strong {
 		font-weight: 600;
 	}

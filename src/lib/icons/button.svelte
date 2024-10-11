@@ -36,7 +36,7 @@
 	{text}
 </a>
 
-<style lang="scss">
+<style>
 	a {
 		background-color: var(--background);
 		color: var(--accent);

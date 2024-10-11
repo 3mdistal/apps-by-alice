@@ -86,7 +86,7 @@
 	</div>
 {/if}
 
-<style lang="scss">
+<style>
 	form {
 		& .form-flex {
 			display: flex;
