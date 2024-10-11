@@ -1,0 +1,168 @@
+.blog-container .notion-container .toc {
+	margin-top: 2em;
+	margin-bottom: 2em;
+}
+
+.blog-container .notion-container a {
+	font-weight: 500;
+	color: #31676c;
+}
+
+.blog-container .notion-container a:hover {
+	text-decoration: underline;
+}
+
+.blog-container .notion-container code {
+	color: #31676c;
+}
+
+.blog-container .notion-container blockquote {
+	margin-left: 2em;
+	margin-top: 2.5rem;
+	max-width: 40ch;
+	font-style: italic;
+	color: #d1d5db; /* Equivalent to text-gray-300 */
+}
+
+.blog-container .notion-container .image img {
+	height: 100%;
+	width: 100%;
+	border-radius: 1.5rem;
+	object-fit: contain;
+}
+
+.blog-container .notion-container .image {
+	margin-bottom: 2em;
+	margin-top: 2em;
+	padding-right: 0.5em;
+}
+
+.blog-container .notion-container h2 {
+	margin-bottom: 1.5em;
+	margin-top: 2.5em;
+	font-size: 1.5rem;
+	font-weight: 500;
+	color: #111827; /* Equivalent to text-gray-900 */
+}
+
+.blog-container .notion-container h3 {
+	margin-bottom: 1em;
+	margin-top: 1.5em;
+	font-size: 1.5rem;
+	font-weight: 500;
+	color: #111827; /* Equivalent to text-gray-900 */
+}
+
+.blog-container .notion-container ol,
+.blog-container .notion-container ul {
+	margin-left: 2em;
+}
+
+.blog-container .notion-container ol li,
+.blog-container .notion-container ul li {
+	color: inherit;
+}
+
+.blog-container ol {
+	list-style-type: decimal;
+}
+
+.blog-container ul {
+	list-style-type: disc;
+}
+
+.blog-container div.callout {
+	margin-bottom: 1.5rem;
+	margin-top: 2.5rem;
+	display: flex;
+	align-items: flex-start;
+	gap: 1rem;
+	border-radius: 0.5rem;
+	background-color: #d1d5db; /* Equivalent to bg-gray-300 */
+	padding: 2.5rem 1rem 1.5rem;
+}
+
+.blog-container .notion-container div.callout > :first-child {
+	font-size: 1.5rem;
+}
+
+.blog-container .notion-container div.callout > :last-child {
+	font-size: 1.125rem;
+}
+
+.blog-container .notion-container p {
+	color: #4b5563; /* Equivalent to text-gray-600 */
+}
+
+@media (min-width: 640px) {
+	.blog-container .notion-container .image {
+		padding-left: 1em;
+		padding-right: 3em;
+	}
+}
+
+@media (min-width: 768px) {
+	.blog-container .notion-container h2 {
+		font-size: 1.875rem;
+	}
+
+	.blog-container .notion-container h3 {
+		font-size: 1.875rem;
+	}
+
+	.blog-container div.callout {
+		gap: 2.5rem;
+		padding-left: 5rem;
+		padding-right: 5rem;
+	}
+
+	.blog-container .notion-container div.callout > :first-child {
+		font-size: 2.25rem;
+	}
+
+	.blog-container .notion-container div.callout > :last-child {
+		font-size: 1.25rem;
+	}
+}
+
+@media (min-width: 1024px) {
+	.blog-container .notion-container .image img {
+		object-position: left;
+	}
+
+	.blog-container .notion-container h2 {
+		font-size: 2.25rem;
+	}
+}
+
+@media (prefers-color-scheme: dark) {
+	.blog-container .notion-container a {
+		color: #a3e5eb;
+	}
+
+	.blog-container .notion-container code {
+		color: #a3e5eb;
+	}
+
+	.blog-container .notion-container pre code {
+		color: #d1d5db; /* Equivalent to text-gray-300 */
+	}
+
+	.blog-container .notion-container ol,
+	.blog-container .notion-container ul {
+		color: #e5e7eb; /* Equivalent to text-gray-200 */
+	}
+
+	.blog-container div.callout {
+		background-color: #141414;
+	}
+
+	.blog-container .notion-container h2,
+	.blog-container .notion-container h3 {
+		color: #ffffff;
+	}
+
+	.blog-container .notion-container p {
+		color: #e5e7eb; /* Equivalent to text-gray-200 */
+	}
+}
