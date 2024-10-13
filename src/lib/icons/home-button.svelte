@@ -52,7 +52,7 @@
 	</a>
 </div>
 
-<style lang="css">
+<style>
 	.home-button-container {
 		position: fixed;
 		right: 0.5rem;

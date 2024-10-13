@@ -186,15 +186,14 @@
 
 <svelte:window on:resize={resetDimensions} />
 
-<canvas class="bg-black" on:click={handleClick} bind:this={canvasBackground}></canvas>
+<canvas class="background-canvas" on:click={handleClick} bind:this={canvasBackground}></canvas>
 
-<div
-	class="absolute left-0 top-0 flex h-screen flex-col justify-center gap-y-10 bg-[#222222] px-4 md:px-8"
->
+<div class="sidebar">
 	{#each canvases as canvas}
 		<canvas
 			bind:this={canvas}
-			class="cursor-pointer last:mt-20"
+			class="sidebar-canvas"
+			class:last-canvas={canvases.indexOf(canvas) === canvases.length - 1}
 			on:mousedown={(e) => handleMouseDown(e, shapesString[canvases.indexOf(canvas)])}
 			on:mouseup={handleMouseUp}
 			on:mouseenter={handleMouseEnter}
@@ -205,3 +204,38 @@
 		></canvas>
 	{/each}
 </div>
+
+<style>
+	.background-canvas {
+		background-color: black;
+	}
+
+	.sidebar {
+		position: absolute;
+		left: 0;
+		top: 0;
+		display: flex;
+		height: 100vh;
+		flex-direction: column;
+		justify-content: center;
+		gap: 2.5rem;
+		background-color: #222222;
+		padding-left: 1rem;
+		padding-right: 1rem;
+	}
+
+	.sidebar-canvas {
+		cursor: pointer;
+	}
+
+	.last-canvas {
+		margin-top: 5rem;
+	}
+
+	@media (min-width: 768px) {
+		.sidebar {
+			padding-left: 2rem;
+			padding-right: 2rem;
+		}
+	}
+</style>

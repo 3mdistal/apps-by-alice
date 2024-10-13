@@ -6,7 +6,15 @@
 	import LightCodeTheme from 'svelte-highlight/styles/a11y-light';
 	import { onMount, tick } from 'svelte';
 	import { subAndSuper, wrapLists, createTOC } from '$lib/notion/blog-helpers';
-	import type { PageObjectResponse, TitlePropertyItemObjectResponse, RichTextPropertyItemObjectResponse, UrlPropertyItemObjectResponse, SelectPropertyItemObjectResponse, FormulaPropertyItemObjectResponse, QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
+	import type {
+		PageObjectResponse,
+		TitlePropertyItemObjectResponse,
+		RichTextPropertyItemObjectResponse,
+		UrlPropertyItemObjectResponse,
+		SelectPropertyItemObjectResponse,
+		FormulaPropertyItemObjectResponse,
+		QueryDatabaseResponse
+	} from '@notionhq/client/build/src/api-endpoints';
 
 	let darkMode: boolean;
 
@@ -24,8 +32,8 @@
 
 	export let data: {
 		post: {
-			queryResponse: { results: QueryDatabaseResponse[] },
-			contentResponse: { results: any[] }
+			queryResponse: { results: QueryDatabaseResponse[] };
+			contentResponse: { results: any[] };
 		};
 	};
 
@@ -35,25 +43,17 @@
 	const blogPost = queryResponse.results[0] as PageObjectResponse;
 	const content = contentResponse.results;
 
-	const {
-		title,
-		subtitle,
-		summary,
-		ogDescription,
-		readingTime,
-		category,
-		slug,
-		coverURL
-	} = blogPost.properties as unknown as {
-		title: TitlePropertyItemObjectResponse;
-		subtitle: RichTextPropertyItemObjectResponse;
-		summary: RichTextPropertyItemObjectResponse;
-		ogDescription: RichTextPropertyItemObjectResponse;
-		readingTime: FormulaPropertyItemObjectResponse;
-		category: SelectPropertyItemObjectResponse;
-		slug: RichTextPropertyItemObjectResponse;
-		coverURL: UrlPropertyItemObjectResponse;
-	};
+	const { title, subtitle, summary, ogDescription, readingTime, category, slug, coverURL } =
+		blogPost.properties as unknown as {
+			title: TitlePropertyItemObjectResponse;
+			subtitle: RichTextPropertyItemObjectResponse;
+			summary: RichTextPropertyItemObjectResponse;
+			ogDescription: RichTextPropertyItemObjectResponse;
+			readingTime: FormulaPropertyItemObjectResponse;
+			category: SelectPropertyItemObjectResponse;
+			slug: RichTextPropertyItemObjectResponse;
+			coverURL: UrlPropertyItemObjectResponse;
+		};
 
 	onMount(() => {
 		runBlogHelpers();
@@ -101,48 +101,204 @@
 	{/if}
 </svelte:head>
 
-<div
-	class="blog-container h-full min-h-[100vh] bg-gray-200 px-4 py-16 tracking-wide text-gray-900 sm:px-10 sm:py-10 md:flex md:flex-col md:items-center md:px-20 xl:px-60 2xl:px-80 dark:bg-black dark:text-white [&_sub]:text-inherit [&_sup]:text-inherit"
-	in:fade={{ duration: 500 }}
->
+<div class="blog-container">
 	<div>
-		<h1 class="text-4xl sm:text-5xl md:mb-4 md:text-6xl lg:text-7xl dark:text-white">
-			{title}
-		</h1>
-		<p class="max-w-[45ch] text-xl text-gray-700 md:text-2xl md:leading-9 dark:text-gray-100">
-			<em class="text-gray-500 dark:text-gray-300"><TextMacro type={subtitle} /></em>
+		<h1>{title}</h1>
+		<p class="subtitle">
+			<em><TextMacro type={subtitle} /></em>
 		</p>
 	</div>
-	<hr class="my-10 w-full border-black opacity-50 dark:border-white" />
+	<hr />
 	<div>
-		<p class="mb-4 flex max-w-[45ch]">
-			<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">type</em>
-			<span class="block w-[35ch] text-gray-700 dark:text-gray-100">{category}</span>
+		<p class="meta-info">
+			<em>type</em>
+			<span>{category}</span>
 		</p>
-		<p class="mb-4 flex max-w-[45ch]">
-			<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">time</em>
-			<span class="block w-[35ch] text-gray-700 dark:text-gray-100"
-				>{#if readingTime !== '1 minutes'}
+		<p class="meta-info">
+			<em>time</em>
+			<span>
+				{#if readingTime !== '1 minutes'}
 					{readingTime}
 				{:else}
 					1 minute
-				{/if}</span
-			>
+				{/if}
+			</span>
 		</p>
-		<p class="flex max-w-[45ch]">
-			<em class="block w-[5ch] font-medium text-gray-900 dark:text-white">tl;dr</em>
-			<span class="block w-[35ch] text-gray-700 dark:text-gray-100">
+		<p class="meta-info">
+			<em>tl;dr</em>
+			<span>
 				<TextMacro type={summary} />
 			</span>
 		</p>
 	</div>
-	<hr class="my-10 w-full border-black opacity-50 dark:border-white" />
-	<div class="notion-container max-w-[60ch] text-xl lg:text-2xl [&_p]:mb-[1em]" bind:this={context}>
+	<hr />
+	<div class="notion-container" bind:this={context}>
 		<NotionPageParser results={content} />
 	</div>
-	<p class="text-right text-4xl md:text-6xl">
-		<a href="/blog" data-sveltekit-noscroll class="inline-block p-6 text-gray-900 dark:text-white"
-			>back.</a
-		>
+	<p class="back-link">
+		<a href="/blog" data-sveltekit-noscroll>back.</a>
 	</p>
 </div>
+
+<style lang="scss">
+	.blog-container {
+		height: 100%;
+		min-height: 100vh;
+		background-color: #e5e7eb;
+		padding: 4rem 1rem;
+		letter-spacing: 0.05em;
+		color: #111827;
+
+		@media (min-width: 640px) {
+			padding: 2.5rem;
+		}
+
+		@media (min-width: 768px) {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			padding: 2.5rem 5rem;
+		}
+
+		@media (min-width: 1280px) {
+			padding: 2.5rem 15rem;
+		}
+
+		@media (min-width: 1536px) {
+			padding: 2.5rem 20rem;
+		}
+
+		:global(sub),
+		:global(sup) {
+			color: inherit;
+		}
+	}
+
+	h1 {
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+
+		@media (min-width: 640px) {
+			font-size: 3rem;
+			line-height: 1;
+		}
+
+		@media (min-width: 768px) {
+			margin-bottom: 1rem;
+			font-size: 3.75rem;
+			line-height: 1;
+		}
+
+		@media (min-width: 1024px) {
+			font-size: 4.5rem;
+			line-height: 1;
+		}
+	}
+
+	.subtitle {
+		max-width: 45ch;
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+		color: #374151;
+
+		@media (min-width: 768px) {
+			font-size: 1.5rem;
+			line-height: 2.25rem;
+		}
+
+		em {
+			color: #6b7280;
+		}
+	}
+
+	hr {
+		margin: 2.5rem 0;
+		width: 100%;
+		border-color: #111827;
+		opacity: 0.5;
+	}
+
+	.meta-info {
+		display: flex;
+		max-width: 45ch;
+		margin-bottom: 1rem;
+
+		em {
+			display: block;
+			width: 5ch;
+			font-weight: 500;
+			color: #111827;
+		}
+
+		span {
+			display: block;
+			width: 35ch;
+			color: #374151;
+		}
+	}
+
+	.notion-container {
+		max-width: 60ch;
+		font-size: 1.25rem;
+		line-height: 1.75rem;
+
+		@media (min-width: 1024px) {
+			font-size: 1.5rem;
+			line-height: 2rem;
+		}
+
+		:global(p) {
+			margin-bottom: 1em;
+		}
+	}
+
+	.back-link {
+		text-align: right;
+		font-size: 2.25rem;
+		line-height: 2.5rem;
+
+		@media (min-width: 768px) {
+			font-size: 3.75rem;
+			line-height: 1;
+		}
+
+		a {
+			display: inline-block;
+			padding: 1.5rem;
+			color: #111827;
+		}
+	}
+
+	:global(.dark) {
+		.blog-container {
+			background-color: #000;
+			color: #fff;
+		}
+
+		.subtitle {
+			color: #e5e7eb;
+
+			em {
+				color: #d1d5db;
+			}
+		}
+
+		hr {
+			border-color: #fff;
+		}
+
+		.meta-info {
+			em {
+				color: #fff;
+			}
+
+			span {
+				color: #e5e7eb;
+			}
+		}
+
+		.back-link a {
+			color: #fff;
+		}
+	}
+</style>

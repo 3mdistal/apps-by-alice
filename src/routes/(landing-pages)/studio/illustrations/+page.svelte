@@ -165,73 +165,214 @@
 	<meta name="twitter:image:alt" content="The illustrations page of alicealexandra.com." />
 </svelte:head>
 
-<div class="bg-gray-900">
+<div class="background">
 	<!-- Art Grid -->
 	<div
-		class="art-grid h-full w-full gap-x-0 p-2 opacity-0 sm:columns-2 md:columns-3 lg:columns-4 xl:columns-5"
+		class="art-grid"
 		bind:this={artGrid}
 		use:fadeIn
 	>
 		{#each results as painting}
 			{#if all}
-				<!-- TODO: On 'enter', goes to a white page for some reason. -->
 				<!-- Grid Items -->
 				<a href="/studio/illustrations" on:click|preventDefault={handleClickToFullscreen}>
 					<img
 						src={painting.properties.Image.url + lowQuality}
 						loading="lazy"
 						alt=""
-						class="w-full cursor-pointer p-2 transition-all duration-300 ease-in-out sm:hover:scale-105"
+						class="grid-image"
 						on:contextmenu|preventDefault
 					/>
 				</a>
 			{:else if currentURL === painting.properties.Image.url + lowQuality}
 				<!-- Fullscreen Image -->
 				<div>
-					<div class="sm:h-screen sm:w-screen">
+					<div class="fullscreen-container">
 						<a href="/studio/illustrations" on:click|preventDefault={handleClickToGallery}>
 							<img
 								src={painting.properties.Image.url + lowQuality}
 								data-src={painting.properties.Image.url + '?tr=f-webp,q-80'}
 								alt=""
-								class="h-full w-full object-contain pt-[4.5rem] sm:fixed sm:pt-0"
+								class="fullscreen-image"
 								on:contextmenu|preventDefault
 								on:load|once={lazyLoad}
 							/>
 						</a>
 					</div>
-					<div class="min-h-80 relative w-screen p-10 sm:z-10">
+					<div class="info-container">
 						<!-- Title -->
-						<p class="text-4xl text-white sm:text-5xl md:text-6xl">
-							{painting.properties.Name.title[0].plain_text}
-						</p>
+						<p class="title">{painting.properties.Name.title[0].plain_text}</p>
 
 						<!-- Date -->
-						<p class="text-[1rem]">
-							<em class="text-white">{painting.properties.Date.formula.string}</em>
+						<p class="date">
+							<em>{painting.properties.Date.formula.string}</em>
 						</p>
 
 						<!-- Description -->
-						<p
-							class="my-6 max-w-[40ch] text-xl text-white md:max-w-[50ch] lg:max-w-[60ch] xl:text-2xl"
-						>
+						<p class="description">
 							<TextMacro type={painting.properties.Description} />
 						</p>
 
 						<!-- Back Button -->
 						<a
-							class="block cursor-pointer text-right text-4xl text-white lg:absolute lg:bottom-6 lg:right-6 lg:p-4 lg:text-6xl"
+							class="back-button"
 							on:click|preventDefault={() => history.back()}
 							href="/studio/illustrations"
 						>
 							back.
 						</a>
-						<div
-							class="absolute left-0 top-0 -z-10 h-full w-full bg-gray-900 opacity-100 sm:opacity-75"
-						/>
+						<div class="overlay" />
 					</div>
 				</div>
 			{/if}
 		{/each}
 	</div>
 </div>
+
+<style lang="scss">
+	.background {
+		background-color: #111827;
+	}
+
+	.art-grid {
+		height: 100%;
+		width: 100%;
+		gap: 0;
+		padding: 0.5rem;
+		opacity: 0;
+	}
+
+	.grid-image {
+		width: 100%;
+		cursor: pointer;
+		padding: 0.5rem;
+		transition: all 0.3s ease-in-out;
+	}
+
+	.fullscreen-container {
+		@media (min-width: 640px) {
+			height: 100vh;
+			width: 100vw;
+		}
+	}
+
+	.fullscreen-image {
+		height: 100%;
+		width: 100%;
+		object-fit: contain;
+		padding-top: 4.5rem;
+
+		@media (min-width: 640px) {
+			position: fixed;
+			padding-top: 0;
+		}
+	}
+
+	.info-container {
+		min-height: 20rem;
+		position: relative;
+		width: 100vw;
+		padding: 2.5rem;
+
+		@media (min-width: 640px) {
+			z-index: 10;
+		}
+	}
+
+	.title {
+		font-size: 2.25rem;
+		color: white;
+
+		@media (min-width: 640px) {
+			font-size: 3rem;
+		}
+
+		@media (min-width: 768px) {
+			font-size: 3.75rem;
+		}
+	}
+
+	.date {
+		font-size: 1rem;
+		color: white;
+	}
+
+	.description {
+		margin-top: 1.5rem;
+		margin-bottom: 1.5rem;
+		max-width: 40ch;
+		font-size: 1.25rem;
+		color: white;
+
+		@media (min-width: 768px) {
+			max-width: 50ch;
+		}
+
+		@media (min-width: 1024px) {
+			max-width: 60ch;
+		}
+
+		@media (min-width: 1280px) {
+			font-size: 1.5rem;
+		}
+	}
+
+	.back-button {
+		display: block;
+		cursor: pointer;
+		text-align: right;
+		font-size: 2.25rem;
+		color: white;
+
+		@media (min-width: 1024px) {
+			position: absolute;
+			bottom: 1.5rem;
+			right: 1.5rem;
+			padding: 1rem;
+			font-size: 3.75rem;
+		}
+	}
+
+	.overlay {
+		position: absolute;
+		left: 0;
+		top: 0;
+		z-index: -10;
+		height: 100%;
+		width: 100%;
+		background-color: #111827;
+		opacity: 1;
+
+		@media (min-width: 640px) {
+			opacity: 0.75;
+		}
+	}
+
+	@media (min-width: 640px) {
+		.art-grid {
+			column-count: 2;
+		}
+
+		.grid-image:hover {
+			transform: scale(1.05);
+		}
+	}
+
+	@media (min-width: 768px) {
+		.art-grid {
+			column-count: 3;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.art-grid {
+			column-count: 4;
+		}
+	}
+
+	@media (min-width: 1280px) {
+		.art-grid {
+			column-count: 5;
+		}
+	}
+</style>

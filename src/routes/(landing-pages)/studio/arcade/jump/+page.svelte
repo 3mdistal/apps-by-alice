@@ -37,6 +37,14 @@
 	});
 </script>
 
-<div class="h-screen w-screen bg-black">
+<div class="game-container">
 	<canvas bind:this={backgroundCanvas}></canvas>
 </div>
+
+<style>
+	.game-container {
+		height: 100vh;
+		width: 100vw;
+		background-color: black;
+	}
+</style>

@@ -206,37 +206,25 @@
 	tabindex="0"
 	aria-live="polite"
 	aria-expanded="false"
-	class="relative flex aspect-[2/3] w-[20rem] cursor-default justify-center overflow-hidden rounded-3xl border-2 border-white drop-shadow-2xl"
+	class="studio-card"
 >
 	<!-- Front of Card -->
-	<div
-		class="bg-studio absolute flex h-full w-full flex-col items-center justify-center gap-y-16 overflow-hidden rounded-3xl"
-		bind:this={front}
-	>
-		<div
-			class="bg-studio relative z-10 flex h-[4.5rem] w-[4.5rem] items-center justify-center rounded-[50%] border-2 border-white"
-		>
-			<p class="font-logo text-[2.75rem] font-medium text-white"><TextMacro type={logo} /></p>
+	<div class="card-front" bind:this={front}>
+		<div class="logo-container">
+			<p class="logo-text"><TextMacro type={logo} /></p>
 		</div>
-		<div class="z-10">
-			<h2 class="mb-6 text-center text-4xl font-light tracking-[.15em] text-white">{title}</h2>
-			<p class="text-center text-2xl"><em class="text-white"><TextMacro type={subtitle} /></em></p>
+		<div class="title-container">
+			<h2>{title}</h2>
+			<p><em><TextMacro type={subtitle} /></em></p>
 		</div>
-		<img {src} {alt} class="absolute h-full w-full opacity-80" />
-		<div
-			class="from-studio absolute h-full w-full bg-gradient-to-t to-transparent opacity-80"
-		></div>
+		<img {src} {alt} class="background-image" />
+		<div class="gradient-overlay"></div>
 	</div>
 
 	<!-- Back of Card -->
-	<div
-		class="bg-studio absolute flex h-full w-full flex-col items-center justify-around rounded-3xl px-4 py-24 opacity-0 sm:py-10"
-		bind:this={back}
-		aria-labelledby="popover"
-		aria-expanded="true"
-	>
-		<p bind:this={backText} class="text 2xl">
-			<em class="text-white"><TextMacro type={description} /></em>
+	<div class="card-back" bind:this={back} aria-labelledby="popover" aria-expanded="true">
+		<p bind:this={backText} class="description">
+			<em><TextMacro type={description} /></em>
 		</p>
 
 		{#if loading}
@@ -258,8 +246,137 @@
 	</div>
 
 	<!-- Spin Poles -->
-	<div bind:this={spinPoles} class="relative -z-20 flex h-full">
-		<div class="bg-studio h-[5%] w-1 self-end"></div>
-		<div class="bg-studio h-[5%] w-1 self-start"></div>
+	<div bind:this={spinPoles} class="spin-poles">
+		<div class="pole pole-bottom"></div>
+		<div class="pole pole-top"></div>
 	</div>
 </div>
+
+<style>
+    .studio-card {
+        position: relative;
+        display: flex;
+        aspect-ratio: 2/3;
+        width: 20rem;
+        cursor: default;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 1.5rem;
+        border: 2px solid white;
+        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    }
+
+    .card-front, .card-back {
+        position: absolute;
+        display: flex;
+        height: 100%;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        border-radius: 1.5rem;
+        background-color: var(--studio-bg-color);
+    }
+
+    .card-front {
+      lang="scss"  gap: 4rem;
+    }
+
+    .card-back {
+        opacity: 0;
+        padding: 6rem 1rem;
+    }
+
+    .logo-container {
+        position: relative;
+        z-index: 10;
+        display: flex;
+        height: 4.5rem;
+        width: 4.5rem;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        border: 2px solid white;
+        background-color: var(--studio-bg-color);
+    }
+
+    .logo-text {
+        font-family: var(--font-logo);
+        font-size: 2.75rem;
+        font-weight: 500;
+        color: white;
+    }
+
+    .title-container {
+        z-index: 10;
+    }
+
+    .title-container h2 {
+        margin-bottom: 1.5rem;
+        text-align: center;
+        font-size: 2.25rem;
+        font-weight: 300;
+        letter-spacing: 0.15em;
+        color: white;
+    }
+
+    .title-container p {
+        text-align: center;
+        font-size: 1.5rem;
+    }
+
+    .title-container em {
+        color: white;
+    }
+
+    .background-image {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        opacity: 0.8;
+    }
+
+    .gradient-overlay {
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        background: linear-gradient(to top, var(--studio-bg-color), transparent);
+        opacity: 0.8;
+    }
+
+    .description {
+        font-size: 1.5rem;
+    }
+
+    .description em {
+        color: white;
+    }
+
+    .spin-poles {
+        position: relative;
+        z-index: -20;
+        display: flex;
+        height: 100%;
+    }
+
+    .pole {
+        height: 5%;
+        width: 0.25rem;
+        background-color: var(--studio-bg-color);
+    }
+
+    .pole-bottom {
+        align-self: flex-end;
+    }
+
+    .pole-top {
+        align-self: flex-start;
+    }
+
+    @media (min-width: 640px) {
+        .card-back {
+            padding: 2.5rem 1rem;
+        }
+    }
+</style>

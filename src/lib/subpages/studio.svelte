@@ -40,7 +40,7 @@
 	});
 </script>
 
-<div class="spacer" />
+<div class="spacer"></div>
 
 <div class="container" bind:this={container}>
 	<div style="background-color:{accent}">

@@ -65,7 +65,24 @@
 	}
 </script>
 
-<div class="flex h-screen w-screen items-center justify-center">
+<div class="container">
 	<canvas bind:this={canvas} on:click={handleClick}></canvas>
-	<p class="pointer-events-none absolute bottom-0 text-gray-500">each of us a constellation</p>
+	<p class="footer-text">each of us a constellation</p>
 </div>
+
+<style>
+	.container {
+		display: flex;
+		height: 100vh;
+		width: 100vw;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.footer-text {
+		pointer-events: none;
+		position: absolute;
+		bottom: 0;
+		color: #6b7280; /* text-gray-500 */
+	}
+</style>

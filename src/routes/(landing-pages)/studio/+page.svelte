@@ -77,27 +77,63 @@
 	<meta name="twitter:image:alt" content="The studio page of alicealexandra.com." />
 </svelte:head>
 
-<div class="min-h-[100lvh] bg-studio-bg" use:populate>
-	<h1 class="absolute scale-0 opacity-0">studio</h1>
+<div class="studio-container" use:populate>
+	<h1 class="studio-title">studio</h1>
 
 	<img
 		src="https://ik.imagekit.io/tempoimmaterial/studio/ink.png?updatedAt=1694604654601"
 		alt=""
-		class="fixed h-full min-h-[100lvh] opacity-0"
+		class="studio-background"
 	/>
 
-	<!-- Break -->
-	<div class="h-12" />
+	<div class="break"></div>
 
-	<!-- Cards -->
-	<div
-		class="card-div flex flex-wrap items-start justify-center gap-12 opacity-0 sm:justify-center sm:px-10"
-	>
+	<div class="card-div">
 		{#each cards as card}
 			<StudioCard {card} />
 		{/each}
 	</div>
 
-	<!-- Break -->
-	<div class="h-12" />
+	<div class="break"></div>
 </div>
+
+<style>
+	.studio-container {
+		min-height: 100lvh;
+		background-color: var(--studio-bg);
+	}
+
+	.studio-title {
+		position: absolute;
+		scale: 0;
+		opacity: 0;
+	}
+
+	.studio-background {
+		position: fixed;
+		height: 100%;
+		min-height: 100lvh;
+		opacity: 0;
+	}
+
+	.break {
+		height: 3rem;
+	}
+
+	.card-div {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: center;
+		gap: 3rem;
+		opacity: 0;
+	}
+
+	@media (min-width: 640px) {
+		.card-div {
+			justify-content: center;
+			padding-left: 2.5rem;
+			padding-right: 2.5rem;
+		}
+	}
+</style>

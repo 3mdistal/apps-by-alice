@@ -32,8 +32,8 @@
     <meta name="description" content=" The work accomplished at Vercel by Alice Alexandra Moore.">
 </svelte:head>
 
-<main class="py-32 px-10 sm:px-20 xl:px-80 bg-cyan-50">
-    <h1 class="text-2xl sm:text-4xl md:text-6xl mb-16 tracking-wide">
+<main>
+    <h1>
         Some of the best works <br>I've published at Vercel.
     </h1>
     <PublicationsSection
@@ -64,6 +64,49 @@
         publications={publications}
         title="Technical Blogs"
         subtitle="Articles that I've written to offer developers guidance on Vercel's product."
-        type="Technical Blog" 
+        type="Technical Blogs" 
     />
 </main>
+
+<style>
+    main {
+        padding-top: 8rem;
+        padding-bottom: 8rem;
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+        background-color: #ecfeff;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+        line-height: 2rem;
+        margin-bottom: 4rem;
+        letter-spacing: 0.025em;
+    }
+
+    @media (min-width: 640px) {
+        main {
+            padding-left: 5rem;
+            padding-right: 5rem;
+        }
+
+        h1 {
+            font-size: 2.25rem;
+            line-height: 2.5rem;
+        }
+    }
+
+    @media (min-width: 768px) {
+        h1 {
+            font-size: 3.75rem;
+            line-height: 1;
+        }
+    }
+
+    @media (min-width: 1280px) {
+        main {
+            padding-left: 20rem;
+            padding-right: 20rem;
+        }
+    }
+</style>

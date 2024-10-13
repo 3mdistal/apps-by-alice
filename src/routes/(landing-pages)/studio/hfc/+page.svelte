@@ -139,41 +139,30 @@
 	<meta name="description" content="Collected poems by Alice Alexandra Moore." />
 </svelte:head>
 
-<div class="h-[100vh] overflow-y-scroll bg-black">
-	<div class="snap-start">
-		<div
-			class="relative mx-auto aspect-square bg-cover bg-center md:aspect-auto md:h-[100lvh] md:bg-fixed"
-			style="background-image: url({Piano})"
-		>
-			<div class="absolute left-[10%] top-[30%] z-10">
-				<h1 class="text-3xl text-white md:text-4xl lg:text-5xl xl:text-6xl">hymns for calliope</h1>
-				<p class="text-white">poems</p>
+<div class="page-container">
+	<div class="snap-container">
+		<div class="hero-image" style="background-image: url({Piano})">
+			<div class="hero-content">
+				<h1>hymns for calliope</h1>
+				<p>poems</p>
 			</div>
-			<div class="absolute h-[100%] w-[100%] bg-black opacity-60" />
+			<div class="hero-overlay"></div>
 		</div>
 	</div>
 	{#each sections as section}
 		{#if section.properties['Name'].title[0].plain_text === 'introduction'}
-			<div
-				class="flex min-h-[100lvh] snap-start flex-col items-center justify-center px-5 py-10 md:px-10"
-			>
-				<div class="flex max-w-[60ch] flex-col">
-					<h2 class="text-2xl font-light text-white sm:text-3xl xl:text-4xl">Author's Note</h2>
-					<p class="whitespace-pre-line text-[1.1rem] sm:text-xl md:text-2xl">
-						<em class="text-[#cfcdcb]"><TextMacro type={section.properties['Quote']} /></em>
+			<div class="introduction">
+				<div class="introduction-content">
+					<h2>Author's Note</h2>
+					<p>
+						<em><TextMacro type={section.properties['Quote']} /></em>
 					</p>
 				</div>
 			</div>
 		{:else if section.properties['Name'] && section.cover}
-			<div
-				class="flex min-h-[100lvh] snap-start flex-col justify-center gap-y-24 bg-[#bcbab7] p-4 sm:gap-y-32 lg:gap-y-12"
-			>
-				<div
-					class="relative grid min-h-[40lvh] grid-cols-6 grid-rows-6 lg:flex lg:items-center 2xl:px-32"
-				>
-					<div
-						class="col-span-5 col-start-1 row-span-full row-start-1 lg:col-span-4 lg:translate-x-10"
-					>
+			<div class="section-container">
+				<div class="section-image-container">
+					<div class="section-image">
 						<img
 							src={section.cover.type === 'external' ? section.cover.external.url : ''}
 							alt=""
@@ -181,32 +170,32 @@
 						/>
 					</div>
 					<a
-						class="absolute col-start-3 row-start-5 min-w-[60vw] bg-white px-4 py-8 hover:bg-[#efefef] sm:row-start-6 lg:static lg:col-start-4 lg:row-start-4 lg:min-w-[35ch] lg:-translate-x-10 lg:translate-y-20 lg:text-2xl xl:text-3xl"
+						class="section-link"
 						href={`#${section.id}`}
 						on:click|preventDefault={() => scroll(section.id, 'smooth')}
 					>
-						<p class="text-center text-sm text-black sm:text-lg">
+						<p class="section-act">
 							{#if section.properties['Act'] && section.properties['Act'].type === 'rich_text'}
 								<TextMacro type={section.properties['Act']} />
 							{:else}
 								''
 							{/if}
 						</p>
-						<h2 class="m-0 text-center text-2xl font-light text-black sm:text-3xl xl:text-4xl">
+						<h2 class="section-title">
 							{section.properties['Name'].type === 'title' && section.properties['Name'].title[0]
 								? section.properties['Name'].title[0].plain_text
 								: 'Title Missing in CMS'}
 						</h2>
 					</a>
 				</div>
-				<div class="sm:px-10 md:px-20 lg:px-32 xl:px-52 2xl:px-[26rem]">
-					<div class="bg-black p-8 lg:p-20">
-						<p class="mb-4 text-[1.1rem] sm:text-xl md:text-2xl">
-							<em class="text-[#cfcdcb]">
+				<div class="section-quote-container">
+					<div class="section-quote">
+						<p class="quote-text">
+							<em>
 								<TextMacro type={section.properties['Quote']} />
 							</em>
 						</p>
-						<p class="text-sm text-white md:text-lg">
+						<p class="quote-author">
 							—<TextMacro type={section.properties['QuoteAuthor']} />
 						</p>
 					</div>
@@ -214,24 +203,22 @@
 			</div>
 			<div
 				id={section.id}
-				class="relative flex min-h-[100lvh] snap-start items-center bg-cover bg-center py-20 sm:bg-fixed"
+				class="poem-section"
 				style="background-image: url({section.properties.secondaryImage.url});"
 			>
-				<div class="absolute h-[100%] w-[100%] bg-black bg-opacity-80" />
-				<div
-					class="relative z-10 flex w-[100%] flex-col gap-y-20 overflow-x-scroll px-5 md:items-center md:overflow-x-visible"
-				>
+				<div class="poem-overlay"></div>
+				<div class="poem-container">
 					{#each poems as poem}
 						{#if poem.properties['sectionName'].formula.string === section.properties.Name.title[0].plain_text}
 							<a
-								class="p-4 hover:[&>h3]:text-[#cfcdcb]"
+								class="poem-link"
 								on:click|preventDefault={() => toggleOpen(poem.id)}
 								on:mouseenter={() => {
 									fetchContent(poem.id);
 								}}
 								href=""
 							>
-								<h3 class="text-center text-3xl font-light text-white md:text-4xl lg:text-5xl">
+								<h3 class="poem-title">
 									{#if poemLoading[poem.id] === false || !poemLoading[poem.id]}
 										{poem.properties.Name.title[0].plain_text}
 									{:else}
@@ -240,10 +227,10 @@
 								</h3>
 							</a>
 							{#if open[poem.id] === true}
-								<div class="-mt-12">
+								<div class="poem-content">
 									{#each poemContent[poem.id] as stanza}
 										<p
-											class="mb-8 max-w-[60ch] text-sm text-white sm:text-lg md:text-xl xl:text-2xl"
+											class="poem-stanza"
 											style="white-space: {poem.properties.NotLineated.checkbox === false
 												? 'pre'
 												: ''}"
@@ -256,9 +243,7 @@
 											toggleOpen(poem.id);
 										}}
 										href="/studio/hfc"
-										><p class="mt-32 text-right text-2xl text-white md:text-3xl lg:text-4xl">
-											close.
-										</p></a
+										class="close-poem">close.</a
 									>
 								</div>
 							{/if}
@@ -269,3 +254,377 @@
 		{/if}
 	{/each}
 </div>
+
+<style lang="scss">
+  .page-container {
+    height: 100vh;
+    overflow-y: scroll;
+    background-color: black;
+  }
+
+  .snap-container {
+    scroll-snap-align: start;
+  }
+
+  .hero-image {
+    position: relative;
+    margin: 0 auto;
+    aspect-ratio: 1 / 1;
+    background-size: cover;
+    background-position: center;
+
+    @media (min-width: 768px) {
+      aspect-ratio: auto;
+      height: 100lvh;
+      background-attachment: fixed;
+    }
+  }
+
+  .hero-content {
+    position: absolute;
+    left: 10%;
+    top: 30%;
+    z-index: 10;
+
+    h1 {
+      font-size: 1.875rem;
+      color: white;
+
+      @media (min-width: 768px) {
+        font-size: 2.25rem;
+      }
+
+      @media (min-width: 1024px) {
+        font-size: 3rem;
+      }
+
+      @media (min-width: 1280px) {
+        font-size: 3.75rem;
+      }
+    }
+
+    p {
+      color: white;
+    }
+  }
+
+  .hero-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.6;
+  }
+
+  .introduction {
+    display: flex;
+    min-height: 100lvh;
+    scroll-snap-align: start;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2.5rem 1.25rem;
+
+    @media (min-width: 768px) {
+      padding: 2.5rem;
+    }
+  }
+
+  .introduction-content {
+    display: flex;
+    max-width: 60ch;
+    flex-direction: column;
+
+    h2 {
+      font-size: 1.5rem;
+      font-weight: 300;
+      color: white;
+
+      @media (min-width: 640px) {
+        font-size: 1.875rem;
+      }
+
+      @media (min-width: 1280px) {
+        font-size: 2.25rem;
+      }
+    }
+
+    p {
+      white-space: pre-line;
+      font-size: 1.1rem;
+      
+      @media (min-width: 640px) {
+        font-size: 1.25rem;
+      }
+
+      @media (min-width: 768px) {
+        font-size: 1.5rem;
+      }
+
+      em {
+        color: #cfcdcb;
+      }
+    }
+  }
+
+  .section-container {
+    display: flex;
+    min-height: 100lvh;
+    scroll-snap-align: start;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6rem;
+    background-color: #bcbab7;
+    padding: 1rem;
+
+    @media (min-width: 640px) {
+      gap: 8rem;
+    }
+
+    @media (min-width: 1024px) {
+      gap: 3rem;
+    }
+  }
+
+  .section-image-container {
+    position: relative;
+    display: grid;
+    min-height: 40lvh;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    grid-template-rows: repeat(6, minmax(0, 1fr));
+
+    @media (min-width: 1024px) {
+      display: flex;
+      align-items: center;
+    }
+
+    @media (min-width: 1536px) {
+      padding: 0 8rem;
+    }
+  }
+
+  .section-image {
+    grid-column: span 5 / span 5;
+    grid-column-start: 1;
+    grid-row: span 6 / span 6;
+    grid-row-start: 1;
+
+    @media (min-width: 1024px) {
+      grid-column: span 4 / span 4;
+      transform: translateX(2.5rem);
+    }
+  }
+
+  .section-link {
+    position: absolute;
+    grid-column-start: 3;
+    grid-row-start: 5;
+    min-width: 60vw;
+    background-color: white;
+    padding: 2rem 1rem;
+
+    &:hover {
+      background-color: #efefef;
+    }
+
+    @media (min-width: 640px) {
+      grid-row-start: 6;
+    }
+
+    @media (min-width: 1024px) {
+      position: static;
+      grid-column-start: 4;
+      grid-row-start: 4;
+      min-width: 35ch;
+      transform: translate(-2.5rem, 5rem);
+      font-size: 1.5rem;
+    }
+
+    @media (min-width: 1280px) {
+      font-size: 1.875rem;
+    }
+  }
+
+  .section-act {
+    text-align: center;
+    font-size: 0.875rem;
+    color: black;
+
+    @media (min-width: 640px) {
+      font-size: 1.125rem;
+    }
+  }
+
+  .section-title {
+    margin: 0;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: 300;
+    color: black;
+
+    @media (min-width: 640px) {
+      font-size: 1.875rem;
+    }
+
+    @media (min-width: 1280px) {
+      font-size: 2.25rem;
+    }
+  }
+
+  .section-quote-container {
+    @media (min-width: 640px) {
+      padding: 0 2.5rem;
+    }
+
+    @media (min-width: 768px) {
+      padding: 0 5rem;
+    }
+
+    @media (min-width: 1024px) {
+      padding: 0 8rem;
+    }
+
+    @media (min-width: 1280px) {
+      padding: 0 13rem;
+    }
+
+    @media (min-width: 1536px) {
+      padding: 0 26rem;
+    }
+  }
+
+  .section-quote {
+    background-color: black;
+    padding: 2rem;
+
+    @media (min-width: 1024px) {
+      padding: 5rem;
+    }
+  }
+
+  .quote-text {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+
+    @media (min-width: 640px) {
+      font-size: 1.25rem;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 1.5rem;
+    }
+
+    em {
+      color: #cfcdcb;
+    }
+  }
+
+  .quote-author {
+    font-size: 0.875rem;
+    color: white;
+
+    @media (min-width: 768px) {
+      font-size: 1.125rem;
+    }
+  }
+
+  .poem-section {
+    position: relative;
+    display: flex;
+    min-height: 100lvh;
+    scroll-snap-align: start;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    padding: 5rem 0;
+
+    @media (min-width: 640px) {
+      background-attachment: fixed;
+    }
+  }
+
+  .poem-overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.8;
+  }
+
+  .poem-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    gap: 5rem;
+    overflow-x: scroll;
+    padding: 0 1.25rem;
+
+    @media (min-width: 768px) {
+      align-items: center;
+      overflow-x: visible;
+    }
+  }
+
+  .poem-link {
+    padding: 1rem;
+
+    &:hover h3 {
+      color: #cfcdcb;
+    }
+  }
+
+  .poem-title {
+    text-align: center;
+    font-size: 1.875rem;
+    font-weight: 300;
+    color: white;
+
+    @media (min-width: 768px) {
+      font-size: 2.25rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 3rem;
+    }
+  }
+
+  .poem-content {
+    margin-top: -3rem;
+  }
+
+  .poem-stanza {
+    margin-bottom: 2rem;
+    max-width: 60ch;
+    font-size: 0.875rem;
+    color: white;
+
+    @media (min-width: 640px) {
+      font-size: 1.125rem;
+    }
+
+    @media (min-width: 768px) {
+      font-size: 1.25rem;
+    }
+
+    @media (min-width: 1280px) {
+      font-size: 1.5rem;
+    }
+  }
+
+  .close-poem {
+    margin-top: 8rem;
+    text-align: right;
+    font-size: 1.5rem;
+    color: white;
+
+    @media (min-width: 768px) {
+      font-size: 1.875rem;
+    }
+
+    @media (min-width: 1024px) {
+      font-size: 2.25rem;
+    }
+  }
+</style>

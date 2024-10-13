@@ -41,7 +41,7 @@
 	{/each}
 </nav>
 
-<style lang="css">
+<style>
 	nav {
 		position: relative;
 		height: 100vh;

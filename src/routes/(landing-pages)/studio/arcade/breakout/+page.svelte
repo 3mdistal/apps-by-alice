@@ -52,11 +52,11 @@
 	});
 </script>
 
-<div class="flex h-screen w-screen items-center justify-center">
+<div class="container">
 	<canvas
 		width="1080"
 		height="720"
-		class="aspect-video w-[1080px] border-2 border-black"
+		class="game-canvas"
 		on:click={() => {
 			ball.isMoving = true;
 		}}
@@ -69,3 +69,19 @@
 		bind:this={canvas}
 	></canvas>
 </div>
+
+<style>
+	.container {
+		display: flex;
+		height: 100vh;
+		width: 100vw;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.game-canvas {
+		aspect-ratio: 16 / 9;
+		width: 1080px;
+		border: 2px solid black;
+	}
+</style>

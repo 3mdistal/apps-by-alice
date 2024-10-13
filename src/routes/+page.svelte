@@ -43,10 +43,33 @@
 	<meta name="twitter:image:alt" content="The homepage of alicealexandra.com." />
 </svelte:head>
 
-<div class="relative h-[100dvh] flex-col overflow-hidden pt-4 md:pt-[6vh]">
+<div class="main-container">
 	<SiteTitle />
 	<HomepageWrapper />
 </div>
-<div class="hidden"><a rel="me" href="https://hachyderm.io/@tempoimmaterial">Mastodon</a></div>
+<div class="mastodon-link">
+	<a rel="me" href="https://hachyderm.io/@tempoimmaterial">Mastodon</a>
+</div>
 
 <Svgs />
+
+<style>
+	.main-container {
+		position: relative;
+		height: 100dvh;
+		display: flex;
+		flex-direction: column;
+		overflow: hidden;
+		padding-top: 1rem;
+	}
+
+	.mastodon-link {
+		display: none;
+	}
+
+	@media (min-width: 768px) {
+		.main-container {
+			padding-top: 6vh;
+		}
+	}
+</style>

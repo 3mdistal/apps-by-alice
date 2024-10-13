@@ -74,7 +74,7 @@
 	</div>
 </a>
 
-<style lang="css">
+<style>
 	.carousel-item {
 		position: relative;
 		display: flex;

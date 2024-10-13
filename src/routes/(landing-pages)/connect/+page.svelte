@@ -38,15 +38,15 @@
 	<meta name="description" content="Social media links for Alice Alexandra Moore." />
 </svelte:head>
 
-<div class="min-h-[100lvh] flex-col items-center justify-center bg-[#eeeded] px-4 py-20 md:flex">
-	<h2 class="text-[#726a12]">let's keep in touch.</h2>
+<div class="container">
+	<h2>let's keep in touch.</h2>
 	<p>My monthly newsletter highlights what I've been up to:</p>
-	<div class="mt-5">
+	<div class="newsletter">
 		{#if visibility}
 			{#if loading}
 				<p>Submitting your info . . .</p>
 			{:else}
-				<form on:submit|preventDefault={subscribe} class="grid max-w-[400px] grid-cols-3 gap-x-2">
+				<form on:submit|preventDefault={subscribe} class="subscribe-form">
 					<label for="email" class="hidden">Your email:</label>
 					<input
 						id="email"
@@ -55,22 +55,87 @@
 						name="email"
 						required
 						placeholder="queen.doe@gmail.com"
-						class="col-span-2 w-full px-5 py-1 md:text-xl"
+						class="email-input"
 					/>
-					<button class="w-full bg-[#726a12] px-5 py-1 text-white md:text-xl">Subscribe</button>
+					<button class="subscribe-button">Subscribe</button>
 				</form>
 			{/if}
 		{:else}
 			<p>
 				Thank you for subscribing! You will receive the monthly newsletter at <span
-					class="font-medium text-[#726a12]">{email}</span
+					class="email-highlight">{email}</span
 				>.
 			</p>
 		{/if}
 	</div>
-	<div class="h-20" />
-	<p class="mb-5">Or you can always reach out to me on one of my socials:</p>
-	<div class="max-w-[800px]">
+	<div class="spacer"></div>
+	<p class="socials-text">Or you can always reach out to me on one of my socials:</p>
+	<div class="socials-container">
 		<Socials />
 	</div>
 </div>
+
+<style>
+	.container {
+		min-height: 100lvh;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		background-color: #eeeded;
+		padding: 5rem 1rem;
+	}
+
+	h2 {
+		color: #726a12;
+	}
+
+	.newsletter {
+		margin-top: 1.25rem;
+	}
+
+	.subscribe-form {
+		display: grid;
+		max-width: 400px;
+		grid-template-columns: 2fr 1fr;
+		gap: 0.5rem;
+	}
+
+	.email-input {
+		width: 100%;
+		padding: 0.25rem 1.25rem;
+		font-size: 1rem;
+	}
+
+	.subscribe-button {
+		width: 100%;
+		background-color: #726a12;
+		color: white;
+		padding: 0.25rem 1.25rem;
+		font-size: 1rem;
+	}
+
+	.email-highlight {
+		font-weight: 500;
+		color: #726a12;
+	}
+
+	.spacer {
+		height: 5rem;
+	}
+
+	.socials-text {
+		margin-bottom: 1.25rem;
+	}
+
+	.socials-container {
+		max-width: 800px;
+	}
+
+	@media (min-width: 768px) {
+		.email-input,
+		.subscribe-button {
+			font-size: 1.25rem;
+		}
+	}
+</style>

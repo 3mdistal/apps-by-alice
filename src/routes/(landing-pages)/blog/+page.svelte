@@ -36,23 +36,73 @@
 </svelte:head>
 
 <div class="opacity-0">
-	<div class="absolute z-20 flex w-full items-center justify-center py-20">
-		<div class="relative w-[90%] md:w-[60%] lg:left-10">
+	<div class="blog-content">
+		<div class="blog-wrapper">
 			<Blog {accent} {data} />
 		</div>
 	</div>
-	<div class="fixed h-full w-full">
+	<div class="background-container">
 		<div>
 			<enhanced:img
 				src="../../cms/images/blog/bird.webp"
 				alt="A painting of a colorful bird in flight."
-				sizes="min(1280px, 100vw)"
-				class="absolute z-10 object-right opacity-10 md:object-[50%_35%]"
+				class="background-image"
 			/>
 		</div>
-		<div
-			class="absolute inset-0 h-full w-full opacity-100"
-			style="background-color: {background}"
-		></div>
+		<div class="background-overlay" style="background-color: {background}"></div>
 	</div>
 </div>
+
+<style lang="scss">
+	.opacity-0 {
+		opacity: 0;
+	}
+
+	.blog-content {
+		position: absolute;
+		z-index: 20;
+		display: flex;
+		width: 100%;
+		align-items: center;
+		justify-content: center;
+		padding-top: 5rem;
+		padding-bottom: 5rem;
+	}
+
+	.blog-wrapper {
+		position: relative;
+		width: 90%;
+	}
+
+	.background-container {
+		position: fixed;
+		height: 100%;
+		width: 100%;
+	}
+
+	.background-image {
+		position: absolute;
+		z-index: 10;
+		object-position: right;
+		opacity: 0.1;
+	}
+
+	.background-overlay {
+		position: absolute;
+		inset: 0;
+		height: 100%;
+		width: 100%;
+		opacity: 1;
+	}
+
+	@media (min-width: 768px) {
+		.blog-wrapper {
+			width: 60%;
+			left: 2.5rem;
+		}
+
+		.background-image {
+			object-position: 50% 35%;
+		}
+	}
+</style>
