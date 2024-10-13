@@ -17,21 +17,23 @@ export async function load({ params }) {
 				]
 			}
 		};
-		const res = [];
 
 		// Query blogs database for blog with matching slug.
-		const query = await queryDatabase(queryParams);
-		res.push(query);
+		const queryResponse = await queryDatabase(queryParams);
+
+		if (queryResponse.results.length === 0) {
+			return { queryResponse: null, contentResponse: null };
+		}
 
 		// Get the content of the blog post.
-		const content = await listChildren(query.results[0].id);
-		res.push(content);
+		const contentResponse = await listChildren(queryResponse.results[0].id);
 
-		return res;
+		return { queryResponse, contentResponse };
 	}
 
+	const result = await fetchContent(params['slug'] as string);
 	return {
-		post: await fetchContent(params['slug'] as string)
+		post: result
 	};
 }
 

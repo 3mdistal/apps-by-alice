@@ -2,8 +2,8 @@
 	import NotionPageParser from '$lib/notion/notion-page-parser.svelte';
 	import { fade } from 'svelte/transition';
 	import TextMacro from '$lib/notion/text-macro.svelte';
-	import DarkCodeTheme from 'svelte-highlight/styles/agate';
-	import LightCodeTheme from 'svelte-highlight/styles/a11y-light';
+	import DarkCodeTheme from 'svelte-highlight/styles/nord';
+	import LightCodeTheme from 'svelte-highlight/styles/github';
 	import { onMount, tick } from 'svelte';
 	import { subAndSuper, wrapLists, createTOC } from '$lib/notion/blog-helpers';
 	import type {
@@ -16,10 +16,18 @@
 		QueryDatabaseResponse
 	} from '@notionhq/client/build/src/api-endpoints';
 
+	console.log('DarkCodeTheme:', DarkCodeTheme);
+	console.log('LightCodeTheme:', LightCodeTheme);
+
 	let darkMode: boolean;
+	let context: HTMLElement;
 
 	function setDarkMode() {
-		darkMode = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+		darkMode = mediaQuery.matches;
+		mediaQuery.addEventListener('change', (e) => {
+			darkMode = e.matches;
+		});
 	}
 
 	const runBlogHelpers = async () => {
@@ -32,28 +40,35 @@
 
 	export let data: {
 		post: {
-			queryResponse: { results: QueryDatabaseResponse[] };
-			contentResponse: { results: any[] };
+			queryResponse: QueryDatabaseResponse | null;
+			contentResponse: any | null;
 		};
 	};
 
-	let context: HTMLDivElement;
+	const { queryResponse, contentResponse } = data.post || {};
 
-	const { queryResponse, contentResponse } = data.post;
-	const blogPost = queryResponse.results[0] as PageObjectResponse;
-	const content = contentResponse.results;
+	const blogPost = queryResponse?.results?.[0] as PageObjectResponse | undefined;
 
-	const { title, subtitle, summary, ogDescription, readingTime, category, slug, coverURL } =
-		blogPost.properties as unknown as {
-			title: TitlePropertyItemObjectResponse;
-			subtitle: RichTextPropertyItemObjectResponse;
-			summary: RichTextPropertyItemObjectResponse;
-			ogDescription: RichTextPropertyItemObjectResponse;
-			readingTime: FormulaPropertyItemObjectResponse;
-			category: SelectPropertyItemObjectResponse;
-			slug: RichTextPropertyItemObjectResponse;
-			coverURL: UrlPropertyItemObjectResponse;
-		};
+	const content = contentResponse?.results || [];
+
+	const {
+		Name: title,
+		Subtitle: subtitle,
+		Summary: summary,
+		OGDescription: ogDescription,
+		ReadTime: readingTime,
+		Category: category,
+		Slug: slug,
+		Preview: coverURL
+	} = blogPost?.properties || {};
+
+	// Helper function to safely get text content
+	function getTextContent(prop: any) {
+		if (prop?.type === 'title') {
+			return prop.title?.[0]?.plain_text || '';
+		}
+		return prop?.rich_text?.[0]?.plain_text || '';
+	}
 
 	onMount(() => {
 		runBlogHelpers();
@@ -63,20 +78,27 @@
 				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
 			}
 		});
+		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+		darkMode = mediaQuery.matches;
+		console.log('Initial darkMode:', darkMode);
+		mediaQuery.addEventListener('change', (e) => {
+			darkMode = e.matches;
+			console.log('darkMode changed:', darkMode);
+		});
 	});
 </script>
 
 <svelte:head>
-	<title>{title ?? 'Blog'}</title>
-	<meta name="og:title" content={title.title.rich_text[0].plain_text ?? 'Blog'} />
-	<meta name="description" content={ogDescription.rich_text[0].plain_text ?? ''} />
+	<title>{getTextContent(title) || 'Blog'}</title>
+	<meta name="og:title" content={getTextContent(title) || 'Blog'} />
+	<meta name="description" content={getTextContent(ogDescription)} />
 
 	<!-- Facebook Meta Tags -->
 	<meta property="og:url" content="https://www.alicealexandra.com/blog/{slug}" />
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Blog - {title ?? 'Blog'}" />
-	<meta property="og:description" content={ogDescription.rich_text[0].plain_text ?? ''} />
-	<meta property="og:image" content={coverURL ?? 'https://unsplash.it/1200/600'} />
+	<meta property="og:title" content="Blog - {getTextContent(title) || 'Blog'}" />
+	<meta property="og:description" content={getTextContent(ogDescription)} />
+	<meta property="og:image" content={coverURL?.url ?? 'https://unsplash.it/1200/600'} />
 
 	<!-- Twitter Meta Tags -->
 	<meta name="twitter:card" content="summary_large_image" />
@@ -84,12 +106,12 @@
 	<meta name="twitter:creator" content="@tempoimmaterial" />
 	<meta name="twitter:domain" content="alicealexandra.com" />
 	<meta name="twitter:url" content="https://www.alicealexandra.com/blog" />
-	<meta name="twitter:title" content="Blog - {title ?? 'Blog'}" />
-	<meta name="twitter:description" content={ogDescription.rich_text[0].plain_text ?? ''} />
-	<meta name="twitter:image" content={coverURL ?? 'https://unsplash.it/1200/600'} />
+	<meta name="twitter:title" content="Blog - {getTextContent(title) || 'Blog'}" />
+	<meta name="twitter:description" content={getTextContent(ogDescription)} />
+	<meta name="twitter:image" content={coverURL?.url ?? 'https://unsplash.it/1200/600'} />
 	<meta
 		name="twitter:image:alt"
-		content="Open graph representation of this blog article, {title ?? 'Blog'}."
+		content="Open graph representation of this blog article, {getTextContent(title) || 'Blog'}."
 	/>
 
 	{#if darkMode}
@@ -103,38 +125,44 @@
 
 <div class="blog-container">
 	<div>
-		<h1>{title}</h1>
+		<h1>{getTextContent(title) || 'Untitled'}</h1>
 		<p class="subtitle">
-			<em><TextMacro type={subtitle} /></em>
+			<em
+				>{#if subtitle}<TextMacro type={subtitle} />{/if}</em
+			>
 		</p>
 	</div>
 	<hr />
 	<div>
 		<p class="meta-info">
 			<em>type</em>
-			<span>{category}</span>
+			<span>{category?.select?.name || 'Uncategorized'}</span>
 		</p>
 		<p class="meta-info">
 			<em>time</em>
 			<span>
-				{#if readingTime !== '1 minutes'}
-					{readingTime}
+				{#if readingTime?.formula?.string}
+					{readingTime.formula.string === '1 minutes' ? '1 minute' : readingTime.formula.string}
 				{:else}
-					1 minute
+					Unknown
 				{/if}
 			</span>
 		</p>
 		<p class="meta-info">
 			<em>tl;dr</em>
 			<span>
-				<TextMacro type={summary} />
+				{#if summary}<TextMacro type={summary} />{/if}
 			</span>
 		</p>
 	</div>
 	<hr />
-	<div class="notion-container" bind:this={context}>
-		<NotionPageParser results={content} />
-	</div>
+	{#if content.length > 0}
+		<div class="notion-container" bind:this={context}>
+			<NotionPageParser results={content} />
+		</div>
+	{:else}
+		<p>No content available.</p>
+	{/if}
 	<p class="back-link">
 		<a href="/blog" data-sveltekit-noscroll>back.</a>
 	</p>
@@ -171,6 +199,22 @@
 		:global(sub),
 		:global(sup) {
 			color: inherit;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			background-color: #141414;
+			color: #e5e7eb;
+
+			:global(*) {
+				color: #e5e7eb;
+			}
+
+			:global(a),
+			:global(code),
+			:global(.notion-container a),
+			:global(.notion-container code) {
+				color: #a3e5eb;
+			}
 		}
 	}
 
@@ -209,6 +253,14 @@
 		em {
 			color: #6b7280;
 		}
+
+		@media (prefers-color-scheme: dark) {
+			color: #d1d5db;
+
+			em {
+				color: #9ca3af;
+			}
+		}
 	}
 
 	hr {
@@ -216,6 +268,10 @@
 		margin: 2.5rem 0;
 		border-color: #111827;
 		width: 100%;
+
+		@media (prefers-color-scheme: dark) {
+			border-color: #4b5563;
+		}
 	}
 
 	.meta-info {
@@ -234,6 +290,16 @@
 			display: block;
 			width: 35ch;
 			color: #374151;
+		}
+
+		@media (prefers-color-scheme: dark) {
+			em {
+				color: #e5e7eb;
+			}
+
+			span {
+				color: #d1d5db;
+			}
 		}
 	}
 
@@ -266,39 +332,185 @@
 			display: inline-block;
 			padding: 1.5rem;
 			color: #111827;
+
+			@media (prefers-color-scheme: dark) {
+				color: #e5e7eb;
+			}
 		}
 	}
 
-	:global(.dark) {
-		.blog-container {
-			background-color: #000;
-			color: #fff;
+	/* Styles from blog-post.css */
+	.blog-container {
+		:global(.notion-container .toc) {
+			margin-top: 2em;
+			margin-bottom: 2em;
 		}
 
-		.subtitle {
-			color: #e5e7eb;
+		:global(.notion-container a) {
+			color: #31676c;
+			font-weight: 500;
 
-			em {
-				color: #d1d5db;
+			&:hover {
+				text-decoration: underline;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				color: #a3e5eb;
 			}
 		}
 
-		hr {
-			border-color: #fff;
+		:global(.notion-container code) {
+			color: #31676c;
+
+			@media (prefers-color-scheme: dark) {
+				color: #a3e5eb;
+			}
 		}
 
-		.meta-info {
-			em {
-				color: #fff;
+		:global(.notion-container blockquote) {
+			margin-top: 2.5rem;
+			margin-left: 2em;
+			max-width: 40ch;
+			color: #d1d5db;
+			font-style: italic;
+
+			@media (prefers-color-scheme: dark) {
+				color: #9ca3af;
+			}
+		}
+
+		:global(.notion-container .image) {
+			margin-top: 2em;
+			margin-bottom: 2em;
+			padding-right: 0.5em;
+
+			@media (min-width: 640px) {
+				padding-right: 3em;
+				padding-left: 1em;
 			}
 
-			span {
+			& img {
+				border-radius: 1.5rem;
+				width: 100%;
+				height: 100%;
+				object-fit: contain;
+
+				@media (min-width: 1024px) {
+					object-position: left;
+				}
+			}
+		}
+
+		:global(.notion-container h2) {
+			margin-top: 2.5em;
+			margin-bottom: 1.5em;
+			color: #111827;
+			font-weight: 500;
+			font-size: 1.5rem;
+
+			@media (min-width: 768px) {
+				font-size: 1.875rem;
+			}
+
+			@media (min-width: 1024px) {
+				font-size: 2.25rem;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				color: #f3f4f6;
+			}
+		}
+
+		:global(.notion-container h3) {
+			margin-top: 1.5em;
+			margin-bottom: 1em;
+			color: #111827;
+			font-weight: 500;
+			font-size: 1.5rem;
+
+			@media (min-width: 768px) {
+				font-size: 1.875rem;
+			}
+
+			@media (prefers-color-scheme: dark) {
+				color: #f3f4f6;
+			}
+		}
+
+		:global(.notion-container ol),
+		:global(.notion-container ul) {
+			margin-left: 2em;
+
+			li {
+				color: inherit;
+			}
+
+			@media (prefers-color-scheme: dark) {
 				color: #e5e7eb;
 			}
 		}
 
-		.back-link a {
-			color: #fff;
+		:global(ol) {
+			list-style-type: decimal;
+		}
+
+		:global(ul) {
+			list-style-type: disc;
+		}
+
+		:global(div.callout) {
+			display: flex;
+			align-items: flex-start;
+			gap: 1rem;
+			margin-top: 2.5rem;
+			margin-bottom: 1.5rem;
+			border-radius: 0.5rem;
+			background-color: #d1d5db;
+			padding: 2.5rem 1rem 1.5rem;
+
+			@media (min-width: 768px) {
+				gap: 2.5rem;
+				padding-right: 5rem;
+				padding-left: 5rem;
+			}
+
+			& > :first-child {
+				font-size: 1.5rem;
+
+				@media (min-width: 768px) {
+					font-size: 2.25rem;
+				}
+			}
+
+			& > :last-child {
+				font-size: 1.125rem;
+
+				@media (min-width: 768px) {
+					font-size: 1.25rem;
+				}
+			}
+
+			@media (prefers-color-scheme: dark) {
+				background-color: #1f2937;
+			}
+		}
+
+		:global(.notion-container p) {
+			color: #4b5563;
+
+			@media (prefers-color-scheme: dark) {
+				color: #d1d5db;
+			}
+		}
+	}
+
+	.blog-container {
+		:global(.notion-container code) {
+			font-family: 'Cutive Mono', 'Courier New', Courier, monospace;
+		}
+
+		:global(.notion-container pre code *) {
+			font-family: 'Cutive Mono', 'Courier New', Courier, monospace;
 		}
 	}
 </style>
