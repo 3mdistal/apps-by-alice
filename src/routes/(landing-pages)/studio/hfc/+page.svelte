@@ -425,6 +425,7 @@
 
 		&:hover {
 			background-color: #efefef;
+			text-decoration: none;
 		}
 
 		@media (min-width: 640px) {
