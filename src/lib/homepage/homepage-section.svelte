@@ -4,7 +4,7 @@
 	import { goto } from '$app/navigation';
 
 	export let background: string;
-	export let name: string;
+	export let name: 'about' | 'studio' | 'commissions' | 'blog' | 'connect';
 	export let transitionOutWrapper: () => void;
 
 	let section: HTMLAnchorElement;

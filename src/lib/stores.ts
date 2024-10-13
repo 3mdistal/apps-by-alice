@@ -1,11 +1,14 @@
 import type { BlockObjectResponse } from '@notionhq/client/build/src/api-endpoints';
-import { readable, writable, type Writable } from 'svelte/store';
+import { readable, writable, type Writable, type Readable } from 'svelte/store';
 
 export const state = writable('home');
 
-export const names = readable(['about', 'studio', 'commissions', 'blog', 'connect']);
+export const names: Readable<Array<'about' | 'studio' | 'commissions' | 'blog' | 'connect'>> =
+	readable(['about', 'studio', 'commissions', 'blog', 'connect']);
 
-export const accentColors = readable({
+export const accentColors: Readable<
+	Record<'about' | 'studio' | 'commissions' | 'blog' | 'connect', string>
+> = readable({
 	about: '#271647',
 	studio: '#243269',
 	commissions: '#642e1a',
@@ -13,7 +16,9 @@ export const accentColors = readable({
 	connect: '#726a12'
 });
 
-export const backgroundColors = readable({
+export const backgroundColors: Readable<
+	Record<'home' | 'about' | 'studio' | 'commissions' | 'blog' | 'connect', string>
+> = readable({
 	home: '#fafafa',
 	about: '#beb5ca',
 	studio: '#d6ddf0',
