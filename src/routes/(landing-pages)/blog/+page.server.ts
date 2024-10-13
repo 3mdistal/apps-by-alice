@@ -35,5 +35,5 @@ export const config = {
 		expiration: false,
 		bypassToken: BYPASS_TOKEN
 	},
-	runtime: 'nodejs18.x'
+	runtime: 'nodejs20.x'
 };
