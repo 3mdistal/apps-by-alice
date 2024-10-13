@@ -99,8 +99,8 @@
 
 <style>
 	.studio-container {
-		min-height: 100lvh;
 		background-color: var(--studio-bg);
+		min-height: 100lvh;
 	}
 
 	.studio-title {
@@ -111,9 +111,9 @@
 
 	.studio-background {
 		position: fixed;
+		opacity: 0;
 		height: 100%;
 		min-height: 100lvh;
-		opacity: 0;
 	}
 
 	.break {
@@ -123,8 +123,8 @@
 	.card-div {
 		display: flex;
 		flex-wrap: wrap;
-		align-items: flex-start;
 		justify-content: center;
+		align-items: flex-start;
 		gap: 3rem;
 		opacity: 0;
 	}
@@ -132,8 +132,8 @@
 	@media (min-width: 640px) {
 		.card-div {
 			justify-content: center;
-			padding-left: 2.5rem;
 			padding-right: 2.5rem;
+			padding-left: 2.5rem;
 		}
 	}
 </style>

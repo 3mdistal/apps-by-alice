@@ -78,8 +78,8 @@
 	form {
 		& .form-flex {
 			display: flex;
-			flex-direction: column;
 			row-gap: 2em;
+			flex-direction: column;
 
 			& .item-flex {
 				display: flex;
@@ -87,9 +87,9 @@
 				width: 80%;
 
 				& label {
-					font-size: clamp(1rem, 1.5vw, 2rem);
-					font-weight: 400;
 					color: var(--accentColor);
+					font-weight: 400;
+					font-size: clamp(1rem, 1.5vw, 2rem);
 				}
 
 				& textarea {
@@ -102,20 +102,20 @@
 
 	.form-header {
 		margin-bottom: 1em;
-		text-align: center;
 		font-size: var(--dynamic-header);
+		text-align: center;
 	}
 
 	.submit-button {
-		font-size: 1rem;
-		box-sizing: content-box;
-		width: 5rem;
-		border-radius: 0.375rem;
-		border: 2px solid #642e1a;
-		padding: 1em;
-		font-weight: 500;
-		color: #642e1a;
 		filter: brightness(0.95);
+		box-sizing: content-box;
+		border: 2px solid #642e1a;
+		border-radius: 0.375rem;
+		padding: 1em;
+		width: 5rem;
+		color: #642e1a;
+		font-weight: 500;
+		font-size: 1rem;
 	}
 
 	.submit-button:hover {
@@ -126,14 +126,14 @@
 	.message-container {
 		padding-top: 50%;
 		padding-bottom: 50%;
-		font-weight: 500;
 		color: #642e1a;
+		font-weight: 500;
 	}
 
 	.message {
 		margin-bottom: 1rem;
-		font-size: 1.25rem;
 		font-weight: 500;
+		font-size: 1.25rem;
 	}
 
 	.highlight {

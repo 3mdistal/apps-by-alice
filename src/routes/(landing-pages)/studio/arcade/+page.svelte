@@ -43,19 +43,19 @@
 <style>
 	.container {
 		display: flex;
-		min-height: 100vh;
-		width: 100vw;
 		flex-direction: column;
 		place-items: center;
 		gap: 2.5rem;
 		background-color: #bfdbfe;
 		padding: 2.5rem;
+		width: 100vw;
+		min-height: 100vh;
 		font-size: 1.5rem;
 	}
 
 	h1 {
-		text-align: center;
 		font-size: 2.25rem;
+		text-align: center;
 	}
 
 	.content {
@@ -92,22 +92,22 @@
 		}
 
 		.links {
-			width: 50%;
 			padding: 0 5rem;
+			width: 50%;
 		}
 	}
 
 	@media (min-width: 1024px) {
 		.container {
-			padding-left: 5rem;
 			padding-right: 5rem;
+			padding-left: 5rem;
 		}
 	}
 
 	@media (min-width: 1280px) {
 		.container {
-			padding-left: 10rem;
 			padding-right: 10rem;
+			padding-left: 10rem;
 		}
 	}
 </style>

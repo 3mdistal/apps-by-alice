@@ -77,8 +77,8 @@
 	.homepage-section {
 		position: absolute;
 		bottom: 0;
-		height: 100%;
 		width: 100%;
+		height: 100%;
 	}
 
 	.homepage-section:hover {
@@ -90,8 +90,8 @@
 	}
 
 	.homepage-section-menu-link h2 {
-		font-size: 1.125rem;
 		font-weight: 300;
+		font-size: 1.125rem;
 	}
 
 	.homepage-section {
@@ -128,18 +128,18 @@
 		}
 
 		&.studio {
-			right: 18%;
 			top: 8%;
+			right: 18%;
 		}
 
 		&.commissions {
-			right: 32%;
 			top: 9%;
+			right: 32%;
 		}
 
 		&.blog {
-			right: 20%;
 			top: 22%;
+			right: 20%;
 
 			& h2 {
 				color: #fafafa;
@@ -147,8 +147,8 @@
 		}
 
 		&.connect {
-			left: 27%;
 			top: 12%;
+			left: 27%;
 		}
 	}
 

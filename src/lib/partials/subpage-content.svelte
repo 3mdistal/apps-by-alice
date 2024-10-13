@@ -66,8 +66,8 @@
 
 <style>
 	.container {
-		margin-left: auto;
 		margin-right: auto;
+		margin-left: auto;
 		width: 75%;
 	}
 
@@ -82,8 +82,8 @@
 	.content {
 		display: flex;
 		flex-direction: column;
-		align-items: flex-start;
 		justify-content: space-between;
+		align-items: flex-start;
 		gap: 5em;
 	}
 
@@ -101,16 +101,16 @@
 	}
 
 	.button-container {
-		margin-top: 3em;
 		display: flex;
 		justify-content: center;
+		margin-top: 3em;
 	}
 
 	.image-container {
 		position: sticky;
 		top: 1em;
-		margin-left: auto;
 		margin-right: auto;
+		margin-left: auto;
 		max-width: 80%;
 	}
 

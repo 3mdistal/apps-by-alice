@@ -73,15 +73,15 @@
 <style>
 	.container {
 		display: flex;
-		height: 100vh;
-		width: 100vw;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
+		width: 100vw;
+		height: 100vh;
 	}
 
 	.game-canvas {
+		border: 2px solid black;
 		aspect-ratio: 16 / 9;
 		width: 1080px;
-		border: 2px solid black;
 	}
 </style>

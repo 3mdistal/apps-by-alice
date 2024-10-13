@@ -41,6 +41,7 @@
 		"@notionhq/client": "^2.2.15",
 		"gsap": "^3.12.5",
 		"motion": "^10.18.0",
+		"prettier-plugin-css-order": "^2.1.2",
 		"svelte-highlight": "^7.7.0"
 	}
 }

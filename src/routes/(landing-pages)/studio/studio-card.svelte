@@ -207,6 +207,7 @@
 	aria-live="polite"
 	aria-expanded="false"
 	class="studio-card"
+	style={`--studio-bg-color: ${$accentColors.studio}; --studio-accent-color: ${$backgroundColors.studio}`}
 >
 	<!-- Front of Card -->
 	<div class="card-front" bind:this={front}>
@@ -254,30 +255,30 @@
 
 <style>
 	.studio-card {
-		position: relative;
 		display: flex;
+		position: relative;
+		justify-content: center;
+		cursor: default;
+		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+		border: 2px solid white;
+		border-radius: 1.5rem;
 		aspect-ratio: 2/3;
 		width: 20rem;
-		cursor: default;
-		justify-content: center;
 		overflow: hidden;
-		border-radius: 1.5rem;
-		border: 2px solid white;
-		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
 	}
 
 	.card-front,
 	.card-back {
-		position: absolute;
 		display: flex;
-		height: 100%;
-		width: 100%;
+		position: absolute;
 		flex-direction: column;
-		align-items: center;
 		justify-content: center;
-		overflow: hidden;
+		align-items: center;
 		border-radius: 1.5rem;
 		background-color: var(--studio-bg-color);
+		width: 100%;
+		height: 100%;
+		overflow: hidden;
 	}
 
 	.card-front {
@@ -285,28 +286,33 @@
 	}
 
 	.card-back {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
 		opacity: 0;
-		padding: 6rem 1rem;
+		box-sizing: border-box;
+		padding: 6rem 3rem;
 	}
 
 	.logo-container {
-		position: relative;
-		z-index: 10;
 		display: flex;
-		height: 4.5rem;
-		width: 4.5rem;
-		align-items: center;
+		position: relative;
 		justify-content: center;
-		border-radius: 50%;
+		align-items: center;
+		z-index: 10;
 		border: 2px solid white;
+		border-radius: 50%;
 		background-color: var(--studio-bg-color);
+		width: 4.5rem;
+		height: 4.5rem;
 	}
 
 	.logo-text {
-		font-family: var(--font-logo);
-		font-size: 2.75rem;
-		font-weight: 500;
 		color: white;
+		font-weight: 500;
+		font-size: 2.75rem;
+		font-family: 'Euphoria Script', cursive;
 	}
 
 	.title-container {
@@ -315,16 +321,16 @@
 
 	.title-container h2 {
 		margin-bottom: 1.5rem;
-		text-align: center;
-		font-size: 2.25rem;
-		font-weight: 300;
-		letter-spacing: 0.15em;
 		color: white;
+		font-weight: 300;
+		font-size: 2.25rem;
+		letter-spacing: 0.15em;
+		text-align: center;
 	}
 
 	.title-container p {
-		text-align: center;
 		font-size: 1.5rem;
+		text-align: center;
 	}
 
 	.title-container em {
@@ -333,21 +339,24 @@
 
 	.background-image {
 		position: absolute;
-		height: 100%;
-		width: 100%;
 		opacity: 0.8;
+		width: 100%;
+		height: 100%;
 	}
 
 	.gradient-overlay {
 		position: absolute;
-		height: 100%;
-		width: 100%;
-		background: linear-gradient(to top, var(--studio-bg-color), transparent);
 		opacity: 0.8;
+		background: linear-gradient(to top, var(--studio-bg-color), transparent);
+		width: 100%;
+		height: 100%;
 	}
 
 	.description {
+		margin-bottom: 2rem;
+		max-width: 100%;
 		font-size: 1.5rem;
+		text-align: center;
 	}
 
 	.description em {
@@ -355,16 +364,16 @@
 	}
 
 	.spin-poles {
+		display: flex;
 		position: relative;
 		z-index: -20;
-		display: flex;
 		height: 100%;
 	}
 
 	.pole {
-		height: 5%;
-		width: 0.25rem;
 		background-color: var(--studio-bg-color);
+		width: 0.25rem;
+		height: 5%;
 	}
 
 	.pole-bottom {

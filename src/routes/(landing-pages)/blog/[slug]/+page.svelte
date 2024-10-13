@@ -142,12 +142,12 @@
 
 <style>
 	.blog-container {
-		height: 100%;
-		min-height: 100vh;
 		background-color: #e5e7eb;
 		padding: 4rem 1rem;
-		letter-spacing: 0.05em;
+		height: 100%;
+		min-height: 100vh;
 		color: #111827;
+		letter-spacing: 0.05em;
 
 		@media (min-width: 640px) {
 			padding: 2.5rem;
@@ -197,9 +197,9 @@
 
 	.subtitle {
 		max-width: 45ch;
+		color: #374151;
 		font-size: 1.25rem;
 		line-height: 1.75rem;
-		color: #374151;
 
 		@media (min-width: 768px) {
 			font-size: 1.5rem;
@@ -212,22 +212,22 @@
 	}
 
 	hr {
-		margin: 2.5rem 0;
-		width: 100%;
-		border-color: #111827;
 		opacity: 0.5;
+		margin: 2.5rem 0;
+		border-color: #111827;
+		width: 100%;
 	}
 
 	.meta-info {
 		display: flex;
-		max-width: 45ch;
 		margin-bottom: 1rem;
+		max-width: 45ch;
 
 		em {
 			display: block;
 			width: 5ch;
-			font-weight: 500;
 			color: #111827;
+			font-weight: 500;
 		}
 
 		span {
@@ -253,9 +253,9 @@
 	}
 
 	.back-link {
-		text-align: right;
 		font-size: 2.25rem;
 		line-height: 2.5rem;
+		text-align: right;
 
 		@media (min-width: 768px) {
 			font-size: 3.75rem;

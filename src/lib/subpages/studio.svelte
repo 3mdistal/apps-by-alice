@@ -100,31 +100,31 @@
 
 <style>
 	div.container {
-		height: auto;
 		max-width: 100%;
+		height: auto;
 	}
 
 	div.container > div {
 		top: 0;
+		padding-top: 4rem;
 		max-width: 100%;
 		overflow: hidden;
-		padding-top: 4rem;
 	}
 
 	div.container > div > p {
 		margin-bottom: 2.5rem;
 		margin-left: 2.5rem;
-		font-size: 2.25rem;
 		font-weight: 500;
+		font-size: 2.25rem;
 	}
 
 	ul.carousel {
 		display: flex;
-		height: auto;
-		width: auto;
 		flex-direction: column;
 		gap: 0.25rem;
 		padding-top: 0.25rem;
+		width: auto;
+		height: auto;
 	}
 
 	@media (min-width: 768px) {
@@ -142,9 +142,9 @@
 		}
 
 		ul.carousel {
-			height: 80vh;
-			width: 200vw;
 			flex-direction: row;
+			width: 200vw;
+			height: 80vh;
 		}
 	}
 </style>

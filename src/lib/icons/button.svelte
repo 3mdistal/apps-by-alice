@@ -37,18 +37,18 @@
 
 <style>
 	a {
-		background-color: var(--background);
-		color: var(--accent);
-		border-color: var(--accent);
-		font-size: 1rem;
-		box-sizing: content-box;
 		cursor: pointer;
-		border-radius: 0.75rem;
+		box-sizing: content-box;
 		border-width: 2px;
 		border-style: solid;
+		border-color: var(--accent);
+		border-radius: 0.75rem;
+		background-color: var(--background);
 		padding: 1em;
-		text-align: center;
+		color: var(--accent);
 		font-weight: 400;
+		font-size: 1rem;
+		text-align: center;
 		text-decoration: none;
 	}
 

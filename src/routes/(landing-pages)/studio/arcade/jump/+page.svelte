@@ -43,8 +43,8 @@
 
 <style>
 	.game-container {
-		height: 100vh;
-		width: 100vw;
 		background-color: black;
+		width: 100vw;
+		height: 100vh;
 	}
 </style>

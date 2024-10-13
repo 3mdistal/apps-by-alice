@@ -53,14 +53,14 @@
 <style>
 	.posts-title {
 		margin-bottom: 1em;
-		font-size: 1.5rem;
 		font-weight: 500;
+		font-size: 1.5rem;
 	}
 
 	.post-item {
-		margin-bottom: 1.5rem;
 		display: grid;
 		grid-template-columns: 1fr 1fr;
+		margin-bottom: 1.5rem;
 	}
 
 	.post-title-wrapper {
@@ -68,8 +68,8 @@
 	}
 
 	.post-title-link {
-		font-weight: 500;
 		color: white;
+		font-weight: 500;
 	}
 
 	.post-title-link:hover {
@@ -81,10 +81,10 @@
 	}
 
 	.post-subtitle {
-		grid-column: span 2;
 		grid-row-start: 2;
-		font-style: italic;
+		grid-column: span 2;
 		color: #f3f4f6;
+		font-style: italic;
 	}
 
 	.post-date {
@@ -93,8 +93,8 @@
 	}
 
 	.post-category-wrapper {
-		grid-column-start: 2;
 		display: flex;
+		grid-column-start: 2;
 		justify-content: flex-end;
 	}
 
@@ -116,8 +116,8 @@
 		}
 
 		.post-date {
-			grid-column-start: 3;
 			grid-row-start: 1;
+			grid-column-start: 3;
 		}
 
 		.post-category-wrapper {

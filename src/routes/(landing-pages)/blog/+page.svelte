@@ -59,14 +59,14 @@
 	}
 
 	.blog-content {
-		position: absolute;
-		z-index: 20;
 		display: flex;
-		width: 100%;
-		align-items: center;
+		position: absolute;
 		justify-content: center;
+		align-items: center;
+		z-index: 20;
 		padding-top: 5rem;
 		padding-bottom: 5rem;
+		width: 100%;
 	}
 
 	.blog-wrapper {
@@ -76,29 +76,29 @@
 
 	.background-container {
 		position: fixed;
-		height: 100%;
 		width: 100%;
+		height: 100%;
 	}
 
 	.background-image {
 		position: absolute;
+		opacity: 0.1;
 		z-index: 10;
 		object-position: right;
-		opacity: 0.1;
 	}
 
 	.background-overlay {
 		position: absolute;
-		inset: 0;
-		height: 100%;
-		width: 100%;
 		opacity: 1;
+		inset: 0;
+		width: 100%;
+		height: 100%;
 	}
 
 	@media (min-width: 768px) {
 		.blog-wrapper {
-			width: 60%;
 			left: 2.5rem;
+			width: 60%;
 		}
 
 		.background-image {

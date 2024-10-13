@@ -257,9 +257,9 @@
 
 <style>
 	.page-container {
+		background-color: black;
 		height: 100vh;
 		overflow-y: scroll;
-		background-color: black;
 	}
 
 	.snap-container {
@@ -269,26 +269,26 @@
 	.hero-image {
 		position: relative;
 		margin: 0 auto;
-		aspect-ratio: 1 / 1;
-		background-size: cover;
 		background-position: center;
+		background-size: cover;
+		aspect-ratio: 1 / 1;
 
 		@media (min-width: 768px) {
+			background-attachment: fixed;
 			aspect-ratio: auto;
 			height: 100lvh;
-			background-attachment: fixed;
 		}
 	}
 
 	.hero-content {
 		position: absolute;
-		left: 10%;
 		top: 30%;
+		left: 10%;
 		z-index: 10;
 
 		h1 {
-			font-size: 1.875rem;
 			color: white;
+			font-size: 1.875rem;
 
 			@media (min-width: 768px) {
 				font-size: 2.25rem;
@@ -310,20 +310,20 @@
 
 	.hero-overlay {
 		position: absolute;
-		height: 100%;
-		width: 100%;
-		background-color: black;
 		opacity: 0.6;
+		background-color: black;
+		width: 100%;
+		height: 100%;
 	}
 
 	.introduction {
 		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		padding: 2.5rem 1.25rem;
 		min-height: 100lvh;
 		scroll-snap-align: start;
-		flex-direction: column;
-		align-items: center;
-		justify-content: center;
-		padding: 2.5rem 1.25rem;
 
 		@media (min-width: 768px) {
 			padding: 2.5rem;
@@ -332,13 +332,13 @@
 
 	.introduction-content {
 		display: flex;
-		max-width: 60ch;
 		flex-direction: column;
+		max-width: 60ch;
 
 		h2 {
-			font-size: 1.5rem;
-			font-weight: 300;
 			color: white;
+			font-weight: 300;
+			font-size: 1.5rem;
 
 			@media (min-width: 640px) {
 				font-size: 1.875rem;
@@ -350,8 +350,8 @@
 		}
 
 		p {
-			white-space: pre-line;
 			font-size: 1.1rem;
+			white-space: pre-line;
 
 			@media (min-width: 640px) {
 				font-size: 1.25rem;
@@ -369,13 +369,13 @@
 
 	.section-container {
 		display: flex;
-		min-height: 100lvh;
-		scroll-snap-align: start;
 		flex-direction: column;
 		justify-content: center;
 		gap: 6rem;
 		background-color: #bcbab7;
 		padding: 1rem;
+		min-height: 100lvh;
+		scroll-snap-align: start;
 
 		@media (min-width: 640px) {
 			gap: 8rem;
@@ -387,11 +387,11 @@
 	}
 
 	.section-image-container {
-		position: relative;
 		display: grid;
-		min-height: 40lvh;
-		grid-template-columns: repeat(6, minmax(0, 1fr));
+		position: relative;
 		grid-template-rows: repeat(6, minmax(0, 1fr));
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+		min-height: 40lvh;
 
 		@media (min-width: 1024px) {
 			display: flex;
@@ -404,10 +404,10 @@
 	}
 
 	.section-image {
-		grid-column: span 5 / span 5;
-		grid-column-start: 1;
 		grid-row: span 6 / span 6;
 		grid-row-start: 1;
+		grid-column: span 5 / span 5;
+		grid-column-start: 1;
 
 		@media (min-width: 1024px) {
 			grid-column: span 4 / span 4;
@@ -417,11 +417,11 @@
 
 	.section-link {
 		position: absolute;
-		grid-column-start: 3;
 		grid-row-start: 5;
-		min-width: 60vw;
+		grid-column-start: 3;
 		background-color: white;
 		padding: 2rem 1rem;
+		min-width: 60vw;
 
 		&:hover {
 			background-color: #efefef;
@@ -433,10 +433,10 @@
 
 		@media (min-width: 1024px) {
 			position: static;
-			grid-column-start: 4;
 			grid-row-start: 4;
-			min-width: 35ch;
+			grid-column-start: 4;
 			transform: translate(-2.5rem, 5rem);
+			min-width: 35ch;
 			font-size: 1.5rem;
 		}
 
@@ -446,9 +446,9 @@
 	}
 
 	.section-act {
-		text-align: center;
-		font-size: 0.875rem;
 		color: black;
+		font-size: 0.875rem;
+		text-align: center;
 
 		@media (min-width: 640px) {
 			font-size: 1.125rem;
@@ -457,10 +457,10 @@
 
 	.section-title {
 		margin: 0;
-		text-align: center;
-		font-size: 1.5rem;
-		font-weight: 300;
 		color: black;
+		font-weight: 300;
+		font-size: 1.5rem;
+		text-align: center;
 
 		@media (min-width: 640px) {
 			font-size: 1.875rem;
@@ -520,8 +520,8 @@
 	}
 
 	.quote-author {
-		font-size: 0.875rem;
 		color: white;
+		font-size: 0.875rem;
 
 		@media (min-width: 768px) {
 			font-size: 1.125rem;
@@ -529,14 +529,14 @@
 	}
 
 	.poem-section {
-		position: relative;
 		display: flex;
+		position: relative;
+		align-items: center;
+		background-position: center;
+		background-size: cover;
+		padding: 5rem 0;
 		min-height: 100lvh;
 		scroll-snap-align: start;
-		align-items: center;
-		background-size: cover;
-		background-position: center;
-		padding: 5rem 0;
 
 		@media (min-width: 640px) {
 			background-attachment: fixed;
@@ -545,21 +545,21 @@
 
 	.poem-overlay {
 		position: absolute;
-		height: 100%;
-		width: 100%;
-		background-color: black;
 		opacity: 0.8;
+		background-color: black;
+		width: 100%;
+		height: 100%;
 	}
 
 	.poem-container {
-		position: relative;
-		z-index: 10;
 		display: flex;
-		width: 100%;
+		position: relative;
 		flex-direction: column;
 		gap: 5rem;
-		overflow-x: scroll;
+		z-index: 10;
 		padding: 0 1.25rem;
+		width: 100%;
+		overflow-x: scroll;
 
 		@media (min-width: 768px) {
 			align-items: center;
@@ -576,10 +576,10 @@
 	}
 
 	.poem-title {
-		text-align: center;
-		font-size: 1.875rem;
-		font-weight: 300;
 		color: white;
+		font-weight: 300;
+		font-size: 1.875rem;
+		text-align: center;
 
 		@media (min-width: 768px) {
 			font-size: 2.25rem;
@@ -597,8 +597,8 @@
 	.poem-stanza {
 		margin-bottom: 2rem;
 		max-width: 60ch;
-		font-size: 0.875rem;
 		color: white;
+		font-size: 0.875rem;
 
 		@media (min-width: 640px) {
 			font-size: 1.125rem;
@@ -615,9 +615,9 @@
 
 	.close-poem {
 		margin-top: 8rem;
-		text-align: right;
-		font-size: 1.5rem;
 		color: white;
+		font-size: 1.5rem;
+		text-align: right;
 
 		@media (min-width: 768px) {
 			font-size: 1.875rem;

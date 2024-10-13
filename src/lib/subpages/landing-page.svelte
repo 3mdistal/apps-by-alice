@@ -111,8 +111,10 @@
 
 	.bordered-content {
 		box-sizing: border-box;
-		border-top-width: 2px;
-		border-bottom-width: 2px;
+		border-top-width: 3px;
+		border-right-width: 0px;
+		border-bottom-width: 3px;
+		border-left-width: 0px;
 		border-style: solid;
 		border-radius: 5%;
 		padding: 5rem 2.5rem;
@@ -141,10 +143,10 @@
 	}
 
 	.button-wrapper {
-		margin-right: 1.25rem;
-		margin-top: 2.5rem;
 		display: flex;
 		justify-content: flex-end;
+		margin-top: 2.5rem;
+		margin-right: 1.25rem;
 	}
 
 	.image-wrapper {
@@ -178,9 +180,9 @@
 
 	@media (min-width: 768px) {
 		.slot-image-wrapper {
+			flex-basis: 33.333333%;
 			margin-bottom: 0;
 			margin-left: 5rem;
-			flex-basis: 33.333333%;
 		}
 	}
 

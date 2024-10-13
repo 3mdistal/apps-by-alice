@@ -44,10 +44,10 @@
 <style>
 	nav {
 		position: relative;
-		height: 100vh;
-		width: 100%;
-		opacity: 0;
 		bottom: -10vh;
+		opacity: 0;
+		width: 100%;
+		height: 100vh;
 	}
 
 	@media (min-width: 1024px) {

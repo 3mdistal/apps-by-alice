@@ -31,12 +31,12 @@
 	}
 
 	div {
-		height: 100%;
-		min-height: 100vh;
 		background-color: black;
 		padding: 2.5rem 1rem;
-		letter-spacing: 0.025em;
+		height: 100%;
+		min-height: 100vh;
 		color: white;
+		letter-spacing: 0.025em;
 	}
 
 	div * {
@@ -45,9 +45,9 @@
 
 	h1 {
 		margin-bottom: 0.5rem;
+		color: white;
 		font-size: 3rem;
 		line-height: 1;
-		color: white;
 	}
 
 	p {
@@ -58,14 +58,14 @@
 	}
 
 	hr {
-		margin: 2.5rem 2.5rem;
 		opacity: 0.5;
+		margin: 2.5rem 2.5rem;
 	}
 
 	em.tl-dr {
 		margin-right: 1rem;
-		font-weight: 500;
 		color: white;
+		font-weight: 500;
 	}
 
 	div > div {
@@ -83,9 +83,9 @@
 	}
 
 	p:last-child {
-		text-align: right;
 		font-size: 2.25rem;
 		line-height: 2.5rem;
+		text-align: right;
 	}
 
 	a {
@@ -96,8 +96,8 @@
 
 	@media (min-width: 640px) {
 		div {
-			padding-left: 2.5rem;
 			padding-right: 2.5rem;
+			padding-left: 2.5rem;
 		}
 	}
 

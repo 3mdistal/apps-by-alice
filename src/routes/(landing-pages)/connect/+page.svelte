@@ -77,13 +77,13 @@
 
 <style>
 	.container {
-		min-height: 100lvh;
 		display: flex;
 		flex-direction: column;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
 		background-color: #eeeded;
 		padding: 5rem 1rem;
+		min-height: 100lvh;
 	}
 
 	h2 {
@@ -96,28 +96,28 @@
 
 	.subscribe-form {
 		display: grid;
-		max-width: 400px;
 		grid-template-columns: 2fr 1fr;
 		gap: 0.5rem;
+		max-width: 400px;
 	}
 
 	.email-input {
-		width: 100%;
 		padding: 0.25rem 1.25rem;
+		width: 100%;
 		font-size: 1rem;
 	}
 
 	.subscribe-button {
-		width: 100%;
 		background-color: #726a12;
-		color: white;
 		padding: 0.25rem 1.25rem;
+		width: 100%;
+		color: white;
 		font-size: 1rem;
 	}
 
 	.email-highlight {
-		font-weight: 500;
 		color: #726a12;
+		font-weight: 500;
 	}
 
 	.spacer {

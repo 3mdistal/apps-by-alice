@@ -60,46 +60,42 @@
 			class="logo"
 		/>
 		<div>
-			<p bind:this={siteTitle} class="site-title">
-				tempo immaterial
-			</p>
-			<p bind:this={subtitle} class="subtitle">
-				work by alice alexandra moore
-			</p>
+			<p bind:this={siteTitle} class="site-title">tempo immaterial</p>
+			<p bind:this={subtitle} class="subtitle">work by alice alexandra moore</p>
 		</div>
 	</header>
 {/if}
 
 <style>
 	.site-header-container {
-		margin-left: auto;
-		margin-right: auto;
 		display: flex;
-		max-width: 80vw;
 		flex-direction: column;
-		align-items: center;
 		justify-content: space-around;
+		align-items: center;
 		gap: 1em;
+		margin-right: auto;
+		margin-left: auto;
+		max-width: 80vw;
 	}
 
 	.logo {
-		width: 4rem;
 		opacity: 0;
+		width: 4rem;
 	}
 
 	.site-title {
-		font-size: clamp(1.5rem, 4vw, 3rem);
-		margin-bottom: 0.5em;
-		text-align: center;
-		letter-spacing: 0.4em;
 		opacity: 0;
+		margin-bottom: 0.5em;
+		font-size: clamp(1.5rem, 4vw, 3rem);
+		letter-spacing: 0.4em;
+		text-align: center;
 	}
 
 	.subtitle {
-		font-size: clamp(1rem, 2.5vw, 1.8rem);
-		text-align: center;
-		letter-spacing: 0.15em;
 		opacity: 0;
+		font-size: clamp(1rem, 2.5vw, 1.8rem);
+		letter-spacing: 0.15em;
+		text-align: center;
 	}
 
 	@media (min-width: 640px) {

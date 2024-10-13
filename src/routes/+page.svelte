@@ -55,12 +55,12 @@
 <style>
 	.main-container {
 		--top-padding: 10vh;
-		position: relative;
-		height: calc(100dvh - var(--top-padding));
 		display: flex;
+		position: relative;
 		flex-direction: column;
-		overflow: hidden;
 		padding-top: var(--top-padding);
+		height: calc(100dvh - var(--top-padding));
+		overflow: hidden;
 	}
 
 	.mastodon-link {

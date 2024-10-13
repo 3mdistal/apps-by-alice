@@ -73,16 +73,16 @@
 <style>
 	.container {
 		display: flex;
-		height: 100vh;
-		width: 100vw;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
+		width: 100vw;
+		height: 100vh;
 	}
 
 	.footer-text {
-		pointer-events: none;
 		position: absolute;
 		bottom: 0;
+		pointer-events: none;
 		color: #6b7280; /* text-gray-500 */
 	}
 </style>

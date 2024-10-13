@@ -54,57 +54,57 @@
 
 <style>
 	.home-button-container {
-		position: fixed;
-		right: 0.5rem;
-		top: 0.5rem;
-		z-index: 100;
 		display: flex;
+		position: fixed;
+		top: 0.5rem;
+		right: 0.5rem;
 		align-items: center;
+		z-index: 100;
 	}
 
 	.home-button {
-		height: 3.5rem;
-		width: 3.5rem;
 		opacity: 0;
+		width: 3.5rem;
+		height: 3.5rem;
 	}
 
 	.logo {
 		position: absolute;
-		height: 100%;
 		width: 100%;
+		height: 100%;
 	}
 
 	.circle-container {
-		position: absolute;
 		display: flex;
-		height: 100%;
-		width: 100%;
-		align-items: center;
+		position: absolute;
 		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 100%;
 	}
 
 	.circle-image {
 		position: absolute;
-		height: 100%;
 		width: 100%;
+		height: 100%;
 	}
 
 	.home-text {
 		z-index: 10;
-		font-size: 0.875rem;
-		font-weight: 500;
 		color: white;
+		font-weight: 500;
+		font-size: 0.875rem;
 	}
 
 	@media (min-width: 768px) {
 		.home-button-container {
-			right: 1.5rem;
 			top: 1.5rem;
+			right: 1.5rem;
 		}
 
 		.home-button {
-			height: 5rem;
 			width: 5rem;
+			height: 5rem;
 		}
 
 		.home-text {

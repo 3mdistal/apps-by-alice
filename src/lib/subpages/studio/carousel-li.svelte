@@ -76,21 +76,21 @@
 
 <style>
 	.carousel-item {
-		position: relative;
 		display: flex;
-		height: 30vh;
-		width: 100%;
+		position: relative;
 		flex-grow: 1;
 		flex-basis: 0;
 		flex-direction: column;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
+		width: 100%;
+		height: 30vh;
 		list-style-type: none;
 
 		@media (min-width: 768px) {
-			height: 100%;
-			width: auto;
 			transition: all 0.5s ease-in-out;
+			width: auto;
+			height: 100%;
 
 			&:hover {
 				flex-grow: 3;
@@ -106,17 +106,17 @@
 
 	.text-container {
 		z-index: 10;
-		height: 100%;
-		width: 100%;
 		background-color: rgba(0, 0, 0, 0.5);
 		padding: 1.25rem 2.5rem;
+		width: 100%;
+		height: 100%;
 
 		@media (min-width: 768px) {
 			visibility: hidden;
-			height: auto;
-			width: auto;
 			opacity: 0;
 			transition: all 0.5s ease-in-out;
+			width: auto;
+			height: auto;
 
 			.carousel-item:hover & {
 				visibility: visible;
@@ -130,9 +130,9 @@
 		font-weight: 200;
 
 		@media (min-width: 768px) {
-			font-size: 0.875rem;
-			font-weight: 100;
 			transition: all 0.5s ease-in-out;
+			font-weight: 100;
+			font-size: 0.875rem;
 
 			.carousel-item:hover & {
 				font-size: 2.25rem;
@@ -145,9 +145,9 @@
 		font-weight: 500;
 
 		@media (min-width: 768px) {
-			font-size: 0.875rem;
-			font-weight: 300;
 			transition: all 0.5s ease-in-out;
+			font-weight: 300;
+			font-size: 0.875rem;
 
 			.carousel-item:hover & {
 				font-size: 1.5rem;
@@ -159,9 +159,9 @@
 		font-weight: 500;
 
 		@media (min-width: 768px) {
-			font-size: 0.875rem;
-			font-weight: 300;
 			transition: all 0.5s ease-in-out;
+			font-weight: 300;
+			font-size: 0.875rem;
 
 			.carousel-item:hover & {
 				font-size: 1.5rem;

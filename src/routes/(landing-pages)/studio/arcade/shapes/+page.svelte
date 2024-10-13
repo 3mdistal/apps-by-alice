@@ -211,17 +211,17 @@
 	}
 
 	.sidebar {
-		position: absolute;
-		left: 0;
-		top: 0;
 		display: flex;
-		height: 100vh;
+		position: absolute;
+		top: 0;
+		left: 0;
 		flex-direction: column;
 		justify-content: center;
 		gap: 2.5rem;
 		background-color: #222222;
-		padding-left: 1rem;
 		padding-right: 1rem;
+		padding-left: 1rem;
+		height: 100vh;
 	}
 
 	.sidebar-canvas {
@@ -234,8 +234,8 @@
 
 	@media (min-width: 768px) {
 		.sidebar {
-			padding-left: 2rem;
 			padding-right: 2rem;
+			padding-left: 2rem;
 		}
 	}
 </style>

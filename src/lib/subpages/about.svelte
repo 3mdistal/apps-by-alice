@@ -97,10 +97,10 @@
 
 	.about-footer-content {
 		display: flex;
-		max-width: 100%;
 		flex-wrap: wrap;
-		align-items: flex-start;
 		justify-content: center;
+		align-items: flex-start;
+		max-width: 100%;
 	}
 
 	.about-footer-text {
@@ -117,8 +117,8 @@
 
 	@media (min-width: 768px) {
 		.about-footer-content {
-			max-width: 80%;
 			flex-wrap: nowrap;
+			max-width: 80%;
 		}
 
 		.about-footer-text {

@@ -24,9 +24,9 @@
 
 <style>
 	.pong-loader {
+		background-color: transparent;
 		width: 100%;
 		height: calc(10 / 17 * 100%);
-		background-color: transparent;
 	}
 
 	@keyframes moveBall {

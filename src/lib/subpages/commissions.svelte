@@ -235,24 +235,24 @@
 		@media (hover: hover) {
 			background-attachment: fixed;
 		}
-		background-position: 35%;
-		position: relative;
 		display: flex;
-		height: 100vh;
-		width: 100%;
-		align-items: center;
+		position: relative;
 		justify-content: center;
-		overflow: hidden;
+		align-items: center;
 		background-image: url('/images/commissions/impossible.jpeg');
+		background-position: 35%;
 		background-size: cover;
 		background-repeat: no-repeat;
+		width: 100%;
+		height: 100vh;
+		overflow: hidden;
 	}
 
 	.hero-text {
-		background-color: rgba(255, 255, 255, 0.5);
 		z-index: 100;
-		border-radius: 10px;
 		margin: 0 2em;
+		border-radius: 10px;
+		background-color: rgba(255, 255, 255, 0.5);
 		padding: 3em;
 	}
 
@@ -261,16 +261,16 @@
 	}
 
 	.header {
-		margin: 0 auto;
 		display: flex;
-		max-width: 350px;
-		align-items: center;
 		justify-content: center;
+		align-items: center;
 		gap: 1rem;
+		margin: 0 auto;
 		border-width: 2px;
 		border-style: solid;
-		padding: 3em 1em;
 		border-radius: 0.5rem;
+		padding: 3em 1em;
+		max-width: 350px;
 	}
 
 	.header-text {
@@ -296,8 +296,8 @@
 
 	@media (min-width: 768px) {
 		.header {
-			max-width: 450px;
 			gap: 2rem;
+			max-width: 450px;
 		}
 		.header-image {
 			width: 150px;
@@ -324,11 +324,11 @@
 	}
 
 	.truths {
-		background-color: var(--accentColor);
 		display: flex;
-		width: 90%;
 		margin: 0 auto;
+		background-color: var(--accentColor);
 		padding: 6em;
+		width: 90%;
 
 		& h2 {
 			width: 50%;
@@ -344,9 +344,9 @@
 		}
 
 		@media screen and (max-width: 45rem) {
-			flex-wrap: wrap;
-			row-gap: 2em;
 			column-gap: 1px;
+			row-gap: 2em;
+			flex-wrap: wrap;
 			padding: 3em;
 
 			& h2,
@@ -360,28 +360,28 @@
 		}
 
 		@media screen and (max-width: 30rem) {
-			width: 100%;
 			padding: 2em;
+			width: 100%;
 		}
 	}
 
 	.ambitious {
+		margin: calc(1em + 5vw);
 		border-top: solid 2px;
 		border-bottom: solid 2px;
 		padding: calc(1em + 5vw);
-		margin: calc(1em + 5vw);
 
 		& p {
-			font-size: clamp(1.5rem, 3vw, 4rem);
 			color: var(--accentColor);
+			font-size: clamp(1.5rem, 3vw, 4rem);
 			text-align: center;
 		}
 	}
 
 	.descriptions {
 		display: flex;
-		flex-direction: column;
 		row-gap: 10em;
+		flex-direction: column;
 		padding: 15vw;
 		@media screen and (max-width: 45rem) {
 			padding: 7vw;
@@ -393,8 +393,8 @@
 		& .flex {
 			display: flex;
 			column-gap: calc(1em + 10vw);
-			align-items: center;
 			justify-content: center;
+			align-items: center;
 
 			& .text {
 				max-width: 50%;
@@ -409,17 +409,17 @@
 			}
 
 			& .image {
-				max-width: 45%;
+				border-top-right-radius: 10px;
 				border-top-left-radius: 50px;
 				border-bottom-right-radius: 50px;
-				border-top-right-radius: 10px;
 				border-bottom-left-radius: 10px;
+				max-width: 45%;
 				overflow: hidden;
 			}
 
 			@media screen and (max-width: 40rem) {
-				flex-wrap: wrap;
 				row-gap: 3em;
+				flex-wrap: wrap;
 
 				& .text {
 					max-width: 75%;
@@ -447,11 +447,11 @@
 		min-height: 100vh;
 
 		& div {
+			border-radius: 10px;
+			background-color: rgba(255, 255, 255, 0.3);
+			padding: 5em;
 			width: 100%;
 			height: 100%;
-			background-color: rgba(255, 255, 255, 0.3);
-			border-radius: 10px;
-			padding: 5em;
 		}
 
 		@media screen and (max-width: 50rem) {

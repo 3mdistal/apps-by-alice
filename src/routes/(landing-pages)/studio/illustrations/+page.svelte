@@ -231,32 +231,32 @@
 	}
 
 	.art-grid {
-		height: 100%;
-		width: 100%;
 		gap: 0;
-		padding: 0.5rem;
 		opacity: 0;
+		padding: 0.5rem;
+		width: 100%;
+		height: 100%;
 	}
 
 	.grid-image {
-		width: 100%;
+		transition: all 0.3s ease-in-out;
 		cursor: pointer;
 		padding: 0.5rem;
-		transition: all 0.3s ease-in-out;
+		width: 100%;
 	}
 
 	.fullscreen-container {
 		@media (min-width: 640px) {
-			height: 100vh;
 			width: 100vw;
+			height: 100vh;
 		}
 	}
 
 	.fullscreen-image {
-		height: 100%;
-		width: 100%;
-		object-fit: contain;
 		padding-top: 4.5rem;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
 
 		@media (min-width: 640px) {
 			position: fixed;
@@ -265,10 +265,10 @@
 	}
 
 	.info-container {
-		min-height: 20rem;
 		position: relative;
-		width: 100vw;
 		padding: 2.5rem;
+		width: 100vw;
+		min-height: 20rem;
 
 		@media (min-width: 640px) {
 			z-index: 10;
@@ -276,8 +276,8 @@
 	}
 
 	.title {
-		font-size: 2.25rem;
 		color: white;
+		font-size: 2.25rem;
 
 		@media (min-width: 640px) {
 			font-size: 3rem;
@@ -289,16 +289,16 @@
 	}
 
 	.date {
-		font-size: 1rem;
 		color: white;
+		font-size: 1rem;
 	}
 
 	.description {
 		margin-top: 1.5rem;
 		margin-bottom: 1.5rem;
 		max-width: 40ch;
-		font-size: 1.25rem;
 		color: white;
+		font-size: 1.25rem;
 
 		@media (min-width: 768px) {
 			max-width: 50ch;
@@ -316,14 +316,14 @@
 	.back-button {
 		display: block;
 		cursor: pointer;
-		text-align: right;
-		font-size: 2.25rem;
 		color: white;
+		font-size: 2.25rem;
+		text-align: right;
 
 		@media (min-width: 1024px) {
 			position: absolute;
-			bottom: 1.5rem;
 			right: 1.5rem;
+			bottom: 1.5rem;
 			padding: 1rem;
 			font-size: 3.75rem;
 		}
@@ -331,13 +331,13 @@
 
 	.overlay {
 		position: absolute;
-		left: 0;
 		top: 0;
-		z-index: -10;
-		height: 100%;
-		width: 100%;
-		background-color: #111827;
+		left: 0;
 		opacity: 1;
+		z-index: -10;
+		background-color: #111827;
+		width: 100%;
+		height: 100%;
 
 		@media (min-width: 640px) {
 			opacity: 0.75;
