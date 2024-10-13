@@ -92,8 +92,6 @@
 	}
 
 	.about-footer-heading {
-		font-size: 1.5rem;
-		line-height: 2rem;
 		max-width: 80%;
 	}
 
