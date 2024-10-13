@@ -42,39 +42,28 @@
 	});
 </script>
 
-<div bind:this={container} class="pt-40 [&>*]:opacity-0" style="background-color: {background}">
-	<div
-		class="flex flex-wrap items-center gap-x-10 gap-y-10 px-5 md:flex-nowrap lg:px-20 {noPadding
-			? 'justify-between'
-			: 'justify-center'} {flexReverse ? 'flex-row-reverse' : ''} "
-	>
-		<div
-			bind:this={bordered}
-			class="sm:px-15 box-border rounded-[5%] border-y-2 px-10 py-20 md:basis-1/2 lg:px-20 lg:py-40"
-			style="border-color: {accent}"
-		>
-			<h2 bind:this={topHeading} class="mb-5" style="color: {accent}">
+<div bind:this={container} class="container" style="background-color: {background}">
+	<div class="content-wrapper" class:no-padding={noPadding} class:flex-reverse={flexReverse}>
+		<div bind:this={bordered} class="bordered-content" style="border-color: {accent}">
+			<h2 bind:this={topHeading} style="color: {accent}">
 				{header}
 			</h2>
 
-			<p bind:this={descriptor} class={textWhite ? 'text-white' : ''}>
+			<p bind:this={descriptor} class:text-white={textWhite}>
 				{description}
 			</p>
 
-			<div bind:this={button} class="mr-5 mt-10 flex justify-end">
+			<div bind:this={button} class="button-wrapper">
 				<slot name="button" />
 			</div>
 		</div>
 
 		{#if src}
-			<div
-				bind:this={imageWrapper}
-				class="basis aspect-square md:basis-1/2 {noPadding ? 'mr-[-20px] lg:mr-[-80px]' : ''}"
-			>
-				<img {src} {alt} class="object-contain" />
+			<div bind:this={imageWrapper} class="image-wrapper" class:no-padding={noPadding}>
+				<img {src} {alt} />
 			</div>
 		{:else}
-			<div bind:this={imageWrapper} class="mb-10 md:mb-0 md:ml-20 md:basis-1/3">
+			<div bind:this={imageWrapper} class="slot-image-wrapper">
 				<slot name="image" />
 			</div>
 		{/if}
@@ -82,3 +71,120 @@
 
 	<slot />
 </div>
+
+<style>
+	.container {
+		padding-top: 10rem;
+	}
+
+	.container > * {
+		opacity: 0;
+	}
+
+	.content-wrapper {
+		display: flex;
+		flex-wrap: wrap;
+		align-items: center;
+		gap: 2.5rem;
+		padding: 0 1.25rem;
+	}
+
+	@media (min-width: 768px) {
+		.content-wrapper {
+			flex-wrap: nowrap;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.content-wrapper {
+			padding: 0 5rem;
+		}
+	}
+
+	.content-wrapper.no-padding {
+		justify-content: space-between;
+	}
+
+	.content-wrapper.flex-reverse {
+		flex-direction: row-reverse;
+	}
+
+	.bordered-content {
+		box-sizing: border-box;
+		border-top-width: 2px;
+		border-bottom-width: 2px;
+		border-style: solid;
+		border-radius: 5%;
+		padding: 5rem 2.5rem;
+	}
+
+	@media (min-width: 640px) {
+		.bordered-content {
+			padding: 5rem 3.75rem;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.bordered-content {
+			flex-basis: 50%;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.bordered-content {
+			padding: 10rem 5rem;
+		}
+	}
+
+	.bordered-content h2 {
+		margin-bottom: 1.25rem;
+	}
+
+	.button-wrapper {
+		margin-right: 1.25rem;
+		margin-top: 2.5rem;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.image-wrapper {
+		flex-basis: 100%;
+		aspect-ratio: 1 / 1;
+	}
+
+	@media (min-width: 768px) {
+		.image-wrapper {
+			flex-basis: 50%;
+		}
+	}
+
+	.image-wrapper.no-padding {
+		margin-right: -1.25rem;
+	}
+
+	@media (min-width: 1024px) {
+		.image-wrapper.no-padding {
+			margin-right: -5rem;
+		}
+	}
+
+	.image-wrapper img {
+		object-fit: contain;
+	}
+
+	.slot-image-wrapper {
+		margin-bottom: 2.5rem;
+	}
+
+	@media (min-width: 768px) {
+		.slot-image-wrapper {
+			margin-bottom: 0;
+			margin-left: 5rem;
+			flex-basis: 33.333333%;
+		}
+	}
+
+	.text-white {
+		color: white;
+	}
+</style>

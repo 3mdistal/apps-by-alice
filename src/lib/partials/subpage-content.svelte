@@ -13,7 +13,7 @@
 	let text: HTMLElement;
 	let image: HTMLElement;
 
-	function animate(sti) {
+	function animate(sti: any) {
 		gsap.registerPlugin(sti);
 
 		const tl = gsap.timeline({
@@ -46,27 +46,90 @@
 	});
 </script>
 
-<div class="mx-auto w-[75%]" bind:this={container}>
-	<h2
-		bind:this={heading}
-		style="color: {accent}"
-		class="text-left md:text-center [&_*]:text-inherit"
-	>
+<div class="container" bind:this={container}>
+	<h2 bind:this={heading} style="color: {accent}">
 		<slot name="heading" />
 	</h2>
-	<div
-		class="flex-col items-start justify-between gap-x-[3em] gap-y-[5em] md:flex"
-		style="flex-direction: {flexDirection}"
-	>
-		<div class="text max-w-[60ch] text-left children:mb-10 children:last:mb-0" bind:this={text}>
+	<div class="content" style="flex-direction: {flexDirection}">
+		<div class="text" bind:this={text}>
 			<slot name="text" style="color: {accent}" />
-			<div class="mt-[3m] flex justify-center">
+			<div class="button-container">
 				<slot name="button" class="button" />
 			</div>
 		</div>
 
-		<div class="sticky top-[1em] mx-auto max-w-[80%] md:max-w-[50%]" bind:this={image}>
-			<img class="rounded-3xl" src={imageSource} alt={imageAlt} />
+		<div class="image-container" bind:this={image}>
+			<img src={imageSource} alt={imageAlt} />
 		</div>
 	</div>
 </div>
+
+<style>
+	.container {
+		margin-left: auto;
+		margin-right: auto;
+		width: 75%;
+	}
+
+	h2 {
+		text-align: left;
+	}
+
+	h2 :global(*) {
+		color: inherit;
+	}
+
+	.content {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
+		justify-content: space-between;
+		gap: 5em;
+	}
+
+	.text {
+		max-width: 60ch;
+		text-align: left;
+	}
+
+	.text :global(*) {
+		margin-bottom: 2.5rem;
+	}
+
+	.text :global(*:last-child) {
+		margin-bottom: 0;
+	}
+
+	.button-container {
+		margin-top: 3em;
+		display: flex;
+		justify-content: center;
+	}
+
+	.image-container {
+		position: sticky;
+		top: 1em;
+		margin-left: auto;
+		margin-right: auto;
+		max-width: 80%;
+	}
+
+	.image-container img {
+		border-radius: 1.5rem;
+	}
+
+	@media (min-width: 768px) {
+		h2 {
+			text-align: center;
+		}
+
+		.content {
+			flex-direction: row;
+			gap: 3em;
+		}
+
+		.image-container {
+			max-width: 50%;
+		}
+	}
+</style>

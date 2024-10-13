@@ -42,18 +42,11 @@
 
 <div class="spacer" />
 
-<div bind:this={container} class=" h-auto max-w-[100%] md:h-[200vw]">
-	<div
-		class="top-0 max-w-[100%] overflow-hidden pt-16 md:sticky md:h-[100vh]"
-		style="background-color:{accent}"
-	>
-		<p class="mb-10 ml-10 text-4xl font-medium md:text-8xl" style="color:{background}">Works</p>
+<div class="container" bind:this={container}>
+	<div style="background-color:{accent}">
+		<p style="color:{background}">Works</p>
 
-		<ul
-			bind:this={carousel}
-			class="flex h-auto w-auto flex-col gap-x-1 gap-y-1 pt-1 md:h-[80vh] md:w-[200vw] md:flex-row"
-			style="background-color:{background}"
-		>
+		<ul bind:this={carousel} class="carousel" style="background-color:{background}">
 			<CarouselLi
 				src={PianoHFC}
 				alt="A relatively destroyed grand piano in front of the ruins of a building."
@@ -104,3 +97,54 @@
 		</ul>
 	</div>
 </div>
+
+<style>
+	div.container {
+		height: auto;
+		max-width: 100%;
+	}
+
+	div.container > div {
+		top: 0;
+		max-width: 100%;
+		overflow: hidden;
+		padding-top: 4rem;
+	}
+
+	div.container > div > p {
+		margin-bottom: 2.5rem;
+		margin-left: 2.5rem;
+		font-size: 2.25rem;
+		font-weight: 500;
+	}
+
+	ul.carousel {
+		display: flex;
+		height: auto;
+		width: auto;
+		flex-direction: column;
+		gap: 0.25rem;
+		padding-top: 0.25rem;
+	}
+
+	@media (min-width: 768px) {
+		div.container {
+			height: 200vw;
+		}
+
+		div.container > div {
+			position: sticky;
+			height: 100vh;
+		}
+
+		div.container > div > p {
+			font-size: 6rem;
+		}
+
+		ul.carousel {
+			height: 80vh;
+			width: 200vw;
+			flex-direction: row;
+		}
+	}
+</style>

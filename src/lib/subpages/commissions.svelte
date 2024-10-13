@@ -122,31 +122,21 @@
 </script>
 
 <div class="spacer" />
-<div class="max-w-[100vw] overflow-hidden">
-	<div
-		class="hero relative flex h-[100vh] w-[100%] items-center justify-center overflow-hidden bg-[url('/images/commissions/impossible.jpeg')] bg-cover bg-no-repeat"
-	>
-		<div class="text p-[3em]" bind:this={heroText}>
+<div class="commissions-container">
+	<div class="hero" bind:this={heroText}>
+		<div class="hero-text">
 			<p style="color: {accent}">Bring your impossible, intangible things.</p>
 		</div>
 	</div>
 	<div class="spacer" />
-	<div
-		class="header mx-auto flex max-w-[350px] items-center justify-center gap-x-4 rounded-lg border-2 px-[1em] py-[3em] sm:max-w-[400px] md:max-w-[450px] md:gap-x-8 lg:max-w-[800px] [&_p]:md:text-2xl [&_p]:lg:text-3xl [&_p]:lg:text-4xl"
-		bind:this={header}
-		style="border-color: {accent}"
-	>
-		<div class="text-right">
+	<div class="header" bind:this={header} style="border-color: {accent}">
+		<div class="header-text">
 			<p style="color: {accent}">alice</p>
 			<p style="color: {accent}">alexandra</p>
 			<p style="color: {accent}">moore</p>
 		</div>
 		<div>
-			<img
-				class="w-[100px] sm:w-[125px] md:w-[150px] lg:w-[200px]"
-				src="/images/commissions/circle.svg"
-				alt=""
-			/>
+			<img class="header-image" src="/images/commissions/circle.svg" alt="" />
 		</div>
 		<div>
 			<p style="color: {accent}">developer</p>
@@ -158,7 +148,7 @@
 	<div class="truths" bind:this={truth} style="background-color: {accent}">
 		<h2>Here are my truths.</h2>
 		<div>
-			<p class="font-medium" style="color: {background}">I respect your ideas.</p>
+			<p class="truth-heading" style="color: {background}">I respect your ideas.</p>
 			<p style="color: {background}">
 				To me, this is more than a statement. My favorite thing about the process of editing
 				another's work is pulling forward their own voice, their own originality. This stems not
@@ -236,22 +226,101 @@
 </div>
 
 <style>
+	.commissions-container {
+		max-width: 100vw;
+		overflow: hidden;
+	}
+
 	.hero {
 		@media (hover: hover) {
 			background-attachment: fixed;
 		}
 		background-position: 35%;
+		position: relative;
+		display: flex;
+		height: 100vh;
+		width: 100%;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		background-image: url('/images/commissions/impossible.jpeg');
+		background-size: cover;
+		background-repeat: no-repeat;
+	}
 
-		& p {
-			font-size: clamp(1.5rem, 3vw, 4rem);
-		}
+	.hero-text {
+		background-color: rgba(255, 255, 255, 0.5);
+		z-index: 100;
+		border-radius: 10px;
+		margin: 0 2em;
+		padding: 3em;
+	}
 
-		& .text {
-			background-color: rgba(255, 255, 255, 0.5);
-			z-index: 100;
-			border-radius: 10px;
-			margin: 0 2em 0 2em;
+	.hero p {
+		font-size: clamp(1.5rem, 3vw, 4rem);
+	}
+
+	.header {
+		margin: 0 auto;
+		display: flex;
+		max-width: 350px;
+		align-items: center;
+		justify-content: center;
+		gap: 1rem;
+		border-width: 2px;
+		border-style: solid;
+		padding: 3em 1em;
+		border-radius: 0.5rem;
+	}
+
+	.header-text {
+		text-align: right;
+	}
+
+	.header-image {
+		width: 100px;
+	}
+
+	.header p {
+		font-size: 1rem;
+	}
+
+	@media (min-width: 640px) {
+		.header {
+			max-width: 400px;
 		}
+		.header-image {
+			width: 125px;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.header {
+			max-width: 450px;
+			gap: 2rem;
+		}
+		.header-image {
+			width: 150px;
+		}
+		.header p {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.header {
+			max-width: 800px;
+		}
+		.header-image {
+			width: 200px;
+		}
+		.header p {
+			font-size: 2.25rem;
+		}
+	}
+
+	.truth-heading {
+		font-weight: 500;
 	}
 
 	.truths {

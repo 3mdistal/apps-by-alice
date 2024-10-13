@@ -57,14 +57,14 @@
 
 <div class="spacer"></div>
 
-<div class="flex flex-col items-center">
-	<h2 class="text-about max-w-[80%]" style="color: {accent}">have thoughts to share?</h2>
-	<div class="flex max-w-none flex-wrap items-start justify-center md:max-w-[80%] md:flex-nowrap">
-		<div class="max-w-[80%] md:basis-1/2">
+<div class="about-footer">
+	<h2 class="about-footer-heading" style="color: {accent}">have thoughts to share?</h2>
+	<div class="about-footer-content">
+		<div class="about-footer-text">
 			<p>
 				Though I have plans of fuller, richer ways to engage with the work here—even to
 				contribute—this is what I have for now. <a
-					class="font-medium hover:underline"
+					class="about-footer-link"
 					style="color: {accent}"
 					href="/connect">My ears are open</a
 				>, and as such, I may take my time to consider before replying. I'll get back to you as I'm
@@ -83,5 +83,48 @@
 
 	p {
 		margin-bottom: 1.5em;
+	}
+
+	.about-footer {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.about-footer-heading {
+		font-size: 1.5rem;
+		line-height: 2rem;
+		max-width: 80%;
+	}
+
+	.about-footer-content {
+		display: flex;
+		max-width: 100%;
+		flex-wrap: wrap;
+		align-items: flex-start;
+		justify-content: center;
+	}
+
+	.about-footer-text {
+		max-width: 80%;
+	}
+
+	.about-footer-link {
+		font-weight: 500;
+	}
+
+	.about-footer-link:hover {
+		text-decoration: underline;
+	}
+
+	@media (min-width: 768px) {
+		.about-footer-content {
+			max-width: 80%;
+			flex-wrap: nowrap;
+		}
+
+		.about-footer-text {
+			flex-basis: 50%;
+		}
 	}
 </style>
