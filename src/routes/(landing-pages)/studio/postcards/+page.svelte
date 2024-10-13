@@ -1,7 +1,7 @@
 <script>
 	import ComingSoon from '$lib/subpages/studio/coming-soon.svelte';
 	// @ts-expect-error vite-imagetools not working properly
-	import ComingSoonPostcards from '$text/studio/postcards/coming-soon-postcards.svelte.md';
+	import ComingSoonPostcards from '../../../../cms/text/studio/postcards/coming-soon-postcards.md';
 </script>
 
 <svelte:head>
