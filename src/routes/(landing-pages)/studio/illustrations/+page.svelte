@@ -61,12 +61,10 @@
 
 	function toggleView(addOrRemove?: 'add' | 'remove') {
 		if (addOrRemove === 'add') {
-			console.log('adding');
 			artGrid.classList.add(...classList, 'p-2');
 			all = true;
 			return;
 		} else if (addOrRemove === 'remove') {
-			console.log('removing');
 			artGrid.classList.remove(...classList, 'p-2');
 			all = false;
 			return;

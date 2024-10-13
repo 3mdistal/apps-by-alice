@@ -16,9 +16,6 @@
 		QueryDatabaseResponse
 	} from '@notionhq/client/build/src/api-endpoints';
 
-	console.log('DarkCodeTheme:', DarkCodeTheme);
-	console.log('LightCodeTheme:', LightCodeTheme);
-
 	let darkMode: boolean;
 	let context: HTMLElement;
 
@@ -80,10 +77,8 @@
 		});
 		const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 		darkMode = mediaQuery.matches;
-		console.log('Initial darkMode:', darkMode);
 		mediaQuery.addEventListener('change', (e) => {
 			darkMode = e.matches;
-			console.log('darkMode changed:', darkMode);
 		});
 	});
 </script>
