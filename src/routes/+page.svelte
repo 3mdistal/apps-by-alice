@@ -46,21 +46,21 @@
 <div class="main-container">
 	<SiteTitle />
 	<HomepageWrapper />
+	<div class="mastodon-link">
+		<a rel="me" href="https://hachyderm.io/@tempoimmaterial">Mastodon</a>
+	</div>
+	<Svgs />
 </div>
-<div class="mastodon-link">
-	<a rel="me" href="https://hachyderm.io/@tempoimmaterial">Mastodon</a>
-</div>
-
-<Svgs />
 
 <style>
 	.main-container {
+		--top-padding: 10vh;
 		position: relative;
-		height: 100dvh;
+		height: calc(100dvh - var(--top-padding));
 		display: flex;
 		flex-direction: column;
 		overflow: hidden;
-		padding-top: 1rem;
+		padding-top: var(--top-padding);
 	}
 
 	.mastodon-link {
@@ -69,7 +69,7 @@
 
 	@media (min-width: 768px) {
 		.main-container {
-			padding-top: 6vh;
+			--top-padding: 6vh;
 		}
 	}
 </style>

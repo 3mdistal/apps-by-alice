@@ -47,6 +47,7 @@
 		height: 100vh;
 		width: 100%;
 		opacity: 0;
+		bottom: -10vh;
 	}
 
 	@media (min-width: 1024px) {

@@ -103,7 +103,7 @@
 			clip-path: url(#studio-path);
 		}
 
-			&.commissions {
+		&.commissions {
 			clip-path: url(#commissions-path);
 			height: 82%;
 		}
@@ -120,6 +120,8 @@
 	}
 
 	.homepage-section-menu-link {
+		position: absolute;
+
 		&.about {
 			top: 15%;
 			left: 33%;
