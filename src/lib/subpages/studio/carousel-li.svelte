@@ -57,33 +57,119 @@
 	});
 </script>
 
-<a
-	data-sveltekit-preload-code="eager"
-	{href}
-	bind:this={container}
-	class="group relative flex h-[30vh] w-[100%] grow basis-0 list-none flex-col items-center justify-center object-cover ease-in-out md:h-[100%] md:w-auto md:transition-all md:duration-500 md:hover:grow-[3]"
->
-	<img {src} {alt} class="absolute z-0 w-[100%]" />
-	<div
-		bind:this={textContainer}
-		class="z-10 h-[100%] w-[100%] bg-black bg-opacity-50 px-10 py-5 md:invisible md:h-auto md:w-auto md:opacity-0 md:transition-all md:duration-500 md:group-hover:visible md:group-hover:opacity-100"
-	>
-		<p
-			class="font:extra-light text-white md:text-sm md:font-thin md:transition-all md:duration-500 md:group-hover:text-4xl"
-		>
+<a data-sveltekit-preload-code="eager" {href} bind:this={container} class="carousel-item">
+	<img {src} {alt} class="carousel-image" />
+	<div bind:this={textContainer} class="text-container">
+		<p class="title">
 			{title}
 		</p>
-		<p
-			class="font-medium text-white md:text-sm md:font-light md:transition-all md:duration-500 md:group-hover:text-2xl"
-		>
+		<p class="subtitle">
 			{subtitle}
 		</p>
 		{#if comingSoon}
-			<p
-				class="font-medium md:text-sm md:font-light md:transition-all md:duration-500 md:group-hover:text-2xl"
-			>
-				<em class="text-white">Coming soon.</em>
+			<p class="coming-soon">
+				<em>Coming soon.</em>
 			</p>
 		{/if}
 	</div>
 </a>
+
+<style>
+	.carousel-item {
+		position: relative;
+		display: flex;
+		height: 30vh;
+		width: 100%;
+		flex-grow: 1;
+		flex-basis: 0;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		list-style-type: none;
+
+		@media (min-width: 768px) {
+			height: 100%;
+			width: auto;
+			transition: all 0.5s ease-in-out;
+
+			&:hover {
+				flex-grow: 3;
+			}
+		}
+	}
+
+	.carousel-image {
+		position: absolute;
+		z-index: 0;
+		width: 100%;
+	}
+
+	.text-container {
+		z-index: 10;
+		height: 100%;
+		width: 100%;
+		background-color: rgba(0, 0, 0, 0.5);
+		padding: 1.25rem 2.5rem;
+
+		@media (min-width: 768px) {
+			visibility: hidden;
+			height: auto;
+			width: auto;
+			opacity: 0;
+			transition: all 0.5s ease-in-out;
+
+			.carousel-item:hover & {
+				visibility: visible;
+				opacity: 1;
+			}
+		}
+	}
+
+	.title {
+		color: white;
+		font-weight: 200;
+
+		@media (min-width: 768px) {
+			font-size: 0.875rem;
+			font-weight: 100;
+			transition: all 0.5s ease-in-out;
+
+			.carousel-item:hover & {
+				font-size: 2.25rem;
+			}
+		}
+	}
+
+	.subtitle {
+		color: white;
+		font-weight: 500;
+
+		@media (min-width: 768px) {
+			font-size: 0.875rem;
+			font-weight: 300;
+			transition: all 0.5s ease-in-out;
+
+			.carousel-item:hover & {
+				font-size: 1.5rem;
+			}
+		}
+	}
+
+	.coming-soon {
+		font-weight: 500;
+
+		@media (min-width: 768px) {
+			font-size: 0.875rem;
+			font-weight: 300;
+			transition: all 0.5s ease-in-out;
+
+			.carousel-item:hover & {
+				font-size: 1.5rem;
+			}
+		}
+
+		em {
+			color: white;
+		}
+	}
+</style>

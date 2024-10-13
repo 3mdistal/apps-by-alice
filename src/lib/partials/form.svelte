@@ -37,9 +37,7 @@
 
 {#if formDisplay}
 	<form on:submit|preventDefault={contact} method="POST">
-		<p class="mb-[1em] text-center text-dynamicHeader" style="color: {accent}">
-			Let's make something together.
-		</p>
+		<p class="form-header" style="color: {accent}">Let's make something together.</p>
 		<div class="form-flex">
 			<div class="item-flex">
 				<label for="name" style="color: {accent}">Preferred Name:</label>
@@ -53,40 +51,30 @@
 				<label for="description" style="color: {accent}">Project Description:</label>
 				<textarea id="description" name="description" rows="4" required />
 			</div>
-			<button
-				type="submit"
-				class="text-l box-content w-20 rounded-md border-2 border-[#642e1a] p-[1em] font-medium text-[#642e1a] brightness-95 hover:bg-[#642e1a] hover:text-[#dcc9c6] md:text-xl"
-				>Submit.</button
-			>
+			<button type="submit" class="submit-button">Submit.</button>
 		</div>
 	</form>
 {:else if loadingDisplay}
-	<div
-		class="py-[50%] font-medium text-[#642e1a] md:py-[30%] [&>*]:text-inherit [&_*]:text-xl [&_*]:font-medium md:[&_*]:text-3xl"
-	>
-		<p class="mb-4">Submitting your info . . .</p>
+	<div class="message-container">
+		<p class="message">Submitting your info . . .</p>
 	</div>
 {:else if submittedDisplay}
-	<div
-		class="py-[50%] font-medium text-[#642e1a] md:py-[30%] [&>*]:text-inherit [&_*]:text-xl [&_*]:font-medium md:[&_*]:text-3xl"
-	>
-		<p class="mb-4">
-			Thank you, <span class="text-amber-700">{client}</span>, for your submission!
+	<div class="message-container">
+		<p class="message">
+			Thank you, <span class="highlight">{client}</span>, for your submission!
 		</p>
-		<p>
-			I'll be in touch shortly to <span class="text-amber-700">{email}</span>.
+		<p class="message">
+			I'll be in touch shortly to <span class="highlight">{email}</span>.
 		</p>
 	</div>
 {:else if errorDisplay}
-	<div
-		class="py-[50%] font-medium text-[#642e1a] md:py-[30%] [&>*]:text-inherit [&_*]:text-xl [&_*]:font-medium md:[&_*]:text-3xl"
-	>
-		<p class="mb-4">An error has occurred: <span class="text-amber-700">{errorText}</span></p>
-		<p>Please try again later.</p>
+	<div class="message-container">
+		<p class="message">An error has occurred: <span class="highlight">{errorText}</span></p>
+		<p class="message">Please try again later.</p>
 	</div>
 {/if}
 
-<style lang="scss">
+<style>
 	form {
 		& .form-flex {
 			display: flex;
@@ -109,6 +97,61 @@
 					max-width: 100%;
 				}
 			}
+		}
+	}
+
+	.form-header {
+		margin-bottom: 1em;
+		text-align: center;
+		font-size: var(--dynamic-header);
+	}
+
+	.submit-button {
+		font-size: 1rem;
+		box-sizing: content-box;
+		width: 5rem;
+		border-radius: 0.375rem;
+		border: 2px solid #642e1a;
+		padding: 1em;
+		font-weight: 500;
+		color: #642e1a;
+		filter: brightness(0.95);
+	}
+
+	.submit-button:hover {
+		background-color: #642e1a;
+		color: #dcc9c6;
+	}
+
+	.message-container {
+		padding-top: 50%;
+		padding-bottom: 50%;
+		font-weight: 500;
+		color: #642e1a;
+	}
+
+	.message {
+		margin-bottom: 1rem;
+		font-size: 1.25rem;
+		font-weight: 500;
+	}
+
+	.highlight {
+		color: #b45309;
+	}
+
+	@media (min-width: 768px) {
+		.submit-button {
+			font-size: 1.25rem;
+		}
+
+		.message-container {
+			padding-top: 30%;
+			padding-bottom: 30%;
+		}
+
+		.message {
+			font-size: 1.875rem;
 		}
 	}
 </style>

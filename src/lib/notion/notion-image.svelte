@@ -30,7 +30,13 @@
 {#await refreshContent()}
 	<LoadingSpinner />
 {:then source}
-	<img class="text-white" {alt} src={source} />
+	<img {alt} src={source} />
 {:catch error}
 	<p>{error}</p>
 {/await}
+
+<style>
+	img {
+		color: white;
+	}
+</style>

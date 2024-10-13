@@ -52,33 +52,83 @@
 </script>
 
 {#if $state === 'home'}
-	<header
-		out:outAnimation
-		class="site-header-container mx-auto flex max-w-[80vw] flex-col items-center justify-around gap-y-[1em] sm:gap-y-[2em] md:flex-row lg:gap-x-[2em]"
-	>
+	<header out:outAnimation class="site-header-container">
 		<img
 			bind:this={logo}
 			src="images/logos/logo.svg"
 			alt="The logo for Tempo Immaterial."
-			class="w-16 opacity-0 sm:w-24 md:w-32 lg:w-48"
+			class="logo"
 		/>
 		<div>
-			<p bind:this={siteTitle} class="site-title mb-[0.5em] text-center tracking-[0.4em] opacity-0">
+			<p bind:this={siteTitle} class="site-title">
 				tempo immaterial
 			</p>
-			<p bind:this={subtitle} class="subtitle text-center tracking-[0.15em] opacity-0">
+			<p bind:this={subtitle} class="subtitle">
 				work by alice alexandra moore
 			</p>
 		</div>
 	</header>
 {/if}
 
-<style lang="scss">
+<style>
+	.site-header-container {
+		margin-left: auto;
+		margin-right: auto;
+		display: flex;
+		max-width: 80vw;
+		flex-direction: column;
+		align-items: center;
+		justify-content: space-around;
+		gap: 1em;
+	}
+
+	.logo {
+		width: 4rem;
+		opacity: 0;
+	}
+
 	.site-title {
 		font-size: clamp(1.5rem, 4vw, 3rem);
+		margin-bottom: 0.5em;
+		text-align: center;
+		letter-spacing: 0.4em;
+		opacity: 0;
 	}
 
 	.subtitle {
 		font-size: clamp(1rem, 2.5vw, 1.8rem);
+		text-align: center;
+		letter-spacing: 0.15em;
+		opacity: 0;
+	}
+
+	@media (min-width: 640px) {
+		.site-header-container {
+			gap: 2em;
+		}
+
+		.logo {
+			width: 6rem;
+		}
+	}
+
+	@media (min-width: 768px) {
+		.site-header-container {
+			flex-direction: row;
+		}
+
+		.logo {
+			width: 8rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.site-header-container {
+			gap: 2em;
+		}
+
+		.logo {
+			width: 12rem;
+		}
 	}
 </style>

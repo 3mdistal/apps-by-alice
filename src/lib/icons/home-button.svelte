@@ -1,31 +1,16 @@
 <script lang="ts">
-	import Logo from '$images/logo/logo.png?webp';
-	import PlainCircle from '$images/logo/plain-circle.svg';
+	import Logo from '../../cms/images/logo/logo.png';
+	import PlainCircle from '../../cms/images/logo/plain-circle.svg';
 	import { onMount } from 'svelte';
 	import gsap from 'gsap';
-	// import AnalyticsConsent from '$lib/partials/analytics-consent.svelte';
-	// import { analyticsCookie } from '$lib/stores';
 
 	let button: HTMLAnchorElement;
 	let logo: HTMLImageElement;
 	let circle: HTMLDivElement;
-	// let consentForm: HTMLDivElement;
-
-	// function checkForCookie() {
-	// 	const cookie = document.cookie
-	// 		.split(';')
-	// 		.find((cookie) => cookie.includes('analytics_consent'));
-	// 	if (cookie) {
-	// 		analyticsCookie.set(true);
-	// 	} else {
-	// 		analyticsCookie.set(false);
-	// 	}
-	// }
 
 	function fadeIn() {
 		const tl = gsap.timeline();
 		tl.to(button, { opacity: 1, rotate: '360deg' });
-		// .to(consentForm, { opacity: 1, duration: 0.5 });
 	}
 
 	function seeBack() {
@@ -48,31 +33,82 @@
 
 	onMount(() => {
 		populate();
-		// if ($analyticsCookie === false) {
-		// 	checkForCookie();
-		// }
 	});
 </script>
 
-<div class="fixed right-2 top-2 z-[100] flex items-center md:right-6 md:top-6">
+<div class="home-button-container">
 	<a
 		href="/"
 		bind:this={button}
-		class="h-14 w-14 opacity-0 md:h-20 md:w-20"
+		class="home-button"
 		on:mouseenter={seeBack}
 		on:mouseleave={hideBack}
 	>
-		<img src={Logo} alt="Home button logo." class="absolute h-[100%] w-[100%]" bind:this={logo} />
-		<div bind:this={circle} class="absolute flex h-[100%] w-[100%] items-center justify-center">
-			<img src={PlainCircle} class="absolute h-[100%] w-[100%]" alt="Home button logo." />
-			<p class="z-10 text-sm font-medium text-white md:text-xl">home.</p>
+		<img src={Logo} alt="Home button logo." class="logo" bind:this={logo} />
+		<div bind:this={circle} class="circle-container">
+			<img src={PlainCircle} class="circle-image" alt="Home button logo." />
+			<p class="home-text">home.</p>
 		</div>
 	</a>
 </div>
-<!-- <div class="fixed bottom-6 flex justify-center sm:justify-end w-[100vw] md:right-6 z-[100]">
-	{#if $analyticsCookie === false}
-		<div bind:this={consentForm} class="opacity-0">
-			<AnalyticsConsent />
-		</div>
-	{/if}
-</div> -->
+
+<style>
+	.home-button-container {
+		position: fixed;
+		right: 0.5rem;
+		top: 0.5rem;
+		z-index: 100;
+		display: flex;
+		align-items: center;
+	}
+
+	.home-button {
+		height: 3.5rem;
+		width: 3.5rem;
+		opacity: 0;
+	}
+
+	.logo {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+	}
+
+	.circle-container {
+		position: absolute;
+		display: flex;
+		height: 100%;
+		width: 100%;
+		align-items: center;
+		justify-content: center;
+	}
+
+	.circle-image {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+	}
+
+	.home-text {
+		z-index: 10;
+		font-size: 0.875rem;
+		font-weight: 500;
+		color: white;
+	}
+
+	@media (min-width: 768px) {
+		.home-button-container {
+			right: 1.5rem;
+			top: 1.5rem;
+		}
+
+		.home-button {
+			height: 5rem;
+			width: 5rem;
+		}
+
+		.home-text {
+			font-size: 1.25rem;
+		}
+	}
+</style>

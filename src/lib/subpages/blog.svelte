@@ -24,28 +24,111 @@
 	});
 </script>
 
-<h3 class="mb-[1em] text-2xl font-medium md:text-3xl lg:text-4xl" style="color: {accent}">Posts</h3>
+<h3 class="posts-title" style="color: {accent}">Posts</h3>
 {#each results as { properties: { Slug: { url }, Name: { title: [{ text: { content: title } }] }, Subtitle, Category: { select: { name: category } }, FormattedPublicationDate: { formula: { string: date } } } }}
-	<div class="mb-6 grid grid-cols-2 md:grid-cols-3">
-		<p class="col-span-2 md:col-span-2">
+	<div class="post-item">
+		<p class="post-title-wrapper">
 			<a
 				on:mousedown={() => {
 					title = 'Loading . . .';
 					goto(`/blog/${url}`);
 				}}
 				on:click|preventDefault
-				class="font-medium text-white hover:underline active:text-gray-400"
+				class="post-title-link"
 				href="/blog/{url}">{title}</a
 			>
 		</p>
-		<p class="col-span-2 row-start-2 italic text-gray-100"><TextMacro type={Subtitle} /></p>
-		<p class="row-start-3 text-gray-100 md:col-start-3 md:row-start-1">
+		<p class="post-subtitle"><TextMacro type={Subtitle} /></p>
+		<p class="post-date">
 			{date}
 		</p>
-		<div class="col-start-2 flex justify-end md:col-start-1 md:justify-start">
-			<p class="text-gray-100">
+		<div class="post-category-wrapper">
+			<p class="post-category">
 				{category}
 			</p>
 		</div>
 	</div>
 {/each}
+
+<style>
+	.posts-title {
+		margin-bottom: 1em;
+		font-size: 1.5rem;
+		font-weight: 500;
+	}
+
+	.post-item {
+		margin-bottom: 1.5rem;
+		display: grid;
+		grid-template-columns: 1fr 1fr;
+	}
+
+	.post-title-wrapper {
+		grid-column: span 2;
+	}
+
+	.post-title-link {
+		font-weight: 500;
+		color: white;
+	}
+
+	.post-title-link:hover {
+		text-decoration: underline;
+	}
+
+	.post-title-link:active {
+		color: #9ca3af;
+	}
+
+	.post-subtitle {
+		grid-column: span 2;
+		grid-row-start: 2;
+		font-style: italic;
+		color: #f3f4f6;
+	}
+
+	.post-date {
+		grid-row-start: 3;
+		color: #f3f4f6;
+	}
+
+	.post-category-wrapper {
+		grid-column-start: 2;
+		display: flex;
+		justify-content: flex-end;
+	}
+
+	.post-category {
+		color: #f3f4f6;
+	}
+
+	@media (min-width: 768px) {
+		.posts-title {
+			font-size: 1.875rem;
+		}
+
+		.post-item {
+			grid-template-columns: 1fr 1fr 1fr;
+		}
+
+		.post-title-wrapper {
+			grid-column: span 2;
+		}
+
+		.post-date {
+			grid-column-start: 3;
+			grid-row-start: 1;
+		}
+
+		.post-category-wrapper {
+			grid-column-start: 1;
+			justify-content: flex-start;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.posts-title {
+			font-size: 2.25rem;
+		}
+	}
+</style>

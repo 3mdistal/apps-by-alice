@@ -60,7 +60,7 @@
 <a
 	href={name}
 	title={name}
-	class="homepage-section absolute bottom-0 h-[100%] w-[100%] {name} hover:brightness-95 hover:hue-rotate-[5deg] hover:saturate-150 focus:brightness-[85%] focus:hue-rotate-[10deg] focus:saturate-[175%]"
+	class="homepage-section {name}"
 	style:background
 	bind:this={section}
 	on:mouseenter={handleMouseEnter}
@@ -68,12 +68,32 @@
 	on:mousedown={handleClick}
 	on:click|preventDefault
 >
-	<div class="homepage-section-menu-link {name} absolute">
-		<h2 class="text-lg font-light md:text-2xl lg:text-3xl">{name}</h2>
+	<div class="homepage-section-menu-link {name}">
+		<h2>{name}</h2>
 	</div>
 </a>
 
-<style lang="scss">
+<style>
+	.homepage-section {
+		position: absolute;
+		bottom: 0;
+		height: 100%;
+		width: 100%;
+	}
+
+	.homepage-section:hover {
+		filter: brightness(0.95) hue-rotate(5deg) saturate(1.5);
+	}
+
+	.homepage-section:focus {
+		filter: brightness(0.85) hue-rotate(10deg) saturate(1.75);
+	}
+
+	.homepage-section-menu-link h2 {
+		font-size: 1.125rem;
+		font-weight: 300;
+	}
+
 	.homepage-section {
 		&.about {
 			clip-path: url(#about-path);
@@ -83,7 +103,7 @@
 			clip-path: url(#studio-path);
 		}
 
-		&.commissions {
+			&.commissions {
 			clip-path: url(#commissions-path);
 			height: 82%;
 		}
@@ -173,6 +193,18 @@
 			&.connect {
 				left: 23%;
 			}
+		}
+	}
+
+	@media (min-width: 768px) {
+		.homepage-section-menu-link h2 {
+			font-size: 1.5rem;
+		}
+	}
+
+	@media (min-width: 1024px) {
+		.homepage-section-menu-link h2 {
+			font-size: 1.875rem;
 		}
 	}
 </style>
