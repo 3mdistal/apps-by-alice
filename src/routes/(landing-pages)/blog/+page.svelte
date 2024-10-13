@@ -53,7 +53,7 @@
 	</div>
 </div>
 
-<style lang="scss">
+<style>
 	.opacity-0 {
 		opacity: 0;
 	}

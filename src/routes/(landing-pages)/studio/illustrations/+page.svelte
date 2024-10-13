@@ -167,11 +167,7 @@
 
 <div class="background">
 	<!-- Art Grid -->
-	<div
-		class="art-grid"
-		bind:this={artGrid}
-		use:fadeIn
-	>
+	<div class="art-grid" bind:this={artGrid} use:fadeIn>
 		{#each results as painting}
 			{#if all}
 				<!-- Grid Items -->
@@ -229,7 +225,7 @@
 	</div>
 </div>
 
-<style lang="scss">
+<style>
 	.background {
 		background-color: #111827;
 	}

@@ -140,7 +140,7 @@
 	</p>
 </div>
 
-<style lang="scss">
+<style>
 	.blog-container {
 		height: 100%;
 		min-height: 100vh;

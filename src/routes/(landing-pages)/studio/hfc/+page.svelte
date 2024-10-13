@@ -255,376 +255,376 @@
 	{/each}
 </div>
 
-<style lang="scss">
-  .page-container {
-    height: 100vh;
-    overflow-y: scroll;
-    background-color: black;
-  }
-
-  .snap-container {
-    scroll-snap-align: start;
-  }
-
-  .hero-image {
-    position: relative;
-    margin: 0 auto;
-    aspect-ratio: 1 / 1;
-    background-size: cover;
-    background-position: center;
-
-    @media (min-width: 768px) {
-      aspect-ratio: auto;
-      height: 100lvh;
-      background-attachment: fixed;
-    }
-  }
-
-  .hero-content {
-    position: absolute;
-    left: 10%;
-    top: 30%;
-    z-index: 10;
-
-    h1 {
-      font-size: 1.875rem;
-      color: white;
-
-      @media (min-width: 768px) {
-        font-size: 2.25rem;
-      }
-
-      @media (min-width: 1024px) {
-        font-size: 3rem;
-      }
-
-      @media (min-width: 1280px) {
-        font-size: 3.75rem;
-      }
-    }
-
-    p {
-      color: white;
-    }
-  }
-
-  .hero-overlay {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    opacity: 0.6;
-  }
-
-  .introduction {
-    display: flex;
-    min-height: 100lvh;
-    scroll-snap-align: start;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 2.5rem 1.25rem;
-
-    @media (min-width: 768px) {
-      padding: 2.5rem;
-    }
-  }
-
-  .introduction-content {
-    display: flex;
-    max-width: 60ch;
-    flex-direction: column;
-
-    h2 {
-      font-size: 1.5rem;
-      font-weight: 300;
-      color: white;
-
-      @media (min-width: 640px) {
-        font-size: 1.875rem;
-      }
-
-      @media (min-width: 1280px) {
-        font-size: 2.25rem;
-      }
-    }
-
-    p {
-      white-space: pre-line;
-      font-size: 1.1rem;
-      
-      @media (min-width: 640px) {
-        font-size: 1.25rem;
-      }
-
-      @media (min-width: 768px) {
-        font-size: 1.5rem;
-      }
-
-      em {
-        color: #cfcdcb;
-      }
-    }
-  }
-
-  .section-container {
-    display: flex;
-    min-height: 100lvh;
-    scroll-snap-align: start;
-    flex-direction: column;
-    justify-content: center;
-    gap: 6rem;
-    background-color: #bcbab7;
-    padding: 1rem;
-
-    @media (min-width: 640px) {
-      gap: 8rem;
-    }
-
-    @media (min-width: 1024px) {
-      gap: 3rem;
-    }
-  }
-
-  .section-image-container {
-    position: relative;
-    display: grid;
-    min-height: 40lvh;
-    grid-template-columns: repeat(6, minmax(0, 1fr));
-    grid-template-rows: repeat(6, minmax(0, 1fr));
-
-    @media (min-width: 1024px) {
-      display: flex;
-      align-items: center;
-    }
-
-    @media (min-width: 1536px) {
-      padding: 0 8rem;
-    }
-  }
-
-  .section-image {
-    grid-column: span 5 / span 5;
-    grid-column-start: 1;
-    grid-row: span 6 / span 6;
-    grid-row-start: 1;
-
-    @media (min-width: 1024px) {
-      grid-column: span 4 / span 4;
-      transform: translateX(2.5rem);
-    }
-  }
-
-  .section-link {
-    position: absolute;
-    grid-column-start: 3;
-    grid-row-start: 5;
-    min-width: 60vw;
-    background-color: white;
-    padding: 2rem 1rem;
-
-    &:hover {
-      background-color: #efefef;
-    }
-
-    @media (min-width: 640px) {
-      grid-row-start: 6;
-    }
-
-    @media (min-width: 1024px) {
-      position: static;
-      grid-column-start: 4;
-      grid-row-start: 4;
-      min-width: 35ch;
-      transform: translate(-2.5rem, 5rem);
-      font-size: 1.5rem;
-    }
-
-    @media (min-width: 1280px) {
-      font-size: 1.875rem;
-    }
-  }
-
-  .section-act {
-    text-align: center;
-    font-size: 0.875rem;
-    color: black;
-
-    @media (min-width: 640px) {
-      font-size: 1.125rem;
-    }
-  }
-
-  .section-title {
-    margin: 0;
-    text-align: center;
-    font-size: 1.5rem;
-    font-weight: 300;
-    color: black;
-
-    @media (min-width: 640px) {
-      font-size: 1.875rem;
-    }
-
-    @media (min-width: 1280px) {
-      font-size: 2.25rem;
-    }
-  }
-
-  .section-quote-container {
-    @media (min-width: 640px) {
-      padding: 0 2.5rem;
-    }
-
-    @media (min-width: 768px) {
-      padding: 0 5rem;
-    }
-
-    @media (min-width: 1024px) {
-      padding: 0 8rem;
-    }
-
-    @media (min-width: 1280px) {
-      padding: 0 13rem;
-    }
-
-    @media (min-width: 1536px) {
-      padding: 0 26rem;
-    }
-  }
-
-  .section-quote {
-    background-color: black;
-    padding: 2rem;
-
-    @media (min-width: 1024px) {
-      padding: 5rem;
-    }
-  }
-
-  .quote-text {
-    margin-bottom: 1rem;
-    font-size: 1.1rem;
-
-    @media (min-width: 640px) {
-      font-size: 1.25rem;
-    }
-
-    @media (min-width: 768px) {
-      font-size: 1.5rem;
-    }
-
-    em {
-      color: #cfcdcb;
-    }
-  }
-
-  .quote-author {
-    font-size: 0.875rem;
-    color: white;
-
-    @media (min-width: 768px) {
-      font-size: 1.125rem;
-    }
-  }
-
-  .poem-section {
-    position: relative;
-    display: flex;
-    min-height: 100lvh;
-    scroll-snap-align: start;
-    align-items: center;
-    background-size: cover;
-    background-position: center;
-    padding: 5rem 0;
-
-    @media (min-width: 640px) {
-      background-attachment: fixed;
-    }
-  }
-
-  .poem-overlay {
-    position: absolute;
-    height: 100%;
-    width: 100%;
-    background-color: black;
-    opacity: 0.8;
-  }
-
-  .poem-container {
-    position: relative;
-    z-index: 10;
-    display: flex;
-    width: 100%;
-    flex-direction: column;
-    gap: 5rem;
-    overflow-x: scroll;
-    padding: 0 1.25rem;
-
-    @media (min-width: 768px) {
-      align-items: center;
-      overflow-x: visible;
-    }
-  }
-
-  .poem-link {
-    padding: 1rem;
-
-    &:hover h3 {
-      color: #cfcdcb;
-    }
-  }
-
-  .poem-title {
-    text-align: center;
-    font-size: 1.875rem;
-    font-weight: 300;
-    color: white;
-
-    @media (min-width: 768px) {
-      font-size: 2.25rem;
-    }
-
-    @media (min-width: 1024px) {
-      font-size: 3rem;
-    }
-  }
-
-  .poem-content {
-    margin-top: -3rem;
-  }
-
-  .poem-stanza {
-    margin-bottom: 2rem;
-    max-width: 60ch;
-    font-size: 0.875rem;
-    color: white;
-
-    @media (min-width: 640px) {
-      font-size: 1.125rem;
-    }
-
-    @media (min-width: 768px) {
-      font-size: 1.25rem;
-    }
-
-    @media (min-width: 1280px) {
-      font-size: 1.5rem;
-    }
-  }
-
-  .close-poem {
-    margin-top: 8rem;
-    text-align: right;
-    font-size: 1.5rem;
-    color: white;
-
-    @media (min-width: 768px) {
-      font-size: 1.875rem;
-    }
-
-    @media (min-width: 1024px) {
-      font-size: 2.25rem;
-    }
-  }
+<style>
+	.page-container {
+		height: 100vh;
+		overflow-y: scroll;
+		background-color: black;
+	}
+
+	.snap-container {
+		scroll-snap-align: start;
+	}
+
+	.hero-image {
+		position: relative;
+		margin: 0 auto;
+		aspect-ratio: 1 / 1;
+		background-size: cover;
+		background-position: center;
+
+		@media (min-width: 768px) {
+			aspect-ratio: auto;
+			height: 100lvh;
+			background-attachment: fixed;
+		}
+	}
+
+	.hero-content {
+		position: absolute;
+		left: 10%;
+		top: 30%;
+		z-index: 10;
+
+		h1 {
+			font-size: 1.875rem;
+			color: white;
+
+			@media (min-width: 768px) {
+				font-size: 2.25rem;
+			}
+
+			@media (min-width: 1024px) {
+				font-size: 3rem;
+			}
+
+			@media (min-width: 1280px) {
+				font-size: 3.75rem;
+			}
+		}
+
+		p {
+			color: white;
+		}
+	}
+
+	.hero-overlay {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		background-color: black;
+		opacity: 0.6;
+	}
+
+	.introduction {
+		display: flex;
+		min-height: 100lvh;
+		scroll-snap-align: start;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		padding: 2.5rem 1.25rem;
+
+		@media (min-width: 768px) {
+			padding: 2.5rem;
+		}
+	}
+
+	.introduction-content {
+		display: flex;
+		max-width: 60ch;
+		flex-direction: column;
+
+		h2 {
+			font-size: 1.5rem;
+			font-weight: 300;
+			color: white;
+
+			@media (min-width: 640px) {
+				font-size: 1.875rem;
+			}
+
+			@media (min-width: 1280px) {
+				font-size: 2.25rem;
+			}
+		}
+
+		p {
+			white-space: pre-line;
+			font-size: 1.1rem;
+
+			@media (min-width: 640px) {
+				font-size: 1.25rem;
+			}
+
+			@media (min-width: 768px) {
+				font-size: 1.5rem;
+			}
+
+			em {
+				color: #cfcdcb;
+			}
+		}
+	}
+
+	.section-container {
+		display: flex;
+		min-height: 100lvh;
+		scroll-snap-align: start;
+		flex-direction: column;
+		justify-content: center;
+		gap: 6rem;
+		background-color: #bcbab7;
+		padding: 1rem;
+
+		@media (min-width: 640px) {
+			gap: 8rem;
+		}
+
+		@media (min-width: 1024px) {
+			gap: 3rem;
+		}
+	}
+
+	.section-image-container {
+		position: relative;
+		display: grid;
+		min-height: 40lvh;
+		grid-template-columns: repeat(6, minmax(0, 1fr));
+		grid-template-rows: repeat(6, minmax(0, 1fr));
+
+		@media (min-width: 1024px) {
+			display: flex;
+			align-items: center;
+		}
+
+		@media (min-width: 1536px) {
+			padding: 0 8rem;
+		}
+	}
+
+	.section-image {
+		grid-column: span 5 / span 5;
+		grid-column-start: 1;
+		grid-row: span 6 / span 6;
+		grid-row-start: 1;
+
+		@media (min-width: 1024px) {
+			grid-column: span 4 / span 4;
+			transform: translateX(2.5rem);
+		}
+	}
+
+	.section-link {
+		position: absolute;
+		grid-column-start: 3;
+		grid-row-start: 5;
+		min-width: 60vw;
+		background-color: white;
+		padding: 2rem 1rem;
+
+		&:hover {
+			background-color: #efefef;
+		}
+
+		@media (min-width: 640px) {
+			grid-row-start: 6;
+		}
+
+		@media (min-width: 1024px) {
+			position: static;
+			grid-column-start: 4;
+			grid-row-start: 4;
+			min-width: 35ch;
+			transform: translate(-2.5rem, 5rem);
+			font-size: 1.5rem;
+		}
+
+		@media (min-width: 1280px) {
+			font-size: 1.875rem;
+		}
+	}
+
+	.section-act {
+		text-align: center;
+		font-size: 0.875rem;
+		color: black;
+
+		@media (min-width: 640px) {
+			font-size: 1.125rem;
+		}
+	}
+
+	.section-title {
+		margin: 0;
+		text-align: center;
+		font-size: 1.5rem;
+		font-weight: 300;
+		color: black;
+
+		@media (min-width: 640px) {
+			font-size: 1.875rem;
+		}
+
+		@media (min-width: 1280px) {
+			font-size: 2.25rem;
+		}
+	}
+
+	.section-quote-container {
+		@media (min-width: 640px) {
+			padding: 0 2.5rem;
+		}
+
+		@media (min-width: 768px) {
+			padding: 0 5rem;
+		}
+
+		@media (min-width: 1024px) {
+			padding: 0 8rem;
+		}
+
+		@media (min-width: 1280px) {
+			padding: 0 13rem;
+		}
+
+		@media (min-width: 1536px) {
+			padding: 0 26rem;
+		}
+	}
+
+	.section-quote {
+		background-color: black;
+		padding: 2rem;
+
+		@media (min-width: 1024px) {
+			padding: 5rem;
+		}
+	}
+
+	.quote-text {
+		margin-bottom: 1rem;
+		font-size: 1.1rem;
+
+		@media (min-width: 640px) {
+			font-size: 1.25rem;
+		}
+
+		@media (min-width: 768px) {
+			font-size: 1.5rem;
+		}
+
+		em {
+			color: #cfcdcb;
+		}
+	}
+
+	.quote-author {
+		font-size: 0.875rem;
+		color: white;
+
+		@media (min-width: 768px) {
+			font-size: 1.125rem;
+		}
+	}
+
+	.poem-section {
+		position: relative;
+		display: flex;
+		min-height: 100lvh;
+		scroll-snap-align: start;
+		align-items: center;
+		background-size: cover;
+		background-position: center;
+		padding: 5rem 0;
+
+		@media (min-width: 640px) {
+			background-attachment: fixed;
+		}
+	}
+
+	.poem-overlay {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		background-color: black;
+		opacity: 0.8;
+	}
+
+	.poem-container {
+		position: relative;
+		z-index: 10;
+		display: flex;
+		width: 100%;
+		flex-direction: column;
+		gap: 5rem;
+		overflow-x: scroll;
+		padding: 0 1.25rem;
+
+		@media (min-width: 768px) {
+			align-items: center;
+			overflow-x: visible;
+		}
+	}
+
+	.poem-link {
+		padding: 1rem;
+
+		&:hover h3 {
+			color: #cfcdcb;
+		}
+	}
+
+	.poem-title {
+		text-align: center;
+		font-size: 1.875rem;
+		font-weight: 300;
+		color: white;
+
+		@media (min-width: 768px) {
+			font-size: 2.25rem;
+		}
+
+		@media (min-width: 1024px) {
+			font-size: 3rem;
+		}
+	}
+
+	.poem-content {
+		margin-top: -3rem;
+	}
+
+	.poem-stanza {
+		margin-bottom: 2rem;
+		max-width: 60ch;
+		font-size: 0.875rem;
+		color: white;
+
+		@media (min-width: 640px) {
+			font-size: 1.125rem;
+		}
+
+		@media (min-width: 768px) {
+			font-size: 1.25rem;
+		}
+
+		@media (min-width: 1280px) {
+			font-size: 1.5rem;
+		}
+	}
+
+	.close-poem {
+		margin-top: 8rem;
+		text-align: right;
+		font-size: 1.5rem;
+		color: white;
+
+		@media (min-width: 768px) {
+			font-size: 1.875rem;
+		}
+
+		@media (min-width: 1024px) {
+			font-size: 2.25rem;
+		}
+	}
 </style>

@@ -253,130 +253,131 @@
 </div>
 
 <style>
-    .studio-card {
-        position: relative;
-        display: flex;
-        aspect-ratio: 2/3;
-        width: 20rem;
-        cursor: default;
-        justify-content: center;
-        overflow: hidden;
-        border-radius: 1.5rem;
-        border: 2px solid white;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    }
+	.studio-card {
+		position: relative;
+		display: flex;
+		aspect-ratio: 2/3;
+		width: 20rem;
+		cursor: default;
+		justify-content: center;
+		overflow: hidden;
+		border-radius: 1.5rem;
+		border: 2px solid white;
+		box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+	}
 
-    .card-front, .card-back {
-        position: absolute;
-        display: flex;
-        height: 100%;
-        width: 100%;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        overflow: hidden;
-        border-radius: 1.5rem;
-        background-color: var(--studio-bg-color);
-    }
+	.card-front,
+	.card-back {
+		position: absolute;
+		display: flex;
+		height: 100%;
+		width: 100%;
+		flex-direction: column;
+		align-items: center;
+		justify-content: center;
+		overflow: hidden;
+		border-radius: 1.5rem;
+		background-color: var(--studio-bg-color);
+	}
 
-    .card-front {
-      lang="scss"  gap: 4rem;
-    }
+	.card-front {
+		gap: 4rem;
+	}
 
-    .card-back {
-        opacity: 0;
-        padding: 6rem 1rem;
-    }
+	.card-back {
+		opacity: 0;
+		padding: 6rem 1rem;
+	}
 
-    .logo-container {
-        position: relative;
-        z-index: 10;
-        display: flex;
-        height: 4.5rem;
-        width: 4.5rem;
-        align-items: center;
-        justify-content: center;
-        border-radius: 50%;
-        border: 2px solid white;
-        background-color: var(--studio-bg-color);
-    }
+	.logo-container {
+		position: relative;
+		z-index: 10;
+		display: flex;
+		height: 4.5rem;
+		width: 4.5rem;
+		align-items: center;
+		justify-content: center;
+		border-radius: 50%;
+		border: 2px solid white;
+		background-color: var(--studio-bg-color);
+	}
 
-    .logo-text {
-        font-family: var(--font-logo);
-        font-size: 2.75rem;
-        font-weight: 500;
-        color: white;
-    }
+	.logo-text {
+		font-family: var(--font-logo);
+		font-size: 2.75rem;
+		font-weight: 500;
+		color: white;
+	}
 
-    .title-container {
-        z-index: 10;
-    }
+	.title-container {
+		z-index: 10;
+	}
 
-    .title-container h2 {
-        margin-bottom: 1.5rem;
-        text-align: center;
-        font-size: 2.25rem;
-        font-weight: 300;
-        letter-spacing: 0.15em;
-        color: white;
-    }
+	.title-container h2 {
+		margin-bottom: 1.5rem;
+		text-align: center;
+		font-size: 2.25rem;
+		font-weight: 300;
+		letter-spacing: 0.15em;
+		color: white;
+	}
 
-    .title-container p {
-        text-align: center;
-        font-size: 1.5rem;
-    }
+	.title-container p {
+		text-align: center;
+		font-size: 1.5rem;
+	}
 
-    .title-container em {
-        color: white;
-    }
+	.title-container em {
+		color: white;
+	}
 
-    .background-image {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        opacity: 0.8;
-    }
+	.background-image {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		opacity: 0.8;
+	}
 
-    .gradient-overlay {
-        position: absolute;
-        height: 100%;
-        width: 100%;
-        background: linear-gradient(to top, var(--studio-bg-color), transparent);
-        opacity: 0.8;
-    }
+	.gradient-overlay {
+		position: absolute;
+		height: 100%;
+		width: 100%;
+		background: linear-gradient(to top, var(--studio-bg-color), transparent);
+		opacity: 0.8;
+	}
 
-    .description {
-        font-size: 1.5rem;
-    }
+	.description {
+		font-size: 1.5rem;
+	}
 
-    .description em {
-        color: white;
-    }
+	.description em {
+		color: white;
+	}
 
-    .spin-poles {
-        position: relative;
-        z-index: -20;
-        display: flex;
-        height: 100%;
-    }
+	.spin-poles {
+		position: relative;
+		z-index: -20;
+		display: flex;
+		height: 100%;
+	}
 
-    .pole {
-        height: 5%;
-        width: 0.25rem;
-        background-color: var(--studio-bg-color);
-    }
+	.pole {
+		height: 5%;
+		width: 0.25rem;
+		background-color: var(--studio-bg-color);
+	}
 
-    .pole-bottom {
-        align-self: flex-end;
-    }
+	.pole-bottom {
+		align-self: flex-end;
+	}
 
-    .pole-top {
-        align-self: flex-start;
-    }
+	.pole-top {
+		align-self: flex-start;
+	}
 
-    @media (min-width: 640px) {
-        .card-back {
-            padding: 2.5rem 1rem;
-        }
-    }
+	@media (min-width: 640px) {
+		.card-back {
+			padding: 2.5rem 1rem;
+		}
+	}
 </style>
