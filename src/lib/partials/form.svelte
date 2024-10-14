@@ -37,7 +37,7 @@
 
 {#if formDisplay}
 	<form on:submit|preventDefault={contact} method="POST">
-		<p class="form-header" style="color: {accent}">Let's make something together.</p>
+		<h2 class="form-header" style="color: {accent}">Let's make something together.</h2>
 		<div class="form-flex">
 			<div class="item-flex">
 				<label for="name" style="color: {accent}">Preferred Name:</label>
@@ -49,7 +49,7 @@
 			</div>
 			<div class="item-flex">
 				<label for="description" style="color: {accent}">Project Description:</label>
-				<textarea id="description" name="description" rows="4" required />
+				<textarea id="description" name="description" rows="4" required></textarea>
 			</div>
 			<button type="submit" class="submit-button">Submit.</button>
 		</div>
@@ -75,34 +75,35 @@
 {/if}
 
 <style>
-	form {
-		& .form-flex {
-			display: flex;
-			row-gap: 2em;
-			flex-direction: column;
+	.form-flex {
+		display: flex;
+		row-gap: 2em;
+		flex-direction: column;
+	}
 
-			& .item-flex {
-				display: flex;
-				flex-direction: column;
-				width: 80%;
+	.item-flex {
+		display: flex;
+		flex-direction: column;
+		width: 80%;
+	}
 
-				& label {
-					color: var(--accentColor);
-					font-weight: 400;
-					font-size: clamp(1rem, 1.5vw, 2rem);
-				}
+	label {
+		color: var(--accentColor);
+		font-weight: 400;
+		font-size: clamp(1rem, 1.5vw, 2rem);
+	}
 
-				& textarea {
-					min-width: 100%;
-					max-width: 100%;
-				}
-			}
-		}
+	textarea {
+		min-width: 100%;
+		font-size: 1.5rem;
+	}
+
+	input {
+		font-size: 1.5rem;
 	}
 
 	.form-header {
 		margin-bottom: 1em;
-		font-size: var(--dynamic-header);
 		text-align: center;
 	}
 

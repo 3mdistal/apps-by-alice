@@ -121,14 +121,14 @@
 	});
 </script>
 
-<div class="spacer" />
+<div class="spacer"></div>
 <div class="commissions-container">
 	<div class="hero" bind:this={heroText}>
 		<div class="hero-text">
 			<p style="color: {accent}">Bring your impossible, intangible things.</p>
 		</div>
 	</div>
-	<div class="spacer" />
+	<div class="spacer"></div>
 	<div class="header" bind:this={header} style="border-color: {accent}">
 		<div class="header-text">
 			<p style="color: {accent}">alice</p>
@@ -144,7 +144,7 @@
 			<p style="color: {accent}">editor</p>
 		</div>
 	</div>
-	<div class="spacer" />
+	<div class="spacer"></div>
 	<div class="truths" bind:this={truth} style="background-color: {accent}">
 		<h2>Here are my truths.</h2>
 		<div>
@@ -167,7 +167,7 @@
 			</p>
 		</div>
 	</div>
-	<div class="spacer" />
+	<div class="spacer"></div>
 	<div class="ambitious" style="color: {accent}; border-color: {accent}" bind:this={ambitious}>
 		<p>Ambitious project? Tired of finding experts? I do it all.</p>
 	</div>
@@ -441,17 +441,19 @@
 		@media (hover: hover) {
 			background-attachment: fixed;
 		}
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		background-size: cover;
 		background-repeat: no-repeat;
-		padding: 10em clamp(2em, 20vw, 20em);
-		min-height: 100vh;
+		padding: 2rem;
+		height: 100vh;
 
 		& div {
 			border-radius: 10px;
 			background-color: rgba(255, 255, 255, 0.3);
 			padding: 5em;
-			width: 100%;
-			height: 100%;
+			width: min(800px, 100%);
 		}
 
 		@media screen and (max-width: 50rem) {
