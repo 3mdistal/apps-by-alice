@@ -3,9 +3,9 @@
 	import About1 from '../../cms/text/about/about1.svelte';
 	import About2 from '../../cms/text/about/about2.svelte';
 	import About3 from '../../cms/text/about/about3.svelte';
-	import AuthorPhoto from '../../cms/images/about/author-photo.jpg';
-	import Mirror from '../../cms/images/about/mirror.jpeg';
-	import Owl from '../../cms/images/about/owl.png';
+	import AuthorPhoto from '../../cms/images/about/author-photo.jpg?enhanced';
+	import Mirror from '../../cms/images/about/mirror.jpeg?enhanced';
+	import Owl from '../../cms/images/about/owl.png?enhanced';
 
 	export let accent = '';
 </script>

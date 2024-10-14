@@ -445,6 +445,11 @@
 			}
 		}
 
+		:global(.notion-container hr) {
+			margin: 3em auto;
+			width: 30%;
+		}
+
 		:global(ol) {
 			list-style-type: decimal;
 		}

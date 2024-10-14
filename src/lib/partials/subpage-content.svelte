@@ -5,7 +5,7 @@
 
 	export let flexDirection = 'row-reverse';
 	export let accent = '';
-	export let imageSource = '';
+	export let imageSource;
 	export let imageAlt = '';
 
 	let container: HTMLElement;
@@ -59,7 +59,7 @@
 		</div>
 
 		<div class="image-container" bind:this={image}>
-			<img src={imageSource} alt={imageAlt} />
+			<enhanced:img src={imageSource} alt={imageAlt} />
 		</div>
 	</div>
 </div>
@@ -81,15 +81,19 @@
 
 	.content {
 		display: flex;
-		flex-direction: column;
+		flex-direction: column !important;
 		justify-content: space-between;
 		align-items: flex-start;
 		gap: 5em;
 	}
 
 	.text {
-		max-width: 60ch;
+		max-width: min(60ch, 50%);
 		text-align: left;
+
+		@media screen and (max-width: 1024px) {
+			max-width: 100%;
+		}
 	}
 
 	.text :global(*) {
@@ -108,23 +112,27 @@
 
 	.image-container {
 		position: sticky;
-		top: 1em;
+		top: 7.5vh;
 		margin-right: auto;
 		margin-left: auto;
-		max-width: 80%;
+		height: 85vh;
 	}
 
 	.image-container img {
 		border-radius: 1.5rem;
+		width: 100%;
+		height: 100%;
+		object-fit: contain;
+		object-position: center;
 	}
 
-	@media (min-width: 768px) {
+	@media (min-width: 1024px) {
 		h2 {
 			text-align: center;
 		}
 
 		.content {
-			flex-direction: row;
+			flex-direction: row !important;
 			gap: 3em;
 		}
 

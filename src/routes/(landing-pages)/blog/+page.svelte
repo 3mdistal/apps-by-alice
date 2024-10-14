@@ -4,6 +4,7 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { gsap } from 'gsap';
 	import { state } from '$lib/stores';
+	import Bird from '../../../cms/images/blog/bird.webp?enhanced';
 
 	export let data: { post: QueryDatabaseResponse };
 
@@ -44,7 +45,7 @@
 	<div class="background-container">
 		<div>
 			<enhanced:img
-				src="../../cms/images/blog/bird.webp"
+				src={Bird}
 				alt="A painting of a colorful bird in flight."
 				class="background-image"
 			/>

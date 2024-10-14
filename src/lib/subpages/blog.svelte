@@ -1,8 +1,5 @@
 <script lang="ts">
 	import { goto } from '$app/navigation';
-
-	// Component displays blog listing from Notion. Also revalidates Notion data as needed.
-
 	import TextMacro from '$lib/notion/text-macro.svelte';
 	import type { QueryDatabaseResponse } from '@notionhq/client/build/src/api-endpoints';
 	import { onMount } from 'svelte';
