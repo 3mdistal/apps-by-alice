@@ -2,6 +2,7 @@
 	import TextMacro from '$lib/notion/text-macro.svelte';
 	import gsap from 'gsap';
 	import { onMount, afterUpdate } from 'svelte';
+	import { fade } from 'svelte/transition';
 
 	export let data;
 
@@ -122,6 +123,39 @@
 
 		return { update: () => tl };
 	}
+
+	let selectedPainting: any = null;
+	let modalOpen = false;
+	let highResImageLoaded = false;
+
+	function openModal(painting: any) {
+		selectedPainting = painting;
+		modalOpen = true;
+		highResImageLoaded = false;
+		document.body.style.overflow = 'hidden';
+
+		// Load high-res image
+		const highResImage = new Image();
+		highResImage.src = painting.properties.Image.url + '?tr=f-webp,q-80';
+		highResImage.onload = () => {
+			highResImageLoaded = true;
+		};
+	}
+
+	function closeModal() {
+		modalOpen = false;
+		selectedPainting = null;
+		document.body.style.overflow = '';
+	}
+
+	function handleImageLoad(event: Event) {
+		const img = event.target as HTMLImageElement;
+		img.style.opacity = '1';
+		const fallbackText = img.nextElementSibling as HTMLElement;
+		if (fallbackText) {
+			fallbackText.style.display = 'none';
+		}
+	}
 </script>
 
 <svelte:head>
@@ -164,195 +198,87 @@
 </svelte:head>
 
 <div class="background">
-	<!-- Art Grid -->
-	<div class="art-grid" bind:this={artGrid} use:fadeIn>
+	<div class="art-grid">
 		{#each results as painting}
-			{#if all}
-				<!-- Grid Items -->
-				<a href="/studio/illustrations" on:click|preventDefault={handleClickToFullscreen}>
-					<img
-						src={painting.properties.Image.url + lowQuality}
-						loading="lazy"
-						alt=""
-						class="grid-image"
-						on:contextmenu|preventDefault
-					/>
-				</a>
-			{:else if currentURL === painting.properties.Image.url + lowQuality}
-				<!-- Fullscreen Image -->
-				<div>
-					<div class="fullscreen-container">
-						<a href="/studio/illustrations" on:click|preventDefault={handleClickToGallery}>
-							<img
-								src={painting.properties.Image.url + lowQuality}
-								data-src={painting.properties.Image.url + '?tr=f-webp,q-80'}
-								alt=""
-								class="fullscreen-image"
-								on:contextmenu|preventDefault
-								on:load|once={lazyLoad}
-							/>
-						</a>
-					</div>
-					<div class="info-container">
-						<!-- Title -->
-						<p class="title">{painting.properties.Name.title[0].plain_text}</p>
-
-						<!-- Date -->
-						<p class="date">
-							<em>{painting.properties.Date.formula.string}</em>
-						</p>
-
-						<!-- Description -->
-						<p class="description">
-							<TextMacro type={painting.properties.Description} />
-						</p>
-
-						<!-- Back Button -->
-						<a
-							class="back-button"
-							on:click|preventDefault={() => history.back()}
-							href="/studio/illustrations"
-						>
-							back.
-						</a>
-						<div class="overlay" />
-					</div>
-				</div>
-			{/if}
+			<div class="grid-item" on:click={() => openModal(painting)}>
+				<img
+					src={painting.properties.Image.url + '?tr=f-webp,w-400,q-50'}
+					alt={painting.properties.Name.title[0].plain_text}
+					class="grid-image"
+					loading="lazy"
+					on:load={handleImageLoad}
+				/>
+				<p class="fallback-text">{painting.properties.Name.title[0].plain_text}</p>
+			</div>
 		{/each}
 	</div>
+
+	{#if modalOpen}
+		<div class="modal-overlay" on:click={closeModal} transition:fade={{ duration: 200 }}>
+			<div class="modal-content">
+				<img
+					src={selectedPainting.properties.Image.url +
+						(highResImageLoaded ? '?tr=f-webp,q-80' : '?tr=f-webp,w-400,q-50')}
+					alt={selectedPainting.properties.Name.title[0].plain_text}
+					class="modal-image"
+				/>
+				<div class="modal-info">
+					<h2>{selectedPainting.properties.Name.title[0].plain_text}</h2>
+					<p class="date"><em>{selectedPainting.properties.Date.formula.string}</em></p>
+					<p class="description"><TextMacro type={selectedPainting.properties.Description} /></p>
+				</div>
+				<button class="close-button" on:click={closeModal}>×</button>
+			</div>
+		</div>
+	{/if}
 </div>
 
 <style>
 	.background {
 		background-color: #111827;
+		padding: 0;
+		min-height: 100vh;
+		color: white;
 	}
 
 	.art-grid {
-		gap: 0;
-		opacity: 0;
-		padding: 0.5rem;
-		width: 100%;
-		height: 100%;
+		column-gap: 0;
+		column-count: 2;
+	}
+
+	.grid-item {
+		position: relative;
+		break-inside: avoid;
+		margin-bottom: 0;
 	}
 
 	.grid-image {
-		transition: all 0.3s ease-in-out;
-		cursor: pointer;
-		padding: 0.5rem;
-		width: 100%;
-	}
-
-	.fullscreen-container {
-		@media (min-width: 640px) {
-			width: 100vw;
-			height: 100vh;
-		}
-	}
-
-	.fullscreen-image {
-		padding-top: 4.5rem;
-		width: 100%;
-		height: 100%;
-		object-fit: contain;
-
-		@media (min-width: 640px) {
-			position: fixed;
-			padding-top: 0;
-		}
-	}
-
-	.info-container {
-		position: relative;
-		padding: 2.5rem;
-		width: 100vw;
-		min-height: 20rem;
-
-		@media (min-width: 640px) {
-			z-index: 10;
-		}
-	}
-
-	.title {
-		color: white;
-		font-size: 2.25rem;
-
-		@media (min-width: 640px) {
-			font-size: 3rem;
-		}
-
-		@media (min-width: 768px) {
-			font-size: 3.75rem;
-		}
-	}
-
-	.date {
-		color: white;
-		font-size: 1rem;
-	}
-
-	.description {
-		margin-top: 1.5rem;
-		margin-bottom: 1.5rem;
-		max-width: 40ch;
-		color: white;
-		font-size: 1.25rem;
-
-		@media (min-width: 768px) {
-			max-width: 50ch;
-		}
-
-		@media (min-width: 1024px) {
-			max-width: 60ch;
-		}
-
-		@media (min-width: 1280px) {
-			font-size: 1.5rem;
-		}
-	}
-
-	.back-button {
 		display: block;
-		cursor: pointer;
-		color: white;
-		font-size: 2.25rem;
-		text-align: right;
-
-		@media (min-width: 1024px) {
-			position: absolute;
-			right: 1.5rem;
-			bottom: 1.5rem;
-			padding: 1rem;
-			font-size: 3.75rem;
-		}
+		opacity: 0;
+		transition:
+			transform 0.3s ease,
+			opacity 0.3s ease;
+		width: 100%;
+		height: auto;
 	}
 
-	.overlay {
-		position: absolute;
-		top: 0;
-		left: 0;
-		opacity: 1;
-		z-index: -10;
-		background-color: #111827;
-		width: 100%;
-		height: 100%;
+	.grid-image:hover {
+		transform: scale(1.05);
+		z-index: 1;
+	}
 
-		@media (min-width: 640px) {
-			opacity: 0.75;
-		}
+	.fallback-text {
+		position: absolute;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-color: rgba(0, 0, 0, 0.7);
+		padding: 0.5rem;
+		color: white;
+		font-size: 0.8rem;
 	}
 
 	@media (min-width: 640px) {
-		.art-grid {
-			column-count: 2;
-		}
-
-		.grid-image:hover {
-			transform: scale(1.05);
-		}
-	}
-
-	@media (min-width: 768px) {
 		.art-grid {
 			column-count: 3;
 		}
@@ -368,5 +294,80 @@
 		.art-grid {
 			column-count: 5;
 		}
+	}
+
+	.modal-overlay {
+		display: flex;
+		position: fixed;
+		top: 0;
+		left: 0;
+		justify-content: center;
+		align-items: center;
+		z-index: 1000;
+		background-color: rgba(0, 0, 0, 0.9);
+		padding: 2rem;
+		width: 100%;
+		height: 100%;
+		overflow-y: auto;
+	}
+
+	.modal-content {
+		display: flex;
+		position: relative;
+		flex-direction: column;
+		align-items: center;
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		border-radius: 8px;
+		padding: 2rem;
+		width: min(90%, 1200px);
+		overflow-y: auto;
+	}
+
+	.modal-image {
+		margin-bottom: 1rem;
+		max-width: 100%;
+		max-height: 90vh;
+		object-fit: contain;
+	}
+
+	.modal-info {
+		width: 100%;
+		max-width: 600px;
+		color: #ffffff;
+		text-align: center;
+	}
+
+	.modal-info h2 {
+		margin-bottom: 0.5rem;
+		color: #ffffff;
+		font-size: 1.5rem;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+	}
+
+	.modal-info p {
+		margin-bottom: 0.5rem;
+		color: #e0e0e0;
+	}
+
+	.date em {
+		color: #f0f0f0;
+	}
+
+	.description {
+		color: #f0f0f0;
+		line-height: 1.6;
+		text-align: left;
+	}
+
+	.close-button {
+		position: fixed;
+		top: 1rem;
+		right: 2rem;
+		cursor: pointer;
+		border: none;
+		background: none;
+		color: #ffffff;
+		font-size: 2rem;
+		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
 	}
 </style>
