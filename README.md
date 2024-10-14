@@ -1,38 +1,14 @@
-# create-svelte
+# Welcome to Tempo Immaterial, the studio of Alice Alexandra Moore
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+Although my actual studio is far better viewed on the live version of the site, this repo is for anyone curious about my design implementations.
 
-## Creating a project
+While I'm not yet looking for contributions to the codebase, **please feel free to leave issues if you notice any bugs or have an idea of how something can be refactored.** I work in public in order to learn (and teach where I can). And, I'm currently working on opening up this space for more community engagement and eventual collaboration.
 
-If you're seeing this, you've probably already done this step. Congrats!
+I also hope to clean up and make usable some of the most unique components of this project. These include:
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+- Homepage / landing page design with sections determined by SVG clip paths.
+- Animations and transitions, many of which are dynamically calculated by container.
+- Notion CMS logic.
+- General content design.
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+In the meantime, enjoy the mess that's here. Lots of components are in-between implementations (half one thing, half another). I hope to refactor everything to be more consistent soon, but right now I'm in a _at least it works_ phase as I prepare to share my blog and studio content more on my social media.
