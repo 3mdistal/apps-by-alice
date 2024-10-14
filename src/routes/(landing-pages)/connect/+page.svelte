@@ -46,7 +46,7 @@
 			{#if loading}
 				<p>Submitting your info . . .</p>
 			{:else}
-				<form on:submit|preventDefault={subscribe} class="subscribe-form">
+				<form on:submit|preventDefault={subscribe}>
 					<label for="email" class="hidden">Your email:</label>
 					<input
 						id="email"
@@ -94,9 +94,9 @@
 		margin-top: 1.25rem;
 	}
 
-	.subscribe-form {
-		display: grid;
-		grid-template-columns: 2fr 1fr;
+	form {
+		display: flex;
+		flex-direction: column;
 		gap: 0.5rem;
 		max-width: 400px;
 	}
@@ -110,7 +110,7 @@
 	.subscribe-button {
 		background-color: #726a12;
 		padding: 0.25rem 1.25rem;
-		width: 100%;
+		width: 160px;
 		color: white;
 		font-size: 1rem;
 	}
