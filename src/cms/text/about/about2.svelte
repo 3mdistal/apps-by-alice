@@ -22,7 +22,7 @@
 </p>
 
 <p>
-	Currently, I live in Leeds, UK. I'm working as a Content Engineer for Vercel, and continuing my
-	various creative projects. If you're interested in collaborating, please send me your idea, and we
-	can brainstorm together to make something extraordinary.
+	Currently, I'm working as a Content Engineer for Vercel, and continuing my various creative
+	projects. If you're interested in collaborating, please send me your idea, and we can brainstorm
+	together to make something extraordinary.
 </p>
