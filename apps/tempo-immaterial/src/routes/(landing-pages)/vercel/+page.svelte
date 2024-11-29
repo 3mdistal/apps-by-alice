@@ -38,15 +38,9 @@
     </h1>
     <PublicationsSection
         publications={publications}
-        title="Landing Pages"
-        subtitle="Solutions marketing landing pages I've headed up and written the content for."
-        type="Landing Page"
-    />
-    <PublicationsSection
-        publications={publications}
-        title="Product Features"
-        subtitle="Announcements and feature highlights I've collaborated with company leaders to ghostwrite."
-        type="Product Feature"
+        title="Technical Blogs"
+        subtitle="Articles that I've written to offer developers guidance on Vercel's product."
+        type="Technical Blog" 
     />
     <PublicationsSection
         publications={publications}
@@ -56,14 +50,14 @@
     />
     <PublicationsSection
         publications={publications}
-        title="Customer Stories"
-        subtitle="My profiles of customers who have experienced big wins with Vercel."
-        type="Customer Story"
+        title="Product Features"
+        subtitle="Announcements and feature highlights I've collaborated with company leaders to ghostwrite."
+        type="Product Feature"
     />
     <PublicationsSection
         publications={publications}
-        title="Technical Blogs"
-        subtitle="Articles that I've written to offer developers guidance on Vercel's product."
-        type="Technical Blog" 
+        title="Customer Stories"
+        subtitle="My profiles of customers who have experienced big wins with Vercel."
+        type="Customer Story"
     />
 </main>
