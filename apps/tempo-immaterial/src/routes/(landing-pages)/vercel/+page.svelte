@@ -51,7 +51,7 @@
     <PublicationsSection
         publications={publications}
         title="Technical Guides"
-        subtitle="Step-by-step tutorials on topics related to Vercel's product."
+        subtitle="Step-by-step tutorials on topics related to Vercel's product. Often inspired by popular search queries."
         type="Technical Guide" 
     />
     <PublicationsSection
