@@ -39,8 +39,8 @@
     <PublicationsSection
         publications={publications}
         title="Technical Blogs"
-        subtitle="Articles that I've written to offer developers guidance on Vercel's product."
-        type="Technical Blog" 
+        subtitle="Articles that I've written to offer developers guidance on Vercel's product and adjacent topics."
+        type="Technical Blog"
     />
     <PublicationsSection
         publications={publications}
