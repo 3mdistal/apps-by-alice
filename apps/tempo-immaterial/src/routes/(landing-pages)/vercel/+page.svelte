@@ -50,6 +50,12 @@
     />
     <PublicationsSection
         publications={publications}
+        title="Technical Guides"
+        subtitle="Step-by-step tutorials on topics related to Vercel's product."
+        type="Technical Guide" 
+    />
+    <PublicationsSection
+        publications={publications}
         title="Product Features"
         subtitle="Announcements and feature highlights I've collaborated with company leaders to ghostwrite."
         type="Product Feature"
