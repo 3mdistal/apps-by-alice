@@ -1,21 +1,22 @@
-.DS_Store
 node_modules
-/build
-/.svelte-kit
-.svelte-kit
-/package
 
-# local env files
+# Output
+.output
+.vercel
+/.svelte-kit
+/build
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Env
 .env
 .env.*
-.env*.local
 !.env.example
+!.env.test
 
-#turbo
-.turbo
-
-#vercel
-.vercel
-
-#peronal
-todolist.js
+# Vite
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+.env*.local
