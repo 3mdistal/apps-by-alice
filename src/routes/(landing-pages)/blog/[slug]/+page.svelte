@@ -170,7 +170,6 @@
 		height: 100%;
 		min-height: 100vh;
 		color: #111827;
-		letter-spacing: 0.05em;
 
 		@media (min-width: 640px) {
 			padding: 2.5rem;
