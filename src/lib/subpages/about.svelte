@@ -111,10 +111,6 @@
 		font-weight: 500;
 	}
 
-	.about-footer-link:hover {
-		text-decoration: underline;
-	}
-
 	@media (min-width: 768px) {
 		.about-footer-content {
 			flex-wrap: nowrap;

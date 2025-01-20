@@ -198,7 +198,7 @@
 </svelte:head>
 
 <div class="background">
-	<div class="art-grid">
+	<div class="art-grid" bind:this={artGrid}>
 		{#each results as painting}
 			<div class="grid-item" on:click={() => openModal(painting)}>
 				<img
