@@ -72,10 +72,9 @@
 		flex-direction: column;
 		justify-content: space-around;
 		align-items: center;
-		gap: 1em;
 		margin-right: auto;
 		margin-left: auto;
-		max-width: 80vw;
+		width: 80vw;
 	}
 
 	.logo {
