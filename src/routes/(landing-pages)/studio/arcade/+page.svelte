@@ -48,9 +48,10 @@
 		gap: 2.5rem;
 		background-color: #bfdbfe;
 		padding: 2.5rem;
-		width: 100vw;
+		width: 100%;
 		min-height: 100vh;
 		font-size: 1.5rem;
+		box-sizing: border-box;
 	}
 
 	h1 {
