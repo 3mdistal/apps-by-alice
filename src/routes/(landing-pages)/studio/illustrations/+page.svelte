@@ -155,6 +155,8 @@
 	let selectedPainting: any = null;
 	let modalOpen = false;
 	let highResImageLoaded = false;
+	const lowQualityParams = '?tr=f-webp,w-800,q-40';
+	const highQualityParams = '?tr=f-webp,w-1600,q-85';
 
 	function openModal(painting: any) {
 		selectedPainting = painting;
@@ -162,9 +164,9 @@
 		highResImageLoaded = false;
 		document.body.style.overflow = 'hidden';
 
-		// Load high-res image
+		// Preload high-res image
 		const highResImage = new Image();
-		highResImage.src = painting.properties.Image.url + '?tr=f-webp,q-80';
+		highResImage.src = painting.properties.Image.url + highQualityParams;
 		highResImage.onload = () => {
 			highResImageLoaded = true;
 		};
@@ -240,7 +242,7 @@
 			>
 				<div class="image-wrapper">
 					<img
-						src={painting.properties.Image.url + '?tr=f-webp,w-400,q-50'}
+						src={painting.properties.Image.url + lowQualityParams}
 						alt={painting.properties.Name.title[0].plain_text}
 						class="grid-image"
 						loading="lazy"
@@ -260,9 +262,10 @@
 			<div class="modal-content" transition:scale={{ duration: 300 }}>
 				<img
 					src={selectedPainting.properties.Image.url +
-						(highResImageLoaded ? '?tr=f-webp,q-80' : '?tr=f-webp,w-400,q-50')}
+						(highResImageLoaded ? highQualityParams : lowQualityParams)}
 					alt={selectedPainting.properties.Name.title[0].plain_text}
 					class="modal-image"
+					style="opacity: {highResImageLoaded ? 1 : 0.99}"
 				/>
 				<div class="modal-info">
 					<h2>{selectedPainting.properties.Name.title[0].plain_text}</h2>
@@ -412,6 +415,7 @@
 	}
 
 	.modal-image {
+		transition: opacity 0.3s ease;
 		border-radius: 4px;
 		max-width: 100%;
 		max-height: 70vh;
@@ -434,8 +438,10 @@
 
 	.modal-info .date {
 		margin-bottom: 1rem;
-		color: rgba(255, 255, 255, 0.8);
+		color: rgba(255, 255, 255, 0.95);
 		font-style: italic;
+		font-weight: 500;
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
 	}
 
 	.modal-info .description {
