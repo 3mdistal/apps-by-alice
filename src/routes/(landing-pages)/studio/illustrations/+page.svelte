@@ -1,132 +1,59 @@
 <script lang="ts">
 	import TextMacro from '$lib/notion/text-macro.svelte';
-	import gsap from 'gsap';
-	import { onMount, afterUpdate } from 'svelte';
-	import { fade } from 'svelte/transition';
+	import { onMount } from 'svelte';
+	import { fade, scale } from 'svelte/transition';
+	import { browser } from '$app/environment';
 
+	// Props
 	export let data;
-
-	// Extracting results from data
 	const {
 		illustrations: { results }
 	} = data;
 
-	// Variables
-	let currentURL = '';
-	let all = true;
-	const lowQuality = '?tr=f-webp,w-400,q-50';
-	let scrollPos = 0;
-	let classList = ['sm:columns-2', 'md:columns-3', 'lg:columns-4', 'xl:columns-5'];
+	// Image quality parameters
+	const lowQualityParams = '?tr=f-webp,w-800,q-40';
+	const highQualityParams = '?tr=f-webp,w-1600,q-85';
+
+	// State
 	let artGrid: HTMLDivElement;
-	let restoreScroll = false;
-
-	// Lifecycle methods
-	afterUpdate(() => {
-		if (restoreScroll) {
-			scrollToPosition(scrollPos);
-			restoreScroll = false;
-		} else {
-			scrollToPosition(window.innerWidth < 500 ? 72 : 0);
-		}
-	});
-
-	onMount(() => {
-		fetch('/studio/illustrations', {
-			headers: {
-				Accept: 'application/json',
-				'x-prerender-revalidate': 'JKmtY3BJXXbqQNvcGTUCEkPrrScrd5fs'
-			}
-		});
-	});
-
-	// Functions
-	function scrollToPosition(position: number) {
-		window.scrollTo(0, position);
-	}
-
-	function callback() {
-		currentURL = '';
-		restoreScroll = true;
-		toggleView('add');
-	}
-
-	function manageHistory(add: boolean) {
-		if (add) {
-			history.pushState(null, '', '/studio/illustrations');
-			window.addEventListener('popstate', callback);
-		} else {
-			history.back();
-			window.removeEventListener('popstate', callback);
-		}
-	}
-
-	function toggleView(addOrRemove?: 'add' | 'remove') {
-		if (addOrRemove === 'add') {
-			artGrid.classList.add(...classList, 'p-2');
-			all = true;
-			return;
-		} else if (addOrRemove === 'remove') {
-			artGrid.classList.remove(...classList, 'p-2');
-			all = false;
-			return;
-		}
-	}
-
-	function handleClickToFullscreen({ currentTarget }: { currentTarget: Element }) {
-		currentURL = currentTarget!.querySelector('img')!.src;
-		scrollPos = window.scrollY;
-		toggleView('remove');
-		manageHistory(true);
-		return;
-	}
-
-	function handleClickToGallery() {
-		currentURL = '';
-		toggleView('add');
-		manageHistory(false);
-		restoreScroll = true;
-		return;
-	}
-
-	function lazyLoad(e: Event) {
-		const img = e.currentTarget;
-		if (img instanceof HTMLImageElement && img.dataset['src']) {
-			img.src = img.dataset['src'];
-			img.onload = () => {
-				img.removeAttribute('data-src');
-			};
-			return;
-		}
-	}
-
-	function fadeIn(div: HTMLDivElement) {
-		if (document.documentElement.clientWidth < 500) {
-			const tl = gsap.timeline();
-			tl.to(div, { opacity: 1, duration: 0.5, ease: 'power2.inOut' });
-
-			return {
-				update: () => tl
-			};
-		}
-
-		const tl = gsap.timeline();
-		tl.to(div, { opacity: 1, duration: 0.05 }).fromTo(
-			div.children,
-			{ opacity: 0 },
-			{
-				opacity: 1,
-				duration: 0.5,
-				ease: 'power2.inOut',
-				stagger: { amount: 1, from: 'random' }
-			}
-		);
-
-		return { update: () => tl };
-	}
-
+	let gridItems: HTMLDivElement[];
 	let selectedPainting: any = null;
 	let modalOpen = false;
 	let highResImageLoaded = false;
+
+	// Lifecycle
+	onMount(async () => {
+		if (browser) {
+			const gsapModule = await import('gsap');
+			const scrollTriggerModule = await import('gsap/ScrollTrigger');
+			const gsap = gsapModule.default;
+			const ScrollTrigger = scrollTriggerModule.default;
+			gsap.registerPlugin(ScrollTrigger);
+			initParallax(gsap, ScrollTrigger);
+		}
+	});
+
+	// Functions
+	function initParallax(gsap: any, ScrollTrigger: any) {
+		gridItems = Array.from(artGrid.querySelectorAll('.grid-item'));
+		gridItems.forEach((item) => {
+			gsap.fromTo(
+				item,
+				{ y: 0 },
+				{
+					y: 30,
+					ease: 'none',
+					scrollTrigger: {
+						trigger: item,
+						start: 'top bottom',
+						end: 'bottom top',
+						scrub: 1,
+						toggleActions: 'play none none reverse'
+					}
+				}
+			);
+		});
+	}
 
 	function openModal(painting: any) {
 		selectedPainting = painting;
@@ -134,9 +61,9 @@
 		highResImageLoaded = false;
 		document.body.style.overflow = 'hidden';
 
-		// Load high-res image
+		// Preload high-res image
 		const highResImage = new Image();
-		highResImage.src = painting.properties.Image.url + '?tr=f-webp,q-80';
+		highResImage.src = painting.properties.Image.url + highQualityParams;
 		highResImage.onload = () => {
 			highResImageLoaded = true;
 		};
@@ -151,10 +78,6 @@
 	function handleImageLoad(event: Event) {
 		const img = event.target as HTMLImageElement;
 		img.style.opacity = '1';
-		const fallbackText = img.nextElementSibling as HTMLElement;
-		if (fallbackText) {
-			fallbackText.style.display = 'none';
-		}
 	}
 </script>
 
@@ -199,28 +122,43 @@
 
 <div class="background">
 	<div class="art-grid" bind:this={artGrid}>
-		{#each results as painting}
-			<div class="grid-item" on:click={() => openModal(painting)}>
-				<img
-					src={painting.properties.Image.url + '?tr=f-webp,w-400,q-50'}
-					alt={painting.properties.Name.title[0].plain_text}
-					class="grid-image"
-					loading="lazy"
-					on:load={handleImageLoad}
-				/>
-				<p class="fallback-text">{painting.properties.Name.title[0].plain_text}</p>
+		{#each results as painting, i}
+			<div
+				class="grid-item"
+				on:click={() => openModal(painting)}
+				style="--delay: {i * 0.1}s"
+				in:scale={{
+					duration: 800,
+					delay: i * 100,
+					easing: (t) => t * (2 - t)
+				}}
+			>
+				<div class="image-wrapper">
+					<img
+						src={painting.properties.Image.url + lowQualityParams}
+						alt={painting.properties.Name.title[0].plain_text}
+						class="grid-image"
+						loading="lazy"
+						on:load={handleImageLoad}
+					/>
+					<div class="image-overlay">
+						<h3>{painting.properties.Name.title[0].plain_text}</h3>
+						<p class="date">{painting.properties.Date.formula.string}</p>
+					</div>
+				</div>
 			</div>
 		{/each}
 	</div>
 
 	{#if modalOpen}
-		<div class="modal-overlay" on:click={closeModal} transition:fade={{ duration: 200 }}>
-			<div class="modal-content">
+		<div class="modal-overlay" on:click|self={closeModal} transition:fade={{ duration: 300 }}>
+			<div class="modal-content" transition:scale={{ duration: 300 }}>
 				<img
 					src={selectedPainting.properties.Image.url +
-						(highResImageLoaded ? '?tr=f-webp,q-80' : '?tr=f-webp,w-400,q-50')}
+						(highResImageLoaded ? highQualityParams : lowQualityParams)}
 					alt={selectedPainting.properties.Name.title[0].plain_text}
 					class="modal-image"
+					style="opacity: {highResImageLoaded ? 1 : 0.99}"
 				/>
 				<div class="modal-info">
 					<h2>{selectedPainting.properties.Name.title[0].plain_text}</h2>
@@ -236,63 +174,108 @@
 <style>
 	.background {
 		background-color: #111827;
-		padding: 0;
+		padding: 1rem;
 		min-height: 100vh;
 		color: white;
 	}
 
 	.art-grid {
-		column-gap: 0;
-		column-count: 2;
+		column-gap: 1.5rem;
+		columns: 1;
+		margin: 0 auto;
+		padding: 1rem;
+		width: 100%;
+		max-width: 1800px;
 	}
 
 	.grid-item {
-		position: relative;
 		break-inside: avoid;
-		margin-bottom: 0;
+		transform-origin: center;
+		opacity: 0;
+		animation: fadeIn 0.5s ease forwards;
+		animation-delay: var(--delay);
+		margin-bottom: 1.5rem;
+	}
+
+	.image-wrapper {
+		position: relative;
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+		border-radius: 8px;
+		overflow: hidden;
+	}
+
+	.image-wrapper:hover {
+		transform: translateY(-4px) scale(1.02);
 	}
 
 	.grid-image {
 		display: block;
-		opacity: 0;
-		transition:
-			transform 0.3s ease,
-			opacity 0.3s ease;
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 		width: 100%;
 		height: auto;
 	}
 
-	.grid-image:hover {
-		transform: scale(1.05);
-		z-index: 1;
-	}
-
-	.fallback-text {
+	.image-overlay {
 		position: absolute;
 		right: 0;
 		bottom: 0;
 		left: 0;
-		background-color: rgba(0, 0, 0, 0.7);
-		padding: 0.5rem;
+		transform: translateY(100%);
+		transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+		padding: 1.5rem;
+	}
+
+	.image-wrapper:hover .image-overlay {
+		transform: translateY(0);
+	}
+
+	.image-overlay h3 {
+		margin: 0;
 		color: white;
-		font-size: 0.8rem;
+		font-weight: 500;
+		font-size: 1.2rem;
+	}
+
+	.image-overlay .date {
+		margin: 0.5rem 0 0;
+		color: rgba(255, 255, 255, 0.8);
+		font-size: 0.9rem;
+	}
+
+	@keyframes fadeIn {
+		from {
+			transform: translateY(20px);
+			opacity: 0;
+		}
+		to {
+			transform: translateY(0);
+			opacity: 1;
+		}
 	}
 
 	@media (min-width: 640px) {
 		.art-grid {
-			column-count: 3;
+			columns: 2;
 		}
 	}
 
 	@media (min-width: 1024px) {
 		.art-grid {
-			column-count: 4;
+			columns: 3;
 		}
 	}
 
 	@media (min-width: 1280px) {
 		.art-grid {
-			column-count: 5;
+			columns: 4;
+		}
+	}
+
+	@media (min-width: 1536px) {
+		.art-grid {
+			columns: 5;
 		}
 	}
 
@@ -300,14 +283,14 @@
 		display: flex;
 		position: fixed;
 		top: 0;
+		right: 0;
+		bottom: 0;
 		left: 0;
 		justify-content: center;
 		align-items: center;
 		z-index: 1000;
-		background-color: rgba(0, 0, 0, 0.9);
+		background-color: rgba(0, 0, 0, 0.95);
 		padding: 2rem;
-		width: 100%;
-		height: 100%;
 		overflow-y: auto;
 	}
 
@@ -316,58 +299,68 @@
 		position: relative;
 		flex-direction: column;
 		align-items: center;
-		box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-		border-radius: 8px;
+		backdrop-filter: blur(10px);
+		border-radius: 12px;
+		background-color: rgba(17, 24, 39, 0.8);
 		padding: 2rem;
-		width: min(90%, 1200px);
-		overflow-y: auto;
+		max-width: 90vw;
+		max-height: 90vh;
 	}
 
 	.modal-image {
-		margin-bottom: 1rem;
+		transition: opacity 0.3s ease;
+		border-radius: 4px;
 		max-width: 100%;
-		max-height: 90vh;
+		max-height: 70vh;
 		object-fit: contain;
 	}
 
 	.modal-info {
+		margin-top: 1.5rem;
 		width: 100%;
 		max-width: 600px;
-		color: #ffffff;
 		text-align: center;
 	}
 
 	.modal-info h2 {
 		margin-bottom: 0.5rem;
 		color: #ffffff;
-		font-size: 1.5rem;
-		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+		font-size: 1.75rem;
 	}
 
-	.modal-info p {
-		margin-bottom: 0.5rem;
-		color: #e0e0e0;
+	.modal-info .date em {
+		opacity: 0.9;
+		margin: 1rem 0;
+		color: #ffffff;
+		font-style: italic;
+		font-size: 1.1rem;
 	}
 
-	.date em {
-		color: #f0f0f0;
-	}
-
-	.description {
-		color: #f0f0f0;
+	.modal-info .description {
+		color: rgba(255, 255, 255, 0.9);
 		line-height: 1.6;
 		text-align: left;
 	}
 
 	.close-button {
-		position: fixed;
+		display: flex;
+		position: absolute;
 		top: 1rem;
-		right: 2rem;
+		right: 1rem;
+		justify-content: center;
+		align-items: center;
+		transition: background-color 0.2s ease;
 		cursor: pointer;
 		border: none;
-		background: none;
-		color: #ffffff;
-		font-size: 2rem;
-		text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+		border-radius: 50%;
+		background-color: rgba(255, 255, 255, 0.1);
+		width: 2.5rem;
+		height: 2.5rem;
+		color: white;
+		font-size: 1.5rem;
+	}
+
+	.close-button:hover {
+		background-color: rgba(255, 255, 255, 0.2);
 	}
 </style>
