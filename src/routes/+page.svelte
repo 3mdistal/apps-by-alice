@@ -58,6 +58,7 @@
 		display: flex;
 		position: relative;
 		flex-direction: column;
+		box-sizing: content-box;
 		padding-top: var(--top-padding);
 		height: calc(100dvh - var(--top-padding));
 		overflow: hidden;

@@ -8,6 +8,7 @@
 	color: #1f2937;
 	font-weight: 300;
 	font-family: 'Lato', sans-serif;
+	box-sizing: border-box;
 }
 
 h2 {

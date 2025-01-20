@@ -329,7 +329,6 @@
 		background-color: var(--accentColor);
 		padding: 6em;
 		width: 90%;
-
 		& h2 {
 			width: 50%;
 			color: #fafafa;
