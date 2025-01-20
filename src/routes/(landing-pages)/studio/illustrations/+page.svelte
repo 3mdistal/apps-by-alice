@@ -436,12 +436,12 @@
 		font-size: 1.75rem;
 	}
 
-	.modal-info .date {
-		margin-bottom: 1rem;
-		color: rgba(255, 255, 255, 0.95);
+	.modal-info .date em {
+		opacity: 0.9;
+		margin: 1rem 0;
+		color: #ffffff;
 		font-style: italic;
-		font-weight: 500;
-		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+		font-size: 1.1rem;
 	}
 
 	.modal-info .description {
