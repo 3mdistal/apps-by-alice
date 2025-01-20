@@ -1,58 +1,45 @@
 <script lang="ts">
 	import TextMacro from '$lib/notion/text-macro.svelte';
-	import { onMount, afterUpdate } from 'svelte';
+	import { onMount } from 'svelte';
 	import { fade, scale } from 'svelte/transition';
 	import { browser } from '$app/environment';
 
-	let gsap: any;
-	let ScrollTrigger: any;
-
-	onMount(async () => {
-		if (browser) {
-			const gsapModule = await import('gsap');
-			const scrollTriggerModule = await import('gsap/ScrollTrigger');
-			gsap = gsapModule.default;
-			ScrollTrigger = scrollTriggerModule.default;
-			gsap.registerPlugin(ScrollTrigger);
-			initParallax();
-		}
-	});
-
+	// Props
 	export let data;
-
-	// Extracting results from data
 	const {
 		illustrations: { results }
 	} = data;
 
-	// Variables
-	let currentURL = '';
-	let all = true;
-	const lowQuality = '?tr=f-webp,w-400,q-50';
-	let scrollPos = 0;
+	// Image quality parameters
+	const lowQualityParams = '?tr=f-webp,w-800,q-40';
+	const highQualityParams = '?tr=f-webp,w-1600,q-85';
+
+	// State
 	let artGrid: HTMLDivElement;
 	let gridItems: HTMLDivElement[];
-	let restoreScroll = false;
+	let selectedPainting: any = null;
+	let modalOpen = false;
+	let highResImageLoaded = false;
 
-	// Lifecycle methods
-	afterUpdate(() => {
-		if (restoreScroll) {
-			scrollToPosition(scrollPos);
-			restoreScroll = false;
-		} else {
-			scrollToPosition(window.innerWidth < 500 ? 72 : 0);
+	// Lifecycle
+	onMount(async () => {
+		if (browser) {
+			const gsapModule = await import('gsap');
+			const scrollTriggerModule = await import('gsap/ScrollTrigger');
+			const gsap = gsapModule.default;
+			const ScrollTrigger = scrollTriggerModule.default;
+			gsap.registerPlugin(ScrollTrigger);
+			initParallax(gsap, ScrollTrigger);
 		}
 	});
 
 	// Functions
-	function initParallax() {
+	function initParallax(gsap: any, ScrollTrigger: any) {
 		gridItems = Array.from(artGrid.querySelectorAll('.grid-item'));
-		gridItems.forEach((item, index) => {
+		gridItems.forEach((item) => {
 			gsap.fromTo(
 				item,
-				{
-					y: 0
-				},
+				{ y: 0 },
 				{
 					y: 30,
 					ease: 'none',
@@ -67,96 +54,6 @@
 			);
 		});
 	}
-
-	function scrollToPosition(position: number) {
-		window.scrollTo(0, position);
-	}
-
-	function callback() {
-		currentURL = '';
-		restoreScroll = true;
-		toggleView('add');
-	}
-
-	function manageHistory(add: boolean) {
-		if (add) {
-			history.pushState(null, '', '/studio/illustrations');
-			window.addEventListener('popstate', callback);
-		} else {
-			history.back();
-			window.removeEventListener('popstate', callback);
-		}
-	}
-
-	function toggleView(addOrRemove?: 'add' | 'remove') {
-		if (addOrRemove === 'add') {
-			artGrid.classList.add('p-2');
-			all = true;
-			return;
-		} else if (addOrRemove === 'remove') {
-			artGrid.classList.remove('p-2');
-			all = false;
-			return;
-		}
-	}
-
-	function handleClickToFullscreen({ currentTarget }: { currentTarget: Element }) {
-		currentURL = currentTarget!.querySelector('img')!.src;
-		scrollPos = window.scrollY;
-		toggleView('remove');
-		manageHistory(true);
-		return;
-	}
-
-	function handleClickToGallery() {
-		currentURL = '';
-		toggleView('add');
-		manageHistory(false);
-		restoreScroll = true;
-		return;
-	}
-
-	function lazyLoad(e: Event) {
-		const img = e.currentTarget;
-		if (img instanceof HTMLImageElement && img.dataset['src']) {
-			img.src = img.dataset['src'];
-			img.onload = () => {
-				img.removeAttribute('data-src');
-			};
-			return;
-		}
-	}
-
-	function fadeIn(div: HTMLDivElement) {
-		if (document.documentElement.clientWidth < 500) {
-			const tl = gsap.timeline();
-			tl.to(div, { opacity: 1, duration: 0.5, ease: 'power2.inOut' });
-
-			return {
-				update: () => tl
-			};
-		}
-
-		const tl = gsap.timeline();
-		tl.to(div, { opacity: 1, duration: 0.05 }).fromTo(
-			div.children,
-			{ opacity: 0 },
-			{
-				opacity: 1,
-				duration: 0.5,
-				ease: 'power2.inOut',
-				stagger: { amount: 1, from: 'random' }
-			}
-		);
-
-		return { update: () => tl };
-	}
-
-	let selectedPainting: any = null;
-	let modalOpen = false;
-	let highResImageLoaded = false;
-	const lowQualityParams = '?tr=f-webp,w-800,q-40';
-	const highQualityParams = '?tr=f-webp,w-1600,q-85';
 
 	function openModal(painting: any) {
 		selectedPainting = painting;
@@ -181,10 +78,6 @@
 	function handleImageLoad(event: Event) {
 		const img = event.target as HTMLImageElement;
 		img.style.opacity = '1';
-		const fallbackText = img.nextElementSibling as HTMLElement;
-		if (fallbackText) {
-			fallbackText.style.display = 'none';
-		}
 	}
 </script>
 
@@ -432,7 +325,6 @@
 	.modal-info h2 {
 		margin-bottom: 0.5rem;
 		color: #ffffff;
-		font-weight: 500;
 		font-size: 1.75rem;
 	}
 
