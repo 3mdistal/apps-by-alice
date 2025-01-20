@@ -3,22 +3,31 @@
 	import StudioCard from './studio-card.svelte';
 	import gsap from 'gsap';
 	import { backgroundColors, state } from '$lib/stores';
+	import type { PageObjectResponse } from '@notionhq/client/build/src/api-endpoints';
 
 	export let data;
 
-	const {
-		cards: { results: cards }
-	} = data;
+	const cards = data.cards.results.filter((card): card is PageObjectResponse => {
+		return 'parent' in card && 'properties' in card && 'icon' in card && 'cover' in card;
+	});
 
-	function populate() {
+	function populate(node: HTMLElement) {
 		document.body.style.backgroundColor = $backgroundColors.studio;
 		const tl = gsap.timeline();
 		tl.to('.card-div', { opacity: 1, duration: 0.5 })
-			.to('img.fixed', { duration: 0.4, opacity: 1, ease: 'power2.inOut' }, '<')
-			.to('img.fixed', { duration: 0.8, opacity: 0.4, ease: 'power2.inOut' })
-			.fromTo('.card-div > *', { opacity: 0 }, { opacity: 1, stagger: 0.1 }, '< .5');
+			.fromTo(
+				'.studio-background',
+				{ opacity: 0 },
+				{ opacity: 1, duration: 0.4, ease: 'power2.inOut' }
+			)
+			.to('.studio-background', { opacity: 0.4, duration: 0.8, ease: 'power2.inOut' })
+			.fromTo('.card-div > *', { opacity: 0 }, { opacity: 1, stagger: 0.1 }, '<');
 
-		return tl;
+		return {
+			destroy() {
+				tl.kill();
+			}
+		};
 	}
 
 	onMount(() => {
@@ -99,8 +108,10 @@
 
 <style>
 	.studio-container {
+		position: relative;
 		background-color: var(--studio-bg);
 		min-height: 100lvh;
+		overflow: hidden;
 	}
 
 	.studio-title {
@@ -111,9 +122,14 @@
 
 	.studio-background {
 		position: fixed;
+		top: 0;
+		left: 0;
 		opacity: 0;
-		height: 100%;
-		min-height: 100lvh;
+		z-index: 0;
+		width: 100%;
+		height: 100vh;
+		object-fit: cover;
+		pointer-events: none;
 	}
 
 	.break {
@@ -122,11 +138,13 @@
 
 	.card-div {
 		display: flex;
+		position: relative;
 		flex-wrap: wrap;
 		justify-content: center;
 		align-items: flex-start;
 		gap: 3rem;
 		opacity: 0;
+		z-index: 1;
 	}
 
 	@media (min-width: 640px) {
