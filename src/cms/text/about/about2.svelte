@@ -2,8 +2,8 @@
 	Something about the landscape has resided in me to this day, even as I've shed the backwards
 	ideologies of Southern Baptist cults threaded through my veins. As a closeted trans woman, I
 	learned not to discard the white supremacist neo-fascism, but to understand it—to learn how an
-	entire people can become so misled and to hope in art that can help them change their views when
-	so many political discussions fall on deaf ears.
+	entire people can become so misled and to hope in art that resonates with the heart when so many
+	political discussions fall on deaf ears.
 </p>
 
 <p>
